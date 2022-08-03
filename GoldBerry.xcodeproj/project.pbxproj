@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD539A59289AEFDD006F1CD1 /* ProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A58289AEFDD006F1CD1 /* ProductsView.swift */; };
 		DD95A8332899ABD200DF346B /* GoldBerryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD95A8322899ABD200DF346B /* GoldBerryApp.swift */; };
 		DD95A8352899ABD200DF346B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD95A8342899ABD200DF346B /* ContentView.swift */; };
 		DD95A8372899ABD600DF346B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD95A8362899ABD600DF346B /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DD539A58289AEFDD006F1CD1 /* ProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsView.swift; sourceTree = "<group>"; };
 		DD95A82F2899ABD200DF346B /* GoldBerry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoldBerry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD95A8322899ABD200DF346B /* GoldBerryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoldBerryApp.swift; sourceTree = "<group>"; };
 		DD95A8342899ABD200DF346B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -47,6 +49,7 @@
 			isa = PBXGroup;
 			children = (
 				DD95A8342899ABD200DF346B /* ContentView.swift */,
+				DD539A58289AEFDD006F1CD1 /* ProductsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 				DD95A83C2899ABD600DF346B /* Persistence.swift in Sources */,
 				DD95A8352899ABD200DF346B /* ContentView.swift in Sources */,
 				DD95A8332899ABD200DF346B /* GoldBerryApp.swift in Sources */,
+				DD539A59289AEFDD006F1CD1 /* ProductsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
