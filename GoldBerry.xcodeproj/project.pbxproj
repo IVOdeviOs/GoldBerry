@@ -36,6 +36,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DD539A54289AEAF6006F1CD1 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		DD539A55289AEB22006F1CD1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DD95A8342899ABD200DF346B /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DD539A56289AEB2A006F1CD1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DD539A57289AEB32006F1CD1 /* Utilites */ = {
+			isa = PBXGroup;
+			children = (
+				DD95A83B2899ABD600DF346B /* Persistence.swift */,
+			);
+			path = Utilites;
+			sourceTree = "<group>";
+		};
 		DD95A8262899ABD100DF346B = {
 			isa = PBXGroup;
 			children = (
@@ -55,10 +85,12 @@
 		DD95A8312899ABD200DF346B /* GoldBerry */ = {
 			isa = PBXGroup;
 			children = (
-				DD95A8322899ABD200DF346B /* GoldBerryApp.swift */,
-				DD95A8342899ABD200DF346B /* ContentView.swift */,
+				DD539A57289AEB32006F1CD1 /* Utilites */,
+				DD539A56289AEB2A006F1CD1 /* Models */,
+				DD539A55289AEB22006F1CD1 /* Views */,
+				DD539A54289AEAF6006F1CD1 /* ViewModels */,
 				DD95A8362899ABD600DF346B /* Assets.xcassets */,
-				DD95A83B2899ABD600DF346B /* Persistence.swift */,
+				DD95A8322899ABD200DF346B /* GoldBerryApp.swift */,
 				DD95A83D2899ABD600DF346B /* GoldBerry.xcdatamodeld */,
 				DD95A8382899ABD600DF346B /* Preview Content */,
 			);
