@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		DD539A59289AEFDD006F1CD1 /* ProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A58289AEFDD006F1CD1 /* ProductsView.swift */; };
+		DD539A6328A01F62006F1CD1 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A6228A01F62006F1CD1 /* CartView.swift */; };
+		DD539A6528A02839006F1CD1 /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A6428A02839006F1CD1 /* TabBarViewModel.swift */; };
+		DD539A6928A02A63006F1CD1 /* OrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A6828A02A62006F1CD1 /* OrdersView.swift */; };
 		DD95A8332899ABD200DF346B /* GoldBerryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD95A8322899ABD200DF346B /* GoldBerryApp.swift */; };
 		DD95A8352899ABD200DF346B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD95A8342899ABD200DF346B /* ContentView.swift */; };
 		DD95A8372899ABD600DF346B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD95A8362899ABD600DF346B /* Assets.xcassets */; };
@@ -18,6 +21,9 @@
 
 /* Begin PBXFileReference section */
 		DD539A58289AEFDD006F1CD1 /* ProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsView.swift; sourceTree = "<group>"; };
+		DD539A6228A01F62006F1CD1 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
+		DD539A6428A02839006F1CD1 /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
+		DD539A6828A02A62006F1CD1 /* OrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersView.swift; sourceTree = "<group>"; };
 		DD95A82F2899ABD200DF346B /* GoldBerry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoldBerry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD95A8322899ABD200DF346B /* GoldBerryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoldBerryApp.swift; sourceTree = "<group>"; };
 		DD95A8342899ABD200DF346B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -41,6 +47,7 @@
 		DD539A54289AEAF6006F1CD1 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				DD539A6428A02839006F1CD1 /* TabBarViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -49,7 +56,9 @@
 			isa = PBXGroup;
 			children = (
 				DD95A8342899ABD200DF346B /* ContentView.swift */,
-				DD539A58289AEFDD006F1CD1 /* ProductsView.swift */,
+				DD539A6A28A040C4006F1CD1 /* Categories */,
+				DD539A6228A01F62006F1CD1 /* CartView.swift */,
+				DD539A6828A02A62006F1CD1 /* OrdersView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -67,6 +76,22 @@
 				DD95A83B2899ABD600DF346B /* Persistence.swift */,
 			);
 			path = Utilites;
+			sourceTree = "<group>";
+		};
+		DD539A6A28A040C4006F1CD1 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				DD539A58289AEFDD006F1CD1 /* ProductsView.swift */,
+				DD539A6B28A040E8006F1CD1 /* CellProductsView */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		DD539A6B28A040E8006F1CD1 /* CellProductsView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CellProductsView;
 			sourceTree = "<group>";
 		};
 		DD95A8262899ABD100DF346B = {
@@ -178,10 +203,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD539A6328A01F62006F1CD1 /* CartView.swift in Sources */,
 				DD95A83F2899ABD600DF346B /* GoldBerry.xcdatamodeld in Sources */,
 				DD95A83C2899ABD600DF346B /* Persistence.swift in Sources */,
 				DD95A8352899ABD200DF346B /* ContentView.swift in Sources */,
 				DD95A8332899ABD200DF346B /* GoldBerryApp.swift in Sources */,
+				DD539A6928A02A63006F1CD1 /* OrdersView.swift in Sources */,
+				DD539A6528A02839006F1CD1 /* TabBarViewModel.swift in Sources */,
 				DD539A59289AEFDD006F1CD1 /* ProductsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
