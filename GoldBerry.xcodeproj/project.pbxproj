@@ -17,6 +17,9 @@
 		DD95A83A2899ABD600DF346B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD95A8392899ABD600DF346B /* Preview Assets.xcassets */; };
 		DD95A83C2899ABD600DF346B /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD95A83B2899ABD600DF346B /* Persistence.swift */; };
 		DD95A83F2899ABD600DF346B /* GoldBerry.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DD95A83D2899ABD600DF346B /* GoldBerry.xcdatamodeld */; };
+		DDBA58DE28A0419100FFC3A5 /* CategoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBA58DD28A0419100FFC3A5 /* CategoriesCell.swift */; };
+		DDBA58E028A1551400FFC3A5 /* AllProductsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBA58DF28A1551400FFC3A5 /* AllProductsCell.swift */; };
+		DDBA58E228A16E3B00FFC3A5 /* InformationProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBA58E128A16E3B00FFC3A5 /* InformationProductView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +34,9 @@
 		DD95A8392899ABD600DF346B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DD95A83B2899ABD600DF346B /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		DD95A83E2899ABD600DF346B /* GoldBerry.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GoldBerry.xcdatamodel; sourceTree = "<group>"; };
+		DDBA58DD28A0419100FFC3A5 /* CategoriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCell.swift; sourceTree = "<group>"; };
+		DDBA58DF28A1551400FFC3A5 /* AllProductsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProductsCell.swift; sourceTree = "<group>"; };
+		DDBA58E128A16E3B00FFC3A5 /* InformationProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationProductView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +89,7 @@
 			children = (
 				DD539A58289AEFDD006F1CD1 /* ProductsView.swift */,
 				DD539A6B28A040E8006F1CD1 /* CellProductsView */,
+				DDBA58E128A16E3B00FFC3A5 /* InformationProductView.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -90,6 +97,8 @@
 		DD539A6B28A040E8006F1CD1 /* CellProductsView */ = {
 			isa = PBXGroup;
 			children = (
+				DDBA58DD28A0419100FFC3A5 /* CategoriesCell.swift */,
+				DDBA58DF28A1551400FFC3A5 /* AllProductsCell.swift */,
 			);
 			path = CellProductsView;
 			sourceTree = "<group>";
@@ -203,12 +212,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDBA58DE28A0419100FFC3A5 /* CategoriesCell.swift in Sources */,
 				DD539A6328A01F62006F1CD1 /* CartView.swift in Sources */,
 				DD95A83F2899ABD600DF346B /* GoldBerry.xcdatamodeld in Sources */,
 				DD95A83C2899ABD600DF346B /* Persistence.swift in Sources */,
+				DDBA58E228A16E3B00FFC3A5 /* InformationProductView.swift in Sources */,
 				DD95A8352899ABD200DF346B /* ContentView.swift in Sources */,
 				DD95A8332899ABD200DF346B /* GoldBerryApp.swift in Sources */,
 				DD539A6928A02A63006F1CD1 /* OrdersView.swift in Sources */,
+				DDBA58E028A1551400FFC3A5 /* AllProductsCell.swift in Sources */,
 				DD539A6528A02839006F1CD1 /* TabBarViewModel.swift in Sources */,
 				DD539A59289AEFDD006F1CD1 /* ProductsView.swift in Sources */,
 			);

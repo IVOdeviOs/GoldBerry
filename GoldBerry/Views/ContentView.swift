@@ -17,14 +17,14 @@ struct ContentView: View {
                     OrdersView()
                 }
             }
-            .padding()
+//            .padding()
             .padding(.top, 90)
             ZStack {
                 VStack {
                     ZStack {
                         HStack {
                             Text("GoldBerry")
-                                .font(.system(size: 30, weight: .bold , design: .monospaced))
+                                .font(.system(size: 30, weight: .bold, design: .monospaced))
                                 .foregroundColor(.green)
                                 .padding()
                             Spacer()
@@ -103,7 +103,7 @@ struct ContentView: View {
             }
         }
         .ignoresSafeArea()
-        .background(.gray)
+        .background(.white)
     }
 }
 
