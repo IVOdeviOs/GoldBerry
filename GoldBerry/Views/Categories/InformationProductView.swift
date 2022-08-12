@@ -1,17 +1,38 @@
 import SwiftUI
 
 struct InformationProductView: View {
+    @ObservedObject var viewModel = TabBarViewModel()
+    @Environment(\.presentationMode) var presentationMode
+
+    private func dismiss() {
+        presentationMode.wrappedValue.dismiss()
+    }
+
     var body: some View {
 
-        VStack {
-            ZStack(alignment: .top) {
-                Image("fresh")
-                    .resizable()
-                    .frame(height: 350)
-                    .aspectRatio(contentMode: .fit)
+        ZStack(alignment: .top) {
+
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack {
+                    ZStack(alignment: .top) {
+                        Image("fresh")
+                            .resizable()
+                            .frame(height: 350)
+                            .aspectRatio(contentMode: .fit)
+                    }
+                    .cornerRadius(30)
+                    .padding(3)
+                    Spacer()
+                }
+                .offset(y: -20)
+                .navigationBarHidden(true)
+            }
+
+            ZStack {
                 HStack {
                     Button {
-                        //
+                        dismiss()
+
                     } label: {
                         Image(systemName: "arrow.backward.square")
                             .renderingMode(.original)
@@ -35,11 +56,9 @@ struct InformationProductView: View {
                     }
                 }
                 .padding(.horizontal)
-                .padding(.top, 36)
+//                .padding(.top, 1)
             }
-            Spacer()
-
-        }.ignoresSafeArea()
+        }
     }
 }
 
