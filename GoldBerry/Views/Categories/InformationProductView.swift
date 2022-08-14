@@ -37,9 +37,9 @@ struct InformationProductView: View {
                         Image(systemName: "arrow.backward.square")
                             .renderingMode(.original)
                             .scaleEffect(3)
-                            .foregroundColor(.white)
+                            .foregroundColor(.green)
                             .frame(width: 60, height: 60)
-                            .background(.gray.opacity(0.8))
+                            .background(.white.opacity(0.3))
                             .cornerRadius(10)
                     }
                     Spacer()
@@ -49,9 +49,9 @@ struct InformationProductView: View {
                         Image(systemName: "heart")
                             .renderingMode(.template)
                             .scaleEffect(3)
-                            .foregroundColor(.white)
+                            .foregroundColor(.red)
                             .frame(width: 60, height: 60)
-                            .background(.gray.opacity(0.8))
+                            .background(.white.opacity(0.3))
                             .cornerRadius(10)
                     }
                 }

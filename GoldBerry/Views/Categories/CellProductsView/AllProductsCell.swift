@@ -47,29 +47,7 @@ struct AllProductsCell: View {
                     .foregroundColor(.black.opacity(0.8))
 
             }
-            HStack {
-                Image(systemName: "star")
-                    .resizable()
-                    .frame(width: 10, height: 10)
-                    .foregroundColor(.yellow)
-                Image(systemName: "star")
-                    .resizable()
-                    .frame(width: 10, height: 10)
-                    .foregroundColor(.yellow)
-                Image(systemName: "star")
-                    .resizable()
-                    .frame(width: 10, height: 10)
-                    .foregroundColor(.yellow)
-                Image(systemName: "star")
-                    .resizable()
-                    .frame(width: 10, height: 10)
-                    .foregroundColor(.yellow)
-                Image(systemName: "star")
-                    .resizable()
-                    .frame(width: 10, height: 10)
-                    .foregroundColor(.yellow)
-                Spacer()
-            }.padding(.horizontal,5)
+          
             HStack {
                 Text("Доставка:0₽")
                     .font(.system(size: 12, weight: .light, design: .serif))

@@ -1,9 +1,3 @@
-//
-//  Persistence.swift
-//  GoldBerry
-//
-//  Created by Vadim on 02.08.2022.
-//
 
 import CoreData
 

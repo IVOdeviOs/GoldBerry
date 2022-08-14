@@ -17,7 +17,7 @@ struct ContentView: View {
                     case 0:
                         ProductsView()
                     case 1:
-                        ProductsView()
+                        AssemblyOfTheOrderView()
                     case 2:
                         OrdersView()
 

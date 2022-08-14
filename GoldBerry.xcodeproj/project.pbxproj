@@ -20,6 +20,7 @@
 		DDBA58DE28A0419100FFC3A5 /* CategoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBA58DD28A0419100FFC3A5 /* CategoriesCell.swift */; };
 		DDBA58E028A1551400FFC3A5 /* AllProductsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBA58DF28A1551400FFC3A5 /* AllProductsCell.swift */; };
 		DDBA58E228A16E3B00FFC3A5 /* InformationProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBA58E128A16E3B00FFC3A5 /* InformationProductView.swift */; };
+		DDBA58E428A9371400FFC3A5 /* AssemblyOfTheOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBA58E328A9371400FFC3A5 /* AssemblyOfTheOrderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		DDBA58DD28A0419100FFC3A5 /* CategoriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCell.swift; sourceTree = "<group>"; };
 		DDBA58DF28A1551400FFC3A5 /* AllProductsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProductsCell.swift; sourceTree = "<group>"; };
 		DDBA58E128A16E3B00FFC3A5 /* InformationProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationProductView.swift; sourceTree = "<group>"; };
+		DDBA58E328A9371400FFC3A5 /* AssemblyOfTheOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyOfTheOrderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				DD539A58289AEFDD006F1CD1 /* ProductsView.swift */,
 				DD539A6B28A040E8006F1CD1 /* CellProductsView */,
 				DDBA58E128A16E3B00FFC3A5 /* InformationProductView.swift */,
+				DDBA58E328A9371400FFC3A5 /* AssemblyOfTheOrderView.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDBA58E428A9371400FFC3A5 /* AssemblyOfTheOrderView.swift in Sources */,
 				DDBA58DE28A0419100FFC3A5 /* CategoriesCell.swift in Sources */,
 				DD539A6328A01F62006F1CD1 /* CartView.swift in Sources */,
 				DD95A83F2899ABD600DF346B /* GoldBerry.xcdatamodeld in Sources */,

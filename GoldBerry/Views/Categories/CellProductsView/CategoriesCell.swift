@@ -9,6 +9,8 @@ struct CategoriesCell: View {
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 180, height: 140)
+            Color(.init(red: 0, green: 0, blue: 0, alpha: 0.4))
+                .frame(width: 180, height: 140)
             Text(nameCategories)
                 .font(.system(size: 20, weight: .bold, design: .serif))
                 .foregroundColor(.white)
