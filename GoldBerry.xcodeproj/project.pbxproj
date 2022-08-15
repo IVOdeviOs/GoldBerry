@@ -21,6 +21,7 @@
 		DDBA58E028A1551400FFC3A5 /* AllProductsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBA58DF28A1551400FFC3A5 /* AllProductsCell.swift */; };
 		DDBA58E228A16E3B00FFC3A5 /* InformationProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBA58E128A16E3B00FFC3A5 /* InformationProductView.swift */; };
 		DDBA58E428A9371400FFC3A5 /* AssemblyOfTheOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBA58E328A9371400FFC3A5 /* AssemblyOfTheOrderView.swift */; };
+		DDBA58E928AAB18A00FFC3A5 /* ImageCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBA58E828AAB18A00FFC3A5 /* ImageCart.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		DDBA58DF28A1551400FFC3A5 /* AllProductsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProductsCell.swift; sourceTree = "<group>"; };
 		DDBA58E128A16E3B00FFC3A5 /* InformationProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationProductView.swift; sourceTree = "<group>"; };
 		DDBA58E328A9371400FFC3A5 /* AssemblyOfTheOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyOfTheOrderView.swift; sourceTree = "<group>"; };
+		DDBA58E828AAB18A00FFC3A5 /* ImageCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCart.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 		DD539A6A28A040C4006F1CD1 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				DDBA58E728AAB16C00FFC3A5 /* ExtensionView */,
 				DD539A58289AEFDD006F1CD1 /* ProductsView.swift */,
 				DD539A6B28A040E8006F1CD1 /* CellProductsView */,
 				DDBA58E128A16E3B00FFC3A5 /* InformationProductView.swift */,
@@ -143,6 +146,14 @@
 				DD95A8392899ABD600DF346B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DDBA58E728AAB16C00FFC3A5 /* ExtensionView */ = {
+			isa = PBXGroup;
+			children = (
+				DDBA58E828AAB18A00FFC3A5 /* ImageCart.swift */,
+			);
+			path = ExtensionView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,6 +230,7 @@
 				DDBA58DE28A0419100FFC3A5 /* CategoriesCell.swift in Sources */,
 				DD539A6328A01F62006F1CD1 /* CartView.swift in Sources */,
 				DD95A83F2899ABD600DF346B /* GoldBerry.xcdatamodeld in Sources */,
+				DDBA58E928AAB18A00FFC3A5 /* ImageCart.swift in Sources */,
 				DD95A83C2899ABD600DF346B /* Persistence.swift in Sources */,
 				DDBA58E228A16E3B00FFC3A5 /* InformationProductView.swift in Sources */,
 				DD95A8352899ABD200DF346B /* ContentView.swift in Sources */,
