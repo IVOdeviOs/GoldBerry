@@ -2,6 +2,10 @@ import SwiftUI
 
 struct AssemblyOfTheOrderView: View {
     @ObservedObject var viewModel = TabBarViewModel()
+//    let screenSize = UIScreen.main.bounds
+//    var screenWidth = screenSize.width
+//    var screenHeight = screenSize.height
+    var image = Image(systemName: "cart")
 
     var body: some View {
         NavigationView {
@@ -21,37 +25,40 @@ struct AssemblyOfTheOrderView: View {
                                         .frame(width: 30, height: 30)
                                         .foregroundColor(.black)
                                 }
+                                ZStack {
+                                    Image(systemName: viewModel.img ?? "cart")
+                                        .resizable()
+                                        .frame(width: 100, height: 100)
+                                        .foregroundColor(.red)
+                                    image
+                                        .resizable()
+                                        .frame(width: 240, height: 240)
 
-                                Image(systemName: "cart")
-                                    .resizable()
-                                    .frame(width: 240, height: 240)
 //                                        .padding(.top, 0)
-                                    .foregroundColor(.green)
+                                        .foregroundColor(.green)
+                                }
                             }
                         }
                         HStack {
 
                             VStack {
 
-                                CustomImage(image: "flame")
-
-                                CustomImage(image: "flame")
-                                CustomImage(image: "flame")
-                                CustomImage(image: "flame")
-                                CustomImage(image: "flame")
+                                CustomImage(image: "flame",width1: 100,width2: 275,height1: 90,height2: 240)
+                                CustomImage(image: "flame",width1: 100,width2: 275,height1: 40,height2: 190)
+                                CustomImage(image: "flame",width1: 100,width2: 275,height1: -30,height2: 110)
+                                CustomImage(image: "flame",width1: 100,width2: 275,height1: -110,height2: 30)
+                                CustomImage(image: "flame",width1: 100,width2: 275,height1: -190,height2: -40)
                                     .padding(.horizontal)
-
                             }
 
                             Spacer()
                             VStack {
-                                CustomImage(image: "flame")
-                                CustomImage(image: "flame")
-                                CustomImage(image: "flame")
-                                CustomImage(image: "flame")
-                                CustomImage(image: "flame")
+                                CustomImage(image: "flame",width1: -250,width2: -70,height1: 80,height2: 230)
+                                CustomImage(image: "flame",width1: -250,width2: -60,height1: 30,height2: 190)
+                                CustomImage(image: "flame",width1: -250,width2: -50,height1: -30,height2: 110)
+                                CustomImage(image: "flame",width1: -250,width2: -60,height1: -110,height2: 30)
+                                CustomImage(image: "flame",width1: -250,width2: -70,height1: -190,height2: -40)
                                     .padding(.horizontal)
-
                             }
                         }
 //                        .padding(.horizontal)
@@ -76,10 +83,12 @@ struct AssemblyOfTheOrderView_Previews: PreviewProvider {
 }
 
 struct CustomImage: View {
-    var image: String
+    @State var image: String
     @ObservedObject var viewModel = TabBarViewModel()
-    @State var size = CGSize.zero
-    //    @State var wight = CGSize.zero
+    @State var width1: CGFloat
+    @State var width2: CGFloat
+    @State var height1: CGFloat
+    @State var height2: CGFloat
     var body: some View {
         Image(systemName: image)
             .resizable()
@@ -97,11 +106,21 @@ struct CustomImage: View {
                     self.viewModel.viewState = value.translation
                     self.viewModel.show = true
                 }
-                .onEnded { a in
-                    self.viewModel.viewState = a.predictedEndTranslation
-                    
-                  
-                      
+                .onEnded { _ in
+
+                    if viewModel.viewState.width <= width1 || viewModel.viewState.width >= width2 {
+                        self.viewModel.img = image
+                        print("🥳---------")
+                        print("\(viewModel.viewState.width)")
+                        self.viewModel.viewState = .zero
+                    }
+                    if viewModel.viewState.height <= height1 || viewModel.viewState.height >= height2 {
+                        self.viewModel.img = image
+                        print("🥳---------")
+                        print("\(viewModel.viewState.width)")
+                        self.viewModel.viewState = .zero
+                    }
+//                    self.viewModel.viewState = .zero
                     self.viewModel.show = false
                 }
             )

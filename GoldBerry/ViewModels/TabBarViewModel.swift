@@ -10,8 +10,10 @@ class TabBarViewModel: ObservableObject {
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
+    @Published var img:String? = ""
     @Published var show = false
     @Published var viewState: CGSize = .zero
 
+  
     
 }
