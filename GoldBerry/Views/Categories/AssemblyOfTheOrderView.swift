@@ -33,21 +33,21 @@ struct AssemblyOfTheOrderView: View {
                         HStack {
                             VStack {
 
-                                CustomImage(image: "flame", width1: 100, width2: 275, height1: 90, height2: 240)
-                                CustomImage(image: "flame", width1: 100, width2: 275, height1: 40, height2: 190)
-                                CustomImage(image: "flame", width1: 100, width2: 275, height1: -30, height2: 110)
-                                CustomImage(image: "flame", width1: 100, width2: 275, height1: -110, height2: 30)
-                                CustomImage(image: "flame", width1: 100, width2: 275, height1: -190, height2: -40)
+                                CustomImage(image: "apple", width1: 100, width2: 275, height1: 90, height2: 240)
+                                CustomImage(image: "apricot", width1: 100, width2: 275, height1: 40, height2: 190)
+                                CustomImage(image: "banana", width1: 100, width2: 275, height1: -30, height2: 110)
+                                CustomImage(image: "kiwi", width1: 100, width2: 275, height1: -110, height2: 30)
+                                CustomImage(image: "lemon", width1: 100, width2: 275, height1: -190, height2: -40)
                                     .padding(.horizontal)
                             }
 
                             Spacer()
                             VStack {
-                                CustomImage(image: "flame", width1: -250, width2: -70, height1: 80, height2: 230)
-                                CustomImage(image: "flame", width1: -250, width2: -60, height1: 30, height2: 190)
-                                CustomImage(image: "flame", width1: -250, width2: -50, height1: -30, height2: 110)
-                                CustomImage(image: "flame", width1: -250, width2: -60, height1: -110, height2: 30)
-                                CustomImage(image: "flame", width1: -250, width2: -70, height1: -190, height2: -40)
+                                CustomImage(image: "mango", width1: -250, width2: -70, height1: 80, height2: 230)
+                                CustomImage(image: "orange", width1: -250, width2: -60, height1: 30, height2: 190)
+                                CustomImage(image: "peach", width1: -250, width2: -50, height1: -30, height2: 110)
+                                CustomImage(image: "pear", width1: -250, width2: -60, height1: -110, height2: 30)
+                                CustomImage(image: "pineapple", width1: -250, width2: -70, height1: -190, height2: -40)
                                     .padding(.horizontal)
                             }
                         }
@@ -80,13 +80,15 @@ struct CustomImage: View {
     @State var height1: CGFloat
     @State var height2: CGFloat
     var body: some View {
-        Image(systemName: image)
+        Image(image)
             .resizable()
-            .frame(width: 30, height: 30)
-            .padding()
+            .frame(width: 60, height: 60)
+            .cornerRadius(30)
+            .aspectRatio(contentMode: .fill)
+            .padding(3)
             .background(.green)
             .clipShape(Circle())
-            .blendMode(.hardLight)
+//            .blendMode(.hardLight)
             .blur(radius: viewModel.show ? 1 : 0)
             //                            .background(show ? .red : .clear)
             .offset(x: viewModel.viewState.width, y: viewModel.viewState.height)
