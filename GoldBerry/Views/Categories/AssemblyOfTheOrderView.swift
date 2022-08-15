@@ -2,10 +2,6 @@ import SwiftUI
 
 struct AssemblyOfTheOrderView: View {
     @ObservedObject var viewModel = TabBarViewModel()
-//    let screenSize = UIScreen.main.bounds
-//    var screenWidth = screenSize.width
-//    var screenHeight = screenSize.height
-
     var body: some View {
         NavigationView {
             VStack {
@@ -22,11 +18,11 @@ struct AssemblyOfTheOrderView: View {
                                         .foregroundColor(.black)
                                 }
                                 ZStack {
-                                    Image(systemName: "cart")
+                                    LinearGradient(gradient: Gradient(colors: [.green, .green.opacity(0.8),.orange]), startPoint: .top, endPoint: .bottom)
+                                       .mask(Image(systemName: "cart")
                                         .resizable()
-                                        .frame(width: 240, height: 240)
-//                                        .padding(.top, 0)
-                                        .foregroundColor(.green)
+                                        .frame(width: 240, height: 240))
+                                       .frame(width: 240, height: 240)
                                 }
                             }
                         }
@@ -51,7 +47,6 @@ struct AssemblyOfTheOrderView: View {
                                     .padding(.horizontal)
                             }
                         }
-//                        .padding(.horizontal)
                     }
                 }
                 Divider()
@@ -60,8 +55,6 @@ struct AssemblyOfTheOrderView: View {
             }
         }
         .offset(y: -70)
-
-//        .navigationBarTitleDisplayMode(.inline)
         .navigationBarHidden(true)
     }
 }
@@ -90,7 +83,6 @@ struct CustomImage: View {
             .clipShape(Circle())
 //            .blendMode(.hardLight)
             .blur(radius: viewModel.show ? 1 : 0)
-            //                            .background(show ? .red : .clear)
             .offset(x: viewModel.viewState.width, y: viewModel.viewState.height)
             .animation(.timingCurve(0.2, 0.8, 0.2, 1, duration: 1.2))
             .gesture(
@@ -101,19 +93,18 @@ struct CustomImage: View {
                 .onEnded { _ in
 
                     if viewModel.viewState.width <= width1 || viewModel.viewState.width >= width2 {
-                        self.viewModel.img = image
-                        print("🥳---------")
-                        print("\(viewModel.viewState.width)")
+                       
                         self.viewModel.viewState = .zero
+                        self.viewModel.show = false
+
                     }
                     if viewModel.viewState.height <= height1 || viewModel.viewState.height >= height2 {
-                        self.viewModel.img = image
-                        print("🥳---------")
-                        print("\(viewModel.viewState.width)")
+                      
                         self.viewModel.viewState = .zero
+                        self.viewModel.show = false
+
                     }
-//                    self.viewModel.viewState = .zero
-                    self.viewModel.show = false
+//
                 }
             )
     }
