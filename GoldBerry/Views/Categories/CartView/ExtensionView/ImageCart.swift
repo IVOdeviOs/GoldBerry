@@ -7,6 +7,8 @@ struct CustomImage: View {
     @State var width2: CGFloat
     @State var height1: CGFloat
     @State var height2: CGFloat
+    @State var index: Int
+
     var body: some View {
         Image(image)
             .resizable()
@@ -29,9 +31,25 @@ struct CustomImage: View {
 
                     if (viewModel.viewState.width <= width1 || viewModel.viewState.width >= width2) || (viewModel.viewState.height <= height1 || viewModel.viewState.height >= height2) {
                         self.viewModel.viewState = .zero
+                    } else {
+                        switch index {
+                        case 1: viewModel.fruit.append(Fruit(name: "abricos", cost: "21", count: 21))
+                        case 2: viewModel.fruit.append(Fruit(name: "abricos", cost: "21", count: 21))
+                        case 3: viewModel.fruit.append(Fruit(name: "banana", cost: "21", count: 21))
+                        case 4: print("\(String(describing: viewModel.fruit.last))")
+                        case 5: print("5")
+                        case 6: print("6")
+                        case 7: print("7")
+                        case 8: print("8")
+                        case 9: print("9")
+                        case 10: print("10")
+                        default:
+                            break
+                        }
+                        self.viewModel.show = false
+
                     }
 
-                    self.viewModel.show = false
                 }
             )
     }

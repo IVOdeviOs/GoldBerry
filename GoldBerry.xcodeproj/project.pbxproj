@@ -22,6 +22,8 @@
 		DDBA58E228A16E3B00FFC3A5 /* InformationProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBA58E128A16E3B00FFC3A5 /* InformationProductView.swift */; };
 		DDBA58E428A9371400FFC3A5 /* AssemblyOfTheOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBA58E328A9371400FFC3A5 /* AssemblyOfTheOrderView.swift */; };
 		DDBA58E928AAB18A00FFC3A5 /* ImageCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBA58E828AAB18A00FFC3A5 /* ImageCart.swift */; };
+		DDBA58EB28AAB43900FFC3A5 /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBA58EA28AAB43900FFC3A5 /* Fruit.swift */; };
+		DDBA58EF28AAB80D00FFC3A5 /* FruitListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBA58EE28AAB80D00FFC3A5 /* FruitListCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +43,8 @@
 		DDBA58E128A16E3B00FFC3A5 /* InformationProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationProductView.swift; sourceTree = "<group>"; };
 		DDBA58E328A9371400FFC3A5 /* AssemblyOfTheOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyOfTheOrderView.swift; sourceTree = "<group>"; };
 		DDBA58E828AAB18A00FFC3A5 /* ImageCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCart.swift; sourceTree = "<group>"; };
+		DDBA58EA28AAB43900FFC3A5 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
+		DDBA58EE28AAB80D00FFC3A5 /* FruitListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitListCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +80,7 @@
 		DD539A56289AEB2A006F1CD1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				DDBA58EA28AAB43900FFC3A5 /* Fruit.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -91,11 +96,8 @@
 		DD539A6A28A040C4006F1CD1 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				DDBA58E728AAB16C00FFC3A5 /* ExtensionView */,
-				DD539A58289AEFDD006F1CD1 /* ProductsView.swift */,
-				DD539A6B28A040E8006F1CD1 /* CellProductsView */,
-				DDBA58E128A16E3B00FFC3A5 /* InformationProductView.swift */,
-				DDBA58E328A9371400FFC3A5 /* AssemblyOfTheOrderView.swift */,
+				DDBA58F028AABDEB00FFC3A5 /* Products */,
+				DDBA58EC28AAB7CB00FFC3A5 /* CartView */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -103,6 +105,7 @@
 		DD539A6B28A040E8006F1CD1 /* CellProductsView */ = {
 			isa = PBXGroup;
 			children = (
+				DDBA58E128A16E3B00FFC3A5 /* InformationProductView.swift */,
 				DDBA58DD28A0419100FFC3A5 /* CategoriesCell.swift */,
 				DDBA58DF28A1551400FFC3A5 /* AllProductsCell.swift */,
 			);
@@ -154,6 +157,33 @@
 				DDBA58E828AAB18A00FFC3A5 /* ImageCart.swift */,
 			);
 			path = ExtensionView;
+			sourceTree = "<group>";
+		};
+		DDBA58EC28AAB7CB00FFC3A5 /* CartView */ = {
+			isa = PBXGroup;
+			children = (
+				DDBA58ED28AAB7F000FFC3A5 /* CellCartView */,
+				DDBA58E328A9371400FFC3A5 /* AssemblyOfTheOrderView.swift */,
+				DDBA58E728AAB16C00FFC3A5 /* ExtensionView */,
+			);
+			path = CartView;
+			sourceTree = "<group>";
+		};
+		DDBA58ED28AAB7F000FFC3A5 /* CellCartView */ = {
+			isa = PBXGroup;
+			children = (
+				DDBA58EE28AAB80D00FFC3A5 /* FruitListCell.swift */,
+			);
+			path = CellCartView;
+			sourceTree = "<group>";
+		};
+		DDBA58F028AABDEB00FFC3A5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DD539A6B28A040E8006F1CD1 /* CellProductsView */,
+				DD539A58289AEFDD006F1CD1 /* ProductsView.swift */,
+			);
+			path = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,11 +257,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDBA58E428A9371400FFC3A5 /* AssemblyOfTheOrderView.swift in Sources */,
+				DDBA58EF28AAB80D00FFC3A5 /* FruitListCell.swift in Sources */,
 				DDBA58DE28A0419100FFC3A5 /* CategoriesCell.swift in Sources */,
 				DD539A6328A01F62006F1CD1 /* CartView.swift in Sources */,
 				DD95A83F2899ABD600DF346B /* GoldBerry.xcdatamodeld in Sources */,
 				DDBA58E928AAB18A00FFC3A5 /* ImageCart.swift in Sources */,
 				DD95A83C2899ABD600DF346B /* Persistence.swift in Sources */,
+				DDBA58EB28AAB43900FFC3A5 /* Fruit.swift in Sources */,
 				DDBA58E228A16E3B00FFC3A5 /* InformationProductView.swift in Sources */,
 				DD95A8352899ABD200DF346B /* ContentView.swift in Sources */,
 				DD95A8332899ABD200DF346B /* GoldBerryApp.swift in Sources */,

@@ -4,6 +4,8 @@ import Foundation
 import SwiftUI
 
 class TabBarViewModel: ObservableObject {
+    @Published var fruit = [Fruit]()
+    
     @Published var selected = 0
     
     let columns = [
