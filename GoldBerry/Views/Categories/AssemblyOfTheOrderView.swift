@@ -5,7 +5,6 @@ struct AssemblyOfTheOrderView: View {
 //    let screenSize = UIScreen.main.bounds
 //    var screenWidth = screenSize.width
 //    var screenHeight = screenSize.height
-    var image = Image(systemName: "cart")
 
     var body: some View {
         NavigationView {
@@ -15,9 +14,6 @@ struct AssemblyOfTheOrderView: View {
                         ZStack {
                             VStack(spacing: 100) {
                                 Button {
-//                                    self.viewState1 = .zero
-//                                    self.viewState2 = .zero
-
                                     viewModel.viewState = .zero
                                 } label: {
                                     Image(systemName: "x.circle")
@@ -26,38 +22,32 @@ struct AssemblyOfTheOrderView: View {
                                         .foregroundColor(.black)
                                 }
                                 ZStack {
-                                    Image(systemName: viewModel.img ?? "cart")
-                                        .resizable()
-                                        .frame(width: 100, height: 100)
-                                        .foregroundColor(.red)
-                                    image
+                                    Image(systemName: "cart")
                                         .resizable()
                                         .frame(width: 240, height: 240)
-
 //                                        .padding(.top, 0)
                                         .foregroundColor(.green)
                                 }
                             }
                         }
                         HStack {
-
                             VStack {
 
-                                CustomImage(image: "flame",width1: 100,width2: 275,height1: 90,height2: 240)
-                                CustomImage(image: "flame",width1: 100,width2: 275,height1: 40,height2: 190)
-                                CustomImage(image: "flame",width1: 100,width2: 275,height1: -30,height2: 110)
-                                CustomImage(image: "flame",width1: 100,width2: 275,height1: -110,height2: 30)
-                                CustomImage(image: "flame",width1: 100,width2: 275,height1: -190,height2: -40)
+                                CustomImage(image: "flame", width1: 100, width2: 275, height1: 90, height2: 240)
+                                CustomImage(image: "flame", width1: 100, width2: 275, height1: 40, height2: 190)
+                                CustomImage(image: "flame", width1: 100, width2: 275, height1: -30, height2: 110)
+                                CustomImage(image: "flame", width1: 100, width2: 275, height1: -110, height2: 30)
+                                CustomImage(image: "flame", width1: 100, width2: 275, height1: -190, height2: -40)
                                     .padding(.horizontal)
                             }
 
                             Spacer()
                             VStack {
-                                CustomImage(image: "flame",width1: -250,width2: -70,height1: 80,height2: 230)
-                                CustomImage(image: "flame",width1: -250,width2: -60,height1: 30,height2: 190)
-                                CustomImage(image: "flame",width1: -250,width2: -50,height1: -30,height2: 110)
-                                CustomImage(image: "flame",width1: -250,width2: -60,height1: -110,height2: 30)
-                                CustomImage(image: "flame",width1: -250,width2: -70,height1: -190,height2: -40)
+                                CustomImage(image: "flame", width1: -250, width2: -70, height1: 80, height2: 230)
+                                CustomImage(image: "flame", width1: -250, width2: -60, height1: 30, height2: 190)
+                                CustomImage(image: "flame", width1: -250, width2: -50, height1: -30, height2: 110)
+                                CustomImage(image: "flame", width1: -250, width2: -60, height1: -110, height2: 30)
+                                CustomImage(image: "flame", width1: -250, width2: -70, height1: -190, height2: -40)
                                     .padding(.horizontal)
                             }
                         }
@@ -71,7 +61,7 @@ struct AssemblyOfTheOrderView: View {
         }
         .offset(y: -70)
 
-        .navigationBarTitleDisplayMode(.inline)
+//        .navigationBarTitleDisplayMode(.inline)
         .navigationBarHidden(true)
     }
 }
