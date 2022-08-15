@@ -39,6 +39,8 @@ struct AssemblyOfTheOrderView: View {
                                 CustomImage(image: "flame")
                                 CustomImage(image: "flame")
                                 CustomImage(image: "flame")
+                                    .padding(.horizontal)
+
                             }
 
                             Spacer()
@@ -48,6 +50,8 @@ struct AssemblyOfTheOrderView: View {
                                 CustomImage(image: "flame")
                                 CustomImage(image: "flame")
                                 CustomImage(image: "flame")
+                                    .padding(.horizontal)
+
                             }
                         }
 //                        .padding(.horizontal)
@@ -74,6 +78,8 @@ struct AssemblyOfTheOrderView_Previews: PreviewProvider {
 struct CustomImage: View {
     var image: String
     @ObservedObject var viewModel = TabBarViewModel()
+    @State var size = CGSize.zero
+    //    @State var wight = CGSize.zero
     var body: some View {
         Image(systemName: image)
             .resizable()
@@ -93,7 +99,9 @@ struct CustomImage: View {
                 }
                 .onEnded { a in
                     self.viewModel.viewState = a.predictedEndTranslation
-
+                    
+                  
+                      
                     self.viewModel.show = false
                 }
             )
