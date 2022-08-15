@@ -2,7 +2,7 @@ import SwiftUI
 
 struct AssemblyOfTheOrderView: View {
     @ObservedObject var viewModel = TabBarViewModel()
-    @State var fruit: [Fruit] = []
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -11,6 +11,7 @@ struct AssemblyOfTheOrderView: View {
                         ZStack {
                             VStack(spacing: 100) {
                                 Button {
+                                    viewModel.fruit.append(Fruit(name: "12", cost: "12312312", count: 12))
                                     viewModel.viewState = .zero
                                 } label: {
                                     Image(systemName: "x.circle")
@@ -31,6 +32,7 @@ struct AssemblyOfTheOrderView: View {
                             VStack {
 
                                 CustomImage(image: "apple", width1: 100, width2: 275, height1: 90, height2: 240, index: 1)
+                            
                                 CustomImage(image: "apricot", width1: 100, width2: 275, height1: 40, height2: 190, index: 2)
                                 CustomImage(image: "banana", width1: 100, width2: 275, height1: -30, height2: 110, index: 3)
                                 CustomImage(image: "kiwi", width1: 100, width2: 275, height1: -110, height2: 30, index: 4)
@@ -51,11 +53,13 @@ struct AssemblyOfTheOrderView: View {
                     }
                 }
                 Divider()
-                Spacer()
+               
                 VStack {
-                    ForEach(fruit) { fruit in
-                        FruitListCell(name: fruit.name, cost: fruit.cost, count: fruit.count)
+                    List{
+                    ForEach(viewModel.fruit) { fruits in
+                        FruitListCell(name: fruits.name, cost: fruits.cost, count: fruits.count)
                     }
+                }
                 }
             }
         }

@@ -2,9 +2,9 @@
 import SwiftUI
 
 struct FruitListCell: View {
-    var name: String
-    var cost: String
-    var count: Int
+    @State var name: String
+    @State var cost: String
+    @State var count: Int
     var body: some View {
         VStack {
             HStack {

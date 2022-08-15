@@ -33,10 +33,10 @@ struct CustomImage: View {
                         self.viewModel.viewState = .zero
                     } else {
                         switch index {
-                        case 1: viewModel.fruit.append(Fruit(name: "abricos", cost: "21", count: 21))
+                        case 1:  viewModel.fruit.append(Fruit(name: "12", cost: "12312312", count: 12))
                         case 2: viewModel.fruit.append(Fruit(name: "abricos", cost: "21", count: 21))
                         case 3: viewModel.fruit.append(Fruit(name: "banana", cost: "21", count: 21))
-                        case 4: print("\(String(describing: viewModel.fruit.last))")
+                        case 4: print("\(viewModel.fruit.count)")
                         case 5: print("5")
                         case 6: print("6")
                         case 7: print("7")
