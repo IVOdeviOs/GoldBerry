@@ -1,10 +1,3 @@
-//
-//  sss.swift
-//  GoldBerry
-//
-//  Created by олег Метлицкий on 18.08.22.
-//
-
 import SwiftUI
 
 struct sss: View {
