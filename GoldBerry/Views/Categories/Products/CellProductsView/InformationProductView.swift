@@ -37,7 +37,7 @@ struct InformationProductView: View {
                         Image(systemName: "arrow.backward.square")
                             .renderingMode(.original)
                             .scaleEffect(3)
-                            .foregroundColor(.green)
+                            .foregroundColor(Color.theme.lightGreen)
                             .frame(width: 60, height: 60)
                             .background(.white.opacity(0.3))
                             .cornerRadius(10)

@@ -5,7 +5,7 @@ struct OrderCell: View {
     let date: String
     let number: Int
     let price: Double
-    let purchases: [Fruit]
+    var purchases: [Fruit]
     let address: String
     
     var body: some View {
@@ -22,9 +22,10 @@ struct OrderCell: View {
                         .padding(.leading, 10)
                 }
                 Spacer()
-                Text("\(NSString(format: "%.2f", price))")
-                    .frame(width: 100, height: 30)
+                Text("\(NSString(format: "%.2f", price)) p.")
+                    .frame(width: 130, height: 30)
                     .font(Font(uiFont: .fontLibrary(.size20, .helvetica)))
+                    .minimumScaleFactor(0.5)
                     .foregroundColor(.white)
                     .background(.orange)
                     .cornerRadius(10)
@@ -32,21 +33,42 @@ struct OrderCell: View {
             }
             Color.theme.gray
                 .frame(height: 3)
-            NavigationView {
-                List(purchases) { item in
-                    NavigationLink {
-                    }
-                label: {
-                    PurchasesCell(
-                        imageName: item.imageName,
-                        name: item.name,
-                        cost: item.cost,
-                        count: item.count
-                    )
+            ForEach(0..<purchases.count) { row in
+                HStack {
+                    Image(purchases[row].imageName)
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .cornerRadius(10)
+                        .padding(.leading, 10)
+                    Text(purchases[row].name)
+                        .foregroundColor(.black)
+                        .font(Font(uiFont: .fontLibrary(.size12, .helvetica)))
+                    Spacer()
+                    Text("\(purchases[row].count)")
+                        .foregroundColor(.black)
+                        .font(Font(uiFont: .fontLibrary(.size12, .helvetica)))
+                    Text("\(purchases[row].cost) p.")
+                        .foregroundColor(Color.theme.lightGreen)
+                        .font(Font(uiFont: .fontLibrary(.size12, .helvetica)))
+                        .frame(width: 80, height: 20)
+                        .padding(.trailing, 10)
                 }
-                }
-                .listStyle(.plain)
             }
+            //            NavigationView {
+            //                List(purchases) { item in
+            //                    NavigationLink {
+            //                    }
+            //                label: {
+            //                    PurchasesCell(
+            //                        imageName: item.imageName,
+            //                        name: item.name,
+            //                        cost: item.cost,
+            //                        count: item.count
+            //                    )
+            //                }
+            //                }
+            //                .listStyle(.plain)
+            //            }
             VStack {
                 Text("Доставка: \(address)")
                     .fixedSize(horizontal: false, vertical: true)

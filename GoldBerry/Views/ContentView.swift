@@ -32,23 +32,23 @@ struct ContentView: View {
                         ZStack {
                             HStack {
                                 Text("GoldBerry")
-                                    .font(.system(size: 30, weight: .bold, design: .monospaced))
-                                    .foregroundColor(.green)
+                                    .font(Font(uiFont: .fontLibrary(.size32, .helvetica)))
+                                    .foregroundColor(Color.theme.lightGreen)
                                     .padding()
                                 Spacer()
                                 HStack {
                                     Image(systemName: "cart.fill")
                                         .resizable()
                                         .frame(width: 30, height: 30)
-                                        .foregroundColor(.green)
+                                        .foregroundColor(Color.theme.lightGreen)
                                     Spacer()
                                     VStack {
 
                                         Text("100000")
-                                            .font(.system(size: 12, weight: .light, design: .monospaced))
+                                            .font(Font(uiFont: .fontLibrary(.size12, .helvetica)))
                                             .foregroundColor(.black)
                                         Text("руб")
-                                            .font(.system(size: 12, weight: .light, design: .monospaced))
+                                            .font(Font(uiFont: .fontLibrary(.size12, .helvetica)))
                                             .foregroundColor(.black)
                                     }
                                 }
@@ -71,7 +71,7 @@ struct ContentView: View {
                                     Image(systemName: "house")
                                         .resizable()
                                         .frame(width: 23, height: 20)
-                                }.foregroundColor(viewModel.selected == 0 ? .green : .gray)
+                                }.foregroundColor(viewModel.selected == 0 ? Color.theme.lightGreen : Color.theme.gray)
                                 Spacer(minLength: 12)
                                 Button {
                                     viewModel.selected = 1
@@ -79,7 +79,7 @@ struct ContentView: View {
                                     Image(systemName: "video")
                                         .resizable()
                                         .frame(width: 23, height: 20)
-                                }.foregroundColor(viewModel.selected == 1 ? .green : .gray)
+                                }.foregroundColor(viewModel.selected == 1 ? Color.theme.lightGreen : Color.theme.gray)
                                 Spacer()
 
                                 Button {
@@ -88,7 +88,7 @@ struct ContentView: View {
                                     Image(systemName: viewModel.selected == 2 ? "bag.fill" : "bag")
                                         .resizable()
                                         .frame(width: 23, height: 20)
-                                }.foregroundColor(viewModel.selected == 2 ? .green : .gray)
+                                }.foregroundColor(viewModel.selected == 2 ? Color.theme.lightGreen : Color.theme.gray)
                                 Spacer(minLength: 12)
 
                                 Button {
@@ -97,7 +97,7 @@ struct ContentView: View {
                                     Image(systemName: viewModel.selected == 3 ? "person.fill" : "person")
                                         .resizable()
                                         .frame(width: 23, height: 20)
-                                }.foregroundColor(viewModel.selected == 3 ? .green : .gray)
+                                }.foregroundColor(viewModel.selected == 3 ? Color.theme.lightGreen : Color.theme.gray)
                             }
                             .padding()
                             .padding(.horizontal, 22)
