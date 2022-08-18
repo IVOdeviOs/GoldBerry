@@ -35,7 +35,6 @@
 
 /* Begin PBXFileReference section */
 		DCA524D428AD31CD00A994F5 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
-		DCA524D928AD321700A994F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		DCA5250228AE715100A994F5 /* helveticacyrillicupright.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = helveticacyrillicupright.ttf; sourceTree = "<group>"; };
 		DCA5250428AE750A00A994F5 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		DCA5250728AE7F7E00A994F5 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
@@ -60,6 +59,7 @@
 		DDBA58E828AAB18A00FFC3A5 /* ImageCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCart.swift; sourceTree = "<group>"; };
 		DDBA58EA28AAB43900FFC3A5 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		DDBA58EE28AAB80D00FFC3A5 /* FruitListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitListCell.swift; sourceTree = "<group>"; };
+		DDBA58F228AEB82800FFC3A5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +184,7 @@
 				DD95A8362899ABD600DF346B /* Assets.xcassets */,
 				DD95A8322899ABD200DF346B /* GoldBerryApp.swift */,
 				DD95A83D2899ABD600DF346B /* GoldBerry.xcdatamodeld */,
+				DDBA58F228AEB82800FFC3A5 /* Info.plist */,
 				DD95A8382899ABD600DF346B /* Preview Content */,
 			);
 			path = GoldBerry;
@@ -192,7 +193,6 @@
 		DD95A8382899ABD600DF346B /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				DCA524D928AD321700A994F5 /* Info.plist */,
 				DD95A8392899ABD600DF346B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
