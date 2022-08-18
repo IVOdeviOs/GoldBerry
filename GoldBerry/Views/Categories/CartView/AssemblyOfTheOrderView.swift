@@ -11,7 +11,7 @@ struct AssemblyOfTheOrderView: View {
                         ZStack {
                             VStack(spacing: 100) {
                                 Button {
-                                    viewModel.fruit.append(Fruit(name: "12", cost: "12312312", count: 12))
+                                    viewModel.fruit.append(Fruit(imageName: "watermelon", name: "12", cost: "12312312", count: 12))
                                     viewModel.viewState = .zero
                                 } label: {
                                     Image(systemName: "x.circle")
