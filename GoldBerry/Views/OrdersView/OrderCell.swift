@@ -16,6 +16,7 @@ struct OrderCell: View {
                         .font(Font(uiFont: .fontLibrary(.size12, .helvetica)))
                         .foregroundColor(Color.theme.gray)
                         .padding(.leading, 10)
+                        .padding(.top, 10)
                         .padding(.bottom, 1)
                     Text("Заказ № \(number)")
                         .font(Font(uiFont: .fontLibrary(.size18, .helvetica)))
@@ -76,7 +77,7 @@ struct OrderCell: View {
                     .padding()
                 Text("Дата доставки: \(date)")
                     .font(Font(uiFont: .fontLibrary(.size16, .helvetica)))
-                Spacer()
+                    .padding(.bottom, 10)
             }
         }
     }

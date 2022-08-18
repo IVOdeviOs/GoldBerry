@@ -2,20 +2,28 @@ import SwiftUI
 
 struct OrdersView: View {
     
-     var orders: [Order] = [
+    var orders: [Order] = [
         Order(
             orderNumber: 1,
             fruit: [watermelon, apple, apricot, banana],
             date: "18/08/2022",
             address: "Минск, пр-т Независимости, 10-23",
             price: 1000
-        )]
+        ),
+        Order(
+            orderNumber: 2,
+            fruit: [banana],
+            date: "19/08/2022",
+            address: "Минск, пр-т Независимости, 10-23",
+            price: 1000
+        )
+    ]
     
     var body: some View {
         if orders.isEmpty {
-           WithoutOrders()
+            WithoutOrders()
         } else {
-          WithOrders()
+            WithOrders()
         }
     }
 }
@@ -54,13 +62,21 @@ struct WithoutOrders: View {
 
 struct WithOrders: View {
     var orders: [Order] = [
-       Order(
-           orderNumber: 1,
-           fruit: [watermelon, apple, apricot, banana],
-           date: "18/08/2022",
-           address: "Минск, пр-т Независимости, 10-23",
-           price: 1000
-       )]
+        Order(
+            orderNumber: 1,
+            fruit: [watermelon, apple, apricot, banana],
+            date: "18/08/2022",
+            address: "Минск, пр-т Независимости, 10-23",
+            price: 1000
+        ),
+        Order(
+            orderNumber: 2,
+            fruit: [banana],
+            date: "19/08/2022",
+            address: "Минск, пр-т Независимости, 10-23",
+            price: 1000
+        )
+    ]
     
     var body: some View {
         NavigationView {
@@ -78,6 +94,10 @@ struct WithOrders: View {
                     address: item.address
                 )
             }
+            .background(.white)
+            .cornerRadius(20)
+            .border(Color.theme.gray, width: 2)
+
             }
             .listStyle(.plain)
             .offset(y: -100)
