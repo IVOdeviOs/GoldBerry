@@ -1,13 +1,13 @@
 import SwiftUI
 
 struct OrderCell: View {
-    
+
     let date: String
     let number: Int
     let price: Double
     var purchases: [Fruit]
     let address: String
-    
+
     var body: some View {
         VStack {
             HStack {
@@ -34,7 +34,7 @@ struct OrderCell: View {
             }
             Color.theme.gray
                 .frame(height: 3)
-            ForEach(0..<purchases.count) { row in
+            ForEach(0 ..< purchases.count) { row in
                 HStack {
                     Image(purchases[row].imageName)
                         .resizable()
@@ -80,6 +80,9 @@ struct OrderCell: View {
                     .padding(.bottom, 10)
             }
         }
+        .background(.gray)
+        .border(Color.theme.gray, width: 2)
+        .cornerRadius(20)
     }
 }
 
@@ -94,4 +97,3 @@ struct OrderCell_Previews: PreviewProvider {
         )
     }
 }
-

@@ -1,26 +1,12 @@
 import SwiftUI
 
 struct OrdersView: View {
-    
-    var orders: [Order] = [
-        Order(
-            orderNumber: 1,
-            fruit: [watermelon, apple, apricot, banana],
-            date: "18/08/2022",
-            address: "Минск, пр-т Независимости, 10-23",
-            price: 1000
-        ),
-        Order(
-            orderNumber: 2,
-            fruit: [banana],
-            date: "19/08/2022",
-            address: "Минск, пр-т Независимости, 10-23",
-            price: 1000
-        )
-    ]
-    
+ 
+    @ObservedObject var viewModel = TabBarViewModel()
+  
+
     var body: some View {
-        if orders.isEmpty {
+        if viewModel.orders.isEmpty {
             WithoutOrders()
         } else {
             WithOrders()
@@ -29,6 +15,8 @@ struct OrdersView: View {
 }
 
 struct WithoutOrders: View {
+    @ObservedObject var viewModel = TabBarViewModel()
+
     var body: some View {
         VStack {
             Image("noOrders")
@@ -44,8 +32,8 @@ struct WithoutOrders: View {
                 .padding()
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color.theme.gray)
-            NavigationLink {
-                ContentView()
+            Button {
+                viewModel.selected = 1
             } label: {
                 Text("Перейти к выбору товаров")
                     .frame(width: 300, height: 50)
@@ -61,45 +49,32 @@ struct WithoutOrders: View {
 }
 
 struct WithOrders: View {
-    var orders: [Order] = [
-        Order(
-            orderNumber: 1,
-            fruit: [watermelon, apple, apricot, banana],
-            date: "18/08/2022",
-            address: "Минск, пр-т Независимости, 10-23",
-            price: 1000
-        ),
-        Order(
-            orderNumber: 2,
-            fruit: [banana],
-            date: "19/08/2022",
-            address: "Минск, пр-т Независимости, 10-23",
-            price: 1000
-        )
-    ]
-    
+    @ObservedObject var viewModel = TabBarViewModel()
+
+    @State var show = false
+
     var body: some View {
         NavigationView {
-            List(orders) { item in
-                NavigationLink {
+            List(viewModel.orders) { item in
+
+                Button {
+                    show.toggle()
+                } label: {
+                    OrderCell(
+                        date: item.date,
+                        number: item.orderNumber,
+                        price: item.price,
+                        purchases: item.fruit,
+                        address: item.address
+                    ).padding(.vertical)
+                }.sheet(isPresented: $show) {
                     OrderInfoView(order: item)
-                    List{}
                 }
-            label: {
-                OrderCell(
-                    date: item.date,
-                    number: item.orderNumber,
-                    price: item.price,
-                    purchases: item.fruit,
-                    address: item.address
-                )
-            }
-            .background(.white)
-            .cornerRadius(20)
-            .border(Color.theme.gray, width: 2)
 
             }
+
             .listStyle(.plain)
+            .listSectionSeparator(.hidden)
             .offset(y: -100)
         }
     }
@@ -110,4 +85,3 @@ struct OrdersView_Previews: PreviewProvider {
         OrdersView()
     }
 }
-
