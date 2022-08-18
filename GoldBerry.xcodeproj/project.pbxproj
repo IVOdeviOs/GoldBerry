@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DCA524D528AD31CD00A994F5 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA524D428AD31CD00A994F5 /* Font+.swift */; };
+		DCA5250328AE715100A994F5 /* helveticacyrillicupright.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCA5250228AE715100A994F5 /* helveticacyrillicupright.ttf */; };
+		DCA5250528AE750A00A994F5 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA5250428AE750A00A994F5 /* Color+.swift */; };
 		DD539A59289AEFDD006F1CD1 /* ProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A58289AEFDD006F1CD1 /* ProductsView.swift */; };
 		DD539A6328A01F62006F1CD1 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A6228A01F62006F1CD1 /* CartView.swift */; };
 		DD539A6528A02839006F1CD1 /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A6428A02839006F1CD1 /* TabBarViewModel.swift */; };
@@ -27,6 +30,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DCA524D428AD31CD00A994F5 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
+		DCA524D928AD321700A994F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
+		DCA5250228AE715100A994F5 /* helveticacyrillicupright.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = helveticacyrillicupright.ttf; sourceTree = "<group>"; };
+		DCA5250428AE750A00A994F5 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		DD539A58289AEFDD006F1CD1 /* ProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsView.swift; sourceTree = "<group>"; };
 		DD539A6228A01F62006F1CD1 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		DD539A6428A02839006F1CD1 /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
@@ -58,6 +65,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DCA524D328AD31BF00A994F5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DCA524D428AD31CD00A994F5 /* Font+.swift */,
+				DCA5250428AE750A00A994F5 /* Color+.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		DCA524D628AD31EB00A994F5 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				DCA5250228AE715100A994F5 /* helveticacyrillicupright.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		DD539A54289AEAF6006F1CD1 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +155,8 @@
 		DD95A8312899ABD200DF346B /* GoldBerry */ = {
 			isa = PBXGroup;
 			children = (
+				DCA524D628AD31EB00A994F5 /* Fonts */,
+				DCA524D328AD31BF00A994F5 /* Extensions */,
 				DD539A57289AEB32006F1CD1 /* Utilites */,
 				DD539A56289AEB2A006F1CD1 /* Models */,
 				DD539A55289AEB22006F1CD1 /* Views */,
@@ -146,6 +172,7 @@
 		DD95A8382899ABD600DF346B /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				DCA524D928AD321700A994F5 /* Info.plist */,
 				DD95A8392899ABD600DF346B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
@@ -244,6 +271,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCA5250328AE715100A994F5 /* helveticacyrillicupright.ttf in Resources */,
 				DD95A83A2899ABD600DF346B /* Preview Assets.xcassets in Resources */,
 				DD95A8372899ABD600DF346B /* Assets.xcassets in Resources */,
 			);
@@ -259,11 +287,13 @@
 				DDBA58E428A9371400FFC3A5 /* AssemblyOfTheOrderView.swift in Sources */,
 				DDBA58EF28AAB80D00FFC3A5 /* FruitListCell.swift in Sources */,
 				DDBA58DE28A0419100FFC3A5 /* CategoriesCell.swift in Sources */,
+				DCA5250528AE750A00A994F5 /* Color+.swift in Sources */,
 				DD539A6328A01F62006F1CD1 /* CartView.swift in Sources */,
 				DD95A83F2899ABD600DF346B /* GoldBerry.xcdatamodeld in Sources */,
 				DDBA58E928AAB18A00FFC3A5 /* ImageCart.swift in Sources */,
 				DD95A83C2899ABD600DF346B /* Persistence.swift in Sources */,
 				DDBA58EB28AAB43900FFC3A5 /* Fruit.swift in Sources */,
+				DCA524D528AD31CD00A994F5 /* Font+.swift in Sources */,
 				DDBA58E228A16E3B00FFC3A5 /* InformationProductView.swift in Sources */,
 				DD95A8352899ABD200DF346B /* ContentView.swift in Sources */,
 				DD95A8332899ABD200DF346B /* GoldBerryApp.swift in Sources */,
@@ -402,6 +432,7 @@
 				DEVELOPMENT_TEAM = B9S2MDX3F7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GoldBerry/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -431,6 +462,7 @@
 				DEVELOPMENT_TEAM = B9S2MDX3F7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GoldBerry/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

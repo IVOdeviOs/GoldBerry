@@ -22,7 +22,7 @@ struct ContentView: View {
                         OrdersView()
 
                     default:
-                        OrdersView()
+                        ProductsView()
                     }
                 }
                 //            .padding()
