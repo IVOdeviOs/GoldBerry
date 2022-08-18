@@ -71,7 +71,6 @@
 		DDBA58E828AAB18A00FFC3A5 /* ImageCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCart.swift; sourceTree = "<group>"; };
 		DDBA58EA28AAB43900FFC3A5 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		DDBA58EE28AAB80D00FFC3A5 /* FruitListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitListCell.swift; sourceTree = "<group>"; };
-		DDBA58F228AEB82800FFC3A5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,7 +201,6 @@
 				DD95A8362899ABD600DF346B /* Assets.xcassets */,
 				DD95A8322899ABD200DF346B /* GoldBerryApp.swift */,
 				DD95A83D2899ABD600DF346B /* GoldBerry.xcdatamodeld */,
-				DDBA58F228AEB82800FFC3A5 /* Info.plist */,
 				DD95A8382899ABD600DF346B /* Preview Content */,
 			);
 			path = GoldBerry;
