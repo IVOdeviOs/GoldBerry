@@ -22,7 +22,6 @@ struct OrderInfoView: View {
                 }
              )
         }
-    
 }
 
 struct OrderInfoView_Previews: PreviewProvider {

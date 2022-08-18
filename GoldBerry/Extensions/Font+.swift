@@ -2,6 +2,11 @@ import SwiftUI
 
 enum FontWeight: String {
     case helvetica = "helveticacyrillicupright"
+    case uzSansBold = "UZSans-Bold"
+    case uzSansLight = "UZSans-Light"
+    case uzSansMedium = "UZSans-Medium"
+    case uzSansRegular = "UZSans-Regular"
+    case uzSansSemiBold = "UZSans-SemiBold"
 }
 
 enum FontSize: CGFloat {

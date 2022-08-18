@@ -14,6 +14,11 @@
 		DCA5250A28AE813700A994F5 /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA5250928AE813700A994F5 /* OrderCell.swift */; };
 		DCA5250C28AE815200A994F5 /* OrderInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA5250B28AE815200A994F5 /* OrderInfoView.swift */; };
 		DCA5250E28AE903300A994F5 /* PurchasesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA5250D28AE903300A994F5 /* PurchasesCell.swift */; };
+		DCA5251428AEBC5200A994F5 /* UZSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCA5250F28AEBC5200A994F5 /* UZSans-SemiBold.ttf */; };
+		DCA5251528AEBC5200A994F5 /* UZSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCA5251028AEBC5200A994F5 /* UZSans-Medium.ttf */; };
+		DCA5251628AEBC5200A994F5 /* UZSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCA5251128AEBC5200A994F5 /* UZSans-Light.ttf */; };
+		DCA5251728AEBC5200A994F5 /* UZSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCA5251228AEBC5200A994F5 /* UZSans-Bold.ttf */; };
+		DCA5251828AEBC5200A994F5 /* UZSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCA5251328AEBC5200A994F5 /* UZSans-Regular.ttf */; };
 		DD539A59289AEFDD006F1CD1 /* ProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A58289AEFDD006F1CD1 /* ProductsView.swift */; };
 		DD539A6328A01F62006F1CD1 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A6228A01F62006F1CD1 /* CartView.swift */; };
 		DD539A6528A02839006F1CD1 /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A6428A02839006F1CD1 /* TabBarViewModel.swift */; };
@@ -42,6 +47,11 @@
 		DCA5250928AE813700A994F5 /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
 		DCA5250B28AE815200A994F5 /* OrderInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderInfoView.swift; sourceTree = "<group>"; };
 		DCA5250D28AE903300A994F5 /* PurchasesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesCell.swift; sourceTree = "<group>"; };
+		DCA5250F28AEBC5200A994F5 /* UZSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UZSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		DCA5251028AEBC5200A994F5 /* UZSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UZSans-Medium.ttf"; sourceTree = "<group>"; };
+		DCA5251128AEBC5200A994F5 /* UZSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UZSans-Light.ttf"; sourceTree = "<group>"; };
+		DCA5251228AEBC5200A994F5 /* UZSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UZSans-Bold.ttf"; sourceTree = "<group>"; };
+		DCA5251328AEBC5200A994F5 /* UZSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UZSans-Regular.ttf"; sourceTree = "<group>"; };
 		DD539A58289AEFDD006F1CD1 /* ProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsView.swift; sourceTree = "<group>"; };
 		DD539A6228A01F62006F1CD1 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		DD539A6428A02839006F1CD1 /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
@@ -86,6 +96,11 @@
 			isa = PBXGroup;
 			children = (
 				DCA5250228AE715100A994F5 /* helveticacyrillicupright.ttf */,
+				DCA5251228AEBC5200A994F5 /* UZSans-Bold.ttf */,
+				DCA5251128AEBC5200A994F5 /* UZSans-Light.ttf */,
+				DCA5251028AEBC5200A994F5 /* UZSans-Medium.ttf */,
+				DCA5251328AEBC5200A994F5 /* UZSans-Regular.ttf */,
+				DCA5250F28AEBC5200A994F5 /* UZSans-SemiBold.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -292,8 +307,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCA5250328AE715100A994F5 /* helveticacyrillicupright.ttf in Resources */,
+				DCA5251828AEBC5200A994F5 /* UZSans-Regular.ttf in Resources */,
 				DD95A83A2899ABD600DF346B /* Preview Assets.xcassets in Resources */,
 				DD95A8372899ABD600DF346B /* Assets.xcassets in Resources */,
+				DCA5251728AEBC5200A994F5 /* UZSans-Bold.ttf in Resources */,
+				DCA5251628AEBC5200A994F5 /* UZSans-Light.ttf in Resources */,
+				DCA5251428AEBC5200A994F5 /* UZSans-SemiBold.ttf in Resources */,
+				DCA5251528AEBC5200A994F5 /* UZSans-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,7 +473,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GoldBerry/Preview Content\"";
-				DEVELOPMENT_TEAM = B9S2MDX3F7;
+				DEVELOPMENT_TEAM = 3H4J882387;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GoldBerry/Info.plist;
@@ -483,7 +503,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GoldBerry/Preview Content\"";
-				DEVELOPMENT_TEAM = B9S2MDX3F7;
+				DEVELOPMENT_TEAM = 3H4J882387;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GoldBerry/Info.plist;

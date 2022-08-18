@@ -13,19 +13,19 @@ struct OrderCell: View {
             HStack {
                 VStack(alignment: .leading) {
                     Text(date)
-                        .font(Font(uiFont: .fontLibrary(.size12, .helvetica)))
+                        .font(Font(uiFont: .fontLibrary(.size12, .uzSansRegular)))
                         .foregroundColor(Color.theme.gray)
                         .padding(.leading, 10)
                         .padding(.top, 10)
                         .padding(.bottom, 1)
                     Text("Заказ № \(number)")
-                        .font(Font(uiFont: .fontLibrary(.size18, .helvetica)))
+                        .font(Font(uiFont: .fontLibrary(.size18, .uzSansRegular)))
                         .padding(.leading, 10)
                 }
                 Spacer()
                 Text("\(NSString(format: "%.2f", price)) p.")
                     .frame(width: 130, height: 30)
-                    .font(Font(uiFont: .fontLibrary(.size20, .helvetica)))
+                    .font(Font(uiFont: .fontLibrary(.size20, .uzSansRegular)))
                     .minimumScaleFactor(0.5)
                     .foregroundColor(.white)
                     .background(.orange)
@@ -43,14 +43,14 @@ struct OrderCell: View {
                         .padding(.leading, 10)
                     Text(purchases[row].name)
                         .foregroundColor(.black)
-                        .font(Font(uiFont: .fontLibrary(.size12, .helvetica)))
+                        .font(Font(uiFont: .fontLibrary(.size12, .uzSansRegular)))
                     Spacer()
                     Text("\(purchases[row].count)")
                         .foregroundColor(.black)
-                        .font(Font(uiFont: .fontLibrary(.size12, .helvetica)))
+                        .font(Font(uiFont: .fontLibrary(.size12, .uzSansRegular)))
                     Text("\(purchases[row].cost) p.")
                         .foregroundColor(Color.theme.lightGreen)
-                        .font(Font(uiFont: .fontLibrary(.size12, .helvetica)))
+                        .font(Font(uiFont: .fontLibrary(.size12, .uzSansRegular)))
                         .frame(width: 80, height: 20)
                         .padding(.trailing, 10)
                 }
@@ -73,10 +73,10 @@ struct OrderCell: View {
             VStack {
                 Text("Доставка: \(address)")
                     .fixedSize(horizontal: false, vertical: true)
-                    .font(Font(uiFont: .fontLibrary(.size16, .helvetica)))
+                    .font(Font(uiFont: .fontLibrary(.size16, .uzSansRegular)))
                     .padding()
                 Text("Дата доставки: \(date)")
-                    .font(Font(uiFont: .fontLibrary(.size16, .helvetica)))
+                    .font(Font(uiFont: .fontLibrary(.size16, .uzSansRegular)))
                     .padding(.bottom, 10)
             }
         }
