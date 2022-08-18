@@ -19,6 +19,7 @@
 		DCA5251628AEBC5200A994F5 /* UZSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCA5251128AEBC5200A994F5 /* UZSans-Light.ttf */; };
 		DCA5251728AEBC5200A994F5 /* UZSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCA5251228AEBC5200A994F5 /* UZSans-Bold.ttf */; };
 		DCA5251828AEBC5200A994F5 /* UZSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCA5251328AEBC5200A994F5 /* UZSans-Regular.ttf */; };
+		DCA5251A28AEBF8D00A994F5 /* sss.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA5251928AEBF8D00A994F5 /* sss.swift */; };
 		DD539A59289AEFDD006F1CD1 /* ProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A58289AEFDD006F1CD1 /* ProductsView.swift */; };
 		DD539A6328A01F62006F1CD1 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A6228A01F62006F1CD1 /* CartView.swift */; };
 		DD539A6528A02839006F1CD1 /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A6428A02839006F1CD1 /* TabBarViewModel.swift */; };
@@ -52,6 +53,7 @@
 		DCA5251128AEBC5200A994F5 /* UZSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UZSans-Light.ttf"; sourceTree = "<group>"; };
 		DCA5251228AEBC5200A994F5 /* UZSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UZSans-Bold.ttf"; sourceTree = "<group>"; };
 		DCA5251328AEBC5200A994F5 /* UZSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UZSans-Regular.ttf"; sourceTree = "<group>"; };
+		DCA5251928AEBF8D00A994F5 /* sss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sss.swift; sourceTree = "<group>"; };
 		DD539A58289AEFDD006F1CD1 /* ProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsView.swift; sourceTree = "<group>"; };
 		DD539A6228A01F62006F1CD1 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		DD539A6428A02839006F1CD1 /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				DCA524D428AD31CD00A994F5 /* Font+.swift */,
+				DCA5251928AEBF8D00A994F5 /* sss.swift */,
 				DCA5250428AE750A00A994F5 /* Color+.swift */,
 			);
 			path = Extensions;
@@ -331,6 +334,7 @@
 				DD539A6328A01F62006F1CD1 /* CartView.swift in Sources */,
 				DD95A83F2899ABD600DF346B /* GoldBerry.xcdatamodeld in Sources */,
 				DDBA58E928AAB18A00FFC3A5 /* ImageCart.swift in Sources */,
+				DCA5251A28AEBF8D00A994F5 /* sss.swift in Sources */,
 				DD95A83C2899ABD600DF346B /* Persistence.swift in Sources */,
 				DCA5250A28AE813700A994F5 /* OrderCell.swift in Sources */,
 				DDBA58EB28AAB43900FFC3A5 /* Fruit.swift in Sources */,
