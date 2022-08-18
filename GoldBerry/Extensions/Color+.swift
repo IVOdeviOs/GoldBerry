@@ -9,4 +9,3 @@ struct ColorTheme {
     let gray = Color("Gray")
     let lightGreen = Color("LightGreen")
 }
-
