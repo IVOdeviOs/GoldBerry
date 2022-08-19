@@ -7,26 +7,12 @@ extension Color {
 }
 
 struct ContentView: View {
-    @ObservedObject var viewModel = TabBarViewModel()
+    @StateObject var viewModel = TabBarViewModel()
     var body: some View {
 
         NavigationView {
             ZStack {
-                ZStack {
-                    switch viewModel.selected {
-                    case 0:
-                        ProductsView()
-                    case 1:
-                        AssemblyOfTheOrderView()
-                    case 2:
-                        OrdersView()
-
-                    default:
-                        ProductsView()
-                    }
-                }
-                //            .padding()
-                .padding(.top, 90)
+                ExtractedView(viewModel: viewModel)
                 ZStack {
                     VStack {
                         ZStack {
@@ -126,5 +112,28 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+struct ExtractedView: View {
+    @StateObject var viewModel: TabBarViewModel
+
+    var body: some View {
+        ZStack {
+            switch viewModel.selected {
+            case 0:
+                ProductsView()
+            case 1:
+                AssemblyOfTheOrderView()
+            case 2:
+                OrdersView(viewModel: viewModel)
+            case 3:
+                ProductsView()
+            default:
+                ProductsView()
+            }
+        }
+        //            .padding()
+        .padding(.top, 90)
     }
 }

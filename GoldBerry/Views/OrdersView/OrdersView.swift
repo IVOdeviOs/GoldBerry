@@ -1,13 +1,12 @@
 import SwiftUI
 
 struct OrdersView: View {
- 
-    @ObservedObject var viewModel = TabBarViewModel()
-  
+
+    @StateObject var viewModel: TabBarViewModel
 
     var body: some View {
         if viewModel.orders.isEmpty {
-            WithoutOrders()
+            WithoutOrders(viewModel: viewModel)
         } else {
             WithOrders()
         }
@@ -15,7 +14,7 @@ struct OrdersView: View {
 }
 
 struct WithoutOrders: View {
-    @ObservedObject var viewModel = TabBarViewModel()
+    @StateObject var viewModel: TabBarViewModel
 
     var body: some View {
         VStack {
@@ -33,7 +32,7 @@ struct WithoutOrders: View {
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color.theme.gray)
             Button {
-                viewModel.selected = 1
+                viewModel.selected = 0
             } label: {
                 Text("Перейти к выбору товаров")
                     .frame(width: 300, height: 50)
@@ -54,8 +53,9 @@ struct WithOrders: View {
     @State var show = false
 
     var body: some View {
-        NavigationView {
-            List(viewModel.orders) { item in
+//        NavigationView {
+        ScrollView {
+            ForEach(viewModel.orders) { item in
 
                 Button {
                     show.toggle()
@@ -67,21 +67,24 @@ struct WithOrders: View {
                         purchases: item.fruit,
                         address: item.address
                     ).padding(.vertical)
+                        
                 }.sheet(isPresented: $show) {
                     OrderInfoView(order: item)
                 }
-
+                .padding(.horizontal, 10)
             }
 
-            .listStyle(.plain)
-            .listSectionSeparator(.hidden)
-            .offset(y: -100)
+//            .listStyle(.plain)
+//            .listSectionSeparator(.hidden)
         }
+        .padding(.top, 30)
+//        .offset(y: 100)
+        .navigationBarHidden(true)
     }
 }
 
 struct OrdersView_Previews: PreviewProvider {
     static var previews: some View {
-        OrdersView()
+        OrdersView(viewModel: TabBarViewModel())
     }
 }

@@ -80,8 +80,11 @@ struct OrderCell: View {
                     .padding(.bottom, 10)
             }
         }
-        .background(.gray)
-        .border(Color.theme.gray, width: 2)
+        .background(.gray.opacity(0.3))
+        .overlay(
+                   RoundedRectangle(cornerRadius: 20)
+                    .stroke(Color.theme.gray, lineWidth: 2)
+               )
         .cornerRadius(20)
     }
 }
