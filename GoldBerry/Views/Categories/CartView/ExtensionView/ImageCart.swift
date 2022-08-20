@@ -2,7 +2,7 @@ import SwiftUI
 
 struct CustomImage: View {
     @State var image: String
-    @StateObject var viewModels = TabBarViewModel()
+    @StateObject var viewModels : TabBarViewModel
     @ObservedObject var viewModel = TabBarViewModel()
     @State var width1: CGFloat
     @State var width2: CGFloat
@@ -31,8 +31,7 @@ struct CustomImage: View {
                 .onEnded { _ in
 
                     if (viewModel.viewState.width <= width1 || viewModel.viewState.width >= width2) || (viewModel.viewState.height <= height1 || viewModel.viewState.height >= height2) {
-//                        self.viewModel.viewState = .zero
-
+                        self.viewModel.viewState = .zero
                     }
                     switch index {
                     case 1:
