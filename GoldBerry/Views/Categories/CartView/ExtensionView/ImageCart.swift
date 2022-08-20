@@ -52,8 +52,6 @@ struct CustomImage: View {
                     default:
                         break
                     }
-
-                     
                         self.viewModel.show = false
                     
                 }
