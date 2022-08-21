@@ -6,6 +6,6 @@ extension Color {
 }
 //dd
 struct ColorTheme {
-    let gray = Color("Gray")
-    let lightGreen = Color("LightGreen")
+    let gray = Color("gray")
+    let lightGreen = Color("lightGreen")
 }

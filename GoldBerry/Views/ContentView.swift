@@ -33,6 +33,7 @@ struct ContentView: View {
                                         Text("100000")
                                             .font(Font(uiFont: .fontLibrary(.size12, .helvetica)))
                                             .foregroundColor(.black)
+                                            .minimumScaleFactor(0.5)
                                         Text("руб")
                                             .font(Font(uiFont: .fontLibrary(.size12, .helvetica)))
                                             .foregroundColor(.black)
