@@ -53,31 +53,47 @@ struct WithOrders: View {
     @State var show = false
 
     var body: some View {
-//        NavigationView {
-        ScrollView {
-            ForEach(viewModel.orders) { item in
-                Button {
-                    show.toggle()
-                } label: {
-                    OrderCell(
-                        date: item.date,
-                        number: item.orderNumber,
-                        price: item.price,
-                        purchases: item.fruit,
-                        address: item.address
-                    ).padding(.vertical)
-                        
-                }.sheet(isPresented: $show) {
-                    OrderInfoView(order: item)
-                }
-                .padding(.horizontal, 10)
-            }
+        NavigationView {
+            ScrollView {
+//            List{
+                ForEach(viewModel.orders) { item in
 
+//                Button {
+//                    show.toggle()
+//                } label: {
+//                    OrderCell(
+//                        date: item.date,
+//                        number: item.orderNumber,
+//                        price: item.price,
+//                        purchases: item.fruit,
+//                        address: item.address
+//                    ).padding(.vertical)
+//
+//                }.sheet(isPresented: $show) {
+//                    OrderInfoView(order: item)
+//                }
+//                .padding(.horizontal, 10)
+                    NavigationLink {
+                        OrderInfoView(order: item)
+                    } label: {
+                        OrderCell(
+                            date: item.date,
+                            number: item.orderNumber,
+                            price: item.price,
+                            purchases: item.fruit,
+                            address: item.address
+                        )
+                    }
+//                    .navigationViewStyle(.stack)
+                    .padding()
+                }
+            }
+//            .navigationViewStyle(.columns)
 //            .listStyle(.plain)
-//            .listSectionSeparator(.hidden)
-        }
-        .padding(.top, 30)
+            }
+            .padding(.top, 30)
 //        .offset(y: 100)
+//        }
         .navigationBarHidden(true)
     }
 }
