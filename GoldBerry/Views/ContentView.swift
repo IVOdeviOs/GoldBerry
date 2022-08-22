@@ -18,25 +18,27 @@ struct ContentView: View {
                         ZStack {
                             HStack {
                                 Text("GoldBerry")
-                                    .font(Font(uiFont: .fontLibrary(.size32, .helvetica)))
+                                    .font(Font(uiFont: .fontLibrary(70, .helvetica)))
                                     .foregroundColor(Color.theme.lightGreen)
                                     .padding()
                                 Spacer()
                                 HStack {
                                     Image(systemName: "cart.fill")
                                         .resizable()
-                                        .frame(width: 30, height: 30)
+                                        .frame(width: 25, height: 25)
                                         .foregroundColor(Color.theme.lightGreen)
                                     Spacer()
-                                    VStack {
+                                    HStack {
 
                                         Text("100000")
-                                            .font(Font(uiFont: .fontLibrary(.size12, .helvetica)))
+                                            .font(Font(uiFont: .fontLibrary(12, .helvetica)))
                                             .foregroundColor(.black)
                                             .minimumScaleFactor(0.5)
                                         Text("руб")
-                                            .font(Font(uiFont: .fontLibrary(.size12, .helvetica)))
+                                            .font(Font(uiFont: .fontLibrary(12, .helvetica)))
                                             .foregroundColor(.black)
+                                            .minimumScaleFactor(0.5)
+
                                     }
                                 }
                                 .padding()
