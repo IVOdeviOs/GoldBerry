@@ -35,7 +35,7 @@ struct ProductsView: View {
                                         .padding(.bottom, 30)
                                 }
                             }
-                        }).padding(.bottom, 100)
+                        }).padding(.bottom, 60)
                     }
                 }
             }
