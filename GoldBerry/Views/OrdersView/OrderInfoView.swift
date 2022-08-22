@@ -78,24 +78,45 @@ struct OrderInfoView: View {
             Color.theme.gray
                 .opacity(0.3)
                 .frame(height: 10)
-            HStack {
-                Image(systemName: "face.smiling")
-                    .resizable()
-                    .frame(width: 25, height: 25)
-                    .padding(.leading, 10)
-                    .padding(.bottom, 10)
-                Text("Получатель")
-                    .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
-                    .foregroundColor(.black)
-                    .padding(.leading, 10)
-                    .padding(.bottom, 10)
-                Spacer()
-            }
+            
             
             Spacer()
         }
         .navigationBarHidden(true)
         
+    }
+}
+
+struct CustomerInfo: View {
+    
+    @ObservedObject var order: Order
+    
+    var body: some View {
+        HStack {
+            VStack {
+                Text("Получатель")
+                    .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
+                    .foregroundColor(.black)
+                    .padding(.leading, 10)
+                    .padding(.bottom, 10)
+                Text("\(order.customer)")
+                    .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
+                    .foregroundColor(.black)
+                    .padding(.leading, 10)
+                    .padding(.bottom, 10)
+                Text("\(order.customerPhone)")
+                    .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
+                    .foregroundColor(.black)
+                    .padding(.leading, 10)
+                    .padding(.bottom, 10)
+                Text("\(order.address)")
+                    .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
+                    .foregroundColor(.black)
+                    .padding(.leading, 10)
+                    .padding(.bottom, 10)
+            }
+            Spacer()
+        }
     }
 }
 

@@ -104,7 +104,7 @@ struct OrderCell: View {
                 Spacer()
         }
         }
-        .background(.gray.opacity(0.3))
+        .background(.gray.opacity(0.1))
         .overlay(
                    RoundedRectangle(cornerRadius: 20)
                     .stroke(Color.theme.gray, lineWidth: 2)
