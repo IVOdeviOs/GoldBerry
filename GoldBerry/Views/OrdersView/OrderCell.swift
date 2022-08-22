@@ -75,7 +75,6 @@ struct OrderCell: View {
                 VStack(alignment: .leading, spacing: 10) {
                     HStack {
                 Text("Доставка:")
-                    .fixedSize(horizontal: false, vertical: true)
                     .font(Font(uiFont: .fontLibrary(16, .uzSansBold)))
                     .foregroundColor(.black)
                     .padding(.bottom, 10)

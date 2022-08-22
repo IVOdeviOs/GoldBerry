@@ -13,7 +13,6 @@
 		DCA5250828AE7F7E00A994F5 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA5250728AE7F7E00A994F5 /* Order.swift */; };
 		DCA5250A28AE813700A994F5 /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA5250928AE813700A994F5 /* OrderCell.swift */; };
 		DCA5250C28AE815200A994F5 /* OrderInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA5250B28AE815200A994F5 /* OrderInfoView.swift */; };
-		DCA5250E28AE903300A994F5 /* PurchasesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA5250D28AE903300A994F5 /* PurchasesCell.swift */; };
 		DCA5251428AEBC5200A994F5 /* UZSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCA5250F28AEBC5200A994F5 /* UZSans-SemiBold.ttf */; };
 		DCA5251528AEBC5200A994F5 /* UZSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCA5251028AEBC5200A994F5 /* UZSans-Medium.ttf */; };
 		DCA5251628AEBC5200A994F5 /* UZSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCA5251128AEBC5200A994F5 /* UZSans-Light.ttf */; };
@@ -45,7 +44,6 @@
 		DCA5250728AE7F7E00A994F5 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		DCA5250928AE813700A994F5 /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
 		DCA5250B28AE815200A994F5 /* OrderInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderInfoView.swift; sourceTree = "<group>"; };
-		DCA5250D28AE903300A994F5 /* PurchasesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesCell.swift; sourceTree = "<group>"; };
 		DCA5250F28AEBC5200A994F5 /* UZSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UZSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		DCA5251028AEBC5200A994F5 /* UZSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UZSans-Medium.ttf"; sourceTree = "<group>"; };
 		DCA5251128AEBC5200A994F5 /* UZSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UZSans-Light.ttf"; sourceTree = "<group>"; };
@@ -109,7 +107,6 @@
 			children = (
 				DD539A6828A02A62006F1CD1 /* OrdersView.swift */,
 				DCA5250928AE813700A994F5 /* OrderCell.swift */,
-				DCA5250D28AE903300A994F5 /* PurchasesCell.swift */,
 				DCA5250B28AE815200A994F5 /* OrderInfoView.swift */,
 			);
 			path = OrdersView;
@@ -340,7 +337,6 @@
 				DD539A6928A02A63006F1CD1 /* OrdersView.swift in Sources */,
 				DDBA58E028A1551400FFC3A5 /* AllProductsCell.swift in Sources */,
 				DCA5250C28AE815200A994F5 /* OrderInfoView.swift in Sources */,
-				DCA5250E28AE903300A994F5 /* PurchasesCell.swift in Sources */,
 				DD539A6528A02839006F1CD1 /* TabBarViewModel.swift in Sources */,
 				DD539A59289AEFDD006F1CD1 /* ProductsView.swift in Sources */,
 			);

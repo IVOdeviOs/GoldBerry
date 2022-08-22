@@ -19,17 +19,18 @@ class TabBarViewModel: ObservableObject {
             fruit: [watermelon, apple, apricot, banana],
             date: "18/08/2022",
             address: "Минск, пр-т Независимости, 10-23",
-            price: 1000
+            price: 1000,
+            customer: "Oleg",
+            customerPhone: "+375-29-777-11-11"
         ),
         Order(
             orderNumber: 2,
             fruit: [banana],
             date: "19/08/2022",
             address: "Минск, пр-т Независимости, 10-23",
-            price: 1000
+            price: 1000,
+            customer: "Oleg",
+            customerPhone: "+375-29-777-11-11"
         )
     ]
-    
-
-    
 }
