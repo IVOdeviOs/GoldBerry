@@ -32,14 +32,14 @@ struct CustomImage: View {
 
                     if (viewModel.viewState.width <= width1 || viewModel.viewState.width >= width2) || (viewModel.viewState.height <= height1 || viewModel.viewState.height >= height2) {
                         self.viewModel.viewState = .zero
-                    }
+                    } else {
                     switch index {
                     case 1:
-                        viewModels.fruit.append(Fruit(imageName: "watermelon", name: "12", cost: "12312312", count: 12))
+                        viewModels.fruit.append(Fruit(imageName: "watermelon", name: "12", cost: 1200, count: 12, weightOrPieces: "кг"))
                     case 2:
-                        viewModels.fruit.append(Fruit(imageName: "watermelon", name: "abricos", cost: "21", count: 21))
+                        viewModels.fruit.append(Fruit(imageName: "watermelon", name: "abricos", cost: 210, count: 21, weightOrPieces: "кг"))
                     case 3:
-                        viewModels.fruit.append(Fruit(imageName: "watermelon", name: "banana", cost: "21", count: 21))
+                        viewModels.fruit.append(Fruit(imageName: "watermelon", name: "banana", cost: 2100, count: 21, weightOrPieces: "кг"))
                     case 4:
                         print("\(viewModels.fruit.count)")
                     case 5:
@@ -51,6 +51,7 @@ struct CustomImage: View {
                     case 10: print("10")
                     default:
                         break
+                    }
                     }
                         self.viewModel.show = false
                     

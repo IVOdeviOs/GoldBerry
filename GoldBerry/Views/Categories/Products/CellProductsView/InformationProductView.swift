@@ -28,7 +28,7 @@ struct InformationProductView: View {
                             .resizable()
                             .frame(width: 35, height: 35)
                             .foregroundColor(Color.theme.gray)
-                        Text("Бесплатная доставка от ... руб")
+                        Text("Бесплатная доставка от ... ₽")
                             .font(.system(size: 16, weight: .medium, design: .default))
                         Spacer()
                     }

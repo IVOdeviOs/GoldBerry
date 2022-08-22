@@ -11,7 +11,7 @@ struct AssemblyOfTheOrderView: View {
                         ZStack {
                             VStack(spacing: 100) {
                                 Button {
-                                    viewModel.fruit.append(Fruit(imageName: "watermelon", name: "12", cost: "12312312", count: 12))
+                                    viewModel.fruit.append(Fruit(imageName: "watermelon", name: "12", cost: 1312, count: 12, weightOrPieces: "кг"))
                                     viewModel.viewState = .zero
                                 } label: {
                                     Image(systemName: "x.circle")
@@ -54,16 +54,30 @@ struct AssemblyOfTheOrderView: View {
                 Divider()
 
                 VStack {
-                    List {
+                    ScrollView {
                         ForEach(viewModel.fruit) { fruits in
-                            FruitListCell(name: fruits.name, cost: fruits.cost, count: fruits.count)
+                          
+                            FruitListCell(name: fruits.name, cost: fruits.cost, count: fruits.count, weightOrPieces: fruits.weightOrPieces)
+//
+//                            if fruits.name == fruits.name{
+//                                FruitListCell(name: fruits.name, cost: fruits.cost, count: fruits.count, weightOrPieces: fruits.weightOrPieces)
+//                                    .hidden()
+//                            }
+      
                         }
+
                     }
+                    .padding(.bottom,40)
+                    
                 }
             }
         }
         .offset(y: -70)
         .navigationBarHidden(true)
+    }
+    func delete(at offsets: IndexSet) {
+        
+        viewModel.fruit.remove(atOffsets: offsets)
     }
 }
 
