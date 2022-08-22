@@ -18,31 +18,30 @@ struct ContentView: View {
                         ZStack {
                             HStack {
                                 Text("GoldBerry")
-                                    .font(Font(uiFont: .fontLibrary(70, .helvetica)))
+                                    .font(Font(uiFont: .fontLibrary(32, .helvetica)))
                                     .foregroundColor(Color.theme.lightGreen)
                                     .padding()
                                 Spacer()
-                                HStack {
+                                HStack(spacing: 5) {
                                     Image(systemName: "cart.fill")
                                         .resizable()
                                         .frame(width: 25, height: 25)
                                         .foregroundColor(Color.theme.lightGreen)
-                                    Spacer()
-                                    HStack {
+                                    
+                                    HStack(spacing:1) {
 
                                         Text("100000")
-                                            .font(Font(uiFont: .fontLibrary(12, .helvetica)))
+                                            .font(Font(uiFont: .fontLibrary(16, .helvetica)))
                                             .foregroundColor(.black)
                                             .minimumScaleFactor(0.5)
                                         Text("руб")
-                                            .font(Font(uiFont: .fontLibrary(12, .helvetica)))
+                                            .font(Font(uiFont: .fontLibrary(16, .helvetica)))
                                             .foregroundColor(.black)
-                                            .minimumScaleFactor(0.5)
 
                                     }
                                 }
                                 .padding()
-                                .frame(width: 120, height: 40)
+                                .frame(width: 140, height: 45)
                                 .background(.white)
                                 .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
                                 .shadow(color: .green.opacity(0.2), radius: 10, x: 0, y: 10)

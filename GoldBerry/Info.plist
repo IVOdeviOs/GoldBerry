@@ -9,5 +9,14 @@
 		<key>NSAppClipRequestLocationConfirmation</key>
 		<false/>
 	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>helveticacyrillicupright.ttf</string>
+		<string>UZSans-Bold.ttf</string>
+		<string>UZSans-Light.ttf</string>
+		<string>UZSans-Medium.ttf</string>
+		<string>UZSans-Regular.ttf</string>
+		<string>UZSans-SemiBold.ttf</string>
+	</array>
 </dict>
 </plist>
