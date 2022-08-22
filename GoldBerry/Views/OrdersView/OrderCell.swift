@@ -19,7 +19,8 @@ struct OrderCell: View {
                         .padding(.top, 10)
                         .padding(.bottom, 1)
                     Text("Заказ № \(number)")
-                        .font(Font(uiFont: .fontLibrary(18, .uzSansRegular)))
+                        .font(Font(uiFont: .fontLibrary(18, .uzSansBold)))
+                        .foregroundColor(.black)
                         .padding(.leading, 10)
                 }
                 Spacer()
@@ -70,15 +71,39 @@ struct OrderCell: View {
             //                }
             //                .listStyle(.plain)
             //            }
-            VStack {
-                Text("Доставка: \(address)")
+            HStack {
+                VStack(alignment: .leading, spacing: 10) {
+                    HStack {
+                Text("Доставка:")
                     .fixedSize(horizontal: false, vertical: true)
-                    .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
-                    .padding()
-                Text("Дата доставки: \(date)")
-                    .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
+                    .font(Font(uiFont: .fontLibrary(16, .uzSansBold)))
+                    .foregroundColor(.black)
                     .padding(.bottom, 10)
+                    .padding(.leading, 10)
+                    Text(address)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
+                        .foregroundColor(.black)
+                        .padding(.bottom, 10)
+                        .padding(.leading, 10)
+                        Spacer()
+                    }
+                    HStack {
+                Text("Дата доставки:")
+                    .font(Font(uiFont: .fontLibrary(16, .uzSansBold)))
+                    .foregroundColor(.black)
+                    .padding(.bottom, 10)
+                    .padding(.leading, 10)
+                    Text("\(date)")
+                        .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
+                        .foregroundColor(.black)
+                        .padding(.bottom, 10)
+                        .padding(.leading, 10)
+                        Spacer()
+                    }
             }
+                Spacer()
+        }
         }
         .background(.gray.opacity(0.3))
         .overlay(
