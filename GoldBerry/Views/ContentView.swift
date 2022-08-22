@@ -8,11 +8,12 @@ extension Color {
 
 struct ContentView: View {
     @StateObject var viewModel = TabBarViewModel()
+    @StateObject var viewModels = OrderViewModel()
     var body: some View {
 
         NavigationView {
             ZStack {
-                ExtractedView(viewModel: viewModel)
+                ExtractedView(viewModel: viewModel, viewModels: viewModels)
                 ZStack {
                     VStack {
                         ZStack {
@@ -119,6 +120,7 @@ struct ContentView_Previews: PreviewProvider {
 
 struct ExtractedView: View {
     @StateObject var viewModel: TabBarViewModel
+    @StateObject var viewModels: OrderViewModel
 
     var body: some View {
         ZStack {
@@ -127,8 +129,9 @@ struct ExtractedView: View {
                 ProductsView()
             case 1:
                 AssemblyOfTheOrderView()
+                
             case 2:
-                OrdersView(viewModel: viewModel)
+                OrdersView(viewModel: viewModel, viewModels: viewModels)
             case 3:
                 ProductsView()
             default:

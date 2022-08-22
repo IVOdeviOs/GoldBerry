@@ -3,9 +3,10 @@ import SwiftUI
 struct OrdersView: View {
 
     @StateObject var viewModel: TabBarViewModel
+    @StateObject var viewModels: OrderViewModel
 
     var body: some View {
-        if viewModel.orders.isEmpty {
+        if viewModels.orders.isEmpty {
             WithoutOrders(viewModel: viewModel)
         } else {
             WithOrders()
@@ -48,58 +49,45 @@ struct WithoutOrders: View {
 }
 
 struct WithOrders: View {
-    @ObservedObject var viewModel = TabBarViewModel()
+    @ObservedObject var viewModel = OrderViewModel()
 
     @State var show = false
 
     var body: some View {
         NavigationView {
-            ScrollView {
-//            List{
-                ForEach(viewModel.orders) { item in
+            List(viewModel.orders) { item in
+                Button(action: {
+                    show.toggle()
 
-//                Button {
-//                    show.toggle()
-//                } label: {
-//                    OrderCell(
-//                        date: item.date,
-//                        number: item.orderNumber,
-//                        price: item.price,
-//                        purchases: item.fruit,
-//                        address: item.address
-//                    ).padding(.vertical)
-//
-//                }.sheet(isPresented: $show) {
-//                    OrderInfoView(order: item)
-//                }
-//                .padding(.horizontal, 10)
-                    NavigationLink {
-                        OrderInfoView(order: item)
-                    } label: {
-                        OrderCell(
-                            date: item.date,
-                            number: item.orderNumber,
-                            price: item.price,
-                            purchases: item.fruit,
-                            address: item.address
-                        )
-                    }
-//                    .navigationViewStyle(.stack)
-                    .padding()
-                }
+                    print("\(item.date)")
+                }, label: {
+                    OrderCell(
+                        date: item.date,
+                        number: item.orderNumber,
+                        price: item.price,
+                        purchases: item.fruit,
+                        address: item.address
+                    )
+                })
+                .sheet(isPresented: $show, content: {
+
+                    OrderInfoView(order: item)
+
+                })
+
+//                .padding()
             }
-//            .navigationViewStyle(.columns)
-//            .listStyle(.plain)
-            }
-            .padding(.top, 30)
-//        .offset(y: 100)
-//        }
+            .offset( y: -60)
+            .navigationViewStyle(.columns)
+            .listStyle(.plain)
+        }
+        .padding(.top, 0)
         .navigationBarHidden(true)
     }
 }
 
 struct OrdersView_Previews: PreviewProvider {
     static var previews: some View {
-        OrdersView(viewModel: TabBarViewModel())
+        OrdersView(viewModel: TabBarViewModel(), viewModels: OrderViewModel())
     }
 }

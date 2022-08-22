@@ -2,11 +2,11 @@ import SwiftUI
 
 struct OrderCell: View {
 
-    let date: String
-    let number: Int
-    let price: Double
-    var purchases: [Fruit]
-    let address: String
+    @State var date: String
+    @State var number: Int
+    @State var price: Double
+    @State var purchases: [Fruit]
+    @State var address: String
 
     var body: some View {
         VStack {
@@ -74,41 +74,41 @@ struct OrderCell: View {
             HStack {
                 VStack(alignment: .leading, spacing: 10) {
                     HStack {
-                Text("Доставка:")
-                    .font(Font(uiFont: .fontLibrary(16, .uzSansBold)))
-                    .foregroundColor(.black)
-                    .padding(.bottom, 10)
-                    .padding(.leading, 10)
-                    Text(address)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
-                        .foregroundColor(.black)
-                        .padding(.bottom, 10)
-                        .padding(.leading, 10)
+                        Text("Доставка:")
+                            .font(Font(uiFont: .fontLibrary(16, .uzSansBold)))
+                            .foregroundColor(.black)
+                            .padding(.bottom, 10)
+                            .padding(.leading, 10)
+                        Text(address)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
+                            .foregroundColor(.black)
+                            .padding(.bottom, 10)
+                            .padding(.leading, 10)
                         Spacer()
                     }
                     HStack {
-                Text("Дата доставки:")
-                    .font(Font(uiFont: .fontLibrary(16, .uzSansBold)))
-                    .foregroundColor(.black)
-                    .padding(.bottom, 10)
-                    .padding(.leading, 10)
-                    Text("\(date)")
-                        .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
-                        .foregroundColor(.black)
-                        .padding(.bottom, 10)
-                        .padding(.leading, 10)
+                        Text("Дата доставки:")
+                            .font(Font(uiFont: .fontLibrary(16, .uzSansBold)))
+                            .foregroundColor(.black)
+                            .padding(.bottom, 10)
+                            .padding(.leading, 10)
+                        Text("\(date)")
+                            .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
+                            .foregroundColor(.black)
+                            .padding(.bottom, 10)
+                            .padding(.leading, 10)
                         Spacer()
                     }
-            }
+                }
                 Spacer()
-        }
+            }
         }
         .background(.gray.opacity(0.1))
         .overlay(
-                   RoundedRectangle(cornerRadius: 20)
-                    .stroke(Color.theme.gray, lineWidth: 2)
-               )
+            RoundedRectangle(cornerRadius: 20)
+                .stroke(Color.theme.gray, lineWidth: 2)
+        )
         .cornerRadius(20)
     }
 }
