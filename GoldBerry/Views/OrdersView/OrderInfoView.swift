@@ -4,35 +4,73 @@ import SwiftUI
 struct OrderInfoView: View {
     
     @ObservedObject var order: Order
-    @Environment(\.presentationMode) var presentation
+    @ObservedObject var viewModel = TabBarViewModel()
 
     var body: some View {
             
             VStack {
-                Text(order.address)
+                Text("Заказ № \(order.orderNumber)")
+                    .font(Font(uiFont: .fontLibrary(24, .uzSansBold)))
+                    .foregroundColor(.black)
+                    .padding()
+                Color.theme.gray
+                    .opacity(0.3)
+                    .frame(height: 10)
+                HStack {
+                Text("\(NSString(format: "%.2f", order.price)) p.")
+                        .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
+                        .foregroundColor(.white)
+                    .frame(width: 130, height: 30)
+                    .background(.orange)
+                    .cornerRadius(15)
+                    .padding()
+                    Spacer()
+                    Text("\(order.date)")
+                        .foregroundColor(Color.theme.gray)
+                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                        .padding()
                 }
+                ForEach(0 ..< order.fruit.count) { row in
+                    HStack {
+                        Image(order.fruit[row].imageName)
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .cornerRadius(10)
+                            .padding(.leading, 10)
+                        Text(order.fruit[row].name)
+                            .foregroundColor(.black)
+                            .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                        Spacer()
+                        Text("\(order.fruit[row].count)")
+                            .foregroundColor(.black)
+                            .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                        Text("\(order.fruit[row].cost) p.")
+                            .foregroundColor(Color.theme.lightGreen)
+                            .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                            .frame(width: 80, height: 20)
+                            .padding(.trailing, 10)
+                    }
+                }
+Spacer()
+            }
             .navigationBarHidden(true)
-            .navigationBarItems(leading:
-                Image(systemName: "arrow.backward")
-                .resizable()
-                .frame(width: 25, height: 18)
-             .foregroundColor(.black)
-                .onTapGesture {
-                   self.presentation.wrappedValue.dismiss()
-                }
-             )
+           
         }
 }
 
 struct OrderInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        OrderInfoView(order: Order(
-            orderNumber: 1,
-            fruit: [watermelon],
-            date: "18/08/2022",
-            address: "Минск",
-            price: 1000
-        ))
+        OrderInfoView(
+            order: Order(
+                orderNumber: 1,
+                fruit: [watermelon],
+                date: "18/08/2022",
+                address: "Минск, Независимости, 12-203",
+                price: 1250
+            ),
+            viewModel: TabBarViewModel()
+        )
+        
     }
 }
 
