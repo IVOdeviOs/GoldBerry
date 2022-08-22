@@ -56,7 +56,6 @@ struct WithOrders: View {
 //        NavigationView {
         ScrollView {
             ForEach(viewModel.orders) { item in
-
                 Button {
                     show.toggle()
                 } label: {
