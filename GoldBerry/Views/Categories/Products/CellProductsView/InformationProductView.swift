@@ -2,12 +2,14 @@ import SwiftUI
 
 struct InformationProductView: View {
     @ObservedObject var viewModel = TabBarViewModel()
+    @State var fruit: Fruit
     @Environment(\.presentationMode) var presentationMode
-
     private func dismiss() {
         presentationMode.wrappedValue.dismiss()
     }
-
+    var someUrl = URL(string: "https://cdn.pixabay.com/photo/2022/07/17/12/12/pembroke-welsh-corgi-7327285_1280.jpg")
+   @State var heartIndex = false
+    
     var body: some View {
 
         ZStack(alignment: .top) {
@@ -15,10 +17,17 @@ struct InformationProductView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack {
                     ZStack(alignment: .top) {
-                        Image("fresh")
-                            .resizable()
-                            .frame(height: 350)
-                            .aspectRatio(contentMode: .fit)
+                        RemoteImageView(
+                            url: someUrl!,
+                            placeholder: {
+                                Image(systemName: "icloud.and.arrow.up").frame(width: 300,height: 300)
+                            },
+                            image: {
+                                $0.frame(height: 350).aspectRatio(contentMode: .fill)
+                            }
+                        )
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: UIScreen.main.bounds.width - 20 ,height:350)
                     }
                     .cornerRadius(30)
                     .padding(3)
@@ -37,7 +46,7 @@ struct InformationProductView: View {
                     .cornerRadius(20)
                     .padding(.horizontal)
                     HStack {
-                        Text("1245₽")
+                        Text("\(fruit.cost)₽")
                             .foregroundColor(.red)
                             .font(.system(size: 23, weight: .bold, design: .default))
                         ZStack {
@@ -59,8 +68,7 @@ struct InformationProductView: View {
 
                     .frame(minHeight: 70, maxHeight: 150)
                     .padding(.horizontal)
-                    
-                   
+
 //                    .padding(.vertical,2)
                 }
                 .offset(y: -35)
@@ -68,57 +76,57 @@ struct InformationProductView: View {
             }
 
             ZStack {
-                VStack{
-                HStack {
-                    Button {
-                        dismiss()
-
-                    } label: {
-                        Image(systemName: "arrow.backward.square")
-                            .renderingMode(.original)
-                            .scaleEffect(3)
-                            .foregroundColor(Color.theme.lightGreen)
-                            .frame(width: 60, height: 60)
-                            .background(.white.opacity(0.3))
-                            .cornerRadius(10)
-                    }
-                    Spacer()
-                    Button {
-                        //
-                    } label: {
-                        Image(systemName: "heart")
-                            .renderingMode(.template)
-                            .scaleEffect(3)
-                            .foregroundColor(.red)
-                            .frame(width: 60, height: 60)
-                            .background(.white.opacity(0.3))
-                            .cornerRadius(10)
-                    }
-                }
-                .padding(.horizontal)
-//                .padding(.top, 1)
-                    Spacer()
                 VStack {
-                    Button {
-                        print("🥶")
-                    } label: {
-                        HStack {
-                            Text("В корзину")
-                                .foregroundColor(.white)
-                                .font(.system(size: 18, weight: .bold, design: .serif))
-                            Spacer()
-                            Text("1245₽")
-                                .foregroundColor(.white)
-                                .font(.system(size: 18, weight: .bold, design: .serif))
+                    HStack {
+                        Button {
+                            dismiss()
+
+                        } label: {
+                            Image(systemName: "arrow.backward.square")
+                                .renderingMode(.original)
+                                .scaleEffect(3)
+                                .foregroundColor(Color.theme.lightGreen)
+                                .frame(width: 60, height: 60)
+                                .background(.white.opacity(0.3))
+                                .cornerRadius(10)
                         }
-                        .padding()
-                        .background(Color.theme.lightGreen)
-                        .cornerRadius(20)
-                        .padding(.horizontal, 16)
+                        Spacer()
+                        Button {
+                            heartIndex.toggle()
+                        } label: {
+                            Image(systemName: heartIndex ? "heart.fill" : "heart" )
+                                .renderingMode(.template)
+                                .scaleEffect(3)
+                                .foregroundColor(.red)
+                                .frame(width: 60, height: 60)
+                                .animation(.easeInOut(duration: 1.5))
+                                .background(.white.opacity(0.3))
+                                .cornerRadius(10)
+                        }
                     }
+                    .padding(.horizontal)
+                    Spacer()
+                    VStack {
+                        Button {
+                            print("🥶")
+                        } label: {
+                            HStack {
+                                Text("В корзину")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 18, weight: .bold, design: .serif))
+                                Spacer()
+                                Text("1245₽")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 18, weight: .bold, design: .serif))
+                            }
+                            .padding()
+                            .background(Color.theme.lightGreen)
+                            .cornerRadius(20)
+                            .padding(.horizontal, 16)
+                        }
+                    }
+                    .offset(y: -75)
                 }
-                .offset(y:-75)
-            }
             }
         }
     }
@@ -126,6 +134,6 @@ struct InformationProductView: View {
 
 struct InformationProductView_Previews: PreviewProvider {
     static var previews: some View {
-        InformationProductView()
+        InformationProductView(fruit: Fruit(image: "", name: "", cost: 1, count: 1, weightOrPieces: ""))
     }
 }

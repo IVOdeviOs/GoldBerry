@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct AllProductsCell: View {
+   @State var fruit : Fruit
+
     var body: some View {
         VStack(spacing: 10) {
             ZStack(alignment: .bottomLeading) {
@@ -19,7 +21,7 @@ struct AllProductsCell: View {
                     .padding(5)
             }
             HStack {
-                Text("3500₽")
+                Text("\(fruit.cost)₽")
                     .font(.system(size: 14, weight: .bold, design: .serif))
                     .foregroundColor(.red)
                 ZStack {
@@ -33,7 +35,7 @@ struct AllProductsCell: View {
                 Spacer()
             }.padding(.horizontal, 5)
             HStack {
-                Text("Название Фруктов")
+                Text(fruit.name)
                     .font(.system(size: 12, weight: .light, design: .serif))
                     .foregroundColor(.black)
                     
@@ -66,6 +68,6 @@ struct AllProductsCell: View {
 
 struct AllProductsCell_Previews: PreviewProvider {
     static var previews: some View {
-        AllProductsCell().previewLayout(.fixed(width: 180, height: 290))
+        AllProductsCell(fruit: Fruit(image: "", name: "abricos", cost: 32334, count: 1, weightOrPieces: "kg")).previewLayout(.fixed(width: 180, height: 290))
     }
 }

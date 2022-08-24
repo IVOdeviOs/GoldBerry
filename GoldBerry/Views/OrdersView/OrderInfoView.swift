@@ -32,7 +32,7 @@ struct OrderInfoView: View {
                 }
                 ForEach(0 ..< order.fruit.count) { row in
                     HStack {
-                        Image(order.fruit[row].imageName)
+                        Image(order.fruit[row].image)
                             .resizable()
                             .frame(width: 30, height: 30)
                             .cornerRadius(10)

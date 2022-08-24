@@ -27,14 +27,15 @@ struct ProductsView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {
                         LazyVGrid(columns: viewModel.columns, alignment: .center, spacing: 1, pinnedViews: .sectionFooters, content: {
-                            ForEach(0 ..< 10) { _ in
+                            ForEach(viewModel.fruit) { fruits in
                                 NavigationLink {
-                                    InformationProductView()
+                                    InformationProductView(fruit: fruits)
                                 } label: {
-                                    AllProductsCell()
+                                    AllProductsCell(fruit: fruits)
                                         .padding(.bottom, 30)
                                 }
                             }
+
                         }).padding(.bottom, 60)
                     }
                 }
@@ -42,6 +43,15 @@ struct ProductsView: View {
 //            .offset( y: -70)
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarHidden(true)
+        }
+        .onAppear {
+            Task {
+                do {
+                    try await viewModel.fetchFruit()
+                } catch {
+                    print("❌ERORR \(error)")
+                }
+            }
         }
     }
 }

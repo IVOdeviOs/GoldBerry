@@ -37,7 +37,7 @@ struct OrderCell: View {
                 .frame(height: 3)
             ForEach(0 ..< purchases.count) { row in
                 HStack {
-                    Image(purchases[row].imageName)
+                    Image(purchases[row].image)
                         .resizable()
                         .frame(width: 30, height: 30)
                         .cornerRadius(10)
