@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ProductsView: View {
-    @ObservedObject var viewModel = TabBarViewModel()
+    @ObservedObject var viewModel: TabBarViewModel
 
     var body: some View {
 
@@ -44,20 +44,12 @@ struct ProductsView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarHidden(true)
         }
-        .onAppear {
-            Task {
-                do {
-                    try await viewModel.fetchFruit()
-                } catch {
-                    print("❌ERORR \(error)")
-                }
-            }
-        }
+       
     }
 }
 
 struct ProductsView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductsView()
+        ProductsView(viewModel: TabBarViewModel())
     }
 }

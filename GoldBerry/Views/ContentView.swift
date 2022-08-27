@@ -119,23 +119,32 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 struct ExtractedView: View {
-    @StateObject var viewModel: TabBarViewModel
+    @ObservedObject var viewModel = TabBarViewModel()
     @StateObject var viewModels: OrderViewModel
 
     var body: some View {
         ZStack {
             switch viewModel.selected {
             case 0:
-                ProductsView()
+                ProductsView(viewModel: viewModel)
+                    .onAppear {
+                        Task {
+                            do {
+                                try await viewModel.fetchFruit()
+                            } catch {
+                                print("❌ERORR \(error)")
+                            }
+                        }
+                    }
             case 1:
                 AssemblyOfTheOrderView()
                 
             case 2:
                 OrdersView(viewModel: viewModel, viewModels: viewModels)
             case 3:
-                ProductsView()
+                ProductsView(viewModel: viewModel)
             default:
-                ProductsView()
+                ProductsView(viewModel: viewModel)
             }
         }
         //            .padding()
