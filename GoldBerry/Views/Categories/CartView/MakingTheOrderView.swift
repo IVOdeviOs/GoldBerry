@@ -80,6 +80,8 @@ struct MakingTheOrderView: View {
             Spacer()
             
         }
+        .offset( y: -15)
+        .ignoresSafeArea()
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading:
                                 Image(systemName: "arrow.backward")
