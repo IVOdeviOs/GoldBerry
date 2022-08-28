@@ -65,7 +65,7 @@ struct WithPurchase: View {
                             cost: item.cost,
                             name: item.name,
                             index: item.id,
-                            description: item.description,
+                            description: item.description ?? "sas",
                             count: item.count,
                             price: item.cost
                         )

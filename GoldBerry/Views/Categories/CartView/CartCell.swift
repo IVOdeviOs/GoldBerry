@@ -45,7 +45,7 @@ struct CartCell: View {
                     if count >= 2 {
                         count -= 1
                         price = cost * Double(count)
-                        viewModel.order.price += price
+                        viewModel.order.price -= price
                     }
                 } label: {
                     Image(systemName: "minus.square.fill")
