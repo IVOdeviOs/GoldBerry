@@ -1,16 +1,25 @@
 import SwiftUI
 
 struct AllProductsCell: View {
-   @State var fruit : Fruit
+    @State var fruit: Fruit
 
     var body: some View {
         VStack(spacing: 10) {
             ZStack(alignment: .bottomLeading) {
-                Image(systemName: "plus")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 180, height: 120)
-                    .background(.green)
+
+                RemoteImageView(
+                    url: URL(string: fruit.image)!,
+                    placeholder: {
+                        Image(systemName: "icloud.and.arrow.up").frame(width: 300, height: 300)
+                    },
+                    image: {
+                        $0
+                            .resizable()
+                            .frame(width: 180, height: 120)
+                            .aspectRatio(contentMode: .fit)
+                    }
+                )
+
                 Text("-15%")
                     .font(.system(size: 12, weight: .light, design: .serif))
                     .foregroundColor(.white)
@@ -38,7 +47,7 @@ struct AllProductsCell: View {
                 Text(fruit.name)
                     .font(.system(size: 12, weight: .light, design: .serif))
                     .foregroundColor(.black)
-                    
+
                 Spacer()
             }
             .padding(.horizontal, 5)
@@ -47,16 +56,15 @@ struct AllProductsCell: View {
                     .frame(width: 170, height: 60)
                     .font(.system(size: 12, weight: .light, design: .serif))
                     .foregroundColor(.black.opacity(0.8))
-
             }
-          
+
             HStack {
                 Text("Доставка:0₽")
                     .font(.system(size: 12, weight: .light, design: .serif))
                     .foregroundColor(.black.opacity(0.7))
                 Spacer()
             }
-            .padding(.horizontal,10)
+            .padding(.horizontal, 10)
             Spacer()
         }
         .frame(width: 180, height: 290)
@@ -68,6 +76,6 @@ struct AllProductsCell: View {
 
 struct AllProductsCell_Previews: PreviewProvider {
     static var previews: some View {
-        AllProductsCell(fruit: Fruit(image: "", name: "abricos", description: "Арбуз Краснодар, урожай 2022 года", cost: 32334, count: 1, weightOrPieces: "kg")).previewLayout(.fixed(width: 180, height: 290))
+        AllProductsCell(fruit: Fruit(image: "", name: "abricos", cost: 32334, count: 1, weightOrPieces: "kg", favorite: false)).previewLayout(.fixed(width: 180, height: 290))
     }
 }

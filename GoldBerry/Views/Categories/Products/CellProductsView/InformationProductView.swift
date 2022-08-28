@@ -7,8 +7,8 @@ struct InformationProductView: View {
     private func dismiss() {
         presentationMode.wrappedValue.dismiss()
     }
-    var someUrl = URL(string: "https://cdn.pixabay.com/photo/2022/07/17/12/12/pembroke-welsh-corgi-7327285_1280.jpg")
-   @State var heartIndex = false
+//    var someUrl = URL(string: "\(fruit.urlIMage)")
+//   @State var heartIndex = false
     
     var body: some View {
 
@@ -18,16 +18,19 @@ struct InformationProductView: View {
                 VStack {
                     ZStack(alignment: .top) {
                         RemoteImageView(
-                            url: someUrl!,
+                            url: URL(string: fruit.image)!,
                             placeholder: {
                                 Image(systemName: "icloud.and.arrow.up").frame(width: 300,height: 300)
                             },
                             image: {
-                                $0.frame(height: 350).aspectRatio(contentMode: .fill)
+                                $0
+                                    .resizable()
+                                    .frame(width: UIScreen.main.bounds.width - 20  , height: 350)
+                                    .aspectRatio(contentMode: .fit)
                             }
                         )
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: UIScreen.main.bounds.width - 20 ,height:350)
+//                        .aspectRatio(contentMode: .fill)
+//                        .frame(width: UIScreen.main.bounds.width - 20 ,height:350)
                     }
                     .cornerRadius(30)
                     .padding(3)
@@ -92,9 +95,9 @@ struct InformationProductView: View {
                         }
                         Spacer()
                         Button {
-                            heartIndex.toggle()
+                            fruit.favorite.toggle()
                         } label: {
-                            Image(systemName: heartIndex ? "heart.fill" : "heart" )
+                            Image(systemName: fruit.favorite ? "heart.fill" : "heart" )
                                 .renderingMode(.template)
                                 .scaleEffect(3)
                                 .foregroundColor(.red)
@@ -115,7 +118,7 @@ struct InformationProductView: View {
                                     .foregroundColor(.white)
                                     .font(.system(size: 18, weight: .bold, design: .serif))
                                 Spacer()
-                                Text("1245₽")
+                                Text("\(fruit.cost)₽")
                                     .foregroundColor(.white)
                                     .font(.system(size: 18, weight: .bold, design: .serif))
                             }
@@ -134,6 +137,6 @@ struct InformationProductView: View {
 
 struct InformationProductView_Previews: PreviewProvider {
     static var previews: some View {
-        InformationProductView(fruit: Fruit(image: "", name: "", description: "", cost: 1, count: 1, weightOrPieces: ""))
+        InformationProductView(fruit: Fruit(image: "", name: "", cost: 1, count: 1, weightOrPieces: "", favorite: false))
     }
 }
