@@ -35,6 +35,7 @@ struct CartCell: View {
             }
             Button {
                 //                viewModel.order.fruit.remove(at: index)
+//                onDelete(perform: delete)
             } label: {
                 Text("Удалить")
                     .foregroundColor(Color.theme.gray)
@@ -45,7 +46,11 @@ struct CartCell: View {
                     if count >= 2 {
                         count -= 1
                         price = cost * Double(count)
-                        viewModel.order.price -= price
+                        
+//                        viewModel.order.price -= price
+//                        print("\(price)")
+                        viewModel.price = price
+                        print("\(viewModel.price)")
                     }
                 } label: {
                     Image(systemName: "minus.square.fill")
@@ -59,7 +64,11 @@ struct CartCell: View {
                 Button {
                     count += 1
                     price = cost * Double(count)
-                    viewModel.order.price += price
+//                    viewModel.order.price += price
+//                    print("\(price)")
+                    viewModel.price = price
+                    print("\(viewModel.price)")
+
                 } label: {
                     Image(systemName: "plus.square.fill")
                         .resizable()
@@ -83,6 +92,9 @@ struct CartCell: View {
         )
         .cornerRadius(20)
     }
+    func delete(at offsets: IndexSet) {
+          viewModel.order.fruit.remove(atOffsets: offsets)
+      }
 }
 
 struct CartCell_Previews: PreviewProvider {

@@ -11,6 +11,7 @@ struct Fruit: Identifiable,Codable, Hashable {
     var count: Int
     var weightOrPieces: String
     var favorite:Bool
+    var price: Double?
 }
 
 let watermelon = Fruit(id: "1", image: "watermelon", name: "Watermelon", cost: 1000, count: 1, weightOrPieces: "кг", favorite: false)

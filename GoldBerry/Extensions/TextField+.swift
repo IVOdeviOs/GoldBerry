@@ -14,8 +14,12 @@ struct TextFieldView: View {
                 .padding(.leading, 20)
                 .background(.white)
                 .frame(height: 50)
-                .border(.red, width: 1)
-                .cornerRadius(10)
+//                .border(.red, width: 1)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(.red, lineWidth: 1)
+                )
+//                .cornerRadius(10)
                 .padding()
         }
     }

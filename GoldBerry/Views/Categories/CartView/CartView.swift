@@ -51,14 +51,13 @@ struct WithPurchase: View {
     @ObservedObject var viewModel = OrderViewModel()
 
     @State var show = false
-
     var body: some View {
         VStack {
-//            ScrollView {
-//        ForEach(0 ..< viewModel.order.fruit.count) { row in
-                List(viewModel.order.fruit) { item in
+            ScrollView {
+                ForEach(viewModel.order.fruit) { item in
+//                List(viewModel.order.fruit) { item in
                     Button {
-
+                        
                     } label: {
                         CartCell(
                             imageName: item.image,
@@ -67,29 +66,40 @@ struct WithPurchase: View {
                             index: item.id,
                             description: item.description ?? "sas",
                             count: item.count,
-                            price: item.cost
+                            price: item.price ?? 0
                         )
+                        
+                        
                     }
-                    
+
+                    .padding()
                 }
+                .onDelete(perform: delete)
+               
                 .padding(.top, 80)
-//            }
+            }
+
+           
+            
             NavigationLink {
-                    MakingTheOrderView(viewModels: OrderViewModel())
-                } label: {
-                    Text("Оформить заказ   \(NSString(format: "%.2f", viewModel.order.price)) р")
-                        .foregroundColor(.white)
-                        .frame(width: 300, height: 50)
-                        .background(Color.theme.lightGreen)
-                        .cornerRadius(10)
-                        .padding(.bottom, 150)
-                }
-                .background(.white)
-                .navigationViewStyle(.columns)
-                .listStyle(.plain)
-                .background(.red)
+                MakingTheOrderView(viewModels: OrderViewModel())
+            } label: {
+                Text("Оформить заказ   \(NSString(format: "%.2f", viewModel.price)) р")
+                    .foregroundColor(.white)
+                    .frame(width: 300, height: 50)
+                    .background(Color.theme.lightGreen)
+                    .cornerRadius(10)
+                    .padding(.bottom, 150)
+            }
+            .background(.white)
+            .navigationViewStyle(.columns)
+            .listStyle(.plain)
+            .background(.red)
         }
         .navigationBarHidden(true)
+    }
+    func delete(at offsets: IndexSet) {
+        viewModel.order.fruit.remove(atOffsets: offsets)
     }
 }
 
