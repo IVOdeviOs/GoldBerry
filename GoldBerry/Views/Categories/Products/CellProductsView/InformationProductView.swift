@@ -134,6 +134,6 @@ struct InformationProductView: View {
 
 struct InformationProductView_Previews: PreviewProvider {
     static var previews: some View {
-        InformationProductView(fruit: Fruit(image: "", name: "", cost: 1, count: 1, weightOrPieces: ""))
+        InformationProductView(fruit: Fruit(image: "", name: "", description: "", cost: 1, count: 1, weightOrPieces: ""))
     }
 }

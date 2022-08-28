@@ -65,7 +65,7 @@ struct ContentView: View {
                                 Button {
                                     viewModel.selected = 1
                                 } label: {
-                                    Image(systemName: "video")
+                                    Image(systemName: "cart")
                                         .resizable()
                                         .frame(width: 23, height: 20)
                                 }.foregroundColor(viewModel.selected == 1 ? Color.theme.lightGreen : Color.theme.gray)
@@ -137,8 +137,7 @@ struct ExtractedView: View {
                         }
                     }
             case 1:
-                AssemblyOfTheOrderView()
-                
+                CartView(viewModel: viewModel, viewModels: viewModels)                
             case 2:
                 OrdersView(viewModel: viewModel, viewModels: viewModels)
             case 3:

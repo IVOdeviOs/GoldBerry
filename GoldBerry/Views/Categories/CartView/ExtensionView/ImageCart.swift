@@ -35,11 +35,11 @@ struct CustomImage: View {
                     } else {
                     switch index {
                     case 1:
-                        viewModels.fruit.append(Fruit(image: "watermelon", name: "12", cost: 1200, count: 12, weightOrPieces: "кг"))
+                        viewModels.fruit.append(Fruit(image: "watermelon", name: "12", description: "Арбуз Краснодар, урожай 2022 года", cost: 1200, count: 12, weightOrPieces: "кг"))
                     case 2:
-                        viewModels.fruit.append(Fruit(image: "watermelon", name: "abricos", cost: 210, count: 21, weightOrPieces: "кг"))
+                        viewModels.fruit.append(Fruit(image: "watermelon", name: "abricos", description: "Арбуз Краснодар, урожай 2022 года", cost: 210, count: 21, weightOrPieces: "кг"))
                     case 3:
-                        viewModels.fruit.append(Fruit(image: "watermelon", name: "banana", cost: 2100, count: 21, weightOrPieces: "кг"))
+                        viewModels.fruit.append(Fruit(image: "watermelon", name: "banana", description: "Арбуз Краснодар, урожай 2022 года", cost: 2100, count: 21, weightOrPieces: "кг"))
                     case 4:
                         print("\(viewModels.fruit.count)")
                     case 5:
