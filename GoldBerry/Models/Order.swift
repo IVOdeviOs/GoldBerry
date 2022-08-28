@@ -9,4 +9,5 @@ struct Order: Identifiable {
     var price: Double
     var customer: String
     var customerPhone: String
+    var comment: String
 }

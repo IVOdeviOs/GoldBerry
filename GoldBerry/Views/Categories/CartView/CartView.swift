@@ -75,7 +75,7 @@ struct WithPurchase: View {
                 .padding(.top, 80)
 //            }
             NavigationLink {
-                    MakingTheOrderView()
+                    MakingTheOrderView(viewModels: OrderViewModel())
                 } label: {
                     Text("Оформить заказ   \(NSString(format: "%.2f", viewModel.order.price)) р")
                         .foregroundColor(.white)

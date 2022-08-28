@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		DC224EBE28BB3E5900F8760D /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC224EBD28BB3E5900F8760D /* CartView.swift */; };
 		DC224EC028BB480700F8760D /* MakingTheOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC224EBF28BB480700F8760D /* MakingTheOrderView.swift */; };
+		DC4807E328BB7E8A001416B6 /* TextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4807E228BB7E8A001416B6 /* TextField+.swift */; };
+		DC4807E528BB8328001416B6 /* CompletedOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4807E428BB8328001416B6 /* CompletedOrderView.swift */; };
 		DC9DE54A28BB508200057E90 /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9DE54928BB508200057E90 /* CartCell.swift */; };
 		DCA524D528AD31CD00A994F5 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA524D428AD31CD00A994F5 /* Font+.swift */; };
 		DCA5250328AE715100A994F5 /* helveticacyrillicupright.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCA5250228AE715100A994F5 /* helveticacyrillicupright.ttf */; };
@@ -46,6 +48,8 @@
 /* Begin PBXFileReference section */
 		DC224EBD28BB3E5900F8760D /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		DC224EBF28BB480700F8760D /* MakingTheOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakingTheOrderView.swift; sourceTree = "<group>"; };
+		DC4807E228BB7E8A001416B6 /* TextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+.swift"; sourceTree = "<group>"; };
+		DC4807E428BB8328001416B6 /* CompletedOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedOrderView.swift; sourceTree = "<group>"; };
 		DC9DE54928BB508200057E90 /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
 		DCA524D428AD31CD00A994F5 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		DCA5250228AE715100A994F5 /* helveticacyrillicupright.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = helveticacyrillicupright.ttf; sourceTree = "<group>"; };
@@ -96,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				DCA524D428AD31CD00A994F5 /* Font+.swift */,
+				DC4807E228BB7E8A001416B6 /* TextField+.swift */,
 				DCA5250428AE750A00A994F5 /* Color+.swift */,
 			);
 			path = Extensions;
@@ -239,6 +244,7 @@
 				DC224EBD28BB3E5900F8760D /* CartView.swift */,
 				DC9DE54928BB508200057E90 /* CartCell.swift */,
 				DC224EBF28BB480700F8760D /* MakingTheOrderView.swift */,
+				DC4807E428BB8328001416B6 /* CompletedOrderView.swift */,
 				DDBA58E728AAB16C00FFC3A5 /* ExtensionView */,
 			);
 			path = CartView;
@@ -340,6 +346,7 @@
 				DDBA58E428A9371400FFC3A5 /* AssemblyOfTheOrderView.swift in Sources */,
 				DDBA58EF28AAB80D00FFC3A5 /* FruitListCell.swift in Sources */,
 				DDBA58DE28A0419100FFC3A5 /* CategoriesCell.swift in Sources */,
+				DC4807E528BB8328001416B6 /* CompletedOrderView.swift in Sources */,
 				DCA5250528AE750A00A994F5 /* Color+.swift in Sources */,
 				DD95A83F2899ABD600DF346B /* GoldBerry.xcdatamodeld in Sources */,
 				DD93807528B54D1000808E88 /* Constants.swift in Sources */,
@@ -356,6 +363,7 @@
 				DC224EC028BB480700F8760D /* MakingTheOrderView.swift in Sources */,
 				DD95A8332899ABD200DF346B /* GoldBerryApp.swift in Sources */,
 				DD539A6928A02A63006F1CD1 /* OrdersView.swift in Sources */,
+				DC4807E328BB7E8A001416B6 /* TextField+.swift in Sources */,
 				DC9DE54A28BB508200057E90 /* CartCell.swift in Sources */,
 				DDBA58E028A1551400FFC3A5 /* AllProductsCell.swift in Sources */,
 				DC224EBE28BB3E5900F8760D /* CartView.swift in Sources */,

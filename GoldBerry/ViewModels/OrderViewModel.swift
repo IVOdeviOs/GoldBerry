@@ -18,7 +18,8 @@ class OrderViewModel: ObservableObject {
             address: "Минск, пр-т Независимости, 10-23",
             price: 1000,
             customer: "Oleg",
-            customerPhone: "+375-29-777-11-11"
+            customerPhone: "+375-29-777-11-11",
+            comment: "ss"
         ),
         Order(
             orderNumber: 2,
@@ -27,17 +28,19 @@ class OrderViewModel: ObservableObject {
             address: "Минск, пр-т Независимости, 10-23",
             price: 1000,
             customer: "Oleg",
-            customerPhone: "+375-29-777-11-11"
+            customerPhone: "+375-29-777-11-11",
+            comment: "sss"
         )
     ]
     
     @Published var order: Order = Order(
         orderNumber: 1,
         fruit: [watermelon, apple, apricot, banana],
-        date: "18/08/2022",
-        address: "Минск, пр-т Независимости, 10-23",
+        date: "",
+        address: "",
         price: 0,
-        customer: "Oleg",
-        customerPhone: "+375-29-777-11-11"
+        customer: "",
+        customerPhone: "",
+        comment: ""
     )
 }

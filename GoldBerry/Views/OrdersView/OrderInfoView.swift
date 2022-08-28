@@ -128,7 +128,7 @@ struct CustomerInfo: View {
 struct OrderInfoView_Previews: PreviewProvider {
     static var previews: some View {
         OrderInfoView(
-            order: Order(orderNumber: 1, date: "", address: "", price: 1, customer: "", customerPhone: "")
+            order: Order(orderNumber: 1, date: "", address: "", price: 1, customer: "", customerPhone: "", comment: "")
         )
     }
 }
