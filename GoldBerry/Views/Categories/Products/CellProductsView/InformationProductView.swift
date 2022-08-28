@@ -9,6 +9,7 @@ struct InformationProductView: View {
     }
 //    var someUrl = URL(string: "\(fruit.urlIMage)")
 //   @State var heartIndex = false
+     
     
     var body: some View {
 
@@ -25,7 +26,7 @@ struct InformationProductView: View {
                             image: {
                                 $0
                                     .resizable()
-                                    .frame(width: UIScreen.main.bounds.width - 20  , height: 350)
+                                    .frame(width: UIScreen.main.bounds.width - 20  , height: 330)
                                     .aspectRatio(contentMode: .fit)
                             }
                         )
@@ -34,13 +35,14 @@ struct InformationProductView: View {
                     }
                     .cornerRadius(30)
                     .padding(3)
+                    .padding(.top,16)
                     Spacer()
                     HStack {
                         Image(systemName: "car")
                             .resizable()
                             .frame(width: 35, height: 35)
                             .foregroundColor(Color.theme.gray)
-                        Text("Бесплатная доставка от ... ₽")
+                        Text("Бесплатная доставка от 1000 ₽")
                             .font(.system(size: 16, weight: .medium, design: .default))
                         Spacer()
                     }
@@ -49,11 +51,11 @@ struct InformationProductView: View {
                     .cornerRadius(20)
                     .padding(.horizontal)
                     HStack {
-                        Text("\(fruit.cost)₽")
+                        Text("\(fruit.itog, specifier: "%.2f")₽")
                             .foregroundColor(.red)
                             .font(.system(size: 23, weight: .bold, design: .default))
                         ZStack {
-                            Text("4500₽")
+                            Text("\(NSString(format: "%.2f", fruit.cost))₽")
                                 .font(.system(size: 13, weight: .light, design: .serif))
                                 .foregroundColor(.black.opacity(0.6))
                             Color(CGColor(gray: 0, alpha: 1)).opacity(0.5)
@@ -65,11 +67,11 @@ struct InformationProductView: View {
 
                     HStack {
                         Text("adsgkhagsdkha;sdgihg;asidgh;iagshd;ighda;siohg;asdoihg;aiosdhgahsdg;ioh;ashgaisdfsadfadsgadsgadsgadsgasdgadsgasadsgkhagsdkha;sdgihg;asidgh;iagshd;ighda;siohg;asdoihg;aiosdhgahsdg;ioh;ashgaisdfsadfadsgadsgadsgadsgasdgadsgashgohgoadsgkhagsdkha;sdgihg;asidgh;iagshd;ighda;siohg;asdoihg;aiosdhgahsdg;ioh;ashgaisdfsadfadsgadsgadsgadsgasdgadsgasadsgkhagsdkha;sdgihg;asidgh;iagshd;ighda;siohg;asdoihg;aiosdhgahsdg;ioh;ashgaisdfsadfadsgadsgadsgadsgasdgadsgashgohgo")
-                            .font(.system(size: 16, weight: .medium, design: .default))
+                            .font(.system(size: 14, weight: .medium, design: .default))
                         Spacer()
                     }
 
-                    .frame(minHeight: 70, maxHeight: 150)
+                    .frame(minHeight: 70, maxHeight: 130)
                     .padding(.horizontal)
 
 //                    .padding(.vertical,2)
@@ -118,7 +120,7 @@ struct InformationProductView: View {
                                     .foregroundColor(.white)
                                     .font(.system(size: 18, weight: .bold, design: .serif))
                                 Spacer()
-                                Text("\(fruit.cost)₽")
+                                Text("\(fruit.itog, specifier: "%.2f")₽")
                                     .foregroundColor(.white)
                                     .font(.system(size: 18, weight: .bold, design: .serif))
                             }
@@ -128,7 +130,7 @@ struct InformationProductView: View {
                             .padding(.horizontal, 16)
                         }
                     }
-                    .offset(y: -75)
+                    .offset(y: -95)
                 }
             }
         }

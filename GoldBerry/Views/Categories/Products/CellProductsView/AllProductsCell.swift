@@ -20,21 +20,21 @@ struct AllProductsCell: View {
                     }
                 )
 
-                Text("-15%")
+                Text("-\(fruit.percent!)%")
                     .font(.system(size: 12, weight: .light, design: .serif))
                     .foregroundColor(.white)
-                    .frame(width: 30, height: 20)
+                    .frame(width: 35, height: 20)
                     .padding(.horizontal, 5)
                     .background(.red)
                     .cornerRadius(20)
                     .padding(5)
             }
             HStack {
-                Text("\(fruit.cost)₽")
+                Text("\(fruit.itog, specifier: "%.2f")₽")
                     .font(.system(size: 14, weight: .bold, design: .serif))
                     .foregroundColor(.red)
                 ZStack {
-                    Text("4500₽")
+                    Text("\(fruit.cost, specifier: "%.2f")₽")
                         .font(.system(size: 12, weight: .light, design: .serif))
                         .foregroundColor(.black.opacity(0.6))
                     Color(CGColor(gray: 0, alpha: 1)).opacity(0.5)

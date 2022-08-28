@@ -1,7 +1,7 @@
 import Foundation
 import SwiftUI
 
-struct Fruit: Identifiable,Codable, Hashable {
+struct Fruit: Identifiable, Codable, Hashable {
 
     var id = UUID().uuidString
     var image: String
@@ -10,8 +10,19 @@ struct Fruit: Identifiable,Codable, Hashable {
     var cost: Double
     var count: Int
     var weightOrPieces: String
-    var favorite:Bool
+    var favorite: Bool
     var price: Double?
+    var percent: Int?
+
+    var itog: Double {
+
+        let per = Double(percent!)
+        let del = (per / 100)
+        let sa = 1 - del
+        let sum = cost * sa
+
+        return sum
+    }
 }
 
 let watermelon = Fruit(id: "1", image: "watermelon", name: "Watermelon", cost: 1000, count: 1, weightOrPieces: "кг", favorite: false)
