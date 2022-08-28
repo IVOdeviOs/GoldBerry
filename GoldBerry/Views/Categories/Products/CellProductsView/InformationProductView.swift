@@ -41,7 +41,7 @@ struct InformationProductView: View {
                         Image(systemName: "car")
                             .resizable()
                             .frame(width: 35, height: 35)
-                            .foregroundColor(Color.theme.gray)
+                            .foregroundColor(.green)
                         Text("Бесплатная доставка от 1000 ₽")
                             .font(.system(size: 16, weight: .medium, design: .default))
                         Spacer()

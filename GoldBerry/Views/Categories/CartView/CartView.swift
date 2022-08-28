@@ -52,52 +52,61 @@ struct WithPurchase: View {
 
     @State var show = false
     var body: some View {
-        VStack {
-            ScrollView {
-                ForEach(viewModel.order.fruit) { item in
-//                List(viewModel.order.fruit) { item in
-                    Button {
-                        
-                    } label: {
-                        CartCell(
-                            imageName: item.image,
-                            cost: item.cost,
-                            name: item.name,
-                            index: item.id,
-                            description: item.description ?? "sas",
-                            count: item.count,
-                            price: item.price ?? 0
-                        )
-                        
-                        
+        ZStack(alignment: .top) {
+            VStack {
+                ScrollView {
+                    ForEach(viewModel.order.fruit) { item in
+                        //                List(viewModel.order.fruit) { item in
+                        Button {} label: {
+                            CartCell(
+                                imageName: item.image,
+                                cost: item.cost,
+                                name: item.name,
+                                index: item.id,
+                                description: item.description ?? "sas",
+                                count: item.count,
+                                price: item.price ?? 0
+                            )
+                        }
+
+                        .padding()
                     }
-
-                    .padding()
+                    .padding(.top, 125)
+                    .padding(.bottom,100)
                 }
-                .onDelete(perform: delete)
-               
-                .padding(.top, 80)
+            }
+            .ignoresSafeArea()
+            ZStack {
+                VStack {
+                    Spacer()
+                    Button {
+//                    MakingTheOrderView(viewModels: OrderViewModel())
+                        self.show.toggle()
+                    } label: {
+                        Text("Оформить заказ   \(NSString(format: "%.2f", viewModel.price)) р")
+                            .foregroundColor(.white)
+                            .frame(width: UIScreen.main.bounds.width - 30, height: 50)
+                            .background(Color.theme.lightGreen)
+                            .cornerRadius(10)
+                            .padding(.bottom, 150)
+                    }
+                    .offset(y: 115)
+                    .sheet(isPresented: $show, content: {
+                        MakingTheOrderView(viewModels: OrderViewModel())
+                    })
+//                        .background(.white)
+//                        .navigationViewStyle(.columns)
+//                        .listStyle(.plain)
+//                        .background(.red)
+                }
             }
 
-           
-            
-            NavigationLink {
-                MakingTheOrderView(viewModels: OrderViewModel())
-            } label: {
-                Text("Оформить заказ   \(NSString(format: "%.2f", viewModel.price)) р")
-                    .foregroundColor(.white)
-                    .frame(width: 300, height: 50)
-                    .background(Color.theme.lightGreen)
-                    .cornerRadius(10)
-                    .padding(.bottom, 150)
-            }
-            .background(.white)
-            .navigationViewStyle(.columns)
-            .listStyle(.plain)
-            .background(.red)
+            .navigationBarHidden(true)
         }
-        .navigationBarHidden(true)
+        .offset( y: -95)
+//        .ignoresSafeArea(edges: .top)
     }
+
     func delete(at offsets: IndexSet) {
         viewModel.order.fruit.remove(atOffsets: offsets)
     }
