@@ -57,35 +57,66 @@ struct ContentView: View {
                                 Button {
                                     viewModel.selected = 0
                                 } label: {
+                                    VStack {
                                     Image(systemName: "house")
                                         .resizable()
                                         .frame(width: 23, height: 20)
+                                        Text("Главная")
+                                            .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                                    }
                                 }.foregroundColor(viewModel.selected == 0 ? Color.theme.lightGreen : Color.theme.gray)
                                 Spacer(minLength: 12)
+                                
                                 Button {
                                     viewModel.selected = 1
                                 } label: {
+                                    ZStack {
+                                        ZStack {
+                                            if viewModels.order.fruit.count != 0 {
+                                        Color.red
+                                            .frame(width: 20, height: 20)
+                                            .cornerRadius(10)
+                                        Text("\(viewModels.order.fruit.count)")
+                                                .foregroundColor(.white)
+                                                .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                                        }
+                                        }
+                                        .offset(x: 20, y: -20)
+                                        
+                                        VStack {
                                     Image(systemName: "cart")
                                         .resizable()
                                         .frame(width: 23, height: 20)
+                                        Text("Корзина")
+                                            .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                                        }
+                                    }
                                 }.foregroundColor(viewModel.selected == 1 ? Color.theme.lightGreen : Color.theme.gray)
                                 Spacer()
 
                                 Button {
                                     viewModel.selected = 2
                                 } label: {
+                                    VStack {
                                     Image(systemName: viewModel.selected == 2 ? "bag.fill" : "bag")
                                         .resizable()
                                         .frame(width: 23, height: 20)
+                                        Text("Заказы")
+                                            .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                                    }
                                 }.foregroundColor(viewModel.selected == 2 ? Color.theme.lightGreen : Color.theme.gray)
                                 Spacer(minLength: 12)
 
                                 Button {
                                     viewModel.selected = 3
                                 } label: {
+                                    VStack {
                                     Image(systemName: viewModel.selected == 3 ? "person.fill" : "person")
                                         .resizable()
                                         .frame(width: 23, height: 20)
+                                        Text("Профиль")
+                                            .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                                    }
                                 }.foregroundColor(viewModel.selected == 3 ? Color.theme.lightGreen : Color.theme.gray)
                             }
                             .padding()

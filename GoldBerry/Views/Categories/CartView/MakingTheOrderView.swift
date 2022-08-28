@@ -1,8 +1,26 @@
 import SwiftUI
 
 struct MakingTheOrderView: View {
+    
+    @Environment(\.presentationMode) var presentation
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            
+        Text("Оформление заказа")
+                .foregroundColor(.black)
+                .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
+        }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading:
+            Image(systemName: "arrow.backward")
+            .resizable()
+            .frame(width: 18, height: 18)
+         .foregroundColor(.black)
+            .onTapGesture {
+               self.presentation.wrappedValue.dismiss()
+            }
+         )
     }
 }
 

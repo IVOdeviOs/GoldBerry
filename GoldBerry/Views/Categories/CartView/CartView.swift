@@ -54,74 +54,41 @@ struct WithPurchase: View {
 
     var body: some View {
         VStack {
-            ScrollView {
-        ForEach(0 ..< viewModel.order.fruit.count) { row in
-            VStack {
-            HStack {
-                Image(viewModel.order.fruit[row].image)
-                    .resizable()
-                    .frame(width: 100, height: 100)
-                    .cornerRadius(10)
-                    .padding(.leading, 10)
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("\(viewModel.order.fruit[row].cost) р/кг")
-                        .foregroundColor(Color.theme.lightGreen)
-                        .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
-                Text(viewModel.order.fruit[row].name)
-                    .foregroundColor(.black)
-                    .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
-                    Text(viewModel.order.fruit[row].description)
-                        .foregroundColor(.black)
-                        .font(Font(uiFont: .fontLibrary(14, .uzSansRegular)))
-                }
-                Spacer()
-            }
-                Button {
-                    viewModel.order.fruit.remove(at: row)
-                } label: {
-                    Text("Удалить")
-                        .foregroundColor(Color.theme.gray)
-                        .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
-                }
-                HStack {
+//            ScrollView {
+//        ForEach(0 ..< viewModel.order.fruit.count) { row in
+                List(viewModel.order.fruit) { item in
                     Button {
-                        viewModel.order.fruit[row].count -= 1
+
                     } label: {
-                        Image(systemName: "minus.square.fill")
-                            .resizable()
-                            .frame(width: 40, height: 40)
-                            .foregroundColor(Color.theme.gray)
+                        CartCell(
+                            imageName: item.image,
+                            cost: item.cost,
+                            name: item.name,
+                            index: item.id,
+                            description: item.description,
+                            count: item.count,
+                            price: item.cost
+                        )
                     }
-                    Text("\(viewModel.order.fruit[row].count) кг")
-                        .foregroundColor(.black)
-                        .font(Font(uiFont: .fontLibrary(24, .uzSansRegular)))
-                    Button {
-                        viewModel.order.fruit[row].count += 1
-                    } label: {
-                        Image(systemName: "plus.square.fill")
-                            .resizable()
-                            .frame(width: 40, height: 40)
-                            .foregroundColor(Color.theme.lightGreen)
-                    }
+                    
                 }
-            }
-        }
                 .padding(.top, 80)
-            }
-            NavigationView {
-                Button {
+//            }
+            NavigationLink {
                     MakingTheOrderView()
                 } label: {
-                    Text("Оформить заказ")
+                    Text("Оформить заказ   \(NSString(format: "%.2f", viewModel.order.price)) р")
                         .foregroundColor(.white)
                         .frame(width: 300, height: 50)
                         .background(Color.theme.lightGreen)
                         .cornerRadius(10)
+                        .padding(.bottom, 150)
                 }
-            }
-            Spacer()
+                .background(.white)
+                .navigationViewStyle(.columns)
+                .listStyle(.plain)
+                .background(.red)
         }
-        .padding(.top, 0)
         .navigationBarHidden(true)
     }
 }

@@ -57,7 +57,7 @@ struct AssemblyOfTheOrderView: View {
                     ScrollView {
                         ForEach(viewModel.fruit) { fruits in
                           
-                            FruitListCell(name: fruits.name, cost: fruits.cost, count: fruits.count, weightOrPieces: fruits.weightOrPieces)
+                            FruitListCell(name: fruits.name, cost: Int(fruits.cost), count: fruits.count, weightOrPieces: fruits.weightOrPieces)
 //
 //                            if fruits.name == fruits.name{
 //                                FruitListCell(name: fruits.name, cost: fruits.cost, count: fruits.count, weightOrPieces: fruits.weightOrPieces)

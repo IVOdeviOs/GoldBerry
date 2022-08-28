@@ -36,7 +36,7 @@ class OrderViewModel: ObservableObject {
         fruit: [watermelon, apple, apricot, banana],
         date: "18/08/2022",
         address: "Минск, пр-т Независимости, 10-23",
-        price: 1000,
+        price: 0,
         customer: "Oleg",
         customerPhone: "+375-29-777-11-11"
     )
