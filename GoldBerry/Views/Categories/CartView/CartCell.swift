@@ -13,28 +13,28 @@ struct CartCell: View {
     
     var body: some View {
         VStack {
-        HStack {
-            Image(imageName)
-                .resizable()
-                .frame(width: 100, height: 100)
-                .cornerRadius(10)
-                .padding(.leading, 10)
-            VStack(alignment: .leading, spacing: 10) {
-                Text("\(NSString(format: "%.2f", price)) р/кг")
-                    .foregroundColor(Color.theme.lightGreen)
-                    .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
-            Text(name)
-                .foregroundColor(.black)
-                .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
-                Text(description)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .foregroundColor(.black)
-                    .font(Font(uiFont: .fontLibrary(14, .uzSansRegular)))
+            HStack {
+                Image(imageName)
+                    .resizable()
+                    .frame(width: 100, height: 100)
+                    .cornerRadius(10)
+                    .padding(.leading, 10)
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("\(NSString(format: "%.2f", cost)) р/кг")
+                        .foregroundColor(Color.theme.lightGreen)
+                        .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
+                    Text(name)
+                        .foregroundColor(.black)
+                        .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
+                    Text(description)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .foregroundColor(.black)
+                        .font(Font(uiFont: .fontLibrary(14, .uzSansRegular)))
+                }
+                Spacer()
             }
-            Spacer()
-        }
             Button {
-//                viewModel.order.fruit.remove(at: index)
+                //                viewModel.order.fruit.remove(at: index)
             } label: {
                 Text("Удалить")
                     .foregroundColor(Color.theme.gray)
@@ -43,7 +43,7 @@ struct CartCell: View {
             HStack {
                 Button {
                     if count >= 2 {
-                    count -= 1
+                        count -= 1
                         price = cost * Double(count)
                         viewModel.order.price += price
                     }
@@ -66,6 +66,13 @@ struct CartCell: View {
                         .frame(width: 40, height: 40)
                         .foregroundColor(Color.theme.lightGreen)
                 }
+            }
+            HStack {
+                Text("Итого: \(NSString(format: "%.2f", price)) р")
+                    .foregroundColor(Color.theme.lightGreen)
+                    .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
+                    .padding(.leading, 10)
+                Spacer()
             }
         }
         .padding()
