@@ -44,7 +44,7 @@ struct OrderInfoView: View {
                         Text("\(order.fruit[row].count)")
                             .foregroundColor(.black)
                             .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                        Text("\(order.fruit[row].cost) p.")
+                        Text("\(NSString(format: "%.2f", order.fruit[row].cost)) p.")
                             .foregroundColor(Color.theme.lightGreen)
                             .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                             .frame(width: 80, height: 20)

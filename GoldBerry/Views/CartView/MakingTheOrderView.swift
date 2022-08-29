@@ -3,7 +3,7 @@ import SwiftUI
 struct MakingTheOrderView: View {
     
     func sendRequest(completion: @escaping (Bool) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             completion(tog == false)
         }
     }

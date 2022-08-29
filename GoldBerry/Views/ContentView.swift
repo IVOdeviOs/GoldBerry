@@ -172,7 +172,7 @@ struct ExtractedView: View {
             case 2:
                 OrdersView(viewModel: viewModel, viewModels: viewModels)
             case 3:
-                ProductsView(viewModel: viewModel)
+                ProfileView(viewModel: viewModel, viewModels: viewModels)
             default:
                 ProductsView(viewModel: viewModel)
             }
