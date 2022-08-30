@@ -8,5 +8,5 @@ enum Constants {
 }
 
 enum EndPoints {
-    static let songs = "fruit"
+    static let fruit = "fruit"
 }

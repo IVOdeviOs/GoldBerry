@@ -14,7 +14,7 @@ class TabBarViewModel: ObservableObject {
     @Published var viewState: CGSize = .zero
 
     func fetchFruit() async throws {
-        let urlString = Constants.baseURL + EndPoints.songs
+        let urlString = Constants.baseURL + EndPoints.fruit
 
         guard let url = URL(string: urlString) else {
             throw HttpError.badURL
@@ -23,6 +23,6 @@ class TabBarViewModel: ObservableObject {
 
         DispatchQueue.main.async {
             self.fruit = fruitResponse
-        }
+        } 
     }
 }
