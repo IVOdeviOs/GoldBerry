@@ -2,7 +2,7 @@ import SwiftUI
 
 struct OrdersView: View {
 
-    @StateObject var viewModel: TabBarViewModel
+    @StateObject var viewModel: FruitViewModel
     @StateObject var viewModels: OrderViewModel
 
     var body: some View {
@@ -15,7 +15,7 @@ struct OrdersView: View {
 }
 
 struct WithoutOrders: View {
-    @StateObject var viewModel: TabBarViewModel
+    @StateObject var viewModel: FruitViewModel
 
     var body: some View {
         VStack {
@@ -88,6 +88,6 @@ struct WithOrders: View {
 
 struct OrdersView_Previews: PreviewProvider {
     static var previews: some View {
-        OrdersView(viewModel: TabBarViewModel(), viewModels: OrderViewModel())
+        OrdersView(viewModel: FruitViewModel(), viewModels: OrderViewModel())
     }
 }

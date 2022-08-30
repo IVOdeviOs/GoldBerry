@@ -1,7 +1,7 @@
 import Foundation
 import SwiftUI
 
-class TabBarViewModel: ObservableObject {
+class FruitViewModel: ObservableObject {
     @Published var fruit = [Fruit]()
 
     @Published var selected = 0

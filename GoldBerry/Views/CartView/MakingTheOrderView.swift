@@ -73,7 +73,7 @@ struct MakingTheOrderView: View {
                     CompletedOrderView()
                 }
                 .fullScreenCover(isPresented: $tog1) {
-                    ContentView(viewModel: TabBarViewModel(), viewModels: OrderViewModel())
+                    ContentView(viewModel: FruitViewModel(), viewModels: OrderViewModel())
                 }
                 
             }

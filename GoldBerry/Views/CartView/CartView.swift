@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct CartView: View {
-    @StateObject var viewModel: TabBarViewModel
+    @StateObject var viewModel: FruitViewModel
     @StateObject var viewModels: OrderViewModel
 
     var body: some View {
@@ -14,7 +14,7 @@ struct CartView: View {
 }
 
 struct WithoutPurchase: View {
-    @StateObject var viewModel: TabBarViewModel
+    @StateObject var viewModel: FruitViewModel
 
     var body: some View {
         VStack {
@@ -115,6 +115,6 @@ struct WithPurchase: View {
 
 struct CartView_Previews: PreviewProvider {
     static var previews: some View {
-        CartView(viewModel: TabBarViewModel(), viewModels: OrderViewModel())
+        CartView(viewModel: FruitViewModel(), viewModels: OrderViewModel())
     }
 }

@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct InformationProductView: View {
-    @ObservedObject var viewModel = TabBarViewModel()
+    @ObservedObject var viewModel = FruitViewModel()
     @State var fruit: Fruit
     @Environment(\.presentationMode) var presentationMode
     private func dismiss() {

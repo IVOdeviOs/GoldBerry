@@ -7,7 +7,7 @@ extension Color {
 }
 
 struct ContentView: View {
-    @StateObject var viewModel = TabBarViewModel()
+    @StateObject var viewModel = FruitViewModel()
     @StateObject var viewModels = OrderViewModel()
     var body: some View {
 
@@ -150,7 +150,7 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 struct ExtractedView: View {
-    @ObservedObject var viewModel = TabBarViewModel()
+    @ObservedObject var viewModel = FruitViewModel()
     @StateObject var viewModels: OrderViewModel
 
     var body: some View {

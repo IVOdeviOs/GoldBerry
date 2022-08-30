@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ProductsView: View {
-    @ObservedObject var viewModel: TabBarViewModel
+    @ObservedObject var viewModel: FruitViewModel
 
     var body: some View {
 
@@ -50,6 +50,6 @@ struct ProductsView: View {
 
 struct ProductsView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductsView(viewModel: TabBarViewModel())
+        ProductsView(viewModel: FruitViewModel())
     }
 }

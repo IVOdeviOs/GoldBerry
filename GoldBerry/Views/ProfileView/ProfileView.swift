@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ProfileView: View {
 
-    @StateObject var viewModel: TabBarViewModel
+    @StateObject var viewModel: FruitViewModel
     @StateObject var viewModels: OrderViewModel
     @State var show = false
     @State var show1 = false
@@ -220,6 +220,6 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(viewModel: TabBarViewModel(), viewModels: OrderViewModel())
+        ProfileView(viewModel: FruitViewModel(), viewModels: OrderViewModel())
     }
 }
