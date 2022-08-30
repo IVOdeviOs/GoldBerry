@@ -1,13 +1,16 @@
 import SwiftUI
 
 struct ProfileView: View {
-
+    
     @StateObject var viewModel: FruitViewModel
     @StateObject var viewModels: OrderViewModel
     @State var show = false
     @State var show1 = false
     var numberPhone = "+375298308218"
-
+    @StateObject var user = FruitViewModel()
+    @State var sourceType: UIImagePickerController.SourceType = .camera
+    
+    
     var body: some View {
         VStack {
             ZStack {
@@ -15,17 +18,25 @@ struct ProfileView: View {
                     .frame(height: 240)
                     .offset(y: -50)
                 HStack {
+                    Button {
+                        user.showImagePicker = true
+                        sourceType = .photoLibrary
+                    } label: {
                     ZStack {
-                        Image(systemName: "person.circle.fill")
+                        Image(uiImage: (user.userPhotoIntoAvatar ?? UIImage(systemName: "person.circle.fill")!))
                             .resizable()
                             .frame(width: 80, height: 80)
                             .foregroundColor(.white)
                             .padding(.leading, 15)
-                        Color.gray
-                            .frame(width: 80, height: 80)
-                            .opacity(0.5)
-                            .cornerRadius(40)
-                            .padding(.leading, 15)
+//                        Color.gray
+//                            .frame(width: 80, height: 80)
+//                            .opacity(0.5)
+//                            .cornerRadius(40)
+//                            .padding(.leading, 15)
+                    }
+                    }
+                    .fullScreenCover(isPresented: $user.showImagePicker) {
+                        ImagePicker(image: $user.userPhotoIntoAvatar, isShow: $user.showImagePicker, sourceType: sourceType)
                     }
                     VStack {
                         Text("Имя Фамилия")
@@ -50,7 +61,6 @@ struct ProfileView: View {
                     })
                 }
             }
-
             ZStack {
                 Button {
                     viewModel.selected = 2
@@ -71,7 +81,7 @@ struct ProfileView: View {
                         }
                     }
                 }
-                .offset(x: -130, y: -70)
+                .offset(x: -110, y: -70)
             }
             Button {
                 self.show.toggle()
@@ -97,7 +107,6 @@ struct ProfileView: View {
                     })
                 }
             }
-            .padding(.bottom, 20)
             Button {
                 self.show.toggle()
             } label: {
@@ -122,9 +131,8 @@ struct ProfileView: View {
                     })
                 }
             }
-            .padding(.bottom, 15)
             Button {
-                self.show1.toggle()
+                self.show.toggle()
             } label: {
                 ZStack {
                     Color.theme.gray
@@ -136,54 +144,7 @@ struct ProfileView: View {
                             .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
                             .padding(.leading, 15)
                         Spacer()
-                        Image(systemName: "arrow.right")
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                            .foregroundColor(.black)
-                            .padding(.trailing, 20)
-                    }
-
-                    .alert("sda", isPresented: $show1, actions: {
-
-//                    ServiceInfoView()
-                        Button {
-                            let formattedString = "tel://" + numberPhone
-                            guard let url = URL(string: formattedString) else { return }
-                            UIApplication.shared.open(url)
-                        } label: {
-                            HStack {
-                                Image(systemName: "phone")
-                                Text(numberPhone)
-                            }
-                            .frame(width: 350, height: 50)
-                            .padding()
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color.gray, lineWidth: 1)
-                            )
-                        }
-
-                    })
- //                    .sheet(isPresented: $show1, content: {
-//                        ServiceInfoView()
-//                    })
-                }
-            }
-            .padding(.bottom, 15)
-            Button {
-                self.show.toggle()
-            } label: {
-                ZStack {
-                    Color.theme.gray
-                        .frame(height: 50)
-                        .opacity(0.4)
-                    HStack {
-                        Text("Служба поддержки")
-                            .foregroundColor(.black)
-                            .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
-                            .padding(.leading, 15)
-                        Spacer()
-
+                        
                         Image(systemName: "arrow.right")
                             .resizable()
                             .frame(width: 20, height: 20)
@@ -195,9 +156,32 @@ struct ProfileView: View {
                     })
                 }
             }
-            .padding(.bottom, 15)
+            ZStack {
+                Button {
+                    let formattedString = "tel://" + numberPhone
+                    guard let url = URL(string: formattedString) else { return }
+                    UIApplication.shared.open(url)
+                } label: {
+                    ZStack {
+                        Color.theme.gray
+                            .frame(height: 50)
+                            .opacity(0.4)
+                        HStack {
+                            Text("Служба поддержки")
+                                .foregroundColor(.black)
+                                .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
+                                .padding(.leading, 15)
+                            Spacer()
+                            Image(systemName: "arrow.right")
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                                .foregroundColor(.black)
+                                .padding(.trailing, 20)
+                        }
+                    }
+                }
+            }
             Spacer()
-
             HStack {
                 Button {
                     viewModel.selected = 0

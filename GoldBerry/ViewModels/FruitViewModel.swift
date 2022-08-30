@@ -25,4 +25,14 @@ class FruitViewModel: ObservableObject {
             self.fruit = fruitResponse
         }
     }
+    
+//    userPhoto
+    
+ 
+    
+        
+        @Published var showImagePicker = false
+        @Published var userPhotoIntoAvatar: UIImage?
+    
+
 }
