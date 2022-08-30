@@ -50,7 +50,7 @@ struct ProfileView: View {
             }
             ZStack {
                 Button {
-                    viewModel.selected = 1
+                    viewModel.selected = 2
                 } label: {
                     ZStack {
                         Color.white
@@ -73,16 +73,16 @@ struct ProfileView: View {
             Button {
                 self.show.toggle()
             } label: {
-            ZStack {
-                Color.theme.gray
-                    .frame(height: 50)
-                    .opacity(0.4)
-                HStack {
-                Text("Адреса торговых точек")
-                    .foregroundColor(.black)
-                    .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
-                    .padding(.leading, 15)
-                    Spacer()
+                ZStack {
+                    Color.theme.gray
+                        .frame(height: 50)
+                        .opacity(0.4)
+                    HStack {
+                        Text("Адреса торговых точек")
+                            .foregroundColor(.black)
+                            .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
+                            .padding(.leading, 15)
+                        Spacer()
                         Image(systemName: "arrow.right")
                             .resizable()
                             .frame(width: 20, height: 20)
@@ -95,20 +95,19 @@ struct ProfileView: View {
                 }
             }
             .padding(.bottom, 20)
-
             Button {
                 self.show.toggle()
             } label: {
-            ZStack {
-                Color.theme.gray
-                    .frame(height: 50)
-                    .opacity(0.4)
-                HStack {
-                Text("Избранные товары")
-                    .foregroundColor(.black)
-                    .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
-                    .padding(.leading, 15)
-                    Spacer()
+                ZStack {
+                    Color.theme.gray
+                        .frame(height: 50)
+                        .opacity(0.4)
+                    HStack {
+                        Text("Избранные товары")
+                            .foregroundColor(.black)
+                            .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
+                            .padding(.leading, 15)
+                        Spacer()
                         Image(systemName: "arrow.right")
                             .resizable()
                             .frame(width: 20, height: 20)
@@ -124,16 +123,16 @@ struct ProfileView: View {
             Button {
                 self.show.toggle()
             } label: {
-            ZStack {
-                Color.theme.gray
-                    .frame(height: 50)
-                    .opacity(0.4)
-                HStack {
-                Text("О сервисе")
-                    .foregroundColor(.black)
-                    .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
-                    .padding(.leading, 15)
-                    Spacer()
+                ZStack {
+                    Color.theme.gray
+                        .frame(height: 50)
+                        .opacity(0.4)
+                    HStack {
+                        Text("О сервисе")
+                            .foregroundColor(.black)
+                            .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
+                            .padding(.leading, 15)
+                        Spacer()
                         Image(systemName: "arrow.right")
                             .resizable()
                             .frame(width: 20, height: 20)
@@ -149,17 +148,17 @@ struct ProfileView: View {
             Button {
                 self.show.toggle()
             } label: {
-            ZStack {
-                Color.theme.gray
-                    .frame(height: 50)
-                    .opacity(0.4)
-                HStack {
-                Text("Служба поддержки")
-                    .foregroundColor(.black)
-                    .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
-                    .padding(.leading, 15)
-                    Spacer()
-                    
+                ZStack {
+                    Color.theme.gray
+                        .frame(height: 50)
+                        .opacity(0.4)
+                    HStack {
+                        Text("Служба поддержки")
+                            .foregroundColor(.black)
+                            .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
+                            .padding(.leading, 15)
+                        Spacer()
+                        
                         Image(systemName: "arrow.right")
                             .resizable()
                             .frame(width: 20, height: 20)
@@ -175,21 +174,19 @@ struct ProfileView: View {
             Spacer()
             
             HStack {
-            Button {
-                viewModel.selected = 0
-            } label: {
-                Text("Выход")
-                    .frame(width: 100, height: 50)
-                    .foregroundColor(Color.theme.gray)
-                    .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
-            }
-            .padding(.leading, 10)
+                Button {
+                    viewModel.selected = 0
+                } label: {
+                    Text("Выход")
+                        .frame(width: 100, height: 50)
+                        .foregroundColor(Color.theme.gray)
+                        .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
+                }
+                .padding(.leading, 10)
                 Spacer()
             }
-                .navigationBarHidden(true)
+            .navigationBarHidden(true)
         }
-        .ignoresSafeArea()
-
     }
 }
 struct ProfileView_Previews: PreviewProvider {
