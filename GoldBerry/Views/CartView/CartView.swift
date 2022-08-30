@@ -74,6 +74,7 @@ struct WithPurchase: View {
                     .padding(.top, 125)
                     .padding(.bottom,100)
                 }
+                
             }
             .ignoresSafeArea()
             ZStack {

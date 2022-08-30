@@ -23,6 +23,6 @@ class TabBarViewModel: ObservableObject {
 
         DispatchQueue.main.async {
             self.fruit = fruitResponse
-        } 
+        }
     }
 }

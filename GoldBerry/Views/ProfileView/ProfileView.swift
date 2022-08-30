@@ -1,11 +1,13 @@
 import SwiftUI
 
 struct ProfileView: View {
-    
+
     @StateObject var viewModel: TabBarViewModel
     @StateObject var viewModels: OrderViewModel
     @State var show = false
-    
+    @State var show1 = false
+    var numberPhone = "+375298308218"
+
     var body: some View {
         VStack {
             ZStack {
@@ -48,6 +50,7 @@ struct ProfileView: View {
                     })
                 }
             }
+
             ZStack {
                 Button {
                     viewModel.selected = 2
@@ -121,7 +124,7 @@ struct ProfileView: View {
             }
             .padding(.bottom, 15)
             Button {
-                self.show.toggle()
+                self.show1.toggle()
             } label: {
                 ZStack {
                     Color.theme.gray
@@ -139,9 +142,31 @@ struct ProfileView: View {
                             .foregroundColor(.black)
                             .padding(.trailing, 20)
                     }
-                    .sheet(isPresented: $show, content: {
-                        ServiceInfoView()
+
+                    .alert("sda", isPresented: $show1, actions: {
+
+//                    ServiceInfoView()
+                        Button {
+                            let formattedString = "tel://" + numberPhone
+                            guard let url = URL(string: formattedString) else { return }
+                            UIApplication.shared.open(url)
+                        } label: {
+                            HStack {
+                                Image(systemName: "phone")
+                                Text(numberPhone)
+                            }
+                            .frame(width: 350, height: 50)
+                            .padding()
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color.gray, lineWidth: 1)
+                            )
+                        }
+
                     })
+ //                    .sheet(isPresented: $show1, content: {
+//                        ServiceInfoView()
+//                    })
                 }
             }
             .padding(.bottom, 15)
@@ -158,7 +183,7 @@ struct ProfileView: View {
                             .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
                             .padding(.leading, 15)
                         Spacer()
-                        
+
                         Image(systemName: "arrow.right")
                             .resizable()
                             .frame(width: 20, height: 20)
@@ -172,7 +197,7 @@ struct ProfileView: View {
             }
             .padding(.bottom, 15)
             Spacer()
-            
+
             HStack {
                 Button {
                     viewModel.selected = 0
@@ -185,10 +210,14 @@ struct ProfileView: View {
                 .padding(.leading, 10)
                 Spacer()
             }
+            .offset(y: -70)
             .navigationBarHidden(true)
         }
+        .offset(y: -40)
+        .ignoresSafeArea()
     }
 }
+
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView(viewModel: TabBarViewModel(), viewModels: OrderViewModel())
