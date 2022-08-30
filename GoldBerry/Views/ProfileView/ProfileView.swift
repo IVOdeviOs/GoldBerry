@@ -22,18 +22,19 @@ struct ProfileView: View {
                         user.showImagePicker = true
                         sourceType = .photoLibrary
                     } label: {
-                    ZStack {
-                        Image(uiImage: (user.userPhotoIntoAvatar ?? UIImage(systemName: "person.circle.fill")!))
-                            .resizable()
-                            .frame(width: 80, height: 80)
-                            .foregroundColor(.white)
-                            .padding(.leading, 15)
-//                        Color.gray
-//                            .frame(width: 80, height: 80)
-//                            .opacity(0.5)
-//                            .cornerRadius(40)
-//                            .padding(.leading, 15)
-                    }
+                        ZStack {
+                            
+                            Image(uiImage: (user.userPhotoIntoAvatar ?? UIImage(systemName: "person.circle.fill")!))
+                                .resizable()
+                                .frame(width: 80, height: 80)
+                                .foregroundColor(.red)
+                                .cornerRadius(40)
+                                .padding(.leading, 15)
+//                            Color.gray
+//                                .frame(width: 80, height: 80)
+//                                .opacity(0.5)
+//                                .padding(.leading, 15)
+                        }
                     }
                     .fullScreenCover(isPresented: $user.showImagePicker) {
                         ImagePicker(image: $user.userPhotoIntoAvatar, isShow: $user.showImagePicker, sourceType: sourceType)
