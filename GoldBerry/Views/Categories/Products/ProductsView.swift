@@ -27,13 +27,15 @@ struct ProductsView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {
                         LazyVGrid(columns: viewModel.columns, alignment: .center, spacing: 1, pinnedViews: .sectionFooters, content: {
-                            ForEach(viewModel.fruit) { fruits in
+                            ForEach(viewModel.fruit){ fruits in
+//                                if fruits.name == "arbuz"{
                                 NavigationLink {
                                     InformationProductView(fruit: fruits)
                                 } label: {
                                     AllProductsCell(fruit: fruits)
                                         .padding(.bottom, 30)
                                 }
+//                                }
                             }
 
                         }).padding(.bottom, 60)
