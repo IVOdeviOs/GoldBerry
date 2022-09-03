@@ -44,9 +44,15 @@ struct CartCell: View {
             HStack {
                 Button {
                     if count >= 2 {
-                        count -= 1
-                        price = cost * Double(count)
                         
+                        
+                        count -= 1
+                        if price == 0 {
+                            price = cost
+                        } else {
+                        price = cost * Double(count)
+                        }
+                    
 //                        viewModel.order.price -= price
 //                        print("\(price)")
                         viewModel.price = price
@@ -63,7 +69,11 @@ struct CartCell: View {
                     .font(Font(uiFont: .fontLibrary(24, .uzSansRegular)))
                 Button {
                     count += 1
+                    if price == 0 {
+                        price = cost
+                    } else {
                     price = cost * Double(count)
+                    }
 //                    viewModel.order.price += price
 //                    print("\(price)")
                     viewModel.price = price
@@ -77,12 +87,20 @@ struct CartCell: View {
                 }
             }
             HStack {
-                Text("Итого: \(NSString(format: "%.2f", price)) р")
+                Text("Итого: \(NSString(format: "%.2f", price )) р")
                     .foregroundColor(Color.theme.lightGreen)
                     .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
                     .padding(.leading, 10)
                 Spacer()
             }
+        }
+        .onAppear{
+            if price == 0 {
+                price = cost
+            } else {
+            price = cost * Double(count)
+            }
+            
         }
         .padding()
         .background(.gray.opacity(0.1))

@@ -68,9 +68,9 @@ struct WithPurchase: View {
                                 price: item.price ?? 0
                             )
                         }
-
                         .padding()
                     }
+                    .onDelete(perform: delete)
                     .padding(.top, 125)
                     .padding(.bottom,100)
                 }

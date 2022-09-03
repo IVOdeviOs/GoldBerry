@@ -13,7 +13,8 @@ struct Fruit: Identifiable, Codable, Hashable {
     var favorite: Bool
     var price: Double?
     var percent: Int?
-
+    var categories: String?
+    
     var itog: Double {
 
         let per = Double(percent!)
