@@ -51,7 +51,7 @@ struct MakingTheOrderView: View {
                         .padding()
                     Spacer()
                 }
-                TextFieldView(text: $viewModels.order.date, placeholder: "Выбрать дату и время")
+                TextFieldView(text: $viewModels.order1.date, placeholder: "Выбрать дату и время")
                 Color.theme.gray
                     .opacity(0.3)
                     .frame(height: 10)
@@ -62,6 +62,24 @@ struct MakingTheOrderView: View {
                         tog = to
                         tog1 = true
                     }
+//                    var orde = Order( orderNumber: viewModels.order1.orderNumber,
+//                                      fruit: viewModels.order1.fruit,
+//                                      date: viewModels.order1.date,
+//                                      address: viewModels.order1.address,
+//                                      price: viewModels.order1.price,
+//                                      customer: viewModels.order1.customer,
+//                                      customerPhone: viewModels.order1.customerPhone,
+//                                      comment: viewModels.order1.comment)
+//
+                    Task {
+                        do {
+                            try await viewModels.addOrder()
+                        } catch {
+                            print("❌ ERORR")
+                        }
+                    }
+                  
+                    
                 } label: {
                     Text("Сделать заказ")
                         .foregroundColor(.white)
@@ -120,10 +138,10 @@ struct OrderInformation: View {
                     .foregroundColor(Color.theme.lightGreen)
                     .padding()
             }
-            TextFieldView(text: $viewModels.order.customer, placeholder: "Имя получателя")
-            TextFieldView(text: $viewModels.order.customerPhone, placeholder: "Телефон получателя")
-            TextFieldView(text: $viewModels.order.address, placeholder: "Адрес доставки")
-            TextFieldView(text: $viewModels.order.comment, placeholder: "Комментарий")
+            TextFieldView(text: $viewModels.order1.customer, placeholder: "Имя получателя")
+            TextFieldView(text: $viewModels.order1.customerPhone, placeholder: "Телефон получателя")
+            TextFieldView(text: $viewModels.order1.address, placeholder: "Адрес доставки")
+            TextFieldView(text: $viewModels.order1.comment, placeholder: "Комментарий")
         }
     }
 }

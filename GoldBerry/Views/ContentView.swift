@@ -72,11 +72,11 @@ struct ContentView: View {
                                 } label: {
                                     ZStack {
                                         ZStack {
-                                            if viewModels.order.fruit.count != 0 {
+                                            if viewModels.order1.fruit1.count != 0 {
                                         Color.red
                                             .frame(width: 20, height: 20)
                                             .cornerRadius(10)
-                                        Text("\(viewModels.order.fruit.count)")
+                                        Text("\(viewModels.order1.fruit1.count)")
                                                 .foregroundColor(.white)
                                                 .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                                         }
@@ -151,7 +151,8 @@ struct ContentView_Previews: PreviewProvider {
 
 struct ExtractedView: View {
     @ObservedObject var viewModel = FruitViewModel()
-    @StateObject var viewModels: OrderViewModel
+    
+    @ObservedObject var viewModels = OrderViewModel()
 
     var body: some View {
         ZStack {
@@ -171,6 +172,16 @@ struct ExtractedView: View {
                 CartView(viewModel: viewModel, viewModels: viewModels)                
             case 2:
                 OrdersView(viewModel: viewModel, viewModels: viewModels)
+                    .onAppear{
+                        Task {
+                            do {
+                                try await viewModels.fetchOrder()
+                            } catch {
+                                print("❌ERORR \(error)")
+                            }
+                        }
+                        
+                    }
             case 3:
                 ProfileView(viewModel: viewModel, viewModels: viewModels)
             default:

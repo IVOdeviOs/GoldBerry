@@ -5,7 +5,7 @@ struct CartView: View {
     @StateObject var viewModels: OrderViewModel
 
     var body: some View {
-        if viewModels.order.fruit.isEmpty {
+        if $viewModels.order1.fruit1.isEmpty {
             WithoutPurchase(viewModel: viewModel)
         } else {
             WithPurchase()
@@ -55,7 +55,7 @@ struct WithPurchase: View {
         ZStack(alignment: .top) {
             VStack {
                 ScrollView(showsIndicators: false) {
-                    ForEach(viewModel.order.fruit) { item in
+                    ForEach(viewModel.order1.fruit1) { item in
                         //                List(viewModel.order.fruit) { item in
                         Button {} label: {
                             CartCell(
@@ -109,7 +109,7 @@ struct WithPurchase: View {
     }
 
     func delete(at offsets: IndexSet) {
-        viewModel.order.fruit.remove(atOffsets: offsets)
+        viewModel.order1.fruit1.remove(atOffsets: offsets)
     }
 }
 

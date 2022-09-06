@@ -9,7 +9,7 @@ struct OrdersView: View {
         if viewModels.orders.isEmpty {
             WithoutOrders(viewModel: viewModel)
         } else {
-            WithOrders()
+            WithOrders(viewModel: viewModels)
         }
     }
 }
@@ -49,7 +49,7 @@ struct WithoutOrders: View {
 }
 
 struct WithOrders: View {
-    @ObservedObject var viewModel = OrderViewModel()
+    @ObservedObject var viewModel: OrderViewModel
 
     @State var show = false
 
@@ -64,8 +64,8 @@ struct WithOrders: View {
                     OrderCell(
                         date: item.date,
                         number: item.orderNumber,
-                        price: item.price,
-                        purchases: item.fruit,
+                        price: Double(item.price),
+                        purchases: item.fruit1,
                         address: item.address
                     )
                 })
