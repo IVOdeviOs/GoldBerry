@@ -3,7 +3,7 @@ import Foundation
 class OrderViewModel: ObservableObject {
 
     @Published var orderNumber = 0
-    @Published var fruit = [Fruit]()
+    @Published var fruit = [Fruits]()
 
     @Published var order = [Order]()
     
@@ -18,8 +18,7 @@ class OrderViewModel: ObservableObject {
     @Published var orders: [Order] = [
         Order(
             orderNumber: 1,
-            fruit1: [watermelon, apple, apricot, banana],
-            date: "18/08/2022",
+            date: "18/08/2022", fruit: [watermelon, apple, apricot, banana],
             address: "Минск, пр-т Независимости, 10-23",
             price: 1000,
             customer: "Oleg",
@@ -28,8 +27,7 @@ class OrderViewModel: ObservableObject {
         ),
         Order(
             orderNumber: 2,
-            fruit1: [banana],
-            date: "19/08/2022",
+            date: "19/08/2022", fruit: [banana],
             address: "Минск, пр-т Независимости, 10-23",
             price: 1000,
             customer: "Oleg",
@@ -40,8 +38,7 @@ class OrderViewModel: ObservableObject {
 
     @Published var order1 = Order(
         orderNumber: 1,
-        fruit1: [watermelon, apple, apricot, banana],
-        date: "",
+        date: "", fruit: [watermelon, apple, apricot, banana],
         address: "",
         price: 0,
         customer: "",
@@ -68,8 +65,7 @@ class OrderViewModel: ObservableObject {
         guard let url = URL(string: urlString) else {
             throw HttpError.badURL
         }
-        let order = Order( orderNumber: orderNumber, fruit1: [watermelon, apple] , date: date, address: address, price: Double(Int(Double(Int(price)))), customer: customer, customerPhone: customerPhone, comment: comment)
-
+        let order = Order(orderNumber: 1, date: "",fruit: [Fruits(cost: 1, weightOrPieces: "", categories: "", favorite: true, count: 1, image: "", name: "", percent: 1)] ,address: "", price: 1, customer: "", customerPhone: "", comment: "")
         try await HttpClient.shared.sendData(to: url, object: order, httpMethod: HttpMethods.POST.rawValue)
     }
 }

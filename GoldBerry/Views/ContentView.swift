@@ -72,11 +72,11 @@ struct ContentView: View {
                                 } label: {
                                     ZStack {
                                         ZStack {
-                                            if viewModels.order1.fruit1.count != 0 {
+                                            if viewModels.order1.fruit.count != 0 {
                                         Color.red
                                             .frame(width: 20, height: 20)
                                             .cornerRadius(10)
-                                        Text("\(viewModels.order1.fruit1.count)")
+                                        Text("\(viewModels.order1.fruit.count)")
                                                 .foregroundColor(.white)
                                                 .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                                         }

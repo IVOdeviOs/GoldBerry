@@ -111,7 +111,7 @@ struct CartCell: View {
         .cornerRadius(20)
     }
     func delete(at offsets: IndexSet) {
-        viewModel.order1.fruit1.remove(atOffsets: offsets)
+        viewModel.order1.fruit.remove(atOffsets: offsets)
       }
 }
 
