@@ -3,7 +3,7 @@ import Foundation
 class OrderViewModel: ObservableObject {
 
     @Published var orderNumber = 0
-    @Published var fruit = [Fruits]()
+    @Published var fruit = [Fruit]()
 
     @Published var order = [Order]()
     

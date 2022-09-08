@@ -55,7 +55,7 @@ struct WithPurchase: View {
         ZStack(alignment: .top) {
             VStack {
                 ScrollView(showsIndicators: false) {
-                    ForEach(viewModel.order1.fruit) { item in
+                    ForEach(viewModel.fruit) { item in
                         //                List(viewModel.order.fruit) { item in
                         Button {} label: {
                             CartCell(

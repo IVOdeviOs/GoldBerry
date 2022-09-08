@@ -2,6 +2,8 @@ import SwiftUI
 
 struct InformationProductView: View {
     @ObservedObject var viewModel = FruitViewModel()
+    @ObservedObject var viewModels = OrderViewModel()
+
     @State var fruit: Fruit
     @Environment(\.presentationMode) var presentationMode
     private func dismiss() {
@@ -113,6 +115,7 @@ struct InformationProductView: View {
                     Spacer()
                     VStack {
                         Button {
+//                            viewModels.fruit.
                             print("🥶")
                         } label: {
                             HStack {
@@ -139,6 +142,6 @@ struct InformationProductView: View {
 
 struct InformationProductView_Previews: PreviewProvider {
     static var previews: some View {
-        InformationProductView(fruit: Fruit(image: "", name: "", cost: 1, count: 1, weightOrPieces: "", favorite: false))
+        InformationProductView(fruit: Fruit( cost: 1, weightOrPieces: "", categories: "", favorite: true, count: 1, image: "", name: "", percent: 1, description: "", price: 1))
     }
 }
