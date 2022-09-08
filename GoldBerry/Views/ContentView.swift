@@ -77,6 +77,7 @@ struct ContentView: View {
                                             .frame(width: 20, height: 20)
                                             .cornerRadius(10)
                                         Text("\(viewModel.order.count)")
+                                                    .minimumScaleFactor(0.5)
                                                 .foregroundColor(.white)
                                                 .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                                             } else {

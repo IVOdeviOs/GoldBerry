@@ -3,12 +3,12 @@ import SwiftUI
 struct ProfileView: View {
     
     @StateObject var viewModel: FruitViewModel
-//    @StateObject var viewModels: OrderViewModel
+    //    @StateObject var viewModels: OrderViewModel
     @State var showUserInfoView = false
     @State var showServiceInfoView = false
     @State var showShopView = false
     @State var showFavouriteProductsView = false
-
+    
     var numberPhone = "+375297023701"
     @StateObject var user = FruitViewModel()
     @State var sourceType: UIImagePickerController.SourceType = .camera
@@ -21,27 +21,27 @@ struct ProfileView: View {
                     .frame(height: 240)
                     .offset(y: -50)
                 HStack {
-//                    Button {
-//                        user.showImagePicker = true
-//                        sourceType = .photoLibrary
-//                    } label: {
-//                        ZStack {
-//
-//                            Image(uiImage: (user.userPhotoIntoAvatar ?? UIImage(systemName: "person.circle.fill")!))
-//                                .resizable()
-//                                .frame(width: 80, height: 80)
-//                                .foregroundColor(.red)
-//                                .cornerRadius(40)
-//                                .padding(.leading, 15)
-////                            Color.gray
-////                                .frame(width: 80, height: 80)
-////                                .opacity(0.5)
-////                                .padding(.leading, 15)
-//                        }
-//                    }
-//                    .fullScreenCover(isPresented: $user.showImagePicker) {
-//                        ImagePicker(image: $user.userPhotoIntoAvatar, isShow: $user.showImagePicker, sourceType: sourceType)
-//                    }
+                    //                    Button {
+                    //                        user.showImagePicker = true
+                    //                        sourceType = .photoLibrary
+                    //                    } label: {
+                    //                        ZStack {
+                    //
+                    //                            Image(uiImage: (user.userPhotoIntoAvatar ?? UIImage(systemName: "person.circle.fill")!))
+                    //                                .resizable()
+                    //                                .frame(width: 80, height: 80)
+                    //                                .foregroundColor(.red)
+                    //                                .cornerRadius(40)
+                    //                                .padding(.leading, 15)
+                    ////                            Color.gray
+                    ////                                .frame(width: 80, height: 80)
+                    ////                                .opacity(0.5)
+                    ////                                .padding(.leading, 15)
+                    //                        }
+                    //                    }
+                    //                    .fullScreenCover(isPresented: $user.showImagePicker) {
+                    //                        ImagePicker(image: $user.userPhotoIntoAvatar, isShow: $user.showImagePicker, sourceType: sourceType)
+                    //                    }
                     VStack {
                         Text(viewModel.user.userName.isEmpty || viewModel.user.userSurname.isEmpty ? "Имя Фамилия" : "\(viewModel.user.userName) \(viewModel.user.userSurname)")
                             .foregroundColor(.white)
@@ -131,6 +131,17 @@ struct ProfileView: View {
                             .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                             .padding(.leading, 15)
                         Spacer()
+                        ZStack {
+                            if viewModel.favouriteProducts.count != 0 {
+                                Color.red
+                                    .frame(width: 20, height: 20)
+                                    .cornerRadius(10)
+                                Text("\(viewModel.favouriteProducts.count)")
+                                    .minimumScaleFactor(0.5)
+                                    .foregroundColor(.white)
+                                    .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                            }
+                        }
                         Image(systemName: "arrow.right")
                             .resizable()
                             .frame(width: 20, height: 20)
