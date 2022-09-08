@@ -34,6 +34,13 @@ struct ShopsInfo: View {
     @State var shopAddress: String
     @State var workTime: String
     
+//    @Environment(\.presentationMode) var presentationMode
+//    private func dismiss() {
+//        viewModel.selected = 0
+//        presentationMode.wrappedValue.dismiss()
+//    }
+    
+    
     var body: some View {
         VStack {
             HStack {
@@ -82,6 +89,7 @@ struct ShopsInfo: View {
             
             Button {
                 viewModel.selected = 0
+                print("🥳")
             }
         label: {
             Text("Перейти к заказу товаров")

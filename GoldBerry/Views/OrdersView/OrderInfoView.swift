@@ -4,7 +4,7 @@ import SwiftUI
 struct OrderInfoView: View {
 
     var order: Order
-
+//    @ObservedObject var order:OrderViewModel
     var body: some View {
 
         VStack {

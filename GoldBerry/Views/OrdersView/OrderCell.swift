@@ -119,7 +119,7 @@ struct OrderCell_Previews: PreviewProvider {
             date: "18/08/2022",
             number: 1,
             price: 1000,
-            purchases: [watermelon, apple, apricot, banana],
+            purchases: [],
             address: "Минск, пр-т Независимости, 12-100"
         )
     }

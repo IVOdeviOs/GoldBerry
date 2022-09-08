@@ -115,7 +115,9 @@ struct InformationProductView: View {
                     Spacer()
                     VStack {
                         Button {
-//                            viewModels.fruit.
+                            let fruits = Fruit(cost: fruit.cost , weightOrPieces: fruit.weightOrPieces, categories: fruit.categories, favorite: fruit.favorite, count: fruit.count, image: fruit.image, name: fruit.name, percent: fruit.percent, description: fruit.description, price: fruit.price)
+                            
+                            viewModels.fruit.append(fruits)
                             print("🥶")
                         } label: {
                             HStack {
