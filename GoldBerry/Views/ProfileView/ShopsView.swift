@@ -14,8 +14,8 @@ struct ShopsView: View {
             Color.theme.gray
                 .opacity(0.3)
                 .frame(height: 10)
-            ShopsInfo(viewModel: FruitViewModel(), shopName: "Комаровский рынок, место 181", shopAddress: "г. Минск, ул. В. Хоружей, 8", workTime: "с 08:00 до 20:00")
-            ShopsInfo(viewModel: FruitViewModel(), shopName: "Рынок Валерианово, место 14", shopAddress: "г. Минск, ул. Логойская, 5а", workTime: "с 08:00 до 21:00")
+            ShopsInfo(viewModel: viewModel, shopName: "Комаровский рынок, место 181", shopAddress: "г. Минск, ул. В. Хоружей, 8", workTime: "с 08:00 до 20:00")
+            ShopsInfo(viewModel: viewModel, shopName: "Рынок Валерианово, место 14", shopAddress: "г. Минск, ул. Логойская, 5а", workTime: "с 08:00 до 21:00")
             Spacer()
         }
     }
@@ -100,6 +100,8 @@ struct ShopsInfo: View {
             Color.theme.gray
                 .opacity(0.3)
                 .frame(height: 5)
+//                .navigationBarHidden(true)
+
         }
     }
 }

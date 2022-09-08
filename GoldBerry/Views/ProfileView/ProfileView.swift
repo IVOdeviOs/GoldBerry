@@ -91,9 +91,8 @@ struct ProfileView: View {
                 }
                 .offset(x: -110, y: -70)
             }
-            NavigationLink {
-//                self.showShopView.toggle()
-                ShopsView(viewModel: viewModel)
+            Button {
+                self.showShopView.toggle()
             } label: {
                 ZStack {
                     Color.theme.gray
@@ -112,10 +111,13 @@ struct ProfileView: View {
                             .padding(.trailing, 20)
                     }
                     .sheet(isPresented: $showShopView, content: {
-                        ShopsView(viewModel: FruitViewModel())
+                        ShopsView(viewModel: viewModel)
                     })
                 }
             }
+            .sheet(isPresented: $showServiceInfoView, content: {
+                ShopsView(viewModel: viewModel)
+            })
             Button {
                 self.showFavouriteProductsView.toggle()
             } label: {
