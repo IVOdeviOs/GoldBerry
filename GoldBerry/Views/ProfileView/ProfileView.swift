@@ -111,7 +111,7 @@ struct ProfileView: View {
                             .padding(.trailing, 20)
                     }
                     .sheet(isPresented: $showShopView, content: {
-                        ShopsView()
+                        ShopsView(viewModel: FruitViewModel())
                     })
                 }
             }
