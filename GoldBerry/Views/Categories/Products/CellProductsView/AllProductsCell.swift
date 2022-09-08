@@ -52,7 +52,7 @@ struct AllProductsCell: View {
             }
             .padding(.horizontal, 5)
             HStack {
-                Text("maksdgnaskdkjnhgkyguygougouygouygouygkugugugouygouygoluygkigasdknkjasdngsdnkansddsafdsakadskfjsadfasdjfdosafjadsojfdsoifasdifjoasdifodsiajf")
+                Text(fruit.comment ?? "no")
                     .frame(width: 170, height: 60)
                     .font(.system(size: 12, weight: .light, design: .serif))
                     .foregroundColor(.black.opacity(0.8))

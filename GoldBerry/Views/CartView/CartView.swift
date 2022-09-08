@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct CartView: View {
-    @ObservedObject var viewModel = FruitViewModel()
+    @StateObject var viewModel = FruitViewModel()
     @StateObject var viewModels =  OrderViewModel()
 
     

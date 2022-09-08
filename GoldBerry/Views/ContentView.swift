@@ -8,7 +8,7 @@ extension Color {
 
 struct ContentView: View {
     @ObservedObject var viewModel = FruitViewModel()
-    @ObservedObject var viewModels = OrderViewModel()
+    @StateObject var viewModels = OrderViewModel()
     var body: some View {
 
         NavigationView {
@@ -72,7 +72,7 @@ struct ContentView: View {
                                 } label: {
                                     ZStack {
                                         ZStack {
-                                            if viewModels.order.count != 0 {
+                                            if viewModels.fruit.count != 0 {
                                         Color.red
                                             .frame(width: 20, height: 20)
                                             .cornerRadius(10)

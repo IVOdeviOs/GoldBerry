@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ProductsView: View {
     @ObservedObject var viewModel: FruitViewModel
-
+    
     var body: some View {
 
         NavigationView {

@@ -25,7 +25,7 @@ struct Fruit: Identifiable, Codable {
     var percent: Int?
     var description: String?
     var price: Double?
-    
+    var comment: String?
     var itog: Double {
 
         let per = Double(percent!)

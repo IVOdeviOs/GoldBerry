@@ -2,7 +2,7 @@ import SwiftUI
 
 struct InformationProductView: View {
     @ObservedObject var viewModel = FruitViewModel()
-    @ObservedObject var viewModels = OrderViewModel()
+    @StateObject var viewModels = OrderViewModel()
 
     @State var fruit: Fruit
     @Environment(\.presentationMode) var presentationMode
@@ -68,7 +68,7 @@ struct InformationProductView: View {
                     .padding(.horizontal)
 
                     HStack {
-                        Text("adsgkhagsdkha;sdgihg;asidgh;iagshd;ighda;siohg;asdoihg;aiosdhgahsdg;ioh;ashgaisdfsadfadsgadsgadsgadsgasdgadsgasadsgkhagsdkha;sdgihg;asidgh;iagshd;ighda;siohg;asdoihg;aiosdhgahsdg;ioh;ashgaisdfsadfadsgadsgadsgadsgasdgadsgashgohgoadsgkhagsdkha;sdgihg;asidgh;iagshd;ighda;siohg;asdoihg;aiosdhgahsdg;ioh;ashgaisdfsadfadsgadsgadsgadsgasdgadsgasadsgkhagsdkha;sdgihg;asidgh;iagshd;ighda;siohg;asdoihg;aiosdhgahsdg;ioh;ashgaisdfsadfadsgadsgadsgadsgasdgadsgashgohgo")
+                        Text(fruit.comment ?? "Nooo")
                             .font(.system(size: 14, weight: .medium, design: .default))
                         Spacer()
                     }
@@ -115,8 +115,13 @@ struct InformationProductView: View {
                     Spacer()
                     VStack {
                         Button {
-                            let fruits = Fruit(cost: fruit.cost , weightOrPieces: fruit.weightOrPieces, categories: fruit.categories, favorite: fruit.favorite, count: fruit.count, image: fruit.image, name: fruit.name, percent: fruit.percent, description: fruit.description, price: fruit.price)
-                            
+                            let fruits = Fruit(cost: fruit.cost ,
+                                               weightOrPieces: fruit.weightOrPieces,
+                                               categories: fruit.categories,
+                                               favorite: fruit.favorite,
+                                               count: fruit.count,
+                                               image: fruit.image, name: fruit.name, percent: fruit.percent, description: fruit.description, price: fruit.price)
+                           
                             viewModels.fruit.append(fruits)
                             print("🥶")
                         } label: {
