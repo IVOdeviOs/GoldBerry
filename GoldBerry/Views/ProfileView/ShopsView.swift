@@ -87,9 +87,11 @@ struct ShopsInfo: View {
             Text("Перейти к заказу товаров")
                 .foregroundColor(.blue)
                 .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                .padding()
         }
-            Spacer()
-            
+            Color.theme.gray
+                .opacity(0.3)
+                .frame(height: 5)
         }
     }
 }
