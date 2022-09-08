@@ -1,14 +1,24 @@
 import SwiftUI
+import CoreData
 
 struct CartView: View {
     @StateObject var viewModel = FruitViewModel()
+    @Environment(\.managedObjectContext) private var viewContext
+
+//    @FetchRequest(
+//        sortDescriptors: [NSSortDescriptor(keyPath: \Fruits.name, ascending: true)],
+//        animation: .default)
+    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)])
+     var fruits: FetchedResults<FruitEntity>
+        
     
     var body: some View {
-        if viewModel.fruit.isEmpty {
+        if self.fruits.count == 0 {
             WithoutPurchase(viewModel: viewModel)
         } else {
-            WithPurchase()
+            WithPurchase(viewModel: viewModel)
         }
+            
     }
 }
 
@@ -47,23 +57,34 @@ struct WithoutPurchase: View {
 }
 
 struct WithPurchase: View {
-    @ObservedObject var viewModel = FruitViewModel()
+    @ObservedObject var viewModel: FruitViewModel
 
     @State var show = false
+//    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)])
+    @Environment(\.managedObjectContext) private var viewContext
+
+    @FetchRequest(
+            sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)],
+            animation: .default)
+    var fruits: FetchedResults<FruitEntity>
+        
+    
+    
     var body: some View {
         ZStack(alignment: .top) {
             VStack {
+                
                 ScrollView(showsIndicators: false) {
-                    ForEach(viewModel.fruit) { item in
+                    ForEach(fruits) { item in
                         //                List(viewModel.order.fruit) { item in
                         Button {} label: {
                             CartCell(
-                                imageName: item.image,
-                                cost: Double(item.cost),
-                                name: item.name,
-                                index: item.name,
-                                description: item.image ,
-                                count: item.count,
+                                imageName: item.image ?? "",
+                                cost: item.itog,
+                                name: item.name ?? "",
+                                index: item.name ?? "",
+                                description: item.descriptions ?? ""  ,
+                                count: Int(item.count),
                                 price: Double(item.cost)
                             )
                         }

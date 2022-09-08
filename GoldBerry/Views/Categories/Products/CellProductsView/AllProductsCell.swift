@@ -76,6 +76,6 @@ struct AllProductsCell: View {
 
 struct AllProductsCell_Previews: PreviewProvider {
     static var previews: some View {
-        AllProductsCell(fruit:  Fruit( cost: 1, weightOrPieces: "", categories: "", favorite: true, count: 1, image: "", name: "", percent: 1, description: "", price: 1)).previewLayout(.fixed(width: 180, height: 290))
+        AllProductsCell(fruit:  Fruit( cost: 1, weightOrPieces: "", categories: "", favorite: true, count: 1, image: "", name: "", percent: 1, descriptions: "", price: 1)).previewLayout(.fixed(width: 180, height: 290))
     }
 }

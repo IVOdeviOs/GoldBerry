@@ -14,8 +14,22 @@ struct CartCell: View {
     var body: some View {
         VStack {
             HStack {
-                Image(imageName)
-                    .resizable()
+                ZStack(alignment: .top) {
+                    RemoteImageView(
+                        url: URL(string: imageName)!,
+                        placeholder: {
+                            Image(systemName: "icloud.and.arrow.up").frame(width: 300,height: 300)
+                        },
+                        image: {
+                            $0
+                                .resizable()
+                                .frame(width: 100  , height: 100)
+                                .aspectRatio(contentMode: .fit)
+                        }
+                    )
+//                        .aspectRatio(contentMode: .fill)
+//                        .frame(width: UIScreen.main.bounds.width - 20 ,height:350)
+                }
                     .frame(width: 100, height: 100)
                     .cornerRadius(10)
                     .padding(.leading, 10)

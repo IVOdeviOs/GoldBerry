@@ -1,4 +1,5 @@
 import SwiftUI
+import CoreData
 extension Color {
     static let lightShadow = Color(red: 255 / 255, green: 255 / 255, blue: 255 / 255)
     static let darkShadow = Color(red: 163 / 255, green: 177 / 255, blue: 198 / 255)
@@ -9,6 +10,16 @@ extension Color {
 struct ContentView: View {
     @StateObject var viewModel = FruitViewModel()
 //    @StateObject var viewModels = OrderViewModel()
+//    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)])
+//    var fruits: FetchedResults<FruitEntity>
+    @Environment(\.managedObjectContext) private var viewContext
+
+    @FetchRequest(
+            sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)],
+            animation: .default)
+    var fruits: FetchedResults<FruitEntity>
+        
+    
     var body: some View {
 
         NavigationView {
@@ -72,19 +83,16 @@ struct ContentView: View {
                                 } label: {
                                     ZStack {
                                         ZStack {
-                                            if viewModel.fruit.count != 0 {
+                                            if fruits.count != 0 {
                                         Color.red
                                             .frame(width: 20, height: 20)
                                             .cornerRadius(10)
-                                        Text("\(viewModel.order.count)")
+                                                Text("\(fruits.count)")
                                                     .minimumScaleFactor(0.5)
                                                 .foregroundColor(.white)
                                                 .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                                             } else {
-                                                Color.red
-                                                    .frame(width: 20, height: 20)
-                                                    .cornerRadius(10)
-                                                Text("H")
+                                              
                                             }
                                         }
                                         .offset(x: 20, y: -20)
