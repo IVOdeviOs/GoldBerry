@@ -18,20 +18,11 @@ struct Order:Identifiable, Codable {
     var id : UUID?
     var orderNumber: Int
     var date: String
-    var fruit: [Fruits]
+    var fruit: [Fruit]
     var address: String
     var price: Int
     var customer, customerPhone, comment: String
 
 }
 
-struct Fruits:Identifiable, Codable {
-    var id : UUID?
-    var cost: Int
-    var weightOrPieces, categories: String
-    var favorite: Bool
-    var count: Int
-    var image: String
-    var name: String
-    var percent: Int
-}
+

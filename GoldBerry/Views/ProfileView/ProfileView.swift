@@ -83,7 +83,7 @@ struct ProfileView: View {
                                 .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
                                 .foregroundColor(.black)
                                 .padding(.bottom, 5)
-                            Text("\(viewModels.orders.count)")
+                            Text("\(viewModels.order.count)")
                                 .font(Font(uiFont: .fontLibrary(24, .uzSansSemiBold)))
                                 .foregroundColor(.black)
                         }
@@ -91,8 +91,9 @@ struct ProfileView: View {
                 }
                 .offset(x: -110, y: -70)
             }
-            Button {
-                self.showShopView.toggle()
+            NavigationLink {
+//                self.showShopView.toggle()
+                ShopsView(viewModel: viewModel)
             } label: {
                 ZStack {
                     Color.theme.gray

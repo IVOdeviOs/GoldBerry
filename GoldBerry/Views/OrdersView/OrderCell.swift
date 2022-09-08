@@ -5,7 +5,7 @@ struct OrderCell: View {
     @State var date: String
     @State var number: Int
     @State var price: Double
-    @State var purchases: [Fruits]
+    @State var purchases: [Fruit]
     @State var address: String
 
     var body: some View {
@@ -119,7 +119,7 @@ struct OrderCell_Previews: PreviewProvider {
             date: "18/08/2022",
             number: 1,
             price: 1000,
-            purchases: [watermelon, apple, apricot, banana],
+            purchases: [],
             address: "Минск, пр-т Независимости, 12-100"
         )
     }

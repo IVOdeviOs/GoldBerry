@@ -52,7 +52,7 @@ struct AllProductsCell: View {
             }
             .padding(.horizontal, 5)
             HStack {
-                Text("maksdgnaskdkjnhgkyguygougouygouygouygkugugugouygouygoluygkigasdknkjasdngsdnkansddsafdsakadskfjsadfasdjfdosafjadsojfdsoifasdifjoasdifodsiajf")
+                Text(fruit.comment ?? "no")
                     .frame(width: 170, height: 60)
                     .font(.system(size: 12, weight: .light, design: .serif))
                     .foregroundColor(.black.opacity(0.8))
@@ -76,6 +76,6 @@ struct AllProductsCell: View {
 
 struct AllProductsCell_Previews: PreviewProvider {
     static var previews: some View {
-        AllProductsCell(fruit: Fruit(image: "", name: "abricos", cost: 32334, count: 1, weightOrPieces: "kg", favorite: false)).previewLayout(.fixed(width: 180, height: 290))
+        AllProductsCell(fruit:  Fruit( cost: 1, weightOrPieces: "", categories: "", favorite: true, count: 1, image: "", name: "", percent: 1, description: "", price: 1)).previewLayout(.fixed(width: 180, height: 290))
     }
 }

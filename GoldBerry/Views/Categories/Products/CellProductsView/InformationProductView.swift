@@ -2,6 +2,8 @@ import SwiftUI
 
 struct InformationProductView: View {
     @ObservedObject var viewModel = FruitViewModel()
+    @StateObject var viewModels = OrderViewModel()
+
     @State var fruit: Fruit
     @Environment(\.presentationMode) var presentationMode
     private func dismiss() {
@@ -66,7 +68,7 @@ struct InformationProductView: View {
                     .padding(.horizontal)
 
                     HStack {
-                        Text("adsgkhagsdkha;sdgihg;asidgh;iagshd;ighda;siohg;asdoihg;aiosdhgahsdg;ioh;ashgaisdfsadfadsgadsgadsgadsgasdgadsgasadsgkhagsdkha;sdgihg;asidgh;iagshd;ighda;siohg;asdoihg;aiosdhgahsdg;ioh;ashgaisdfsadfadsgadsgadsgadsgasdgadsgashgohgoadsgkhagsdkha;sdgihg;asidgh;iagshd;ighda;siohg;asdoihg;aiosdhgahsdg;ioh;ashgaisdfsadfadsgadsgadsgadsgasdgadsgasadsgkhagsdkha;sdgihg;asidgh;iagshd;ighda;siohg;asdoihg;aiosdhgahsdg;ioh;ashgaisdfsadfadsgadsgadsgadsgasdgadsgashgohgo")
+                        Text(fruit.comment ?? "Nooo")
                             .font(.system(size: 14, weight: .medium, design: .default))
                         Spacer()
                     }
@@ -113,6 +115,14 @@ struct InformationProductView: View {
                     Spacer()
                     VStack {
                         Button {
+                            let fruits = Fruit(cost: fruit.cost ,
+                                               weightOrPieces: fruit.weightOrPieces,
+                                               categories: fruit.categories,
+                                               favorite: fruit.favorite,
+                                               count: fruit.count,
+                                               image: fruit.image, name: fruit.name, percent: fruit.percent, description: fruit.description, price: fruit.price)
+                           
+                            viewModels.fruit.append(fruits)
                             print("🥶")
                         } label: {
                             HStack {
@@ -139,6 +149,6 @@ struct InformationProductView: View {
 
 struct InformationProductView_Previews: PreviewProvider {
     static var previews: some View {
-        InformationProductView(fruit: Fruit(image: "", name: "", cost: 1, count: 1, weightOrPieces: "", favorite: false))
+        InformationProductView(fruit: Fruit( cost: 1, weightOrPieces: "", categories: "", favorite: true, count: 1, image: "", name: "", percent: 1, description: "", price: 1))
     }
 }

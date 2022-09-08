@@ -3,10 +3,9 @@ import Foundation
 class OrderViewModel: ObservableObject {
 
     @Published var orderNumber = 0
-    @Published var fruit = [Fruits]()
-
+    @Published var fruit = [Fruit]()
     @Published var order = [Order]()
-    
+
     @Published var user: User =
     User(
         userName: "",
@@ -22,36 +21,36 @@ class OrderViewModel: ObservableObject {
     @Published var customerPhone = ""
     @Published var comment = ""
 
-    @Published var orders: [Order] = [
-        Order(
-            orderNumber: 1,
-            date: "18/08/2022", fruit: [watermelon, apple, apricot, banana],
-            address: "Минск, пр-т Независимости, 10-23",
-            price: 1000,
-            customer: "Oleg",
-            customerPhone: "+375-29-777-11-11",
-            comment: "ss"
-        ),
-        Order(
-            orderNumber: 2,
-            date: "19/08/2022", fruit: [banana],
-            address: "Минск, пр-т Независимости, 10-23",
-            price: 1000,
-            customer: "Oleg",
-            customerPhone: "+375-29-777-11-11",
-            comment: "sss"
-        )
-    ]
+//    @Published var orders: [Order] = [
+//        Order(
+//            orderNumber: 1,
+//            date: "18/08/2022", fruit: [watermelon, apple, apricot, banana],
+//            address: "Минск, пр-т Независимости, 10-23",
+//            price: 1000,
+//            customer: "Oleg",
+//            customerPhone: "+375-29-777-11-11",
+//            comment: "ss"
+//        ),
+//        Order(
+//            orderNumber: 2,
+//            date: "19/08/2022", fruit: [banana],
+//            address: "Минск, пр-т Независимости, 10-23",
+//            price: 1000,
+//            customer: "Oleg",
+//            customerPhone: "+375-29-777-11-11",
+//            comment: "sss"
+//        )
+//    ]
 
-    @Published var order1 = Order(
-        orderNumber: 1,
-        date: "", fruit: [watermelon, apple, apricot, banana],
-        address: "",
-        price: 0,
-        customer: "",
-        customerPhone: "",
-        comment: ""
-    )
+//    @Published var order1 = Order(
+//        orderNumber: 1,
+//        date: "", fruit: [watermelon, apple, apricot, banana],
+//        address: "",
+//        price: 0,
+//        customer: "",
+//        customerPhone: "",
+//        comment: ""
+//    )
 
     func fetchOrder() async throws {
         let urlString = Constants.baseURL + EndPoints.order

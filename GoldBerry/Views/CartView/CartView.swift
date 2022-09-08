@@ -1,11 +1,12 @@
 import SwiftUI
 
 struct CartView: View {
-    @StateObject var viewModel: FruitViewModel
-    @StateObject var viewModels: OrderViewModel
+    @StateObject var viewModel = FruitViewModel()
+    @StateObject var viewModels =  OrderViewModel()
 
+    
     var body: some View {
-        if $viewModels.order1.fruit.isEmpty {
+        if viewModels.fruit.isEmpty {
             WithoutPurchase(viewModel: viewModel)
         } else {
             WithPurchase()
@@ -55,7 +56,7 @@ struct WithPurchase: View {
         ZStack(alignment: .top) {
             VStack {
                 ScrollView(showsIndicators: false) {
-                    ForEach(viewModel.order1.fruit) { item in
+                    ForEach(viewModel.fruit) { item in
                         //                List(viewModel.order.fruit) { item in
                         Button {} label: {
                             CartCell(
@@ -63,14 +64,14 @@ struct WithPurchase: View {
                                 cost: Double(item.cost),
                                 name: item.name,
                                 index: item.name,
-                                description: item.image ?? "sas",
+                                description: item.image ,
                                 count: item.count,
                                 price: Double(item.cost)
                             )
                         }
                         .padding()
                     }
-                    .onDelete(perform: delete)
+//                    .onDelete(perform: delete)
                     .padding(.top, 125)
                     .padding(.bottom,100)
                 }
@@ -108,9 +109,9 @@ struct WithPurchase: View {
 //        .ignoresSafeArea(edges: .top)
     }
 
-    func delete(at offsets: IndexSet) {
-        viewModel.order1.fruit.remove(atOffsets: offsets)
-    }
+//    func delete(at offsets: IndexSet) {
+//        viewModel.order.fruit.remove(atOffsets: offsets)
+//    }
 }
 
 struct CartView_Previews: PreviewProvider {

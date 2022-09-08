@@ -6,7 +6,7 @@ struct OrdersView: View {
     @StateObject var viewModels: OrderViewModel
 
     var body: some View {
-        if viewModels.orders.isEmpty {
+        if viewModels.order.isEmpty {
             WithoutOrders(viewModel: viewModel)
         } else {
             WithOrders(viewModel: viewModels)
@@ -55,7 +55,7 @@ struct WithOrders: View {
 
     var body: some View {
         NavigationView {
-            List(viewModel.orders) { item in
+            List(viewModel.order) { item in
                 Button(action: {
                     show.toggle()
 
