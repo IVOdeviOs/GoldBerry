@@ -2,7 +2,7 @@ import SwiftUI
 
 struct UserInfoView: View {
     
-    @StateObject var viewModels: OrderViewModel
+    @StateObject var viewModel: FruitViewModel
     @State var userName: String
     @State var userSurname: String
     @State var userPhone: String
@@ -36,10 +36,10 @@ struct UserInfoView: View {
                             hideKeyboard()
                     }
             Button {
-                viewModels.user.userSurname = userSurname
-                viewModels.user.userName = userName
-                viewModels.user.userPhone = userPhone
-                viewModels.user.userEmail = userEmail
+                viewModel.user.userSurname = userSurname
+                viewModel.user.userName = userName
+                viewModel.user.userPhone = userPhone
+                viewModel.user.userEmail = userEmail
             } label: {
                 ZStack {
                     Color.theme.lightGreen
@@ -58,7 +58,7 @@ struct UserInfoView: View {
 struct UserInfoView_Previews: PreviewProvider {
     static var previews: some View {
         UserInfoView(
-            viewModels: OrderViewModel(),
+            viewModel: FruitViewModel(),
             userName: "",
             userSurname: "",
             userPhone: "",

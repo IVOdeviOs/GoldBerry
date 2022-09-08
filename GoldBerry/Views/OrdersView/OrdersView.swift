@@ -3,13 +3,12 @@ import SwiftUI
 struct OrdersView: View {
 
     @StateObject var viewModel: FruitViewModel
-    @StateObject var viewModels: OrderViewModel
 
     var body: some View {
-        if viewModels.order.isEmpty {
+        if viewModel.order.isEmpty {
             WithoutOrders(viewModel: viewModel)
         } else {
-            WithOrders(viewModel: viewModels)
+            WithOrders(viewModel: viewModel)
         }
     }
 }
@@ -49,7 +48,7 @@ struct WithoutOrders: View {
 }
 
 struct WithOrders: View {
-    @ObservedObject var viewModel: OrderViewModel
+    @ObservedObject var viewModel: FruitViewModel
 
     @State var show = false
 
@@ -88,6 +87,6 @@ struct WithOrders: View {
 
 struct OrdersView_Previews: PreviewProvider {
     static var previews: some View {
-        OrdersView(viewModel: FruitViewModel(), viewModels: OrderViewModel())
+        OrdersView(viewModel: FruitViewModel())
     }
 }

@@ -2,7 +2,7 @@ import SwiftUI
 
 struct CartCell: View {
     
-    @ObservedObject var viewModel = OrderViewModel()
+    @ObservedObject var viewModel = FruitViewModel()
     @State var imageName: String
     @State var cost: Double
     @State var name: String

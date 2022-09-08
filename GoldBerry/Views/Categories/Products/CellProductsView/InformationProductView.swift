@@ -2,7 +2,7 @@ import SwiftUI
 
 struct InformationProductView: View {
     @ObservedObject var viewModel = FruitViewModel()
-    @StateObject var viewModels = OrderViewModel()
+//    @StateObject var viewModels = OrderViewModel()
 
     @State var fruit: Fruit
     @Environment(\.presentationMode) var presentationMode
@@ -122,7 +122,7 @@ struct InformationProductView: View {
                                                count: fruit.count,
                                                image: fruit.image, name: fruit.name, percent: fruit.percent, description: fruit.description, price: fruit.price)
                            
-                            viewModels.fruit.append(fruits)
+                            viewModel.fruit.append(fruits)
                             print("🥶")
                         } label: {
                             HStack {

@@ -9,7 +9,7 @@ struct MakingTheOrderView: View {
     }
 
     @Environment(\.presentationMode) var presentation
-    @ObservedObject var viewModels: OrderViewModel
+    @ObservedObject var viewModel: FruitViewModel
     @State var tog = false
     @State var tog1 = false
 
@@ -52,7 +52,7 @@ struct MakingTheOrderView: View {
                         .padding()
                     Spacer()
                 }
-                TextFieldView(text: $viewModels.date, placeholder: "Выбрать дату и время")
+                TextFieldView(text: $viewModel.date, placeholder: "Выбрать дату и время")
                 Color.theme.gray
                     .opacity(0.3)
                     .frame(height: 10)
@@ -69,10 +69,10 @@ struct MakingTheOrderView: View {
                             .foregroundColor(Color.theme.lightGreen)
                             .padding()
                     }
-                    TextFieldView(text: $viewModels.customer, placeholder: "Имя получателя")
-                    TextFieldView(text: $viewModels.customerPhone, placeholder: "Телефон получателя")
-                    TextFieldView(text: $viewModels.address, placeholder: "Адрес доставки")
-                    TextFieldView(text: $viewModels.comment, placeholder: "Комментарий")
+                    TextFieldView(text: $viewModel.customer, placeholder: "Имя получателя")
+                    TextFieldView(text: $viewModel.customerPhone, placeholder: "Телефон получателя")
+                    TextFieldView(text: $viewModel.address, placeholder: "Адрес доставки")
+                    TextFieldView(text: $viewModel.comment, placeholder: "Комментарий")
                 }
                 Button {
                     self.tog = true
@@ -80,17 +80,17 @@ struct MakingTheOrderView: View {
                         tog = to
                         tog1 = true
                     }
-                    let orde = Order(orderNumber: viewModels.orderNumber,
-                                     date: viewModels.date, fruit: viewModels.fruit,
-                                     address: viewModels.address,
-                                     price: Int(viewModels.price),
-                                     customer: viewModels.customer,
-                                     customerPhone: viewModels.customerPhone,
-                                     comment: viewModels.comment)
+                    let orde = Order(orderNumber: viewModel.orderNumber,
+                                     date: viewModel.date, fruit: viewModel.fruit,
+                                     address: viewModel.address,
+                                     price: Int(viewModel.price),
+                                     customer: viewModel.customer,
+                                     customerPhone: viewModel.customerPhone,
+                                     comment: viewModel.comment)
 //
                     Task {
                         do {
-                            try await viewModels.addOrder(orders: orde)
+                            try await viewModel.addOrder(orders: orde)
                         } catch {
                             print("❌ ERORR")
                         }
@@ -107,7 +107,7 @@ struct MakingTheOrderView: View {
                     CompletedOrderView()
                 }
                 .fullScreenCover(isPresented: $tog1) {
-                    ContentView(viewModel: FruitViewModel(), viewModels: OrderViewModel())
+                    ContentView(viewModel: FruitViewModel())
                 }
             }
             Spacer()
@@ -129,6 +129,6 @@ struct MakingTheOrderView: View {
 
 struct MakingTheOrderView_Previews: PreviewProvider {
     static var previews: some View {
-        MakingTheOrderView(viewModels: OrderViewModel())
+        MakingTheOrderView(viewModel: FruitViewModel())
     }
 }

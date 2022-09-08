@@ -7,13 +7,13 @@ extension Color {
 }
 
 struct ContentView: View {
-    @ObservedObject var viewModel = FruitViewModel()
-    @StateObject var viewModels = OrderViewModel()
+    @StateObject var viewModel = FruitViewModel()
+//    @StateObject var viewModels = OrderViewModel()
     var body: some View {
 
         NavigationView {
             ZStack {
-                ExtractedView(viewModel: viewModel, viewModels: viewModels)
+                ExtractedView(viewModel: viewModel)
                 ZStack {
                     VStack {
                         ZStack {
@@ -72,14 +72,19 @@ struct ContentView: View {
                                 } label: {
                                     ZStack {
                                         ZStack {
-                                            if viewModels.fruit.count != 0 {
+                                            if viewModel.fruit.count != 0 {
                                         Color.red
                                             .frame(width: 20, height: 20)
                                             .cornerRadius(10)
-                                        Text("\(viewModels.order.count)")
+                                        Text("\(viewModel.order.count)")
                                                 .foregroundColor(.white)
                                                 .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                                        }
+                                            } else {
+                                                Color.red
+                                                    .frame(width: 20, height: 20)
+                                                    .cornerRadius(10)
+                                                Text("H")
+                                            }
                                         }
                                         .offset(x: 20, y: -20)
                                         
@@ -152,7 +157,7 @@ struct ContentView_Previews: PreviewProvider {
 struct ExtractedView: View {
     @ObservedObject var viewModel = FruitViewModel()
     
-    @ObservedObject var viewModels = OrderViewModel()
+//    @ObservedObject var viewModels = OrderViewModel()
 
     var body: some View {
         ZStack {
@@ -169,14 +174,14 @@ struct ExtractedView: View {
                         }
                     }
             case 1:
-                CartView(viewModel: viewModel, viewModels: viewModels)
+                CartView(viewModel: viewModel)
                 
             case 2:
-                OrdersView(viewModel: viewModel, viewModels: viewModels)
+                OrdersView(viewModel: viewModel)
                     .onAppear{
                         Task {
                             do {
-                                try await viewModels.fetchOrder()
+                                try await viewModel.fetchOrder()
                             } catch {
                                 print("❌ERORR \(error)")
                             }
@@ -184,7 +189,7 @@ struct ExtractedView: View {
                         
                     }
             case 3:
-                ProfileView(viewModel: viewModel, viewModels: viewModels)
+                ProfileView(viewModel: viewModel)
             default:
                 ProductsView(viewModel: viewModel)
             }

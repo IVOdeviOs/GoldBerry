@@ -3,7 +3,7 @@ import SwiftUI
 struct ProfileView: View {
     
     @StateObject var viewModel: FruitViewModel
-    @StateObject var viewModels: OrderViewModel
+//    @StateObject var viewModels: OrderViewModel
     @State var showUserInfoView = false
     @State var showServiceInfoView = false
     @State var showShopView = false
@@ -43,7 +43,7 @@ struct ProfileView: View {
 //                        ImagePicker(image: $user.userPhotoIntoAvatar, isShow: $user.showImagePicker, sourceType: sourceType)
 //                    }
                     VStack {
-                        Text(viewModels.user.userName.isEmpty || viewModels.user.userSurname.isEmpty ? "Имя Фамилия" : "\(viewModels.user.userName) \(viewModels.user.userSurname)")
+                        Text(viewModel.user.userName.isEmpty || viewModel.user.userSurname.isEmpty ? "Имя Фамилия" : "\(viewModel.user.userName) \(viewModel.user.userSurname)")
                             .foregroundColor(.white)
                             .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
                             .padding()
@@ -60,11 +60,11 @@ struct ProfileView: View {
                     }
                     .sheet(isPresented: $showUserInfoView, content: {
                         UserInfoView(
-                            viewModels: OrderViewModel(),
-                            userName: viewModels.user.userName,
-                            userSurname: viewModels.user.userSurname,
-                            userPhone: viewModels.user.userPhone,
-                            userEmail: viewModels.user.userEmail
+                            viewModel: FruitViewModel(),
+                            userName: viewModel.user.userName,
+                            userSurname: viewModel.user.userSurname,
+                            userPhone: viewModel.user.userPhone,
+                            userEmail: viewModel.user.userEmail
                         )
                     })
                 }
@@ -83,7 +83,7 @@ struct ProfileView: View {
                                 .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
                                 .foregroundColor(.black)
                                 .padding(.bottom, 5)
-                            Text("\(viewModels.order.count)")
+                            Text("\(viewModel.order.count)")
                                 .font(Font(uiFont: .fontLibrary(24, .uzSansSemiBold)))
                                 .foregroundColor(.black)
                         }
@@ -215,6 +215,6 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(viewModel: FruitViewModel(), viewModels: OrderViewModel())
+        ProfileView(viewModel: FruitViewModel())
     }
 }

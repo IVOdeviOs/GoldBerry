@@ -2,11 +2,9 @@ import SwiftUI
 
 struct CartView: View {
     @StateObject var viewModel = FruitViewModel()
-    @StateObject var viewModels =  OrderViewModel()
-
     
     var body: some View {
-        if viewModels.fruit.isEmpty {
+        if viewModel.fruit.isEmpty {
             WithoutPurchase(viewModel: viewModel)
         } else {
             WithPurchase()
@@ -49,7 +47,7 @@ struct WithoutPurchase: View {
 }
 
 struct WithPurchase: View {
-    @ObservedObject var viewModel = OrderViewModel()
+    @ObservedObject var viewModel = FruitViewModel()
 
     @State var show = false
     var body: some View {
@@ -94,7 +92,7 @@ struct WithPurchase: View {
                     }
                     .offset(y: 115)
                     .sheet(isPresented: $show, content: {
-                        MakingTheOrderView(viewModels: OrderViewModel())
+                        MakingTheOrderView(viewModel: viewModel)
                     })
 //                        .background(.white)
 //                        .navigationViewStyle(.columns)
@@ -116,6 +114,6 @@ struct WithPurchase: View {
 
 struct CartView_Previews: PreviewProvider {
     static var previews: some View {
-        CartView(viewModel: FruitViewModel(), viewModels: OrderViewModel())
+        CartView(viewModel: FruitViewModel())
     }
 }
