@@ -8,7 +8,7 @@ struct MakingTheOrderView: View {
         }
     }
     @Environment(\.presentationMode) var presentation
-    @StateObject var viewModels: OrderViewModel
+    @ObservedObject var viewModels: OrderViewModel
     @State var tog = false
     @State var tog1 = false
     
@@ -51,7 +51,7 @@ struct MakingTheOrderView: View {
                         .padding()
                     Spacer()
                 }
-                TextFieldView(text: $viewModels.order1.date, placeholder: "Выбрать дату и время")
+                TextFieldView(text: $viewModels.date, placeholder: "Выбрать дату и время")
                 Color.theme.gray
                     .opacity(0.3)
                     .frame(height: 10)
@@ -62,18 +62,17 @@ struct MakingTheOrderView: View {
                         tog = to
                         tog1 = true
                     }
-//                    var orde = Order( orderNumber: viewModels.order1.orderNumber,
-//                                      fruit: viewModels.order1.fruit,
-//                                      date: viewModels.order1.date,
-//                                      address: viewModels.order1.address,
-//                                      price: viewModels.order1.price,
-//                                      customer: viewModels.order1.customer,
-//                                      customerPhone: viewModels.order1.customerPhone,
-//                                      comment: viewModels.order1.comment)
+                    let orde = Order( orderNumber: viewModels.orderNumber,
+                                      date: viewModels.date, fruit: viewModels.fruit,
+                                      address: viewModels.address,
+                                      price: Int(viewModels.price),
+                                      customer: viewModels.customer,
+                                      customerPhone: viewModels.customerPhone,
+                                      comment: viewModels.comment)
 //
                     Task {
                         do {
-                            try await viewModels.addOrder()
+                            try await viewModels.addOrder(orders: orde)
                         } catch {
                             print("❌ ERORR")
                         }
@@ -121,7 +120,7 @@ struct MakingTheOrderView_Previews: PreviewProvider {
 
 struct OrderInformation: View {
     
-    @StateObject var viewModels: OrderViewModel
+    @ObservedObject var viewModels: OrderViewModel
     
     var body: some View {
         
@@ -138,10 +137,10 @@ struct OrderInformation: View {
                     .foregroundColor(Color.theme.lightGreen)
                     .padding()
             }
-            TextFieldView(text: $viewModels.order1.customer, placeholder: "Имя получателя")
-            TextFieldView(text: $viewModels.order1.customerPhone, placeholder: "Телефон получателя")
-            TextFieldView(text: $viewModels.order1.address, placeholder: "Адрес доставки")
-            TextFieldView(text: $viewModels.order1.comment, placeholder: "Комментарий")
+            TextFieldView(text: $viewModels.customer, placeholder: "Имя получателя")
+            TextFieldView(text: $viewModels.customerPhone, placeholder: "Телефон получателя")
+            TextFieldView(text: $viewModels.address, placeholder: "Адрес доставки")
+            TextFieldView(text: $viewModels.comment, placeholder: "Комментарий")
         }
     }
 }
