@@ -1,17 +1,18 @@
 import SwiftUI
 
 struct MakingTheOrderView: View {
-    
+
     func sendRequest(completion: @escaping (Bool) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             completion(tog == false)
         }
     }
+
     @Environment(\.presentationMode) var presentation
     @ObservedObject var viewModels: OrderViewModel
     @State var tog = false
     @State var tog1 = false
-    
+
     var body: some View {
         VStack {
             Text("Оформление заказа")
@@ -55,20 +56,37 @@ struct MakingTheOrderView: View {
                 Color.theme.gray
                     .opacity(0.3)
                     .frame(height: 10)
-                OrderInformation(viewModels: OrderViewModel())
+                VStack {
+                    HStack {
+                        Text("Куда доставить")
+                            .foregroundColor(.black)
+                            .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
+                            .padding()
+                        Spacer()
+                        Image(systemName: "house.circle.fill")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .foregroundColor(Color.theme.lightGreen)
+                            .padding()
+                    }
+                    TextFieldView(text: $viewModels.customer, placeholder: "Имя получателя")
+                    TextFieldView(text: $viewModels.customerPhone, placeholder: "Телефон получателя")
+                    TextFieldView(text: $viewModels.address, placeholder: "Адрес доставки")
+                    TextFieldView(text: $viewModels.comment, placeholder: "Комментарий")
+                }
                 Button {
                     self.tog = true
                     sendRequest { to in
                         tog = to
                         tog1 = true
                     }
-                    let orde = Order( orderNumber: viewModels.orderNumber,
-                                      date: viewModels.date, fruit: viewModels.fruit,
-                                      address: viewModels.address,
-                                      price: Int(viewModels.price),
-                                      customer: viewModels.customer,
-                                      customerPhone: viewModels.customerPhone,
-                                      comment: viewModels.comment)
+                    let orde = Order(orderNumber: viewModels.orderNumber,
+                                     date: viewModels.date, fruit: viewModels.fruit,
+                                     address: viewModels.address,
+                                     price: Int(viewModels.price),
+                                     customer: viewModels.customer,
+                                     customerPhone: viewModels.customerPhone,
+                                     comment: viewModels.comment)
 //
                     Task {
                         do {
@@ -77,8 +95,7 @@ struct MakingTheOrderView: View {
                             print("❌ ERORR")
                         }
                     }
-                  
-                    
+
                 } label: {
                     Text("Сделать заказ")
                         .foregroundColor(.white)
@@ -92,22 +109,20 @@ struct MakingTheOrderView: View {
                 .fullScreenCover(isPresented: $tog1) {
                     ContentView(viewModel: FruitViewModel(), viewModels: OrderViewModel())
                 }
-                
             }
             Spacer()
-            
         }
-        .offset( y: -15)
+        .offset(y: -15)
         .ignoresSafeArea()
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading:
-                                Image(systemName: "arrow.backward")
-            .resizable()
-            .frame(width: 18, height: 18)
-            .foregroundColor(.black)
-            .onTapGesture {
-                self.presentation.wrappedValue.dismiss()
-            }
+            Image(systemName: "arrow.backward")
+                .resizable()
+                .frame(width: 18, height: 18)
+                .foregroundColor(.black)
+                .onTapGesture {
+                    self.presentation.wrappedValue.dismiss()
+                }
         )
     }
 }
@@ -115,32 +130,5 @@ struct MakingTheOrderView: View {
 struct MakingTheOrderView_Previews: PreviewProvider {
     static var previews: some View {
         MakingTheOrderView(viewModels: OrderViewModel())
-    }
-}
-
-struct OrderInformation: View {
-    
-    @ObservedObject var viewModels: OrderViewModel
-    
-    var body: some View {
-        
-        VStack {
-            HStack {
-                Text("Куда доставить")
-                    .foregroundColor(.black)
-                    .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
-                    .padding()
-                Spacer()
-                Image(systemName: "house.circle.fill")
-                    .resizable()
-                    .frame(width: 30, height: 30)
-                    .foregroundColor(Color.theme.lightGreen)
-                    .padding()
-            }
-            TextFieldView(text: $viewModels.customer, placeholder: "Имя получателя")
-            TextFieldView(text: $viewModels.customerPhone, placeholder: "Телефон получателя")
-            TextFieldView(text: $viewModels.address, placeholder: "Адрес доставки")
-            TextFieldView(text: $viewModels.comment, placeholder: "Комментарий")
-        }
     }
 }
