@@ -149,7 +149,7 @@ struct ProfileView: View {
                             .padding(.trailing, 20)
                     }
                     .sheet(isPresented: $showFavouriteProductsView, content: {
-                        FavouriteProductsView()
+                        FavouriteProductsView(viewModel: viewModel)
                     })
                 }
             }
