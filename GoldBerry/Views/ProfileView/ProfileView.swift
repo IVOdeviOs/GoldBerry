@@ -115,9 +115,9 @@ struct ProfileView: View {
                     })
                 }
             }
-            .sheet(isPresented: $showServiceInfoView, content: {
-                ShopsView(viewModel: viewModel)
-            })
+//            .sheet(isPresented: $showServiceInfoView, content: {
+//                ShopsView(viewModel: viewModel)
+//            })
             Button {
                 self.showFavouriteProductsView.toggle()
             } label: {
@@ -153,8 +153,10 @@ struct ProfileView: View {
                     })
                 }
             }
-            Button {
-                self.showServiceInfoView.toggle()
+            NavigationLink {
+//            Button {
+//                self.showServiceInfoView.toggle()
+                ServiceInfoView()
             } label: {
                 ZStack {
                     Color.theme.gray
@@ -173,9 +175,9 @@ struct ProfileView: View {
                             .foregroundColor(.black)
                             .padding(.trailing, 20)
                     }
-                    .sheet(isPresented: $showServiceInfoView, content: {
-                        ServiceInfoView()
-                    })
+//                    .sheet(isPresented: $showServiceInfoView, content: {
+//                        ServiceInfoView()
+//                    })
                 }
             }
             ZStack {

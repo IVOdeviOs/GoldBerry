@@ -9,7 +9,7 @@ struct ShopsView: View {
         VStack {
             Text("Наши торговые точки")
                 .foregroundColor(.black)
-                .font(Font(uiFont: .fontLibrary(15, .uzSansBold)))
+                .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
                 .padding()
             Color.theme.gray
                 .opacity(0.3)
