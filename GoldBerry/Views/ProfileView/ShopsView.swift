@@ -3,7 +3,15 @@ import SwiftUI
 
 struct ShopsView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text("Наши торговые точки")
+                .foregroundColor(.black)
+                .font(Font(uiFont: .fontLibrary(15, .uzSansBold)))
+            Color.theme.gray
+                .opacity(0.3)
+                .frame(height: 10)
+            Spacer()
+        }
     }
 }
 

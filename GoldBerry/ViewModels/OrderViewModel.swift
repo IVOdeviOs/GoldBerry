@@ -7,7 +7,14 @@ class OrderViewModel: ObservableObject {
 
     @Published var order = [Order]()
     
-
+    @Published var user: User =
+    User(
+        userName: "",
+        userSurname: "",
+        userPhone: "",
+        userEmail: ""
+    )
+    
     @Published var date = ""
     @Published var address = ""
     @Published var price: Double = 0

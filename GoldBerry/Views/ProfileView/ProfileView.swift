@@ -4,9 +4,12 @@ struct ProfileView: View {
     
     @StateObject var viewModel: FruitViewModel
     @StateObject var viewModels: OrderViewModel
-    @State var show = false
-    @State var show1 = false
-    var numberPhone = "+375298308218"
+    @State var showUserInfoView = false
+    @State var showServiceInfoView = false
+    @State var showShopView = false
+    @State var showFavouriteProductsView = false
+
+    var numberPhone = "+375297023701"
     @StateObject var user = FruitViewModel()
     @State var sourceType: UIImagePickerController.SourceType = .camera
     
@@ -18,38 +21,36 @@ struct ProfileView: View {
                     .frame(height: 240)
                     .offset(y: -50)
                 HStack {
-                    Button {
-                        user.showImagePicker = true
-                        sourceType = .photoLibrary
-                    } label: {
-                        ZStack {
-                            
-                            Image(uiImage: (user.userPhotoIntoAvatar ?? UIImage(systemName: "person.circle.fill")!))
-                                .resizable()
-                                .frame(width: 80, height: 80)
-                                .foregroundColor(.red)
-                                .cornerRadius(40)
-                                .padding(.leading, 15)
-//                            Color.gray
+//                    Button {
+//                        user.showImagePicker = true
+//                        sourceType = .photoLibrary
+//                    } label: {
+//                        ZStack {
+//
+//                            Image(uiImage: (user.userPhotoIntoAvatar ?? UIImage(systemName: "person.circle.fill")!))
+//                                .resizable()
 //                                .frame(width: 80, height: 80)
-//                                .opacity(0.5)
+//                                .foregroundColor(.red)
+//                                .cornerRadius(40)
 //                                .padding(.leading, 15)
-                        }
-                    }
-                    .fullScreenCover(isPresented: $user.showImagePicker) {
-                        ImagePicker(image: $user.userPhotoIntoAvatar, isShow: $user.showImagePicker, sourceType: sourceType)
-                    }
+////                            Color.gray
+////                                .frame(width: 80, height: 80)
+////                                .opacity(0.5)
+////                                .padding(.leading, 15)
+//                        }
+//                    }
+//                    .fullScreenCover(isPresented: $user.showImagePicker) {
+//                        ImagePicker(image: $user.userPhotoIntoAvatar, isShow: $user.showImagePicker, sourceType: sourceType)
+//                    }
                     VStack {
-                        Text("Имя Фамилия")
+                        Text(viewModels.user.userName.isEmpty || viewModels.user.userSurname.isEmpty ? "Имя Фамилия" : "\(viewModels.user.userName) \(viewModels.user.userSurname)")
                             .foregroundColor(.white)
                             .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
-                        Text("Мои данные")
-                            .foregroundColor(.white)
-                            .font(Font(uiFont: .fontLibrary(16, .uzSansSemiBold)))
+                            .padding()
                     }
                     Spacer()
                     Button {
-                        self.show.toggle()
+                        self.showUserInfoView.toggle()
                     } label: {
                         Image(systemName: "arrow.right")
                             .resizable()
@@ -57,8 +58,14 @@ struct ProfileView: View {
                             .foregroundColor(.white)
                             .padding(.trailing, 20)
                     }
-                    .sheet(isPresented: $show, content: {
-                        UserInfoView(viewModels: OrderViewModel())
+                    .sheet(isPresented: $showUserInfoView, content: {
+                        UserInfoView(
+                            viewModels: OrderViewModel(),
+                            userName: viewModels.user.userName,
+                            userSurname: viewModels.user.userSurname,
+                            userPhone: viewModels.user.userPhone,
+                            userEmail: viewModels.user.userEmail
+                        )
                     })
                 }
             }
@@ -85,7 +92,7 @@ struct ProfileView: View {
                 .offset(x: -110, y: -70)
             }
             Button {
-                self.show.toggle()
+                self.showShopView.toggle()
             } label: {
                 ZStack {
                     Color.theme.gray
@@ -94,7 +101,7 @@ struct ProfileView: View {
                     HStack {
                         Text("Адреса торговых точек")
                             .foregroundColor(.black)
-                            .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
+                            .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                             .padding(.leading, 15)
                         Spacer()
                         Image(systemName: "arrow.right")
@@ -103,13 +110,13 @@ struct ProfileView: View {
                             .foregroundColor(.black)
                             .padding(.trailing, 20)
                     }
-                    .sheet(isPresented: $show, content: {
+                    .sheet(isPresented: $showShopView, content: {
                         ShopsView()
                     })
                 }
             }
             Button {
-                self.show.toggle()
+                self.showFavouriteProductsView.toggle()
             } label: {
                 ZStack {
                     Color.theme.gray
@@ -118,7 +125,7 @@ struct ProfileView: View {
                     HStack {
                         Text("Избранные товары")
                             .foregroundColor(.black)
-                            .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
+                            .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                             .padding(.leading, 15)
                         Spacer()
                         Image(systemName: "arrow.right")
@@ -127,13 +134,13 @@ struct ProfileView: View {
                             .foregroundColor(.black)
                             .padding(.trailing, 20)
                     }
-                    .sheet(isPresented: $show, content: {
+                    .sheet(isPresented: $showFavouriteProductsView, content: {
                         FavouriteProductsView()
                     })
                 }
             }
             Button {
-                self.show.toggle()
+                self.showServiceInfoView.toggle()
             } label: {
                 ZStack {
                     Color.theme.gray
@@ -142,7 +149,7 @@ struct ProfileView: View {
                     HStack {
                         Text("О сервисе")
                             .foregroundColor(.black)
-                            .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
+                            .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                             .padding(.leading, 15)
                         Spacer()
                         
@@ -152,7 +159,7 @@ struct ProfileView: View {
                             .foregroundColor(.black)
                             .padding(.trailing, 20)
                     }
-                    .sheet(isPresented: $show, content: {
+                    .sheet(isPresented: $showServiceInfoView, content: {
                         ServiceInfoView()
                     })
                 }
@@ -170,7 +177,7 @@ struct ProfileView: View {
                         HStack {
                             Text("Служба поддержки")
                                 .foregroundColor(.black)
-                                .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
+                                .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                                 .padding(.leading, 15)
                             Spacer()
                             Image(systemName: "arrow.right")

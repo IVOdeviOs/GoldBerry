@@ -17,7 +17,7 @@ struct TextFieldView: View {
 //                .border(.red, width: 1)
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
-                        .stroke(.red, lineWidth: 1)
+                        .stroke(.black, lineWidth: 1)
                 )
 //                .cornerRadius(10)
                 .padding()
