@@ -30,7 +30,7 @@ struct ContentView: View {
                         ZStack {
                             HStack {
                                 Text("GoldBerry")
-                                    .font(Font(uiFont: .fontLibrary(32, .helvetica)))
+                                    .font(Font(uiFont: .fontLibrary(24, .uzSansBold)))
                                     .foregroundColor(Color.theme.lightGreen)
                                     .padding()
                                 Spacer()
