@@ -50,7 +50,7 @@ struct ServiceInfoView: View {
             }
                
                 Button {
-                    self.showDisclaimerOfLiability.toggle()
+                    self.showConfidentialView.toggle()
                 }
             label: {
                 HStack {
@@ -64,13 +64,13 @@ struct ServiceInfoView: View {
                             .frame(width: 15, height: 15)
                             .foregroundColor(.gray)
                     }
-                    .sheet(isPresented: $showDisclaimerOfLiability, content: {
-                        DisclaimerOfLiabilityView()
+                    .sheet(isPresented: $showConfidentialView, content: {
+                        ConfidentialView()
                     })
             }
                 
                 Button {
-                    self.showDeliveryInfoView.toggle()
+                    self.showDisclaimerOfLiability.toggle()
                 }
             label: {
                 HStack {
@@ -84,8 +84,8 @@ struct ServiceInfoView: View {
                             .frame(width: 15, height: 15)
                             .foregroundColor(.gray)
                     }
-                    .sheet(isPresented: $showDeliveryInfoView, content: {
-                        DeliveryInfoView()
+                    .sheet(isPresented: $showDisclaimerOfLiability, content: {
+                        DisclaimerOfLiability()
                     })
             }
                 

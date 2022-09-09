@@ -19,8 +19,9 @@
 		DC4807F228BC9925001416B6 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4807F128BC9925001416B6 /* ImagePicker.swift */; };
 		DC4807F428C9DC8F001416B6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4807F328C9DC8F001416B6 /* User.swift */; };
 		DC4807F828CA9D1A001416B6 /* DeliveryInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4807F728CA9D1A001416B6 /* DeliveryInfoView.swift */; };
-		DC4807FA28CB123F001416B6 /* DisclaimerOfLiabilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4807F928CB123F001416B6 /* DisclaimerOfLiabilityView.swift */; };
+		DC4807FA28CB123F001416B6 /* ConfidentialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4807F928CB123F001416B6 /* ConfidentialView.swift */; };
 		DC4807FC28CB1A28001416B6 /* HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4807FB28CB1A28001416B6 /* HideKeyboard.swift */; };
+		DC4807FE28CB1B7E001416B6 /* DisclaimerOfLiabilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4807FD28CB1B7E001416B6 /* DisclaimerOfLiabilityView.swift */; };
 		DC9DE54A28BB508200057E90 /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9DE54928BB508200057E90 /* CartCell.swift */; };
 		DCA524D528AD31CD00A994F5 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA524D428AD31CD00A994F5 /* Font+.swift */; };
 		DCA5250328AE715100A994F5 /* helveticacyrillicupright.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCA5250228AE715100A994F5 /* helveticacyrillicupright.ttf */; };
@@ -69,8 +70,9 @@
 		DC4807F128BC9925001416B6 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		DC4807F328C9DC8F001416B6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DC4807F728CA9D1A001416B6 /* DeliveryInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryInfoView.swift; sourceTree = "<group>"; };
-		DC4807F928CB123F001416B6 /* DisclaimerOfLiabilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclaimerOfLiabilityView.swift; sourceTree = "<group>"; };
+		DC4807F928CB123F001416B6 /* ConfidentialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfidentialView.swift; sourceTree = "<group>"; };
 		DC4807FB28CB1A28001416B6 /* HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboard.swift; sourceTree = "<group>"; };
+		DC4807FD28CB1B7E001416B6 /* DisclaimerOfLiabilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclaimerOfLiabilityView.swift; sourceTree = "<group>"; };
 		DC9DE54928BB508200057E90 /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
 		DCA524D428AD31CD00A994F5 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		DCA5250228AE715100A994F5 /* helveticacyrillicupright.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = helveticacyrillicupright.ttf; sourceTree = "<group>"; };
@@ -127,7 +129,8 @@
 				DC4807EB28BC9261001416B6 /* ShopsView.swift */,
 				DC4807E928BC8CC2001416B6 /* UserInfoView.swift */,
 				DC4807ED28BC9456001416B6 /* FavouriteProductsView.swift */,
-				DC4807F928CB123F001416B6 /* DisclaimerOfLiabilityView.swift */,
+				DC4807F928CB123F001416B6 /* ConfidentialView.swift */,
+				DC4807FD28CB1B7E001416B6 /* DisclaimerOfLiabilityView.swift */,
 			);
 			path = ProfileView;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				DD93807928B6349B00808E88 /* RemoteImageView.swift in Sources */,
 				DC4807E828BC8965001416B6 /* ProfileView.swift in Sources */,
 				DC4807F828CA9D1A001416B6 /* DeliveryInfoView.swift in Sources */,
+				DC4807FE28CB1B7E001416B6 /* DisclaimerOfLiabilityView.swift in Sources */,
 				DDBA58EB28AAB43900FFC3A5 /* Fruit.swift in Sources */,
 				DCA524D528AD31CD00A994F5 /* Font+.swift in Sources */,
 				DDBA58E228A16E3B00FFC3A5 /* InformationProductView.swift in Sources */,
@@ -410,7 +414,7 @@
 				DCA5250828AE7F7E00A994F5 /* Order.swift in Sources */,
 				DC224EC028BB480700F8760D /* MakingTheOrderView.swift in Sources */,
 				DD95A8332899ABD200DF346B /* GoldBerryApp.swift in Sources */,
-				DC4807FA28CB123F001416B6 /* DisclaimerOfLiabilityView.swift in Sources */,
+				DC4807FA28CB123F001416B6 /* ConfidentialView.swift in Sources */,
 				DD539A6928A02A63006F1CD1 /* OrdersView.swift in Sources */,
 				DC4807E328BB7E8A001416B6 /* TextField+.swift in Sources */,
 				DC9DE54A28BB508200057E90 /* CartCell.swift in Sources */,
