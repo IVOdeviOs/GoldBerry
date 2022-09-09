@@ -9,7 +9,7 @@ struct ProductsView: View {
             VStack {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        CategoriesCell(nameImage: "watermelon", nameCategories: "Арбуз и Дыня")
+                        CategoriesCell(nameImage: "watermelon", nameCategories: "Арбуз и дыня")
                         CategoriesCell(nameImage: "granat", nameCategories: "Гранат")
                         CategoriesCell(nameImage: "fresh", nameCategories: "Фреши и смузи")
                         CategoriesCell(nameImage: "fruct", nameCategories: "Фрукты")
