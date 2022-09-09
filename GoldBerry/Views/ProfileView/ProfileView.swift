@@ -94,9 +94,6 @@ struct ProfileView: View {
                     })
                 }
             }
-//            .sheet(isPresented: $showServiceInfoView, content: {
-//                ShopsView(viewModel: viewModel)
-//            })
             Button {
                 self.showFavouriteProductsView.toggle()
             } label: {
