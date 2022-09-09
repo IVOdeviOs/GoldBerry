@@ -9,7 +9,7 @@ struct ProfileView: View {
     @State var showShopView = false
     @State var showFavouriteProductsView = false
     
-    var numberPhone = "+375297023701"
+    var numberPhone = "+375336096300"
     @StateObject var user = FruitViewModel()
     @State var sourceType: UIImagePickerController.SourceType = .camera
     
