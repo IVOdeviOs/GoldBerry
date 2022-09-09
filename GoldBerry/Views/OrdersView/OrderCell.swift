@@ -37,8 +37,18 @@ struct OrderCell: View {
                 .frame(height: 3)
             ForEach(0 ..< purchases.count) { row in
                 HStack {
-                    Image(purchases[row].image)
-                        .resizable()
+                    RemoteImageView(
+                        url: URL(string: purchases[row].image)!,
+                        placeholder: {
+                            Image(systemName: "icloud.and.arrow.up").frame(width: 300, height: 300)
+                        },
+                        image: {
+                            $0
+                                .resizable()
+                                .frame(width: 180, height: 120)
+                                .aspectRatio(contentMode: .fit)
+                        }
+                    )
                         .frame(width: 30, height: 30)
                         .cornerRadius(10)
                         .padding(.leading, 10)
