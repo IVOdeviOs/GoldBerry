@@ -11,8 +11,6 @@ struct ProfileView: View {
     
     var numberPhone = "+375336096300"
     @StateObject var user = FruitViewModel()
-    @State var sourceType: UIImagePickerController.SourceType = .camera
-    
     
     var body: some View {
         VStack {

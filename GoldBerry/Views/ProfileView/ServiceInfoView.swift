@@ -7,6 +7,7 @@ struct ServiceInfoView: View {
     @State var showConfidentialView = false
     @State var showDisclaimerOfLiability = false
     @State var showContacts = false
+    var numberPhone = "+375336096300"
     
     var body: some View {
         VStack {
@@ -16,17 +17,17 @@ struct ServiceInfoView: View {
                 .padding()
                 .offset(y: -100)
             ZStack {
-            Color.theme.gray
-                .opacity(0.2)
-                .frame(height: 200)
+                Color.theme.gray
+                    .opacity(0.2)
+                    .frame(height: 200)
                 VStack {
-                Text("Версия 1.0.0")
+                    Text("Версия 1.0.0")
                         .foregroundColor(.gray)
-                    .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
-                    .padding(.bottom, 5)
-                Text("\u{24B8} 2022 IVO-Project")
+                        .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
+                        .padding(.bottom, 5)
+                    Text("\u{24B8} 2022 IVO-Project")
                         .foregroundColor(.gray)
-            }
+                }
             }
             List {
                 Button {
@@ -34,39 +35,39 @@ struct ServiceInfoView: View {
                 }
             label: {
                 HStack {
-                        Text("Оплата и доставка")
+                    Text("Оплата и доставка")
                         .minimumScaleFactor(0.5)
-                            .foregroundColor(.black)
-                            .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
-                        Spacer()
-                        Image(systemName: "arrow.right")
-                            .resizable()
-                            .frame(width: 15, height: 15)
-                            .foregroundColor(.gray)
-                    }
-                    .sheet(isPresented: $showDeliveryInfoView, content: {
-                        DeliveryInfoView()
-                    })
+                        .foregroundColor(.black)
+                        .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                    Spacer()
+                    Image(systemName: "arrow.right")
+                        .resizable()
+                        .frame(width: 15, height: 15)
+                        .foregroundColor(.gray)
+                }
+                .sheet(isPresented: $showDeliveryInfoView, content: {
+                    DeliveryInfoView()
+                })
             }
-               
+                
                 Button {
                     self.showConfidentialView.toggle()
                 }
             label: {
                 HStack {
-                        Text("Положение о конфиденциальности")
+                    Text("Положение о конфиденциальности")
                         .minimumScaleFactor(0.5)
-                            .foregroundColor(.black)
-                            .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
-                        Spacer()
-                        Image(systemName: "arrow.right")
-                            .resizable()
-                            .frame(width: 15, height: 15)
-                            .foregroundColor(.gray)
-                    }
-                    .sheet(isPresented: $showConfidentialView, content: {
-                        ConfidentialView()
-                    })
+                        .foregroundColor(.black)
+                        .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                    Spacer()
+                    Image(systemName: "arrow.right")
+                        .resizable()
+                        .frame(width: 15, height: 15)
+                        .foregroundColor(.gray)
+                }
+                .sheet(isPresented: $showConfidentialView, content: {
+                    ConfidentialView()
+                })
             }
                 
                 Button {
@@ -74,55 +75,61 @@ struct ServiceInfoView: View {
                 }
             label: {
                 HStack {
-                        Text("Отказ от ответственности")
+                    Text("Отказ от ответственности")
                         .minimumScaleFactor(0.5)
-                            .foregroundColor(.black)
-                            .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
-                        Spacer()
-                        Image(systemName: "arrow.right")
-                            .resizable()
-                            .frame(width: 15, height: 15)
-                            .foregroundColor(.gray)
-                    }
-                    .sheet(isPresented: $showDisclaimerOfLiability, content: {
-                        DisclaimerOfLiability()
-                    })
+                        .foregroundColor(.black)
+                        .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                    Spacer()
+                    Image(systemName: "arrow.right")
+                        .resizable()
+                        .frame(width: 15, height: 15)
+                        .foregroundColor(.gray)
+                }
+                .sheet(isPresented: $showDisclaimerOfLiability, content: {
+                    DisclaimerOfLiability()
+                })
             }
                 
                 Button {
-                    self.showDeliveryInfoView.toggle()
+                    let formattedString = "tel://" + numberPhone
+                    guard let url = URL(string: formattedString) else { return }
+                    UIApplication.shared.open(url)
                 }
             label: {
                 HStack {
-                        Text("Контакты")
+                    Text("Контакты")
                         .minimumScaleFactor(0.5)
-                            .foregroundColor(.black)
-                            .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
-                        Spacer()
-                        Image(systemName: "arrow.right")
-                            .resizable()
-                            .frame(width: 15, height: 15)
-                            .foregroundColor(.gray)
-                    }
-                    .sheet(isPresented: $showDeliveryInfoView, content: {
-                        DeliveryInfoView()
-                    })
+                        .foregroundColor(.black)
+                        .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                    Spacer()
+                    Image(systemName: "arrow.right")
+                        .resizable()
+                        .frame(width: 15, height: 15)
+                        .foregroundColor(.gray)
+                }
             }
             }
             .offset(y: -15)
+            
+            Link(destination: URL(string: "https://www.instagram.com/nar_juice")!) {
+                Image("instagram")
+                    .resizable().frame(width: 60, height: 60).padding()
+//                    .font(.largeTitle)
+                
+            }
             Spacer()
         }
         
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading:
-            Image(systemName: "arrow.backward")
+                                Image(systemName: "arrow.backward")
             .resizable()
             .frame(width: 20, height: 20)
-         .foregroundColor(.black)
+            .foregroundColor(.black)
             .onTapGesture {
-               self.presentation.wrappedValue.dismiss()
+                self.presentation.wrappedValue.dismiss()
             }
-         )
+        )
     }
 }
 
