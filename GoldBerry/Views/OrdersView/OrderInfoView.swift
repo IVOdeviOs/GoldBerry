@@ -30,27 +30,37 @@ struct OrderInfoView: View {
                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                         .padding()
                 }
-//                ForEach(0 ..< order.fruit.count) { row in
-//                    HStack {
-//                        Image(order.fruit[row].image)
-//                            .resizable()
-//                            .frame(width: 30, height: 30)
-//                            .cornerRadius(10)
-//                            .padding(.leading, 10)
-//                        Text(order.fruit[row].name)
-//                            .foregroundColor(.black)
-//                            .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-//                        Spacer()
-//                        Text("\(order.fruit[row].count)")
-//                            .foregroundColor(.black)
-//                            .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-//                        Text("\(NSString(format: "%.2f", order.fruit[row].cost)) p.")
-//                            .foregroundColor(Color.theme.lightGreen)
-//                            .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-//                            .frame(width: 80, height: 20)
-//                            .padding(.trailing, 10)
-//                    }
-//                }
+                ForEach(0 ..< order.fruit.count) { row in
+                    HStack {
+                        RemoteImageView(
+                            url: URL(string: order.fruit[row].image)!,
+                            placeholder: {
+                                Image(systemName: "icloud.and.arrow.up").frame(width: 300, height: 300)
+                            },
+                            image: {
+                                $0
+                                    .resizable()
+                                    .frame(width: 180, height: 120)
+                                    .aspectRatio(contentMode: .fit)
+                            }
+                        )
+                            .frame(width: 30, height: 30)
+                            .cornerRadius(10)
+                            .padding(.leading, 10)
+                        Text(order.fruit[row].name)
+                            .foregroundColor(.black)
+                            .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                        Spacer()
+                        Text("\(order.fruit[row].count)")
+                            .foregroundColor(.black)
+                            .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                        Text("\(NSString(format: "%.2f", order.fruit[row].cost)) p.")
+                            .foregroundColor(Color.theme.lightGreen)
+                            .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                            .frame(width: 80, height: 20)
+                            .padding(.trailing, 10)
+                    }
+                }
                 Color.theme.gray
                     .opacity(0.3)
                     .frame(height: 10)
