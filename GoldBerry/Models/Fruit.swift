@@ -23,7 +23,7 @@ struct Fruit: Identifiable, Codable {
     var image: String
     var name: String
     var percent: Int?
-    var description: String?
+    var descriptions: String?
     var price: Double?
     var comment: String?
     var itog: Double {

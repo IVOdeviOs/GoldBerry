@@ -1,7 +1,10 @@
 import Foundation
 import SwiftUI
+import CoreData
 
 class FruitViewModel: ObservableObject {
+    
+    
     
     let columns = [
         GridItem(.flexible()),

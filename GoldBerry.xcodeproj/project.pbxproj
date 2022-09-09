@@ -35,6 +35,7 @@
 		DD539A59289AEFDD006F1CD1 /* ProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A58289AEFDD006F1CD1 /* ProductsView.swift */; };
 		DD539A6528A02839006F1CD1 /* FruitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A6428A02839006F1CD1 /* FruitViewModel.swift */; };
 		DD539A6928A02A63006F1CD1 /* OrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A6828A02A62006F1CD1 /* OrdersView.swift */; };
+		DD71311728CA8F1A00D8D936 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD71311628CA8F1A00D8D936 /* CoreDataManager.swift */; };
 		DD93807128B52FA900808E88 /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD93807028B52FA900808E88 /* OrderViewModel.swift */; };
 		DD93807328B54CF600808E88 /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD93807228B54CF600808E88 /* HttpClient.swift */; };
 		DD93807528B54D1000808E88 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD93807428B54D1000808E88 /* Constants.swift */; };
@@ -83,6 +84,7 @@
 		DD539A58289AEFDD006F1CD1 /* ProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsView.swift; sourceTree = "<group>"; };
 		DD539A6428A02839006F1CD1 /* FruitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitViewModel.swift; sourceTree = "<group>"; };
 		DD539A6828A02A62006F1CD1 /* OrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersView.swift; sourceTree = "<group>"; };
+		DD71311628CA8F1A00D8D936 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		DD93807028B52FA900808E88 /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
 		DD93807228B54CF600808E88 /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
 		DD93807428B54D1000808E88 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				DD95A83B2899ABD600DF346B /* Persistence.swift */,
 				DD93807228B54CF600808E88 /* HttpClient.swift */,
 				DD93807428B54D1000808E88 /* Constants.swift */,
+				DD71311628CA8F1A00D8D936 /* CoreDataManager.swift */,
 			);
 			path = Utilites;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				DC4807F228BC9925001416B6 /* ImagePicker.swift in Sources */,
 				DDBA58DE28A0419100FFC3A5 /* CategoriesCell.swift in Sources */,
 				DC4807E528BB8328001416B6 /* CompletedOrderView.swift in Sources */,
+				DD71311728CA8F1A00D8D936 /* CoreDataManager.swift in Sources */,
 				DCA5250528AE750A00A994F5 /* Color+.swift in Sources */,
 				DD95A83F2899ABD600DF346B /* GoldBerry.xcdatamodeld in Sources */,
 				DD93807528B54D1000808E88 /* Constants.swift in Sources */,

@@ -1,5 +1,5 @@
+import CoreData
 import SwiftUI
-
 struct MakingTheOrderView: View {
 
     func sendRequest(completion: @escaping (Bool) -> Void) {
@@ -12,6 +12,13 @@ struct MakingTheOrderView: View {
     @ObservedObject var viewModel: FruitViewModel
     @State var tog = false
     @State var tog1 = false
+    @Environment(\.managedObjectContext) private var viewContext
+
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)],
+        animation: .default
+    )
+    var fruits: FetchedResults<FruitEntity>
 
     var body: some View {
         VStack {
@@ -80,8 +87,40 @@ struct MakingTheOrderView: View {
                         tog = to
                         tog1 = true
                     }
+//                    ForEach(fruits) { f in
+//                        let fru = Fruit(cost: f.cost,
+//                                        weightOrPieces: f.weightOrPieces ?? "",
+//                                        categories: f.categories ?? "",
+//                                        favorite: f.favorite,
+//                                        count: Int(f.count),
+//                                        image: f.image ?? "",
+//                                        name: f.name ?? "",
+//                                        percent: Int(f.percent),
+//                                        descriptions: f.descriptions,
+//                                        price: f.price,
+//                                        comment: f.comment)
+//                    }
+
+                    func currentTopics(fruitss: FetchedResults<FruitEntity>) -> [Fruit] {
+                        var collected = [Fruit]()
+                        for fruit in fruitss {
+                            collected = [Fruit(cost: fruit.cost,
+                                           weightOrPieces: fruit.weightOrPieces ?? "",
+                                           categories: fruit.categories ?? "",
+                                           favorite: fruit.favorite,
+                                           count: Int(fruit.count),
+                                           image: fruit.image ?? "",
+                                           name: fruit.name ?? "",
+                                           percent: Int(fruit.percent),
+                                           descriptions: fruit.descriptions,
+                                           price: fruit.price,
+                                           comment: fruit.comment)]
+
+                        }
+                        return collected
+                    }
                     let orde = Order(orderNumber: viewModel.orderNumber,
-                                     date: viewModel.date, fruit: viewModel.fruit,
+                                     date: viewModel.date, fruit: currentTopics(fruitss: fruits),
                                      address: viewModel.address,
                                      price: Int(viewModel.price),
                                      customer: viewModel.customer,

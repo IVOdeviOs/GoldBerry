@@ -1,5 +1,5 @@
 import SwiftUI
-
+import CoreData
 struct InformationProductView: View {
     @ObservedObject var viewModel = FruitViewModel()
 //    @StateObject var viewModels = OrderViewModel()
@@ -11,7 +11,12 @@ struct InformationProductView: View {
     }
 //    var someUrl = URL(string: "\(fruit.urlIMage)")
 //   @State var heartIndex = false
-     
+    @Environment(\.managedObjectContext) private var viewContext
+
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)],
+        animation: .default)
+    private var fruits: FetchedResults<FruitEntity>
     
     var body: some View {
 
@@ -115,15 +120,19 @@ struct InformationProductView: View {
                     Spacer()
                     VStack {
                         Button {
+                            addFruit()
                             let fruits = Fruit(cost: fruit.cost ,
                                                weightOrPieces: fruit.weightOrPieces,
                                                categories: fruit.categories,
                                                favorite: fruit.favorite,
                                                count: fruit.count,
-                                               image: fruit.image, name: fruit.name, percent: fruit.percent, description: fruit.description, price: fruit.price)
+                                               image: fruit.image, name: fruit.name, percent: fruit.percent, descriptions: fruit.descriptions, price: fruit.price)
                            
                             viewModel.fruit.append(fruits)
                             print("🥶")
+                            print("\(fruits.name)")
+                            print("\(fruits.image)")
+
                         } label: {
                             HStack {
                                 Text("В корзину")
@@ -145,10 +154,50 @@ struct InformationProductView: View {
             }
         }
     }
+    private func addFruit() {
+        withAnimation {
+            let newFruit = FruitEntity(context: viewContext)
+            newFruit.name = fruit.name
+            newFruit.image = fruit.image
+            newFruit.cost = fruit.cost
+            newFruit.percent = Int16(fruit.percent ?? 0)
+            newFruit.price = fruit.price ?? 1
+            newFruit.favorite = fruit.favorite
+            newFruit.categories = fruit.categories
+            newFruit.weightOrPieces = fruit.weightOrPieces
+            newFruit.count = Int16(fruit.count)
+            newFruit.descriptions = fruit.descriptions
+            newFruit.comment = fruit.comment
+            newFruit.itog = fruit.itog
+            do {
+                try viewContext.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
+    }
+
+    private func deleteItems(offsets: IndexSet) {
+        withAnimation {
+            offsets.map { fruits[$0] }.forEach(viewContext.delete)
+
+            do {
+                try viewContext.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
+    }
 }
 
 struct InformationProductView_Previews: PreviewProvider {
     static var previews: some View {
-        InformationProductView(fruit: Fruit( cost: 1, weightOrPieces: "", categories: "", favorite: true, count: 1, image: "", name: "", percent: 1, description: "", price: 1))
+        InformationProductView(fruit: Fruit( cost: 1, weightOrPieces: "", categories: "", favorite: true, count: 1, image: "", name: "", percent: 1, descriptions: "", price: 1))
     }
 }
