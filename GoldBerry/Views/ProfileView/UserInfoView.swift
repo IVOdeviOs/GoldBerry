@@ -40,6 +40,7 @@ struct UserInfoView: View {
                 viewModel.user.userName = userName
                 viewModel.user.userPhone = userPhone
                 viewModel.user.userEmail = userEmail
+                ProfileView(viewModel: viewModel)
             } label: {
                 ZStack {
                     Color.theme.lightGreen

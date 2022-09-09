@@ -39,7 +39,7 @@ struct ProfileView: View {
                     }
                     .sheet(isPresented: $showUserInfoView, content: {
                         UserInfoView(
-                            viewModel: FruitViewModel(),
+                            viewModel: viewModel,
                             userName: viewModel.user.userName,
                             userSurname: viewModel.user.userSurname,
                             userPhone: viewModel.user.userPhone,
@@ -74,7 +74,7 @@ struct ProfileView: View {
                 self.showShopView.toggle()
             } label: {
                 ZStack {
-                    Color.theme.gray
+                    Color.gray
                         .frame(height: 50)
                         .opacity(0.4)
                     HStack {
@@ -101,7 +101,7 @@ struct ProfileView: View {
                 self.showFavouriteProductsView.toggle()
             } label: {
                 ZStack {
-                    Color.theme.gray
+                    Color.gray
                         .frame(height: 50)
                         .opacity(0.4)
                     HStack {
@@ -133,12 +133,10 @@ struct ProfileView: View {
                 }
             }
             NavigationLink {
-//            Button {
-//                self.showServiceInfoView.toggle()
                 ServiceInfoView()
             } label: {
                 ZStack {
-                    Color.theme.gray
+                    Color.gray
                         .frame(height: 50)
                         .opacity(0.4)
                     HStack {
@@ -166,7 +164,7 @@ struct ProfileView: View {
                     UIApplication.shared.open(url)
                 } label: {
                     ZStack {
-                        Color.theme.gray
+                        Color.gray
                             .frame(height: 50)
                             .opacity(0.4)
                         HStack {
