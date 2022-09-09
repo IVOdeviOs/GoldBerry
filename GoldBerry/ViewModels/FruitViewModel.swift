@@ -4,8 +4,6 @@ import CoreData
 
 class FruitViewModel: ObservableObject {
     
-    
-    
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
@@ -31,24 +29,24 @@ class FruitViewModel: ObservableObject {
     @Published var comment = ""
 
     @Published var favouriteProducts: [Fruit] = [
-    Fruit(
-        cost: 5.60,
-        weightOrPieces: "1 kg",
-        categories: "Fruits",
-        favorite: true,
-        count: 1,
-        image: "apple",
-        name: "Apple"
-    ),
-    Fruit(
-        cost: 1.50,
-        weightOrPieces: "1 kg",
-        categories: "Fruits",
-        favorite: true,
-        count: 1,
-        image: "watermelon",
-        name: "Watermelon"
-    )
+//    Fruit(
+//        cost: 5.60,
+//        weightOrPieces: "1 kg",
+//        categories: "Fruits",
+//        favorite: true,
+//        count: 1,
+//        image: "apple",
+//        name: "Apple"
+//    ),
+//    Fruit(
+//        cost: 1.50,
+//        weightOrPieces: "1 kg",
+//        categories: "Fruits",
+//        favorite: true,
+//        count: 1,
+//        image: "watermelon",
+//        name: "Watermelon"
+//    )
     ]
     
     func fetchOrder() async throws {
