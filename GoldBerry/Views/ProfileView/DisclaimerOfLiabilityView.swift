@@ -8,6 +8,7 @@ struct DisclaimerOfLiabilityView: View {
                     .font(Font(uiFont: .fontLibrary(25, .uzSansBold)))
                     .foregroundColor(.black)
                     .minimumScaleFactor(0.5)
+                    .multilineTextAlignment(.center)
                     .padding()
                 Text("""
                      Настоящее Положение о конфиденциальности персональных данных (далее – Положение) разработано ИП «Кутовенко Г.В.», действующего на основании Устава, и содержит в себе базовые нормы обработки, хранения и передачи персональных данных пользователей в рамках Интернет Сервиса GoldBerry.
@@ -104,7 +105,7 @@ struct DisclaimerOfLiabilityView: View {
                      
                      Дата публикации: 10.09.2022
 
-""")
+""").multilineTextAlignment(.leading)
                 .padding()
                     .font(Font(uiFont: .fontLibrary(10, .uzSansRegular)))
                     .foregroundColor(.black)

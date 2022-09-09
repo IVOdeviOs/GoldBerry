@@ -21,27 +21,6 @@ struct ProfileView: View {
                     .frame(height: 240)
                     .offset(y: -50)
                 HStack {
-                    //                    Button {
-                    //                        user.showImagePicker = true
-                    //                        sourceType = .photoLibrary
-                    //                    } label: {
-                    //                        ZStack {
-                    //
-                    //                            Image(uiImage: (user.userPhotoIntoAvatar ?? UIImage(systemName: "person.circle.fill")!))
-                    //                                .resizable()
-                    //                                .frame(width: 80, height: 80)
-                    //                                .foregroundColor(.red)
-                    //                                .cornerRadius(40)
-                    //                                .padding(.leading, 15)
-                    ////                            Color.gray
-                    ////                                .frame(width: 80, height: 80)
-                    ////                                .opacity(0.5)
-                    ////                                .padding(.leading, 15)
-                    //                        }
-                    //                    }
-                    //                    .fullScreenCover(isPresented: $user.showImagePicker) {
-                    //                        ImagePicker(image: $user.userPhotoIntoAvatar, isShow: $user.showImagePicker, sourceType: sourceType)
-                    //                    }
                     VStack {
                         Text(viewModel.user.userName.isEmpty || viewModel.user.userSurname.isEmpty ? "Имя Фамилия" : "\(viewModel.user.userName) \(viewModel.user.userSurname)")
                             .foregroundColor(.white)

@@ -20,6 +20,7 @@
 		DC4807F428C9DC8F001416B6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4807F328C9DC8F001416B6 /* User.swift */; };
 		DC4807F828CA9D1A001416B6 /* DeliveryInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4807F728CA9D1A001416B6 /* DeliveryInfoView.swift */; };
 		DC4807FA28CB123F001416B6 /* DisclaimerOfLiabilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4807F928CB123F001416B6 /* DisclaimerOfLiabilityView.swift */; };
+		DC4807FC28CB1A28001416B6 /* HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4807FB28CB1A28001416B6 /* HideKeyboard.swift */; };
 		DC9DE54A28BB508200057E90 /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9DE54928BB508200057E90 /* CartCell.swift */; };
 		DCA524D528AD31CD00A994F5 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA524D428AD31CD00A994F5 /* Font+.swift */; };
 		DCA5250328AE715100A994F5 /* helveticacyrillicupright.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCA5250228AE715100A994F5 /* helveticacyrillicupright.ttf */; };
@@ -69,6 +70,7 @@
 		DC4807F328C9DC8F001416B6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DC4807F728CA9D1A001416B6 /* DeliveryInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryInfoView.swift; sourceTree = "<group>"; };
 		DC4807F928CB123F001416B6 /* DisclaimerOfLiabilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclaimerOfLiabilityView.swift; sourceTree = "<group>"; };
+		DC4807FB28CB1A28001416B6 /* HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboard.swift; sourceTree = "<group>"; };
 		DC9DE54928BB508200057E90 /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
 		DCA524D428AD31CD00A994F5 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		DCA5250228AE715100A994F5 /* helveticacyrillicupright.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = helveticacyrillicupright.ttf; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				DC4807E228BB7E8A001416B6 /* TextField+.swift */,
 				DC4807F128BC9925001416B6 /* ImagePicker.swift */,
 				DCA5250428AE750A00A994F5 /* Color+.swift */,
+				DC4807FB28CB1A28001416B6 /* HideKeyboard.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				DC224EBE28BB3E5900F8760D /* CartView.swift in Sources */,
 				DC4807EE28BC9456001416B6 /* FavouriteProductsView.swift in Sources */,
 				DD93807328B54CF600808E88 /* HttpClient.swift in Sources */,
+				DC4807FC28CB1A28001416B6 /* HideKeyboard.swift in Sources */,
 				DCA5250C28AE815200A994F5 /* OrderInfoView.swift in Sources */,
 				DD539A6528A02839006F1CD1 /* FruitViewModel.swift in Sources */,
 				DC4807EA28BC8CC2001416B6 /* UserInfoView.swift in Sources */,

@@ -39,10 +39,11 @@ struct DeliveryInfoView: View {
                             .frame(width: 50, height: 80)
                             .foregroundColor(.red)
                             .padding(.trailing, -80)
-                        Text("Оформляете заказ\n        в приложении")
+                        Text("Оформляете заказ\nв приложении")
                             .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
                             .foregroundColor(.black)
                             .minimumScaleFactor(0.5)
+                            .multilineTextAlignment(.trailing)
                             .padding(.trailing, 60)
                     }
                 }
@@ -57,6 +58,7 @@ struct DeliveryInfoView: View {
                             .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
                             .foregroundColor(.black)
                             .minimumScaleFactor(0.5)
+                            .multilineTextAlignment(.leading)
                             .padding(.leading, 60)
                     }
                     Spacer()
@@ -69,10 +71,11 @@ struct DeliveryInfoView: View {
                             .frame(width: 80, height: 50)
                             .foregroundColor(.red)
                             .padding(.trailing, -20)
-                        Text("Оплачиваете заказ\n       при получении")
+                        Text("Оплачиваете заказ\nпри получении")
                             .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
                             .foregroundColor(.black)
                             .minimumScaleFactor(0.5)
+                            .multilineTextAlignment(.trailing)
                             .padding(.trailing, 60)
                     }
                 }
