@@ -72,9 +72,9 @@ struct ProfileView: View {
                 self.showShopView.toggle()
             } label: {
                 ZStack {
-                    Color.gray
+                    Color.theme.gray
                         .frame(height: 50)
-                        .opacity(0.4)
+                        .opacity(0.2)
                     HStack {
                         Text("Адреса торговых точек")
                             .foregroundColor(.black)
@@ -96,9 +96,9 @@ struct ProfileView: View {
                 self.showFavouriteProductsView.toggle()
             } label: {
                 ZStack {
-                    Color.gray
+                    Color.theme.gray
                         .frame(height: 50)
-                        .opacity(0.4)
+                        .opacity(0.2)
                     HStack {
                         Text("Избранные товары")
                             .foregroundColor(.black)
@@ -131,9 +131,9 @@ struct ProfileView: View {
                 ServiceInfoView()
             } label: {
                 ZStack {
-                    Color.gray
+                    Color.theme.gray
                         .frame(height: 50)
-                        .opacity(0.4)
+                        .opacity(0.2)
                     HStack {
                         Text("О сервисе")
                             .foregroundColor(.black)
@@ -159,9 +159,9 @@ struct ProfileView: View {
                     UIApplication.shared.open(url)
                 } label: {
                     ZStack {
-                        Color.gray
+                        Color.theme.gray
                             .frame(height: 50)
-                            .opacity(0.4)
+                            .opacity(0.2)
                         HStack {
                             Text("Служба поддержки")
                                 .foregroundColor(.black)
