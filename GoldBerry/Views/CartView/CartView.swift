@@ -1,5 +1,5 @@
-import SwiftUI
 import CoreData
+import SwiftUI
 
 struct CartView: View {
     @StateObject var viewModel = FruitViewModel()
@@ -9,16 +9,14 @@ struct CartView: View {
 //        sortDescriptors: [NSSortDescriptor(keyPath: \Fruits.name, ascending: true)],
 //        animation: .default)
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)])
-     var fruits: FetchedResults<FruitEntity>
-        
-    
+    var fruits: FetchedResults<FruitEntity>
+
     var body: some View {
-        if self.fruits.count == 0 {
+        if self.fruits.isEmpty {
             WithoutPurchase(viewModel: viewModel)
         } else {
             WithPurchase(viewModel: viewModel)
         }
-            
     }
 }
 
@@ -66,41 +64,43 @@ struct WithPurchase: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-            sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)],
-            animation: .default)
+        sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)],
+        animation: .default
+    )
     var fruits: FetchedResults<FruitEntity>
-        
-    
-    
+ @State var index = 0
     var body: some View {
         ZStack(alignment: .top) {
             VStack {
-                
+
                 ScrollView(showsIndicators: false) {
                     ForEach(fruits) { item in
                         //                List(viewModel.order.fruit) { item in
-                        Button {} label: {
+                        Button {
+                        } label: {
                             CartCell(
                                 imageName: item.image ?? "",
                                 cost: item.itog,
                                 name: item.name ?? "",
                                 index: item.name ?? "",
-                                description: item.descriptions ?? ""  ,
+                                description: item.descriptions ?? "",
                                 count: Int(item.count),
                                 price: Double(item.cost)
                             )
                         }
                         .padding()
                     }
-//                    .onDelete(perform: delete)
+                    .onDelete(perform: deleteItems)
+
                     .padding(.top, 125)
-                    .padding(.bottom,100)
+                    .padding(.bottom, 100)
                 }
                 
             }
             .ignoresSafeArea()
             ZStack {
                 VStack {
+                   
                     Spacer()
                     Button {
 //                    MakingTheOrderView(viewModels: OrderViewModel())
@@ -126,12 +126,24 @@ struct WithPurchase: View {
 
             .navigationBarHidden(true)
         }
-        .offset( y: -95)
+        .offset(y: -95)
 //        .ignoresSafeArea(edges: .top)
     }
 
+    private func deleteItems(offsets: IndexSet) {
+        withAnimation {
+            offsets.map { fruits[$0] }.forEach(viewContext.delete)
+
+            do {
+                try viewContext.save()
+            } catch {
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
+    }
 //    func delete(at offsets: IndexSet) {
-//        viewModel.order.fruit.remove(atOffsets: offsets)
+    ////        viewModel.order.fruit.remove(atOffsets: offsets)
 //    }
 }
 

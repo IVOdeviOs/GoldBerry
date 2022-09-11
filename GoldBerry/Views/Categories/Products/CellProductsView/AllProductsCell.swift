@@ -2,7 +2,7 @@ import SwiftUI
 
 struct AllProductsCell: View {
     @State var fruit: Fruit
-
+    
     var body: some View {
         VStack(spacing: 10) {
             ZStack(alignment: .bottomLeading) {
@@ -71,6 +71,50 @@ struct AllProductsCell: View {
                     .font(.system(size: 12, weight: .light, design: .serif))
                     .foregroundColor(.black.opacity(0.7))
                 Spacer()
+//                    Button {
+//                        if fruit.count >= 2 {
+//
+//
+//                            fruit.count -= 1
+//                            if fruit.price == 0 {
+//                                fruit.price = fruit.cost
+//                            } else {
+//                                fruit.price = fruit.cost * Double(fruit.count)
+//                            }
+//
+//    //                        viewModel.order.price -= price
+//    //                        print("\(price)")
+//                            fruit.price = fruit.price
+//                            print("\(String(describing: fruit.price))")
+//                        }
+//                    } label: {
+//                        Image(systemName: "minus.square.fill")
+//                            .resizable()
+//                            .frame(width: 20, height: 20)
+//                            .foregroundColor(Color.theme.gray)
+//                    }
+//                Text("\(fruit.count) кг")
+//                        .foregroundColor(.black)
+//                        .font(Font(uiFont: .fontLibrary(14, .uzSansRegular)))
+//                    Button {
+//                        fruit.count += 1
+//                        if fruit.price == 0 {
+//                            fruit.price = fruit.cost
+//                        } else {
+//                            fruit.price = fruit.cost * Double(fruit.count)
+//                        }
+//    //                    viewModel.order.price += price
+//    //                    print("\(price)")
+//                        fruit.price = fruit.price
+//                        print("\(fruit.price)")
+//
+//                    } label: {
+//                        Image(systemName: "plus.square.fill")
+//                            .resizable()
+//                            .frame(width: 20, height: 20)
+//                            .foregroundColor(Color.theme.lightGreen)
+//                    }
+                
             }
             .padding(.horizontal, 10)
             Spacer()
