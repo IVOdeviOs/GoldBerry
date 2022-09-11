@@ -1,23 +1,22 @@
-import SwiftUI
 import CoreData
+import SwiftUI
 struct InformationProductView: View {
     @ObservedObject var viewModel = FruitViewModel()
-//    @StateObject var viewModels = OrderViewModel()
 
     @State var fruit: Fruit
     @Environment(\.presentationMode) var presentationMode
     private func dismiss() {
         presentationMode.wrappedValue.dismiss()
     }
-//    var someUrl = URL(string: "\(fruit.urlIMage)")
-//   @State var heartIndex = false
+
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)],
-        animation: .default)
+        animation: .default
+    )
     private var fruits: FetchedResults<FruitEntity>
-    
+
     var body: some View {
 
         ZStack(alignment: .top) {
@@ -28,12 +27,12 @@ struct InformationProductView: View {
                         RemoteImageView(
                             url: URL(string: fruit.image)!,
                             placeholder: {
-                                Image(systemName: "icloud.and.arrow.up").frame(width: 300,height: 300)
+                                Image(systemName: "icloud.and.arrow.up").frame(width: 300, height: 300)
                             },
                             image: {
                                 $0
                                     .resizable()
-                                    .frame(width: UIScreen.main.bounds.width - 20  , height: 330)
+                                    .frame(width: UIScreen.main.bounds.width - 20, height: 330)
                                     .aspectRatio(contentMode: .fit)
                             }
                         )
@@ -42,33 +41,42 @@ struct InformationProductView: View {
                     }
                     .cornerRadius(30)
                     .padding(3)
-                    .padding(.top,16)
-                    Spacer()
+                    .padding(.top, 16)
+//                    Spacer()
+//                    HStack {
+//                        Image(systemName: "car")
+//                            .resizable()
+//                            .frame(width: 35, height: 35)
+//                            .foregroundColor(.green)
+//                        Text("Бесплатная доставка от 1000 ₽")
+//                            .font(.system(size: 16, weight: .medium, design: .default))
+//                        Spacer()
+//                    }
+//                    .padding(13)
+//                    .background(.gray.opacity(0.3))
+//                    .cornerRadius(20)
+//                    .padding(.horizontal)
                     HStack {
-                        Image(systemName: "car")
-                            .resizable()
-                            .frame(width: 35, height: 35)
-                            .foregroundColor(.green)
-                        Text("Бесплатная доставка от 1000 ₽")
-                            .font(.system(size: 16, weight: .medium, design: .default))
-                        Spacer()
-                    }
-                    .padding(13)
-                    .background(.gray.opacity(0.3))
-                    .cornerRadius(20)
-                    .padding(.horizontal)
-                    HStack {
-                        Text("\(fruit.itog, specifier: "%.2f")₽")
-                            .foregroundColor(.red)
-                            .font(.system(size: 23, weight: .bold, design: .default))
-                        ZStack {
-                            Text("\(NSString(format: "%.2f", fruit.cost))₽")
-                                .font(.system(size: 13, weight: .light, design: .serif))
-                                .foregroundColor(.black.opacity(0.6))
-                            Color(CGColor(gray: 0, alpha: 1)).opacity(0.5)
-                                .frame(width: 45, height: 0.5)
+                      
+                        if fruit.itog == fruit.cost {
+                            Text("\(fruit.cost, specifier: "%.2f")₽")
+                                .font(.system(size: 23, weight: .bold, design: .default))
+                                .foregroundColor(.black)
+                            Spacer()
+                        } else {
+                            Text("\(fruit.itog, specifier: "%.2f")₽")
+                                .font(.system(size: 23, weight: .bold, design: .default))
+                                .foregroundColor(.red)
+                            ZStack {
+                                Text("\(fruit.cost, specifier: "%.2f")₽")
+                                    .font(.system(size: 13, weight: .light, design: .serif))
+                                    .foregroundColor(.black.opacity(0.6))
+                                Color(CGColor(gray: 0, alpha: 1)).opacity(0.5)
+                                    .frame(width: 45, height: 0.5)
+                            }
+
+                            Spacer()
                         }
-                        Spacer()
                     }
                     .padding(.horizontal)
 
@@ -106,7 +114,7 @@ struct InformationProductView: View {
                         Button {
                             fruit.favorite.toggle()
                         } label: {
-                            Image(systemName: fruit.favorite ? "heart.fill" : "heart" )
+                            Image(systemName: fruit.favorite ? "heart.fill" : "heart")
                                 .renderingMode(.template)
                                 .scaleEffect(3)
                                 .foregroundColor(.red)
@@ -121,13 +129,13 @@ struct InformationProductView: View {
                     VStack {
                         Button {
                             addFruit()
-                            let fruits = Fruit(cost: fruit.cost ,
+                            let fruits = Fruit(cost: fruit.cost,
                                                weightOrPieces: fruit.weightOrPieces,
                                                categories: fruit.categories,
                                                favorite: fruit.favorite,
                                                count: fruit.count,
                                                image: fruit.image, name: fruit.name, percent: fruit.percent, descriptions: fruit.descriptions, price: fruit.price)
-                           
+
                             viewModel.fruit.append(fruits)
                             print("🥶")
                             print("\(fruits.name)")
@@ -149,11 +157,12 @@ struct InformationProductView: View {
                             .padding(.horizontal, 16)
                         }
                     }
-                    .offset(y: -95)
+                    .offset(y: -110)
                 }
             }
         }
     }
+
     private func addFruit() {
         withAnimation {
             let newFruit = FruitEntity(context: viewContext)
@@ -198,6 +207,6 @@ struct InformationProductView: View {
 
 struct InformationProductView_Previews: PreviewProvider {
     static var previews: some View {
-        InformationProductView(fruit: Fruit( cost: 1, weightOrPieces: "", categories: "", favorite: true, count: 1, image: "", name: "", percent: 1, descriptions: "", price: 1))
+        InformationProductView(fruit: Fruit(cost: 1, weightOrPieces: "", categories: "", favorite: true, count: 1, image: "", name: "", percent: 1, descriptions: "", price: 1))
     }
 }

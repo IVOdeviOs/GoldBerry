@@ -1,18 +1,43 @@
 import SwiftUI
 
+enum categories: String {
+    case watermelon
+    case granat
+    case fresh
+    case fruct
+}
+
 struct ProductsView: View {
     @ObservedObject var viewModel: FruitViewModel
-    
+    @State var tag = "watermelon"
     var body: some View {
 
         NavigationView {
             VStack {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        CategoriesCell(nameImage: "watermelon", nameCategories: "Арбуз и дыня")
-                        CategoriesCell(nameImage: "granat", nameCategories: "Гранат")
-                        CategoriesCell(nameImage: "fresh", nameCategories: "Фреши и смузи")
-                        CategoriesCell(nameImage: "fruct", nameCategories: "Фрукты")
+                        Button {
+                            tag = categories.watermelon.rawValue
+                        } label: {
+                            CategoriesCell(nameImage: categories.watermelon.rawValue, nameCategories: "Арбуз и дыня")
+                        }
+                        Button {
+                            tag = categories.granat.rawValue
+
+                        } label: {
+                            CategoriesCell(nameImage: categories.granat.rawValue, nameCategories: "Гранат")
+                        }
+                        Button {
+                            tag = categories.fresh.rawValue
+
+                        } label: {
+                            CategoriesCell(nameImage: categories.fresh.rawValue, nameCategories: "Фреши и смузи")
+                        }
+                        Button {
+                            tag = categories.fruct.rawValue
+                        } label: {
+                            CategoriesCell(nameImage: categories.fruct.rawValue, nameCategories: "Фрукты")
+                        }
                     }
                     .padding(.horizontal, 10)
                     .padding(.top, 0)
@@ -27,15 +52,15 @@ struct ProductsView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {
                         LazyVGrid(columns: viewModel.columns, alignment: .center, spacing: 1, pinnedViews: .sectionFooters, content: {
-                            ForEach(viewModel.fruit){ fruits in
-//                                if fruits.name == "arbuz"{
+                            ForEach(viewModel.fruit) { fruits in
+                                if fruits.categories == tag {
                                 NavigationLink {
                                     InformationProductView(fruit: fruits)
                                 } label: {
                                     AllProductsCell(fruit: fruits)
                                         .padding(.bottom, 30)
                                 }
-//                                }
+                                }
                             }
 
                         }).padding(.bottom, 60)
@@ -46,7 +71,6 @@ struct ProductsView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarHidden(true)
         }
-       
     }
 }
 
