@@ -14,8 +14,20 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
-            let newItem = FruitEntity(context: viewContext)
-//            newItem.timestamp = Date()
+            let newFruit = FruitEntity(context: viewContext)
+//              let newFruit = FruitEntity(context: viewContext)
+            newFruit.name = String()
+            newFruit.image = String()
+            newFruit.cost = Double()
+            newFruit.percent = Int16()
+            newFruit.price = Double()
+            newFruit.favorite = Bool()
+            newFruit.categories = String()
+            newFruit.weightOrPieces = String()
+            newFruit.count = Int16()
+            newFruit.descriptions = String()
+            newFruit.comment = String()
+            newFruit.itog = Double()
         }
         do {
             try viewContext.save()

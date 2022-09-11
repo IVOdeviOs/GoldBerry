@@ -1,9 +1,9 @@
 import SwiftUI
 
 struct FavouriteProductsView: View {
-    
+
     @ObservedObject var viewModel: FruitViewModel
-    
+
     var body: some View {
 
         if viewModel.favouriteProducts.isEmpty {
@@ -11,7 +11,6 @@ struct FavouriteProductsView: View {
         } else {
             WithFavouriteProductsView(viewModel: viewModel)
         }
-       
     }
 }
 
@@ -52,24 +51,37 @@ struct WithoutFavouriteProductsView: View {
 }
 
 struct WithFavouriteProductsView: View {
-    
+
     @ObservedObject var viewModel: FruitViewModel
-    
+
     var body: some View {
 
         NavigationView {
             VStack {
-                    Text("Избранные товары")
+                Text("Избранные товары")
                     .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
-                        .foregroundColor(.green)
-                .padding()
+                    .foregroundColor(.green)
+                    .padding()
 
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {
                         LazyVGrid(columns: viewModel.columns, alignment: .center, spacing: 1, pinnedViews: .sectionFooters, content: {
-                            ForEach(viewModel.fruit){ fruits in
+                            ForEach(viewModel.fruit) { fruits in
                                 NavigationLink {
-                                    InformationProductView(fruit: fruits)
+                                    InformationProductView(
+                                        image: fruits.image,
+                                        name: fruits.name,
+                                        itog: Int(fruits.itog),
+                                        cost: Int(fruits.cost),
+                                        comment: fruits.comment ?? "",
+                                        favorite: fruits.favorite,
+                                        count: fruits.count,
+                                        percent: fruits.percent ?? 0,
+                                        weightOrPieces: fruits.weightOrPieces,
+                                        descriptions: fruits.descriptions ?? "",
+                                        price: fruits.price ?? 1,
+                                        categories: fruits.categories
+                                    )
                                 } label: {
                                     AllProductsCell(fruit: fruits)
                                         .padding(.bottom, 30)
@@ -85,6 +97,7 @@ struct WithFavouriteProductsView: View {
         }
     }
 }
+
 struct FavouriteProductsView_Previews: PreviewProvider {
     static var previews: some View {
         FavouriteProductsView(viewModel: FruitViewModel())

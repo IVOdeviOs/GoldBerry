@@ -20,7 +20,7 @@ struct ProfileView: View {
                     .offset(y: -50)
                 HStack {
                     VStack {
-                        Text(viewModel.user.userName.isEmpty || viewModel.user.userSurname.isEmpty ? "Имя Фамилия" : "\(viewModel.user.userName) \(viewModel.user.userSurname)")
+                        Text(viewModel.user.userName.isEmpty && viewModel.user.userSurname.isEmpty ? "Имя Фамилия" : "\(viewModel.user.userName) \(viewModel.user.userSurname)")
                             .foregroundColor(.white)
                             .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
                             .padding()

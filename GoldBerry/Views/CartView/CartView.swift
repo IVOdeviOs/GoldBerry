@@ -8,7 +8,7 @@ struct CartView: View {
 //    @FetchRequest(
 //        sortDescriptors: [NSSortDescriptor(keyPath: \Fruits.name, ascending: true)],
 //        animation: .default)
-    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)])
+    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
     var fruits: FetchedResults<FruitEntity>
 
     var body: some View {
@@ -60,19 +60,21 @@ struct WithPurchase: View {
     @ObservedObject var viewModel: FruitViewModel
 
     @State var show = false
-//    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)])
     @Environment(\.managedObjectContext) private var viewContext
+//    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.favorite ,  ascending: true)])
+//
+    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
+//    @FetchRequest(
+//        sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name , ascending: true)],
+//        animation: .default
+//    )
+   private var fruits: FetchedResults<FruitEntity>
 
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)],
-        animation: .default
-    )
-    var fruits: FetchedResults<FruitEntity>
- @State var index = 0
     var body: some View {
         ZStack(alignment: .top) {
             VStack {
-
+                                
+        
                 ScrollView(showsIndicators: false) {
                     ForEach(fruits) { item in
                         //                List(viewModel.order.fruit) { item in
@@ -90,17 +92,16 @@ struct WithPurchase: View {
                         }
                         .padding()
                     }
-                    .onDelete(perform: deleteItems)
+                //                    .onDelete(perform: deleteItems)
 
                     .padding(.top, 125)
                     .padding(.bottom, 100)
                 }
-                
             }
             .ignoresSafeArea()
             ZStack {
                 VStack {
-                   
+
                     Spacer()
                     Button {
 //                    MakingTheOrderView(viewModels: OrderViewModel())

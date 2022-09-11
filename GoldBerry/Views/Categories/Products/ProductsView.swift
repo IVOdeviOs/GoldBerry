@@ -9,7 +9,9 @@ enum categories: String {
 
 struct ProductsView: View {
     @ObservedObject var viewModel: FruitViewModel
+    
     @State var tag = "watermelon"
+    
     var body: some View {
 
         NavigationView {
@@ -52,14 +54,26 @@ struct ProductsView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {
                         LazyVGrid(columns: viewModel.columns, alignment: .center, spacing: 1, pinnedViews: .sectionFooters, content: {
-                            ForEach(viewModel.fruit) { fruits in
+                            ForEach(viewModel.fruit){ fruits in
                                 if fruits.categories == tag {
-                                NavigationLink {
-                                    InformationProductView(fruit: fruits)
-                                } label: {
-                                    AllProductsCell(fruit: fruits)
-                                        .padding(.bottom, 30)
-                                }
+                                    NavigationLink {
+                                        InformationProductView(image: fruits.image,
+                                                               name: fruits.name,
+                                                               itog: Int(fruits.itog),
+                                                               cost: Int(fruits.cost),
+                                                               comment: fruits.comment ?? "",
+                                                               favorite: fruits.favorite,
+                                                               count: fruits.count,
+                                                               percent: fruits.percent ?? 1,
+                                                               weightOrPieces: fruits.weightOrPieces,
+                                                               descriptions: fruits.descriptions ?? "",
+                                                               price: fruits.price ?? 1,
+                                                               categories: fruits.categories)
+                                    } label: {
+                                        AllProductsCell(fruit: fruits)
+
+                                            .padding(.bottom, 30)
+                                    }
                                 }
                             }
 
