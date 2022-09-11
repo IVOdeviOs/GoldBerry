@@ -16,8 +16,8 @@ struct InformationProductView: View {
     
     @State var image:String
     @State var name:String
-    @State var itog:Int
-    @State var cost:Int
+    @State var itog:Double
+    @State var cost:Double
     @State var comment:String
     @State var favorite:Bool
     @State var count:Int
@@ -135,7 +135,26 @@ struct InformationProductView: View {
                     .padding(.horizontal)
                     Spacer()
                     VStack {
-                        Button(action: addFruit) {
+                    
+                        Button {
+                            addFruit()
+//                            let frui = Fruit(cost: Double(cost),
+//                                             weightOrPieces: weightOrPieces,
+//                                             categories: categories,
+//                                             favorite: favorite,
+//                                             count: count,
+//                                             image: image,
+//                                             name: name,
+//                                             percent: percent,
+//                                             descriptions: descriptions,
+//                                             price: price)
+//
+//                            viewModel.fruit.append(frui)
+                            print("🥶")
+                            print("\(name)")
+                            print("\(image)")
+
+                        } label: {
                             HStack {
                                 Text("В корзину")
                                     .foregroundColor(.white)
@@ -150,38 +169,6 @@ struct InformationProductView: View {
                             .cornerRadius(20)
                             .padding(.horizontal, 16)
                         }
-//                        Button {
-//                            addFruit
-//                            let frui = Fruit(cost: Double(cost),
-//                                             weightOrPieces: weightOrPieces,
-//                                             categories: categories,
-//                                             favorite: favorite,
-//                                             count: count,
-//                                             image: image, name: name,
-//                                             percent: percent,
-//                                             descriptions: descriptions,
-//                                             price: price)
-
-//                            viewModel.fruit.append(frui)
-//                            print("🥶")
-//                            print("\(name)")
-//                            print("\(image)")
-//
-//                        } label: {
-//                            HStack {
-//                                Text("В корзину")
-//                                    .foregroundColor(.white)
-//                                    .font(.system(size: 18, weight: .bold, design: .serif))
-//                                Spacer()
-//                                Text("\(itog, specifier: "%.2f")₽")
-//                                    .foregroundColor(.white)
-//                                    .font(.system(size: 18, weight: .bold, design: .serif))
-//                            }
-//                            .padding()
-//                            .background(Color.theme.lightGreen)
-//                            .cornerRadius(20)
-//                            .padding(.horizontal, 16)
-//                        }
                     }
                     .offset(y: -110)
                 }
@@ -194,7 +181,7 @@ struct InformationProductView: View {
             let newFruit = FruitEntity(context: viewContext)
             newFruit.name = name
             newFruit.image = image
-            newFruit.cost = Double(cost)
+            newFruit.cost = cost
             newFruit.percent = Int16(percent )
             newFruit.price = price
             newFruit.favorite = favorite

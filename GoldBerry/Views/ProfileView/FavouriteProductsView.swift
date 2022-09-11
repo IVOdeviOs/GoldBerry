@@ -71,8 +71,8 @@ struct WithFavouriteProductsView: View {
                                     InformationProductView(
                                         image: fruits.image,
                                         name: fruits.name,
-                                        itog: Int(fruits.itog),
-                                        cost: Int(fruits.cost),
+                                        itog: fruits.itog,
+                                        cost: fruits.cost,
                                         comment: fruits.comment ?? "",
                                         favorite: fruits.favorite,
                                         count: fruits.count,

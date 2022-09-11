@@ -60,7 +60,7 @@ struct WithPurchase: View {
     @ObservedObject var viewModel: FruitViewModel
 
     @State var show = false
-    @Environment(\.managedObjectContext) private var viewContext
+//    @Environment(\.managedObjectContext) private var viewContext
 //    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.favorite ,  ascending: true)])
 //
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
@@ -68,37 +68,45 @@ struct WithPurchase: View {
 //        sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name , ascending: true)],
 //        animation: .default
 //    )
-   private var fruits: FetchedResults<FruitEntity>
+    var fruits: FetchedResults<FruitEntity>
 
     var body: some View {
         ZStack(alignment: .top) {
-            VStack {
-                                
-        
-                ScrollView(showsIndicators: false) {
-                    ForEach(fruits) { item in
-                        //                List(viewModel.order.fruit) { item in
-                        Button {
-                        } label: {
-                            CartCell(
-                                imageName: item.image ?? "",
-                                cost: item.itog,
-                                name: item.name ?? "",
-                                index: item.name ?? "",
-                                description: item.descriptions ?? "",
-                                count: Int(item.count),
-                                price: Double(item.cost)
-                            )
-                        }
-                        .padding()
-                    }
-                //                    .onDelete(perform: deleteItems)
+//            VStack {
 
-                    .padding(.top, 125)
-                    .padding(.bottom, 100)
+//                ScrollView(showsIndicators: false) {
+            ScrollView {
+                ForEach(fruits) { item in
+                    //                List(viewModel.order.fruit) { item in
+                    Button {} label: {
+                        CartCell(
+                            imageName: item.image ?? "",
+                            cost: item.itog,
+                            name: item.name ?? "",
+                            index: item.name ?? "",
+                            description: item.descriptions ?? "",
+                            count: Int(item.count),
+                            price: Double(item.cost)
+                        )
+                        .swipeActions(content: {
+                            Button {
+                                //                                deleteItems
+                            } label: {
+                                Label(" Delete ", systemImage: " trash ")
+                            }.tint(.red)
+
+                        })
+                    }
+
+                    .padding()
                 }
+
+                .padding(.top, 125)
+                .padding(.bottom, 100)
+                //                }
+                //            }
+                .ignoresSafeArea()
             }
-            .ignoresSafeArea()
             ZStack {
                 VStack {
 
@@ -131,18 +139,18 @@ struct WithPurchase: View {
 //        .ignoresSafeArea(edges: .top)
     }
 
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { fruits[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
+//    private func deleteItems(offsets: IndexSet) {
+//        withAnimation {
+//            offsets.map { fruits[$0] }.forEach(viewContext.delete)
+//
+//            do {
+//                try viewContext.save()
+//            } catch {
+//                let nsError = error as NSError
+//                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+//            }
+//        }
+//    }
 //    func delete(at offsets: IndexSet) {
     ////        viewModel.order.fruit.remove(atOffsets: offsets)
 //    }
