@@ -2,7 +2,7 @@ import SwiftUI
 
 struct AllProductsCell: View {
     @State var fruit: Fruit
-
+    
     var body: some View {
         VStack(spacing: 10) {
             ZStack(alignment: .bottomLeading) {
@@ -30,19 +30,27 @@ struct AllProductsCell: View {
                     .padding(5)
             }
             HStack {
-                Text("\(fruit.itog, specifier: "%.2f")₽")
-                    .font(.system(size: 14, weight: .bold, design: .serif))
-                    .foregroundColor(.red)
-                ZStack {
+                if fruit.itog == fruit.cost {
                     Text("\(fruit.cost, specifier: "%.2f")₽")
-                        .font(.system(size: 12, weight: .light, design: .serif))
-                        .foregroundColor(.black.opacity(0.6))
-                    Color(CGColor(gray: 0, alpha: 1)).opacity(0.5)
-                        .frame(width: 45, height: 0.5)
-                }
+                        .font(.system(size: 14, weight: .bold, design: .serif))
+                        .foregroundColor(.black)
+                    Spacer()
+                } else {
+                    Text("\(fruit.itog, specifier: "%.2f")₽")
+                        .font(.system(size: 14, weight: .bold, design: .serif))
+                        .foregroundColor(.red)
+                    ZStack {
+                        Text("\(fruit.cost, specifier: "%.2f")₽")
+                            .font(.system(size: 12, weight: .light, design: .serif))
+                            .foregroundColor(.black.opacity(0.6))
+                        Color(CGColor(gray: 0, alpha: 1)).opacity(0.5)
+                            .frame(width: 45, height: 0.5)
+                    }
 
-                Spacer()
+                    Spacer()
+                }
             }.padding(.horizontal, 5)
+
             HStack {
                 Text(fruit.name)
                     .font(.system(size: 12, weight: .light, design: .serif))
@@ -63,6 +71,50 @@ struct AllProductsCell: View {
                     .font(.system(size: 12, weight: .light, design: .serif))
                     .foregroundColor(.black.opacity(0.7))
                 Spacer()
+//                    Button {
+//                        if fruit.count >= 2 {
+//
+//
+//                            fruit.count -= 1
+//                            if fruit.price == 0 {
+//                                fruit.price = fruit.cost
+//                            } else {
+//                                fruit.price = fruit.cost * Double(fruit.count)
+//                            }
+//
+//    //                        viewModel.order.price -= price
+//    //                        print("\(price)")
+//                            fruit.price = fruit.price
+//                            print("\(String(describing: fruit.price))")
+//                        }
+//                    } label: {
+//                        Image(systemName: "minus.square.fill")
+//                            .resizable()
+//                            .frame(width: 20, height: 20)
+//                            .foregroundColor(Color.theme.gray)
+//                    }
+//                Text("\(fruit.count) кг")
+//                        .foregroundColor(.black)
+//                        .font(Font(uiFont: .fontLibrary(14, .uzSansRegular)))
+//                    Button {
+//                        fruit.count += 1
+//                        if fruit.price == 0 {
+//                            fruit.price = fruit.cost
+//                        } else {
+//                            fruit.price = fruit.cost * Double(fruit.count)
+//                        }
+//    //                    viewModel.order.price += price
+//    //                    print("\(price)")
+//                        fruit.price = fruit.price
+//                        print("\(fruit.price)")
+//
+//                    } label: {
+//                        Image(systemName: "plus.square.fill")
+//                            .resizable()
+//                            .frame(width: 20, height: 20)
+//                            .foregroundColor(Color.theme.lightGreen)
+//                    }
+                
             }
             .padding(.horizontal, 10)
             Spacer()
@@ -76,6 +128,6 @@ struct AllProductsCell: View {
 
 struct AllProductsCell_Previews: PreviewProvider {
     static var previews: some View {
-        AllProductsCell(fruit:  Fruit( cost: 1, weightOrPieces: "", categories: "", favorite: true, count: 1, image: "", name: "", percent: 1, descriptions: "", price: 1)).previewLayout(.fixed(width: 180, height: 290))
+        AllProductsCell(fruit: Fruit(cost: 1, weightOrPieces: "", categories: "", favorite: true, count: 1, image: "", name: "", percent: 1, descriptions: "", price: 1)).previewLayout(.fixed(width: 180, height: 290))
     }
 }

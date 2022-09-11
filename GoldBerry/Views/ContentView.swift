@@ -9,9 +9,6 @@ extension Color {
 
 struct ContentView: View {
     @StateObject var viewModel = FruitViewModel()
-//    @StateObject var viewModels = OrderViewModel()
-//    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)])
-//    var fruits: FetchedResults<FruitEntity>
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
