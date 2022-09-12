@@ -71,7 +71,7 @@ struct WithPurchase: View {
             ScrollView(showsIndicators: false) {
 
                 
-                ForEach(fruits) { item in
+                ForEach(fruits) { item  in
                     //                List(viewModel.order.fruit) { item in
 
                     NavigationLink {} label: {
