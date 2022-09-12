@@ -111,7 +111,7 @@ struct WithPurchase: View {
 //                    MakingTheOrderView(viewModels: OrderViewModel())
                         self.show.toggle()
                     } label: {
-                        Text("Оформить заказ   \(NSString(format: "%.2f", viewModel.sum)) р")
+                        Text("Оформить заказ   \(NSString(format: "%.2f", viewModel.price)) р")
                             .foregroundColor(.white)
                             .frame(width: UIScreen.main.bounds.width - 30, height: 50)
                             .background(Color.theme.lightGreen)

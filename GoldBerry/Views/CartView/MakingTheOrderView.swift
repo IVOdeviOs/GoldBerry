@@ -12,7 +12,12 @@ struct MakingTheOrderView: View {
     @ObservedObject var viewModel: FruitViewModel
     @State var tog = false
     @State var tog1 = false
-    @State var dateToDelivery = Date()
+    @State var deliveryDate = Date()
+    func dateFormatter() {
+        @State var dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "dd.MM.yyyy.HH.mm"
+        viewModel.date = dateFormatter.string(from: deliveryDate)
+    }
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
@@ -60,10 +65,15 @@ struct MakingTheOrderView: View {
                         .padding()
                     Spacer()
                 }
+//                Form {
+                    DatePicker("", selection: $deliveryDate)
+//                        .datePickerStyle(WheelPickerStyle())
+//                }
                 TextFieldView(text: $viewModel.date, placeholder: "Выбрать дату и время")
                 Color.theme.gray
                     .opacity(0.3)
                     .frame(height: 10)
+                
                 VStack {
                     HStack {
                         Text("Куда доставить")

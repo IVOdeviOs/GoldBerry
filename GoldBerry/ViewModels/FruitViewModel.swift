@@ -21,7 +21,6 @@ class FruitViewModel: ObservableObject {
         userPhone: "",
         userEmail: ""
     )
-    @Published var sum: Double = 0
 
     @Published var date = ""
     @Published var address = ""

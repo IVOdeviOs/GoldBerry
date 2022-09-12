@@ -82,8 +82,8 @@ struct CartCell: View {
                     
 //                        viewModel.order.price -= price
 //                        print("\(price)")
-                        viewModel.sum = price
-                        print("\(viewModel.sum)")
+                        viewModel.price = price
+                        print("\(viewModel.price)")
                     }
                 } label: {
                     Image(systemName: "minus.square.fill")
