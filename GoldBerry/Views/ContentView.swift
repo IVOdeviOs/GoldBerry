@@ -26,35 +26,42 @@ struct ContentView: View {
                     VStack {
                         ZStack {
                             HStack {
+                           
                                 Text("GoldBerry")
-                                    .font(Font(uiFont: .fontLibrary(24, .uzSansBold)))
-                                    .foregroundColor(Color.theme.lightGreen)
+                                    .font(Font(uiFont: .fontLibrary(32, .uzSansBold)))
+                                    .foregroundColor(viewModel.selected == 3 ? .white : Color.theme.lightGreen)
                                     .padding()
                                 Spacer()
-                                HStack(spacing: 5) {
-                                    Image(systemName: "cart.fill")
-                                        .resizable()
-                                        .frame(width: 25, height: 25)
-                                        .foregroundColor(Color.theme.lightGreen)
-
-                                    HStack(spacing: 1) {
-
-                                        Text("100000")
-                                            .font(Font(uiFont: .fontLibrary(16, .helvetica)))
-                                            .foregroundColor(.black)
-                                            .minimumScaleFactor(0.5)
-                                        Text("руб")
-                                            .font(Font(uiFont: .fontLibrary(16, .helvetica)))
-                                            .foregroundColor(.black)
-                                    }
-                                }
-                                .padding()
-                                .frame(width: 140, height: 45)
-                                .background(.white)
-                                .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                                .shadow(color: .green.opacity(0.2), radius: 10, x: 0, y: 10)
-                                .padding(.horizontal, 30)
+                                Image("goldBerryLogo")
+                                    .resizable()
+                                    .frame(width: 50, height: 50)
+                                    .cornerRadius(8)
+                                    .padding()
                             }
+//                                HStack(spacing: 5) {
+//                                    Image(systemName: "cart.fill")
+//                                        .resizable()
+//                                        .frame(width: 25, height: 25)
+//                                        .foregroundColor(Color.theme.lightGreen)
+//
+//                                    HStack(spacing: 1) {
+//
+//                                        Text("100000")
+//                                            .font(Font(uiFont: .fontLibrary(16, .helvetica)))
+//                                            .foregroundColor(.black)
+//                                            .minimumScaleFactor(0.5)
+//                                        Text("руб")
+//                                            .font(Font(uiFont: .fontLibrary(16, .helvetica)))
+//                                            .foregroundColor(.black)
+//                                    }
+//                                }
+//                                .padding()
+//                                .frame(width: 140, height: 45)
+//                                .background(.white)
+//                                .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+//                                .shadow(color: .green.opacity(0.2), radius: 10, x: 0, y: 10)
+//                                .padding(.horizontal, 30)
+//                            }
                             .padding(.top, 60)
                         }
 

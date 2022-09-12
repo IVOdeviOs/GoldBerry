@@ -66,7 +66,7 @@ struct ProfileView: View {
                         }
                     }
                 }
-                .offset(x: -110, y: -70)
+                .offset(x: -130, y: -80)
             }
             Button {
                 self.showShopView.toggle()
