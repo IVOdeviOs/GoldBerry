@@ -132,6 +132,7 @@ struct MakingTheOrderView: View {
                     func currentTopics(fruitss: FetchedResults<FruitEntity>) -> [Fruit] {
                         var collected = [Fruit]()
                         for fruit in fruitss {
+//                            collected.append(fruit)
                             collected = [Fruit(cost: fruit.cost,
                                            weightOrPieces: fruit.weightOrPieces ?? "",
                                            categories: fruit.categories ?? "",

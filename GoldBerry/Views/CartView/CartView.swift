@@ -57,13 +57,15 @@ struct WithoutPurchase: View {
 }
 
 struct WithPurchase: View {
-    @ObservedObject var viewModel: FruitViewModel
+    @ObservedObject var viewModel = FruitViewModel()
 
     @State var show = false
+    @Environment(\.managedObjectContext) private var viewContext
 
-    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
+    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.image, ascending: true)])
 
     var fruits: FetchedResults<FruitEntity>
+
     var body: some View {
         ZStack(alignment: .top) {
 //            VStack {
@@ -86,7 +88,8 @@ struct WithPurchase: View {
                     }
 //                        .swipeActions(content: {
 //                            Button {
-                        // //                                deleteItems
+//                 //                                deleteItems
+////                                EditButton()
 //                            } label: {
 //                                Label(" Delete ", systemImage: " trash ")
 //                            }.tint(.red)
@@ -111,7 +114,7 @@ struct WithPurchase: View {
 //                    MakingTheOrderView(viewModels: OrderViewModel())
                         self.show.toggle()
                     } label: {
-                        Text("Оформить заказ   \(NSString(format: "%.2f", viewModel.price)) р")
+                        Text("Оформить заказ   \(NSString(format: "%.2f", viewModel.pri)) р")
                             .foregroundColor(.white)
                             .frame(width: UIScreen.main.bounds.width - 30, height: 50)
                             .background(Color.theme.lightGreen)
@@ -135,18 +138,18 @@ struct WithPurchase: View {
 //        .ignoresSafeArea(edges: .top)
     }
 
-//    private func deleteItems(offsets: IndexSet) {
-//        withAnimation {
-//            offsets.map { fruits[$0] }.forEach(viewContext.delete)
-//
-//            do {
-//                try viewContext.save()
-//            } catch {
-//                let nsError = error as NSError
-//                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-//            }
-//        }
-//    }
+    private func deleteItems(offsets: IndexSet) {
+        withAnimation {
+            offsets.map { fruits[$0] }.forEach(viewContext.delete)
+
+            do {
+                try viewContext.save()
+            } catch {
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
+    }
 //    func delete(at offsets: IndexSet) {
     ////        viewModel.order.fruit.remove(atOffsets: offsets)
 //    }

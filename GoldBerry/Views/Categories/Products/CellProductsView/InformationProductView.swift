@@ -194,6 +194,7 @@ struct InformationProductView: View {
             newFruit.itog = Double(itog)
 //            print(newFruit.name! + "😍")
             do {
+                
                 try viewContext.save()
             } catch {
                 let nsError = error as NSError

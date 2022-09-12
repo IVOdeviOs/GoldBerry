@@ -49,7 +49,7 @@ struct CartCell: View {
 //                            .font(.system(size: 30))
                         Spacer()
                         Button {
-                            
+//                            EditButton()
 //                            index = 1
                         } label: {
                             Image(systemName: "x.square")
@@ -103,8 +103,9 @@ struct CartCell: View {
                     }
 //                    viewModel.order.price += price
 //                    print("\(price)")
-                    viewModel.price = price
-                    print("\(viewModel.price)")
+//                    viewModel.price = price
+                    viewModel.pri += Int(price)
+//                    print("\(viewModel.price)")
 
                 } label: {
                     Image(systemName: "plus.square.fill")
@@ -127,7 +128,6 @@ struct CartCell: View {
             } else {
             price = cost * Double(count)
             }
-            
         }
         .padding()
         .background(.gray.opacity(0.1))

@@ -1,9 +1,9 @@
+import CoreData
 import Foundation
 import SwiftUI
-import CoreData
 
 class FruitViewModel: ObservableObject {
-    
+
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
@@ -28,8 +28,9 @@ class FruitViewModel: ObservableObject {
     @Published var customer = ""
     @Published var customerPhone = ""
     @Published var comment = ""
+    @Published var pri = 0
     @Published var favouriteProducts: [Fruit] = [
-//    Fruit(
+        //    Fruit(
 //        cost: 5.60,
 //        weightOrPieces: "1 kg",
 //        categories: "Fruits",
@@ -48,7 +49,7 @@ class FruitViewModel: ObservableObject {
 //        name: "Watermelon"
 //    )
     ]
-    
+
     func fetchOrder() async throws {
         let urlString = Constants.baseURL + EndPoints.order
 
@@ -62,7 +63,7 @@ class FruitViewModel: ObservableObject {
         }
     }
 
-    func addOrder(orders:Order) async throws {
+    func addOrder(orders: Order) async throws {
         let urlString = Constants.baseURL + EndPoints.order
 
         guard let url = URL(string: urlString) else {
