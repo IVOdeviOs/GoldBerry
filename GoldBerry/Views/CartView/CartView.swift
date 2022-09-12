@@ -75,7 +75,7 @@ struct WithPurchase: View {
                 ForEach(fruits) { item  in
 
                     //                List(viewModel.order.fruit) { item in
-                    NavigationLink {} label: {
+//                    NavigationLink {} label: {
                         CartCell(
                             imageName: item.image ?? "",
                             cost: item.itog,
@@ -85,7 +85,7 @@ struct WithPurchase: View {
                             count: Int(item.count),
                             price: Double(item.cost)
                         )
-                    }
+//                    }
 //                        .swipeActions(content: {
 //                            Button {
 //                 //                                deleteItems
