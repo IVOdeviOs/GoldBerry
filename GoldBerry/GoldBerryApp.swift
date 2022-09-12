@@ -10,7 +10,6 @@ import SwiftUI
 @main
 struct GoldBerryApp: App {
     let persistenceController = PersistenceController.shared
-//    @StateObject private var dataController = DataController()
     
     var body: some Scene {
         WindowGroup {

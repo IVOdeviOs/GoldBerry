@@ -2,7 +2,7 @@ import SwiftUI
 
 struct AllProductsCell: View {
     @State var fruit: Fruit
-    
+
     var body: some View {
         VStack(spacing: 10) {
             ZStack(alignment: .bottomLeading) {
@@ -19,15 +19,16 @@ struct AllProductsCell: View {
                             .aspectRatio(contentMode: .fit)
                     }
                 )
-
-                Text("-\(fruit.percent!)%")
-                    .font(.system(size: 12, weight: .light, design: .serif))
-                    .foregroundColor(.white)
-                    .frame(width: 35, height: 20)
-                    .padding(.horizontal, 5)
-                    .background(.red)
-                    .cornerRadius(20)
-                    .padding(5)
+                if fruit.percent != 0 {
+                    Text("-\(fruit.percent!)%")
+                        .font(.system(size: 12, weight: .light, design: .serif))
+                        .foregroundColor(.white)
+                        .frame(width: 35, height: 20)
+                        .padding(.horizontal, 5)
+                        .background(.red)
+                        .cornerRadius(20)
+                        .padding(5)
+                }
             }
             HStack {
                 if fruit.itog == fruit.cost {
@@ -114,12 +115,11 @@ struct AllProductsCell: View {
 //                            .frame(width: 20, height: 20)
 //                            .foregroundColor(Color.theme.lightGreen)
 //                    }
-                
             }
             .padding(.horizontal, 10)
             Spacer()
         }
-        .frame(width: 180, height: 290)
+        .frame(width: 180, height: 240)
         .background(.white)
         .cornerRadius(20)
         .shadow(color: .gray, radius: 1, x: 0, y: 2)
