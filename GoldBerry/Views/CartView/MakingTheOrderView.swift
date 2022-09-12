@@ -3,7 +3,7 @@ import SwiftUI
 struct MakingTheOrderView: View {
 
     func sendRequest(completion: @escaping (Bool) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
             completion(tog == false)
         }
     }
@@ -12,12 +12,14 @@ struct MakingTheOrderView: View {
     @ObservedObject var viewModel: FruitViewModel
     @State var tog = false
     @State var tog1 = false
+    
     @State var deliveryDate = Date()
     func dateFormatter() {
         @State var dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "dd.MM.yyyy.HH.mm"
         viewModel.date = dateFormatter.string(from: deliveryDate)
     }
+    
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
@@ -25,7 +27,7 @@ struct MakingTheOrderView: View {
         animation: .default
     )
     var fruits: FetchedResults<FruitEntity>
-
+    
     var body: some View {
         VStack {
             Text("Оформление заказа")
@@ -64,16 +66,16 @@ struct MakingTheOrderView: View {
                         .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
                         .padding()
                     Spacer()
+                    Image(systemName: "clock.fill")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .foregroundColor(Color.theme.lightGreen)
+                        .padding()
                 }
-//                Form {
-                    DatePicker("", selection: $deliveryDate)
-//                        .datePickerStyle(WheelPickerStyle())
-//                }
-                TextFieldView(text: $viewModel.date, placeholder: "Выбрать дату и время")
-                Color.theme.gray
-                    .opacity(0.3)
-                    .frame(height: 10)
+                DatePicker("", selection: $deliveryDate)
+                    .datePickerStyle(.compact)
                 
+                    .padding()
                 VStack {
                     HStack {
                         Text("Куда доставить")
@@ -111,6 +113,8 @@ struct MakingTheOrderView: View {
                         tog = to
                         tog1 = true
                     }
+                    dateFormatter()
+                    print(viewModel.date)
 //                    ForEach(fruits) { f in
 //                        let fru = Fruit(cost: f.cost,
 //                                        weightOrPieces: f.weightOrPieces ?? "",
