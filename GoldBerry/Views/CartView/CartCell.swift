@@ -11,7 +11,6 @@ struct CartCell: View {
     @State var count: Int
     @State var price: Double
     @State var id = UUID()
-    @State var sum: Double
     
 //    @Environment(\.managedObjectContext) private var viewContext
 //    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)])
