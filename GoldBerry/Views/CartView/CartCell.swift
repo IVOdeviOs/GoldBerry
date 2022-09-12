@@ -11,6 +11,8 @@ struct CartCell: View {
     @State var count: Int
     @State var price: Double
     @State var id = UUID()
+    @State var sum: Double
+    
 //    @Environment(\.managedObjectContext) private var viewContext
 //    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)])
 //     var fruits: FetchedResults<FruitEntity>
@@ -81,8 +83,8 @@ struct CartCell: View {
                     
 //                        viewModel.order.price -= price
 //                        print("\(price)")
-                        viewModel.price = price
-                        print("\(viewModel.price)")
+                        viewModel.sum = price
+                        print("\(viewModel.sum)")
                     }
                 } label: {
                     Image(systemName: "minus.square.fill")

@@ -21,13 +21,14 @@ class FruitViewModel: ObservableObject {
         userPhone: "",
         userEmail: ""
     )
+    @Published var sum: Double = 0
+
     @Published var date = ""
     @Published var address = ""
     @Published var price: Double = 0
     @Published var customer = ""
     @Published var customerPhone = ""
     @Published var comment = ""
-
     @Published var favouriteProducts: [Fruit] = [
 //    Fruit(
 //        cost: 5.60,

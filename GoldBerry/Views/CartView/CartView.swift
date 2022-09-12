@@ -70,13 +70,10 @@ struct WithPurchase: View {
 
             ScrollView(showsIndicators: false) {
 
-                
                 ForEach(fruits) { item  in
+
                     //                List(viewModel.order.fruit) { item in
-
                     NavigationLink {} label: {
-                        if item == item{
-
                         CartCell(
                             imageName: item.image ?? "",
                             cost: item.itog,
@@ -87,7 +84,6 @@ struct WithPurchase: View {
                             price: Double(item.cost)
                         )
                     }
-
 //                        .swipeActions(content: {
 //                            Button {
                         // //                                deleteItems
@@ -96,12 +92,11 @@ struct WithPurchase: View {
 //                            }.tint(.red)
 //
 //                        })
-                    }
-
+                    
                     .padding()
                     }
 
-
+                
                 .padding(.top, 125)
                 .padding(.bottom, 100)
                 //                }
@@ -116,7 +111,7 @@ struct WithPurchase: View {
 //                    MakingTheOrderView(viewModels: OrderViewModel())
                         self.show.toggle()
                     } label: {
-                        Text("Оформить заказ   \(NSString(format: "%.2f", viewModel.price)) р")
+                        Text("Оформить заказ   \(NSString(format: "%.2f", viewModel.sum)) р")
                             .foregroundColor(.white)
                             .frame(width: UIScreen.main.bounds.width - 30, height: 50)
                             .background(Color.theme.lightGreen)

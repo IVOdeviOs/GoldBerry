@@ -12,6 +12,7 @@ struct MakingTheOrderView: View {
     @ObservedObject var viewModel: FruitViewModel
     @State var tog = false
     @State var tog1 = false
+    @State var dateToDelivery = Date()
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
