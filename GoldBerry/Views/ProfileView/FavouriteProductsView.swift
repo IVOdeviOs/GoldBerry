@@ -69,6 +69,7 @@ struct WithFavouriteProductsView: View {
                             ForEach(viewModel.fruit) { fruits in
                                 NavigationLink {
                                     InformationProductView(
+                                        id: fruits.id ?? UUID() ,
                                         image: fruits.image,
                                         name: fruits.name,
                                         itog: fruits.itog,

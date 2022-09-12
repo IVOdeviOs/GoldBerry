@@ -13,7 +13,7 @@ struct InformationProductView: View {
 
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
     private var fruits: FetchedResults<FruitEntity>
-    
+    @State var id: UUID
     @State var image:String
     @State var name:String
     @State var itog:Double
@@ -179,6 +179,7 @@ struct InformationProductView: View {
     private func addFruit() {
         withAnimation {
             let newFruit = FruitEntity(context: viewContext)
+            newFruit.id = id
             newFruit.name = name
             newFruit.image = image
             newFruit.cost = cost
@@ -191,13 +192,10 @@ struct InformationProductView: View {
             newFruit.descriptions = descriptions
             newFruit.comment = comment
             newFruit.itog = Double(itog)
-//            print(newFruit. + "😍")
-            
+//            print(newFruit.name! + "😍")
             do {
                 try viewContext.save()
             } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
@@ -222,6 +220,6 @@ struct InformationProductView: View {
 
 struct InformationProductView_Previews: PreviewProvider {
     static var previews: some View {
-        InformationProductView(image: "", name: "", itog: 1, cost: 1, comment: "", favorite: true, count: 1, percent: 1, weightOrPieces: "", descriptions: "", price: 1, categories: "")
+        InformationProductView(id: UUID(), image: "", name: "", itog: 1, cost: 1, comment: "", favorite: true, count: 1, percent: 1, weightOrPieces: "", descriptions: "", price: 1, categories: "")
     }
 }

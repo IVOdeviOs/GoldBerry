@@ -1,5 +1,5 @@
-import SwiftUI
 import CoreData
+import SwiftUI
 extension Color {
     static let lightShadow = Color(red: 255 / 255, green: 255 / 255, blue: 255 / 255)
     static let darkShadow = Color(red: 163 / 255, green: 177 / 255, blue: 198 / 255)
@@ -12,11 +12,11 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-            sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)],
-            animation: .default)
+        sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)],
+        animation: .default
+    )
     var fruits: FetchedResults<FruitEntity>
-        
-    
+
     var body: some View {
 
         NavigationView {
@@ -36,8 +36,8 @@ struct ContentView: View {
                                         .resizable()
                                         .frame(width: 25, height: 25)
                                         .foregroundColor(Color.theme.lightGreen)
-                                    
-                                    HStack(spacing:1) {
+
+                                    HStack(spacing: 1) {
 
                                         Text("100000")
                                             .font(Font(uiFont: .fontLibrary(16, .helvetica)))
@@ -46,7 +46,6 @@ struct ContentView: View {
                                         Text("руб")
                                             .font(Font(uiFont: .fontLibrary(16, .helvetica)))
                                             .foregroundColor(.black)
-
                                     }
                                 }
                                 .padding()
@@ -66,15 +65,15 @@ struct ContentView: View {
                                     viewModel.selected = 0
                                 } label: {
                                     VStack {
-                                    Image(systemName: "house")
-                                        .resizable()
-                                        .frame(width: 23, height: 20)
+                                        Image(systemName: "house")
+                                            .resizable()
+                                            .frame(width: 23, height: 20)
                                         Text("Главная")
                                             .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                                     }
                                 }.foregroundColor(viewModel.selected == 0 ? Color.theme.lightGreen : Color.theme.gray)
                                 Spacer(minLength: 12)
-                                
+
                                 Button {
                                     viewModel.selected = 1
                                 } label: {
@@ -109,9 +108,9 @@ struct ContentView: View {
                                     viewModel.selected = 2
                                 } label: {
                                     VStack {
-                                    Image(systemName: viewModel.selected == 2 ? "bag.fill" : "bag")
-                                        .resizable()
-                                        .frame(width: 23, height: 20)
+                                        Image(systemName: viewModel.selected == 2 ? "bag.fill" : "bag")
+                                            .resizable()
+                                            .frame(width: 23, height: 20)
                                         Text("Заказы")
                                             .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                                     }
@@ -122,9 +121,9 @@ struct ContentView: View {
                                     viewModel.selected = 3
                                 } label: {
                                     VStack {
-                                    Image(systemName: viewModel.selected == 3 ? "person.fill" : "person")
-                                        .resizable()
-                                        .frame(width: 23, height: 20)
+                                        Image(systemName: viewModel.selected == 3 ? "person.fill" : "person")
+                                            .resizable()
+                                            .frame(width: 23, height: 20)
                                         Text("Профиль")
                                             .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                                     }
@@ -162,7 +161,7 @@ struct ContentView_Previews: PreviewProvider {
 
 struct ExtractedView: View {
     @ObservedObject var viewModel = FruitViewModel()
-    
+
 //    @ObservedObject var viewModels = OrderViewModel()
 
     var body: some View {
@@ -181,10 +180,10 @@ struct ExtractedView: View {
                     }
             case 1:
                 CartView(viewModel: viewModel)
-                
+
             case 2:
                 OrdersView(viewModel: viewModel)
-                    .onAppear{
+                    .onAppear {
                         Task {
                             do {
                                 try await viewModel.fetchOrder()
@@ -192,7 +191,6 @@ struct ExtractedView: View {
                                 print("❌ERORR \(error)")
                             }
                         }
-                        
                     }
             case 3:
                 ProfileView(viewModel: viewModel)

@@ -10,6 +10,7 @@ struct CartCell: View {
     @State var description: String
     @State var count: Int
     @State var price: Double
+    @State var id = UUID()
 //    @Environment(\.managedObjectContext) private var viewContext
 //    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)])
 //     var fruits: FetchedResults<FruitEntity>
@@ -43,6 +44,8 @@ struct CartCell: View {
                         Text("\(NSString(format: "%.2f", cost)) р/кг")
                             .foregroundColor(Color.theme.lightGreen)
                         .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
+//                        Text("\(id)")
+//                            .font(.system(size: 30))
                         Spacer()
                         Button {
                             
@@ -148,7 +151,7 @@ struct CartCell_Previews: PreviewProvider {
             index: "1",
             description: "Apple 2022",
             count: 1,
-            price: 1
+            price: 1, id: UUID()
         )
     }
 }

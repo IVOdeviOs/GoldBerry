@@ -60,25 +60,23 @@ struct WithPurchase: View {
     @ObservedObject var viewModel: FruitViewModel
 
     @State var show = false
-//    @Environment(\.managedObjectContext) private var viewContext
-//    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.favorite ,  ascending: true)])
-//
-    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
-//    @FetchRequest(
-//        sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name , ascending: true)],
-//        animation: .default
-//    )
-    var fruits: FetchedResults<FruitEntity>
 
+    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
+
+    var fruits: FetchedResults<FruitEntity>
     var body: some View {
         ZStack(alignment: .top) {
 //            VStack {
 
-//                ScrollView(showsIndicators: false) {
-            ScrollView {
+            ScrollView(showsIndicators: false) {
+
+                
                 ForEach(fruits) { item in
                     //                List(viewModel.order.fruit) { item in
-                    Button {} label: {
+
+                    NavigationLink {} label: {
+                        if item == item{
+
                         CartCell(
                             imageName: item.image ?? "",
                             cost: item.itog,
@@ -88,18 +86,21 @@ struct WithPurchase: View {
                             count: Int(item.count),
                             price: Double(item.cost)
                         )
-                        .swipeActions(content: {
-                            Button {
-                                //                                deleteItems
-                            } label: {
-                                Label(" Delete ", systemImage: " trash ")
-                            }.tint(.red)
+                    }
 
-                        })
+//                        .swipeActions(content: {
+//                            Button {
+                        // //                                deleteItems
+//                            } label: {
+//                                Label(" Delete ", systemImage: " trash ")
+//                            }.tint(.red)
+//
+//                        })
                     }
 
                     .padding()
-                }
+                    }
+
 
                 .padding(.top, 125)
                 .padding(.bottom, 100)
