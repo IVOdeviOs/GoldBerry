@@ -11,7 +11,7 @@ enum categories: String {
 struct ProductsView: View {
     @ObservedObject var viewModel: FruitViewModel
 
-    @State var tag = ""
+    @State var tag = "allFruits"
 
     var body: some View {
 
