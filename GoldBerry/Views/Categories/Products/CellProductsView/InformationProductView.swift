@@ -106,18 +106,18 @@ struct InformationProductView: View {
             ZStack {
                 VStack {
                     HStack {
-                        Button {
-                            dismiss()
-
-                        } label: {
-                            Image(systemName: "arrow.backward.square")
-                                .renderingMode(.original)
-                                .scaleEffect(3)
-                                .foregroundColor(Color.theme.lightGreen)
-                                .frame(width: 60, height: 60)
-                                .background(.white.opacity(0.3))
-                                .cornerRadius(10)
-                        }
+//                        Button {
+//                            dismiss()
+//
+//                        } label: {
+//                            Image(systemName: "arrow.backward.square")
+//                                .renderingMode(.original)
+//                                .scaleEffect(3)
+//                                .foregroundColor(Color.theme.lightGreen)
+//                                .frame(width: 60, height: 60)
+//                                .background(.white.opacity(0.3))
+//                                .cornerRadius(10)
+//                        }
                         Spacer()
                         Button {
                             favorite.toggle()
@@ -176,32 +176,32 @@ struct InformationProductView: View {
         }
     }
 
-    private func addFruit() {
-        withAnimation {
-            let newFruit = FruitEntity(context: viewContext)
-            newFruit.id = id
-            newFruit.name = name
-            newFruit.image = image
-            newFruit.cost = cost
-            newFruit.percent = Int16(percent )
-            newFruit.price = price
-            newFruit.favorite = favorite
-            newFruit.categories = categories
-            newFruit.weightOrPieces = weightOrPieces
-            newFruit.count = Int16(count)
-            newFruit.descriptions = descriptions
-            newFruit.comment = comment
-            newFruit.itog = Double(itog)
+    func addFruit() {
+       withAnimation {
+//                let newFruit = FruitEntity(context: viewContext)
+//                newFruit.id = id
+//                newFruit.name = name
+//                newFruit.image = image
+//                newFruit.cost = cost
+//                newFruit.percent = Int16(percent )
+//                newFruit.price = price
+//                newFruit.favorite = favorite
+//                newFruit.categories = categories
+//                newFruit.weightOrPieces = weightOrPieces
+//                newFruit.count = Int16(count)
+//                newFruit.descriptions = descriptions
+//                newFruit.comment = comment
+//                newFruit.itog = Double(itog)
 //            print(newFruit.name! + "😍")
-            do {
-                
-                try viewContext.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
+           do {
+               
+               try viewContext.save()
+           } catch {
+               let nsError = error as NSError
+               fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+           }
+       }
+   }
 
 //    private func deleteItems(offsets: IndexSet) {
 //        withAnimation {

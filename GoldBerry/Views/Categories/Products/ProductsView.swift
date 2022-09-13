@@ -1,6 +1,7 @@
 import SwiftUI
 
 enum categories: String {
+    case all
     case watermelon
     case granat
     case fresh
@@ -18,6 +19,11 @@ struct ProductsView: View {
             VStack {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
+                        Button {
+                            
+                        } label: {
+                            CategoriesCell(nameImage: categories.all.rawValue, nameCategories: "Все товары")
+                        }
                         Button {
                             tag = categories.watermelon.rawValue
                         } label: {
@@ -53,29 +59,28 @@ struct ProductsView: View {
 
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {
-                        LazyVGrid(columns: viewModel.columns, alignment: .center, spacing: 1, pinnedViews: .sectionFooters, content: {
+                        LazyVGrid(columns: viewModel.columns, alignment: .center, spacing: 0, pinnedViews: .sectionFooters, content: {
                             ForEach(viewModel.fruit) { fruits in
                                 if fruits.categories == tag {
-                                    NavigationLink {
-                                        InformationProductView(id: fruits.id ?? UUID(),
-                                                               image: fruits.image,
-                                                               name: fruits.name,
-                                                               itog: fruits.itog,
-                                                               cost: fruits.cost,
-                                                               comment: fruits.comment ?? "",
-                                                               favorite: fruits.favorite,
-                                                               count: fruits.count,
-                                                               percent: fruits.percent ?? 1,
-                                                               weightOrPieces: fruits.weightOrPieces,
-                                                               descriptions: fruits.descriptions ?? "",
-                                                               price: fruits.price ?? 1,
-                                                               categories: fruits.categories)
-
-                                    } label: {
+//                                    NavigationLink {
+//                                        InformationProductView(id: fruits.id ?? UUID(),
+//                                                               image: fruits.image,
+//                                                               name: fruits.name,
+//                                                               itog: fruits.itog,
+//                                                               cost: fruits.cost,
+//                                                               comment: fruits.comment ?? "",
+//                                                               favorite: fruits.favorite,
+//                                                               count: fruits.count,
+//                                                               percent: fruits.percent ?? 1,
+//                                                               weightOrPieces: fruits.weightOrPieces,
+//                                                               descriptions: fruits.descriptions ?? "",
+//                                                               price: fruits.price ?? 1,
+//                                                               categories: fruits.categories)
+//
+//                                    } label: {
                                         AllProductsCell(fruit: fruits)
-
                                             .padding(.bottom, 30)
-                                    }
+//                                    }
                                 }
                             }
 
