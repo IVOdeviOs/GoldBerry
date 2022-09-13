@@ -62,7 +62,7 @@ struct ContentView: View {
 //                                .shadow(color: .green.opacity(0.2), radius: 10, x: 0, y: 10)
 //                                .padding(.horizontal, 30)
 //                            }
-                            .padding(.top, 60)
+                            .padding(.top, 40)
                         }
 
                         Spacer()

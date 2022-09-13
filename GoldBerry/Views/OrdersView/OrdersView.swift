@@ -78,7 +78,7 @@ struct WithOrders: View {
 
 //                .padding()
             }
-            .offset( y: -60)
+            .offset( y: 20)
             .navigationViewStyle(.columns)
             .listStyle(.plain)
         }

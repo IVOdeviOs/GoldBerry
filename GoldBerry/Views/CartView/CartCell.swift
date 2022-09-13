@@ -15,8 +15,7 @@ struct CartCell: View {
 //    @Environment(\.managedObjectContext) private var viewContext
 //    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)])
 //     var fruits: FetchedResults<FruitEntity>
-    
-    
+
     var body: some View {
         VStack {
             HStack {

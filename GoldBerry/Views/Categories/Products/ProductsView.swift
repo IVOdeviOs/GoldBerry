@@ -42,7 +42,7 @@ struct ProductsView: View {
                         }
                     }
                     .padding(.horizontal, 10)
-                    .padding(.top, 0)
+                    .padding(.top, 20)
                 }
                 HStack {
                     Text("Популярные товары")
