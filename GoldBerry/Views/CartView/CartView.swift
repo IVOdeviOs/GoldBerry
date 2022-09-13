@@ -96,7 +96,8 @@ struct WithPurchase: View {
 //
 //                        })
                     
-                    .padding()
+                        .padding(.vertical,3)
+                        .padding(.horizontal,10)
                     }
 
                 
