@@ -11,7 +11,7 @@ enum categories: String {
 struct ProductsView: View {
     @ObservedObject var viewModel: FruitViewModel
 
-    @State var tag = "allFruits"
+    @State var tag = categories.all.rawValue
 
     var body: some View {
 
@@ -20,7 +20,7 @@ struct ProductsView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         Button {
-                            tag = "allFruits"
+                            tag = categories.all.rawValue
                         } label: {
                             CategoriesCell(nameImage: categories.all.rawValue, nameCategories: "Все товары")
                         }
@@ -81,7 +81,7 @@ struct ProductsView: View {
                                         AllProductsCell(fruit: fruits)
                                             .padding(.bottom, 30)
 //                                    }
-                                } else if tag == "allFruits" {
+                                } else if tag == categories.all.rawValue {
                                     AllProductsCell(fruit: fruits)
                                         .padding(.bottom, 30)
                                 }

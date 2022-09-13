@@ -67,26 +67,26 @@ struct WithFavouriteProductsView: View {
                     VStack {
                         LazyVGrid(columns: viewModel.columns, alignment: .center, spacing: 1, pinnedViews: .sectionFooters, content: {
                             ForEach(viewModel.fruit) { fruits in
-                                NavigationLink {
-                                    InformationProductView(
-                                        id: fruits.id ?? UUID() ,
-                                        image: fruits.image,
-                                        name: fruits.name,
-                                        itog: fruits.itog,
-                                        cost: fruits.cost,
-                                        comment: fruits.comment ?? "",
-                                        favorite: fruits.favorite,
-                                        count: fruits.count,
-                                        percent: fruits.percent ?? 0,
-                                        weightOrPieces: fruits.weightOrPieces,
-                                        descriptions: fruits.descriptions ?? "",
-                                        price: fruits.price ?? 1,
-                                        categories: fruits.categories
-                                    )
-                                } label: {
+//                                NavigationLink {
+//                                    InformationProductView(
+//                                        id: fruits.id ?? UUID() ,
+//                                        image: fruits.image,
+//                                        name: fruits.name,
+//                                        itog: fruits.itog,
+//                                        cost: fruits.cost,
+//                                        comment: fruits.comment ?? "",
+//                                        favorite: fruits.favorite,
+//                                        count: fruits.count,
+//                                        percent: fruits.percent ?? 0,
+//                                        weightOrPieces: fruits.weightOrPieces,
+//                                        descriptions: fruits.descriptions ?? "",
+//                                        price: fruits.price ?? 1,
+//                                        categories: fruits.categories
+//                                    )
+//                                } label: {
                                     AllProductsCell(fruit: fruits)
                                         .padding(.bottom, 30)
-                                }
+//                                }
                             }
 
                         }).padding(.bottom, 60)

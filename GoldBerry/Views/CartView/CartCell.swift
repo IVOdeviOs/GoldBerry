@@ -28,16 +28,16 @@ struct CartCell: View {
                         image: {
                             $0
                                 .resizable()
-                                .frame(width: 100  , height: 100)
+                                .frame(width: 150  , height: 150)
                                 .aspectRatio(contentMode: .fit)
                         }
                     )
 //                        .aspectRatio(contentMode: .fill)
 //                        .frame(width: UIScreen.main.bounds.width - 20 ,height:350)
                 }
-                    .frame(width: 100, height: 100)
+                    .frame(width: 150, height: 150)
                     .cornerRadius(10)
-                    .padding(.leading, 10)
+//                    .padding(.leading, 10)
                 VStack(alignment: .leading, spacing: 10) {
                    
                     HStack {
@@ -132,7 +132,7 @@ struct CartCell: View {
         .background(.gray.opacity(0.1))
         .overlay(
             RoundedRectangle(cornerRadius: 20)
-                .stroke(Color.theme.gray, lineWidth: 2)
+                .stroke(Color.theme.gray, lineWidth: 1)
         )
         .cornerRadius(20)
     }
