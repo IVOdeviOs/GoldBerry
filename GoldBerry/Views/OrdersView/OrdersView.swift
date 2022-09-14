@@ -33,6 +33,7 @@ struct WithoutOrders: View {
                 .padding(.bottom, 10)
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color.theme.gray)
+                .padding(.horizontal, 10)
             Button {
                 viewModel.selected = 0
             } label: {

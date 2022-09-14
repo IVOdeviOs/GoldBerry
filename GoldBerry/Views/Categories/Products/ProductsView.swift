@@ -53,7 +53,7 @@ struct ProductsView: View {
                 HStack {
                     Text("Популярные товары")
                         .font(Font(uiFont: .fontLibrary(25, .uzSansBold)))
-                        .foregroundColor(.green)
+                        .foregroundColor(Color.theme.lightGreen)
                     Spacer()
                 }.padding(.horizontal, 10)
 
