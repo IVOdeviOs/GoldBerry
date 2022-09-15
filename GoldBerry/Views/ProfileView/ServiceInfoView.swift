@@ -25,7 +25,7 @@ struct ServiceInfoView: View {
                         .foregroundColor(.gray)
                         .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
                         .padding(.bottom, 5)
-                    Text("\u{24B8} 2022 OLIVO-Project")
+                    Text("\u{24B8} 2022 DMTeam")
                         .foregroundColor(.gray)
                 }
             }
