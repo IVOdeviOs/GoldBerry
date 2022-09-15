@@ -183,19 +183,19 @@ struct AllProductsCell: View {
         withAnimation {
             let newFruit = FruitEntity(context: viewContext)
             newFruit.id = fruit.id
-            newFruit.name = fruit.name
-            newFruit.image = fruit.image
-            newFruit.cost = fruit.cost
-            newFruit.percent = Int16(fruit.percent ?? 1)
-            newFruit.price = fruit.price ?? 0
-            newFruit.favorite = fruit.favorite
-            newFruit.categories = fruit.categories
-            newFruit.weightOrPieces = fruit.weightOrPieces
-            newFruit.count = Int16(fruit.count)
-            newFruit.descriptions = fruit.descriptions
-            newFruit.comment = fruit.comment
-            newFruit.itog = Double(fruit.itog)
-            print(newFruit.name! + "😍")
+//            newFruit.name = fruit.name
+//            newFruit.image = fruit.image
+//            newFruit.cost = fruit.cost
+//            newFruit.percent = Int16(fruit.percent ?? 1)
+//            newFruit.price = fruit.price ?? 0
+//            newFruit.favorite = fruit.favorite
+//            newFruit.categories = fruit.categories
+//            newFruit.weightOrPieces = fruit.weightOrPieces
+//            newFruit.count = Int16(fruit.count)
+//            newFruit.descriptions = fruit.descriptions
+//            newFruit.comment = fruit.comment
+//            newFruit.itog = Double(fruit.itog)
+//            print(newFruit.name! + "😍")
             do {
 
                 try viewContext.save()

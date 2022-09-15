@@ -187,6 +187,15 @@ struct ExtractedView: View {
                     }
             case 1:
                 CartView(viewModel: viewModel)
+                    .onAppear {
+                        Task {
+                            do {
+                                try await viewModel.fetchFruit()
+                            } catch {
+                                print("❌ERORR \(error)")
+                            }
+                        }
+                    }
 
             case 2:
                 OrdersView(viewModel: viewModel)

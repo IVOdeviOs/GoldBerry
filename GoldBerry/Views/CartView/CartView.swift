@@ -57,7 +57,8 @@ struct WithoutPurchase: View {
 }
 
 struct WithPurchase: View {
-    @ObservedObject var viewModel = FruitViewModel()
+//    @ObservedObject var viewModel = FruitViewModel()
+    @ObservedObject var viewModel: FruitViewModel
 
     @State var show = false
     @Environment(\.managedObjectContext) private var viewContext
@@ -66,41 +67,42 @@ struct WithPurchase: View {
 
     var fruits: FetchedResults<FruitEntity>
 
+   @State var sum:Double = 0
     var body: some View {
         ZStack(alignment: .top) {
-//            VStack {
 
             ScrollView(showsIndicators: false) {
 
-                ForEach(fruits) { item  in
-
-                    //                List(viewModel.order.fruit) { item in
-//                    NavigationLink {} label: {
-                        CartCell(
-                            imageName: item.image ?? "",
-                            cost: item.itog,
-                            name: item.name ?? "",
-                            index: item.name ?? "",
-                            description: item.descriptions ?? "",
-                            count: Int(item.count),
-                            price: Double(item.cost)
-                        )
+                ForEach(viewModel.fruit) { item in
+                    ForEach(fruits) { i in
+                        if i.id == item.id {
+                            CartCell(
+                                imageName: item.image,
+                                cost: item.itog,
+                                name: item.name,
+                                index: item.name,
+                                description: item.descriptions ?? "",
+                                count: Int(item.count),
+                                price: Double(item.cost)
+                                
+                            )
+                        }
+                    }
 //                    }
 //                        .swipeActions(content: {
 //                            Button {
 //                 //                                deleteItems
-////                                EditButton()
+//                    //                                EditButton()
 //                            } label: {
 //                                Label(" Delete ", systemImage: " trash ")
 //                            }.tint(.red)
 //
 //                        })
-                    
-                        .padding(.vertical,3)
-                        .padding(.horizontal,10)
-                    }
 
-                
+                    .padding(.vertical, 3)
+                    .padding(.horizontal, 10)
+                }
+
                 .padding(.top, 125)
                 .padding(.bottom, 100)
                 //                }
@@ -111,11 +113,33 @@ struct WithPurchase: View {
                 VStack {
 
                     Spacer()
+                 
                     Button {
 //                    MakingTheOrderView(viewModels: OrderViewModel())
+//                        func asd() -> [Fruit]{
+//                            for item in viewModel.fruit {
+//                                for i in fruits {
+//                                    if i.id == item.id {
+//                                        viewModel.fruitOrder.append(Fruit(id: item.id,
+//                                                                          cost: item.cost,
+//                                                                          weightOrPieces: item.weightOrPieces,
+//                                                                          categories: item.categories,
+//                                                                          favorite: item.favorite,
+//                                                                          count: item.count,
+//                                                                          image: item.image,
+//                                                                          name: item.name,
+//                                                                          percent: item.percent,
+//                                                                          descriptions: item.descriptions,
+//                                                                          price: item.price,
+//                                                                          comment: item.comment))
+//                                    }
+//                                }
+//                            }
+//                            return viewModel.fruitOrder
+//                        }
                         self.show.toggle()
                     } label: {
-                        Text("Оформить заказ   \(NSString(format: "%.2f", viewModel.pri)) р")
+                        Text("Оформить заказ   \(NSString(format: "%.2f", sum)) р")
                             .foregroundColor(.white)
                             .frame(width: UIScreen.main.bounds.width - 30, height: 50)
                             .background(Color.theme.lightGreen)
@@ -138,19 +162,20 @@ struct WithPurchase: View {
         .offset(y: -95)
 //        .ignoresSafeArea(edges: .top)
     }
+        
 
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { fruits[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
+//    private func deleteItems(offsets: IndexSet) {
+//        withAnimation {
+//            offsets.map { fruits[$0] }.forEach(viewContext.delete)
+//
+//            do {
+//                try viewContext.save()
+//            } catch {
+//                let nsError = error as NSError
+//                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+//            }
+//        }
+//    }
 //    func delete(at offsets: IndexSet) {
     ////        viewModel.order.fruit.remove(atOffsets: offsets)
 //    }

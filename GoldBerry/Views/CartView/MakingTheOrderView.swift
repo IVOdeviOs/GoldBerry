@@ -129,27 +129,27 @@ struct MakingTheOrderView: View {
 //                                        comment: f.comment)
 //                    }
 
-                    func currentTopics(fruitss: FetchedResults<FruitEntity>) -> [Fruit] {
-                        var collected = [Fruit]()
-                        for fruit in fruitss {
-//                            collected.append(fruit)
-                            collected = [Fruit(cost: fruit.cost,
-                                           weightOrPieces: fruit.weightOrPieces ?? "",
-                                           categories: fruit.categories ?? "",
-                                           favorite: fruit.favorite,
-                                           count: Int(fruit.count),
-                                           image: fruit.image ?? "",
-                                           name: fruit.name ?? "",
-                                           percent: Int(fruit.percent),
-                                           descriptions: fruit.descriptions,
-                                           price: fruit.price,
-                                           comment: fruit.comment)]
-
-                        }
-                        return collected
-                    }
+//                    func currentTopics(fruitss: FetchedResults<FruitEntity>) -> [Fruit] {
+//                        var collected = [Fruit]()
+//                        for fruit in fruitss {
+////                            collected.append(fruit)
+//                            collected = [Fruit(cost: fruit.cost,
+//                                           weightOrPieces: fruit.weightOrPieces ?? "",
+//                                           categories: fruit.categories ?? "",
+//                                           favorite: fruit.favorite,
+//                                           count: Int(fruit.count),
+//                                           image: fruit.image ?? "",
+//                                           name: fruit.name ?? "",
+//                                           percent: Int(fruit.percent),
+//                                           descriptions: fruit.descriptions,
+//                                           price: fruit.price,
+//                                           comment: fruit.comment)]
+//
+//                        }
+//                        return collected
+//                    }
                     let orde = Order(orderNumber: viewModel.orderNumber,
-                                     date: viewModel.date, fruit: currentTopics(fruitss: fruits),
+                                     date: viewModel.date, fruit: viewModel.fruit,
                                      address: viewModel.address,
                                      price: Int(viewModel.price),
                                      customer: viewModel.customer,

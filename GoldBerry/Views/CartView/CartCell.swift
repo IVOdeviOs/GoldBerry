@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct CartCell: View {
-    
+//    @ObservedObject var viewModel: FruitViewModel
+
     @ObservedObject var viewModel = FruitViewModel()
     @State var imageName: String
     @State var cost: Double
@@ -11,10 +12,10 @@ struct CartCell: View {
     @State var count: Int
     @State var price: Double
     @State var id = UUID()
-    
-//    @Environment(\.managedObjectContext) private var viewContext
-//    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)])
-//     var fruits: FetchedResults<FruitEntity>
+//
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)])
+     var fruits: FetchedResults<FruitEntity>
 
     var body: some View {
         VStack {
@@ -50,6 +51,7 @@ struct CartCell: View {
                         Button {
 //                            EditButton()
 //                            index = 1
+                            
                         } label: {
                             Image(systemName: "x.square")
                                 .resizable()
@@ -103,8 +105,8 @@ struct CartCell: View {
 //                    viewModel.order.price += price
 //                    print("\(price)")
 //                    viewModel.price = price
-                    viewModel.pri += Int(price)
-//                    print("\(viewModel.price)")
+                    viewModel.price = price
+                    print("\(viewModel.price)")
 
                 } label: {
                     Image(systemName: "plus.square.fill")

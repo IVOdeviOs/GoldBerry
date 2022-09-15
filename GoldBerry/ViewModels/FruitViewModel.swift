@@ -11,6 +11,7 @@ class FruitViewModel: ObservableObject {
     @Published var show = false
     @Published var viewState: CGSize = .zero
     @Published var fruit = [Fruit]()
+    @Published var fruitOrder = [Fruit]()
     @Published var selected = 0
     @Published var orderNumber = 0
     @Published var order = [Order]()
@@ -24,11 +25,10 @@ class FruitViewModel: ObservableObject {
 
     @Published var date = ""
     @Published var address = ""
-    @Published var price: Double = 0
+    @Published var price: Double = 1
     @Published var customer = ""
     @Published var customerPhone = ""
     @Published var comment = ""
-    @Published var pri = 0
     @Published var favouriteProducts: [Fruit] = [
         //    Fruit(
 //        cost: 5.60,
