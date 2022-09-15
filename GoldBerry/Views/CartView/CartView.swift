@@ -116,27 +116,6 @@ struct WithPurchase: View {
                  
                     Button {
 //                    MakingTheOrderView(viewModels: OrderViewModel())
-//                        func asd() -> [Fruit]{
-//                            for item in viewModel.fruit {
-//                                for i in fruits {
-//                                    if i.id == item.id {
-//                                        viewModel.fruitOrder.append(Fruit(id: item.id,
-//                                                                          cost: item.cost,
-//                                                                          weightOrPieces: item.weightOrPieces,
-//                                                                          categories: item.categories,
-//                                                                          favorite: item.favorite,
-//                                                                          count: item.count,
-//                                                                          image: item.image,
-//                                                                          name: item.name,
-//                                                                          percent: item.percent,
-//                                                                          descriptions: item.descriptions,
-//                                                                          price: item.price,
-//                                                                          comment: item.comment))
-//                                    }
-//                                }
-//                            }
-//                            return viewModel.fruitOrder
-//                        }
                         self.show.toggle()
                     } label: {
                         Text("Оформить заказ   \(NSString(format: "%.2f", sum)) р")

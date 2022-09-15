@@ -12,14 +12,14 @@ struct MakingTheOrderView: View {
     @ObservedObject var viewModel: FruitViewModel
     @State var tog = false
     @State var tog1 = false
-    
+
     @State var deliveryDate = Date()
     func dateFormatter() {
         @State var dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "dd.MM.yyyy.HH.mm"
+        dateFormatter.dateFormat = "dd.MM.yyyy.HH.mm"
         viewModel.date = dateFormatter.string(from: deliveryDate)
     }
-    
+
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
@@ -27,7 +27,7 @@ struct MakingTheOrderView: View {
         animation: .default
     )
     var fruits: FetchedResults<FruitEntity>
-    
+
     var body: some View {
         VStack {
             Text("Оформление заказа")
@@ -74,7 +74,7 @@ struct MakingTheOrderView: View {
                 }
                 DatePicker("", selection: $deliveryDate)
                     .datePickerStyle(.compact)
-                
+
                     .padding()
                 VStack {
                     HStack {
@@ -91,21 +91,21 @@ struct MakingTheOrderView: View {
                     }
                     TextFieldView(text: $viewModel.customer, placeholder: "Имя получателя")
                         .onTapGesture {
-                                    hideKeyboard()
-                            }
+                            hideKeyboard()
+                        }
                     TextFieldView(text: $viewModel.customerPhone, placeholder: "Телефон получателя")
                         .keyboardType(.numberPad)
                         .onTapGesture {
-                                    hideKeyboard()
-                            }
+                            hideKeyboard()
+                        }
                     TextFieldView(text: $viewModel.address, placeholder: "Адрес доставки")
                         .onTapGesture {
-                                    hideKeyboard()
-                            }
+                            hideKeyboard()
+                        }
                     TextFieldView(text: $viewModel.comment, placeholder: "Комментарий")
                         .onTapGesture {
-                                    hideKeyboard()
-                            }
+                            hideKeyboard()
+                        }
                 }
                 Button {
                     self.tog = true
@@ -115,41 +115,34 @@ struct MakingTheOrderView: View {
                     }
                     dateFormatter()
                     print(viewModel.date)
-//                    ForEach(fruits) { f in
-//                        let fru = Fruit(cost: f.cost,
-//                                        weightOrPieces: f.weightOrPieces ?? "",
-//                                        categories: f.categories ?? "",
-//                                        favorite: f.favorite,
-//                                        count: Int(f.count),
-//                                        image: f.image ?? "",
-//                                        name: f.name ?? "",
-//                                        percent: Int(f.percent),
-//                                        descriptions: f.descriptions,
-//                                        price: f.price,
-//                                        comment: f.comment)
-//                    }
 
-//                    func currentTopics(fruitss: FetchedResults<FruitEntity>) -> [Fruit] {
-//                        var collected = [Fruit]()
-//                        for fruit in fruitss {
-////                            collected.append(fruit)
-//                            collected = [Fruit(cost: fruit.cost,
-//                                           weightOrPieces: fruit.weightOrPieces ?? "",
-//                                           categories: fruit.categories ?? "",
-//                                           favorite: fruit.favorite,
-//                                           count: Int(fruit.count),
-//                                           image: fruit.image ?? "",
-//                                           name: fruit.name ?? "",
-//                                           percent: Int(fruit.percent),
-//                                           descriptions: fruit.descriptions,
-//                                           price: fruit.price,
-//                                           comment: fruit.comment)]
-//
-//                        }
-//                        return collected
-//                    }
+                    func currentTopics(fruitss: FetchedResults<FruitEntity>) -> [Fruit] {
+                        var collected = [Fruit]()
+                        for item in viewModel.fruit {
+                            for i in fruitss {
+                                if i.id == item.id {
+                                
+                                    let col = Fruit(id: item.id,
+                                                       cost: item.cost,
+                                                       weightOrPieces: item.weightOrPieces,
+                                                       categories: item.categories,
+                                                       favorite: item.favorite,
+                                                       count: item.count,
+                                                       image: item.image,
+                                                       name: item.name,
+                                                       percent: item.percent,
+                                                       descriptions: item.descriptions,
+                                                       price: item.price,
+                                                       comment: item.comment)
+                                    collected.append(col)
+                                }
+                            }
+                        }
+
+                        return collected
+                    }
                     let orde = Order(orderNumber: viewModel.orderNumber,
-                                     date: viewModel.date, fruit: viewModel.fruit,
+                                     date: viewModel.date, fruit: currentTopics(fruitss: fruits),
                                      address: viewModel.address,
                                      price: Int(viewModel.price),
                                      customer: viewModel.customer,
