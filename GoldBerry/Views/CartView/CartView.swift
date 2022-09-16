@@ -15,7 +15,7 @@ struct CartView: View {
         if self.fruits.isEmpty {
             WithoutPurchase(viewModel: viewModel)
         } else {
-            WithPurchase(viewModel: viewModel, fruitOrder: viewModel.fruitOrder)
+            WithPurchase(viewModel: viewModel)
         }
     }
 }
@@ -66,8 +66,6 @@ struct WithPurchase: View {
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.image, ascending: true)])
 
     var fruits: FetchedResults<FruitEntity>
-
-    @State var fruitOrder: [Fruit]
 
     
     var body: some View {
@@ -129,7 +127,7 @@ struct WithPurchase: View {
                     }
                     .offset(y: 115)
                     .sheet(isPresented: $show, content: {
-                        MakingTheOrderView(viewModel: viewModel, orderFruit: fruitOrder)
+                        MakingTheOrderView(viewModel: viewModel)
                     })
 //                        .background(.white)
 //                        .navigationViewStyle(.columns)

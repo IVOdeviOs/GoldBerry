@@ -20,15 +20,15 @@ struct MakingTheOrderView: View {
         viewModel.date = dateFormatter.string(from: deliveryDate)
     }
 
-//    @Environment(\.managedObjectContext) private var viewContext
-//
-//    @FetchRequest(
-//        sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)],
-//        animation: .default
-//    )
-//    var fruits: FetchedResults<FruitEntity>
+    @Environment(\.managedObjectContext) private var viewContext
 
-    @State var orderFruit:[Fruit]
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)],
+        animation: .default
+    )
+    var fruits: FetchedResults<FruitEntity>
+
+    @State var orderFruit = [Fruit]()
     var body: some View {
         VStack {
             Text("Оформление заказа")
@@ -117,33 +117,33 @@ struct MakingTheOrderView: View {
                     dateFormatter()
                     print(viewModel.date)
 
-//                    func currentTopics(fruitss: FetchedResults<FruitEntity>) -> [Fruit] {
-//                        var collected = [Fruit]()
-//                        for item in viewModel.fruit {
-//                            for i in fruitss {
-//                                if i.id == item.id {
-//
-//                                    let col = Fruit(id: item.id,
-//                                                       cost: item.cost,
-//                                                       weightOrPieces: item.weightOrPieces,
-//                                                       categories: item.categories,
-//                                                       favorite: item.favorite,
-//                                                       count: item.count,
-//                                                       image: item.image,
-//                                                       name: item.name,
-//                                                       percent: item.percent,
-//                                                       descriptions: item.descriptions,
-//                                                       price: item.price,
-//                                                       comment: item.comment)
-//                                    collected.append(col)
-//                                }
-//                            }
-//                        }
-//
-//                        return collected
-//                    }
+                    func currentTopics(fruitss: FetchedResults<FruitEntity>) -> [Fruit] {
+                        var collected = [Fruit]()
+                        for item in viewModel.fruit {
+                            for i in fruitss {
+                                if i.id == item.id {
+
+                                    let col = Fruit(id: item.id,
+                                                       cost: item.cost,
+                                                       weightOrPieces: item.weightOrPieces,
+                                                       categories: item.categories,
+                                                       favorite: item.favorite,
+                                                       count: item.count,
+                                                       image: item.image,
+                                                       name: item.name,
+                                                       percent: item.percent,
+                                                       descriptions: item.descriptions,
+                                                       price: item.price,
+                                                       comment: item.comment)
+                                    collected.append(col)
+                                }
+                            }
+                        }
+
+                        return collected
+                    }
                     let orde = Order(orderNumber: viewModel.orderNumber,
-                                     date: viewModel.date, fruit: orderFruit,
+                                     date: viewModel.date, fruit: currentTopics(fruitss: fruits),
                                      address: viewModel.address,
                                      price: Int(viewModel.price),
                                      customer: viewModel.customer,
