@@ -15,7 +15,7 @@ struct CartView: View {
         if self.fruits.isEmpty {
             WithoutPurchase(viewModel: viewModel)
         } else {
-            WithPurchase(viewModel: viewModel)
+            WithPurchase(viewModel: viewModel, fruitOrder: viewModel.fruitOrder)
         }
     }
 }
@@ -67,7 +67,9 @@ struct WithPurchase: View {
 
     var fruits: FetchedResults<FruitEntity>
 
-   @State var sum:Double = 0
+    @State var fruitOrder: [Fruit]
+
+    
     var body: some View {
         ZStack(alignment: .top) {
 
@@ -84,7 +86,6 @@ struct WithPurchase: View {
                                 description: item.descriptions ?? "",
                                 count: Int(item.count),
                                 price: Double(item.cost)
-                                
                             )
                         }
                     }
@@ -113,12 +114,13 @@ struct WithPurchase: View {
                 VStack {
 
                     Spacer()
-                 
+
                     Button {
 //                    MakingTheOrderView(viewModels: OrderViewModel())
+                      
                         self.show.toggle()
                     } label: {
-                        Text("Оформить заказ   \(NSString(format: "%.2f", sum)) р")
+                        Text("Оформить заказ   \(NSString(format: "%.2f", viewModel.price)) р")
                             .foregroundColor(.white)
                             .frame(width: UIScreen.main.bounds.width - 30, height: 50)
                             .background(Color.theme.lightGreen)
@@ -127,7 +129,7 @@ struct WithPurchase: View {
                     }
                     .offset(y: 115)
                     .sheet(isPresented: $show, content: {
-                        MakingTheOrderView(viewModel: viewModel)
+                        MakingTheOrderView(viewModel: viewModel, orderFruit: fruitOrder)
                     })
 //                        .background(.white)
 //                        .navigationViewStyle(.columns)
@@ -141,7 +143,6 @@ struct WithPurchase: View {
         .offset(y: -95)
 //        .ignoresSafeArea(edges: .top)
     }
-        
 
 //    private func deleteItems(offsets: IndexSet) {
 //        withAnimation {
