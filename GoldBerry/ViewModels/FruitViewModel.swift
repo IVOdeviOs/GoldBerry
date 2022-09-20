@@ -9,6 +9,7 @@ class FruitViewModel: ObservableObject {
         GridItem(.flexible())
     ]
     @Published var show = false
+    @Published var userRegShow = false
     @Published var viewState: CGSize = .zero
     @Published var fruit = [Fruit]()
     @Published var fruitOrder = [Fruit]()
@@ -23,9 +24,10 @@ class FruitViewModel: ObservableObject {
         userEmail: ""
     )
 
+    
     @Published var date = ""
     @Published var address = ""
-    @Published var price: Double = 1
+    @Published var price: Double = 0
     @Published var customer = ""
     @Published var customerPhone = ""
     @Published var comment = ""

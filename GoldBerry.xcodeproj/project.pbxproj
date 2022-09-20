@@ -34,6 +34,7 @@
 		DCA5251628AEBC5200A994F5 /* UZSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCA5251128AEBC5200A994F5 /* UZSans-Light.ttf */; };
 		DCA5251728AEBC5200A994F5 /* UZSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCA5251228AEBC5200A994F5 /* UZSans-Bold.ttf */; };
 		DCA5251828AEBC5200A994F5 /* UZSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCA5251328AEBC5200A994F5 /* UZSans-Regular.ttf */; };
+		DD2CEE6D28DA3B870060B77A /* RegistrationCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CEE6C28DA3B870060B77A /* RegistrationCheckView.swift */; };
 		DD539A59289AEFDD006F1CD1 /* ProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A58289AEFDD006F1CD1 /* ProductsView.swift */; };
 		DD539A6528A02839006F1CD1 /* FruitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A6428A02839006F1CD1 /* FruitViewModel.swift */; };
 		DD539A6928A02A63006F1CD1 /* OrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A6828A02A62006F1CD1 /* OrdersView.swift */; };
@@ -84,6 +85,7 @@
 		DCA5251128AEBC5200A994F5 /* UZSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UZSans-Light.ttf"; sourceTree = "<group>"; };
 		DCA5251228AEBC5200A994F5 /* UZSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UZSans-Bold.ttf"; sourceTree = "<group>"; };
 		DCA5251328AEBC5200A994F5 /* UZSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UZSans-Regular.ttf"; sourceTree = "<group>"; };
+		DD2CEE6C28DA3B870060B77A /* RegistrationCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCheckView.swift; sourceTree = "<group>"; };
 		DD539A58289AEFDD006F1CD1 /* ProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsView.swift; sourceTree = "<group>"; };
 		DD539A6428A02839006F1CD1 /* FruitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitViewModel.swift; sourceTree = "<group>"; };
 		DD539A6828A02A62006F1CD1 /* OrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersView.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				DDBA58EC28AAB7CB00FFC3A5 /* CartView */,
 				DD539A6A28A040C4006F1CD1 /* Categories */,
 				DCA5250628AE7F2B00A994F5 /* OrdersView */,
+				DD2CEE6C28DA3B870060B77A /* RegistrationCheckView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				DCA5250828AE7F7E00A994F5 /* Order.swift in Sources */,
 				DC224EC028BB480700F8760D /* MakingTheOrderView.swift in Sources */,
 				DD95A8332899ABD200DF346B /* GoldBerryApp.swift in Sources */,
+				DD2CEE6D28DA3B870060B77A /* RegistrationCheckView.swift in Sources */,
 				DC4807FA28CB123F001416B6 /* ConfidentialView.swift in Sources */,
 				DD539A6928A02A63006F1CD1 /* OrdersView.swift in Sources */,
 				DC4807E328BB7E8A001416B6 /* TextField+.swift in Sources */,

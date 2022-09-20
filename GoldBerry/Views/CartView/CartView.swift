@@ -57,15 +57,19 @@ struct WithoutPurchase: View {
 }
 
 struct WithPurchase: View {
-//    @ObservedObject var viewModel = FruitViewModel()
     @ObservedObject var viewModel: FruitViewModel
 
     @State var show = false
+    
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.image, ascending: true)])
 
     var fruits: FetchedResults<FruitEntity>
+
+    @FetchRequest(entity: UserRegEntity.entity(), sortDescriptors: [])
+
+    var user: FetchedResults<UserRegEntity>
 
     
     var body: some View {
@@ -77,6 +81,7 @@ struct WithPurchase: View {
                     ForEach(fruits) { i in
                         if i.id == item.id {
                             CartCell(
+                                viewModel: viewModel,
                                 imageName: item.image,
                                 cost: item.itog,
                                 name: item.name,
@@ -115,8 +120,11 @@ struct WithPurchase: View {
 
                     Button {
 //                    MakingTheOrderView(viewModels: OrderViewModel())
-                      
-                        self.show.toggle()
+                        if user.isEmpty {
+                            self.viewModel.userRegShow.toggle()
+                        } else {
+                            self.show.toggle()
+                        }
                     } label: {
                         Text("Оформить заказ   \(NSString(format: "%.2f", viewModel.price)) р")
                             .foregroundColor(.white)
@@ -129,6 +137,17 @@ struct WithPurchase: View {
                     .sheet(isPresented: $show, content: {
                         MakingTheOrderView(viewModel: viewModel)
                     })
+                    
+                    .sheet(isPresented: $viewModel.userRegShow,content:  {
+                        if #available(iOS 16.0, *) {
+                            RegistrationCheckView(numberPhoneRegistration: "+375 ", viewModel: viewModel)
+                                .presentationDetents([.height(350)])
+                        } else {
+                            RegistrationCheckView(numberPhoneRegistration: "+375 ", viewModel: viewModel)
+                                .frame(height: 350)
+                        }
+                    })
+                    
 //                        .background(.white)
 //                        .navigationViewStyle(.columns)
 //                        .listStyle(.plain)

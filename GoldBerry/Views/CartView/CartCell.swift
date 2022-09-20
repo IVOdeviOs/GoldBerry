@@ -3,7 +3,7 @@ import SwiftUI
 struct CartCell: View {
 //    @ObservedObject var viewModel: FruitViewModel
 
-    @ObservedObject var viewModel = FruitViewModel()
+    @ObservedObject var viewModel:FruitViewModel
     @State var imageName: String
     @State var cost: Double
     @State var name: String
@@ -147,7 +147,7 @@ struct CartCell: View {
 struct CartCell_Previews: PreviewProvider {
     static var previews: some View {
         CartCell(
-            imageName: "apple",
+            viewModel: FruitViewModel(), imageName: "apple",
             cost: 1,
             name: "Apple",
             index: "1",
