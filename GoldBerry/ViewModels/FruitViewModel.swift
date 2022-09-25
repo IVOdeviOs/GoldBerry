@@ -1,9 +1,9 @@
 import CoreData
 import Foundation
 import SwiftUI
-
+import FirebaseAuth
 class FruitViewModel: ObservableObject {
-
+    
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
@@ -87,4 +87,6 @@ class FruitViewModel: ObservableObject {
             self.fruit = fruitResponse
         }
     }
+    
+    
 }

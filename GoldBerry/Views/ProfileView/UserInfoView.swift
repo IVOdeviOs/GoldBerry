@@ -17,20 +17,20 @@ struct UserInfoView: View {
             Color.theme.gray
                 .opacity(0.3)
                 .frame(height: 10)
-            TextFieldView(text: $userSurname, placeholder: "Фамилия")
+            TextFieldView(text: $userSurname, placeholder: "Фамилия",text1: "")
                 .onTapGesture {
                             hideKeyboard()
                     }
-            TextFieldView(text: $userName, placeholder: "Имя")
+            TextFieldView(text: $userName, placeholder: "Имя",text1: "")
                 .onTapGesture {
                             hideKeyboard()
                     }
-            TextFieldView(text: $userPhone, placeholder: "Телефон")
+            TextFieldView(text: $userPhone, placeholder: "Телефон",text1: "")
                 .keyboardType(.numberPad)
                 .onTapGesture {
                             hideKeyboard()
                     }
-            TextFieldView(text: $userEmail, placeholder: "E-mail")
+            TextFieldView(text: $userEmail, placeholder: "E-mail",text1: "")
                 .keyboardType(.emailAddress)
                 .onTapGesture {
                             hideKeyboard()

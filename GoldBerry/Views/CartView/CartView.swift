@@ -58,7 +58,7 @@ struct WithoutPurchase: View {
 
 struct WithPurchase: View {
     @ObservedObject var viewModel: FruitViewModel
-
+@ObservedObject var reg = FireBaseLogin()
     @State var show = false
     
     @Environment(\.managedObjectContext) private var viewContext
@@ -74,7 +74,7 @@ struct WithPurchase: View {
     
     var body: some View {
         ZStack(alignment: .top) {
-
+           
             ScrollView(showsIndicators: false) {
 
                 ForEach(viewModel.fruit) { item in
@@ -92,16 +92,6 @@ struct WithPurchase: View {
                             )
                         }
                     }
-//                    }
-//                        .swipeActions(content: {
-//                            Button {
-//                 //                                deleteItems
-//                    //                                EditButton()
-//                            } label: {
-//                                Label(" Delete ", systemImage: " trash ")
-//                            }.tint(.red)
-//
-//                        })
 
                     .padding(.vertical, 3)
                     .padding(.horizontal, 10)
@@ -109,8 +99,7 @@ struct WithPurchase: View {
 
                 .padding(.top, 125)
                 .padding(.bottom, 100)
-                //                }
-                //            }
+          
                 .ignoresSafeArea()
             }
             ZStack {
@@ -119,7 +108,6 @@ struct WithPurchase: View {
                     Spacer()
 
                     Button {
-//                    MakingTheOrderView(viewModels: OrderViewModel())
                         if user.isEmpty {
                             self.viewModel.userRegShow.toggle()
                         } else {
@@ -140,42 +128,24 @@ struct WithPurchase: View {
                     
                     .sheet(isPresented: $viewModel.userRegShow,content:  {
                         if #available(iOS 16.0, *) {
-                            RegistrationCheckView(numberPhoneRegistration: "+375 ", viewModel: viewModel)
+                            RegistrationCheckView(numberPhoneRegistration: "", prefix: "+\(reg.getCountryCode())", viewModel: viewModel)
                                 .presentationDetents([.height(350)])
                         } else {
-                            RegistrationCheckView(numberPhoneRegistration: "+375 ", viewModel: viewModel)
+                            RegistrationCheckView(numberPhoneRegistration: "\(reg.getCountryCode())", prefix: "+\(reg.getCountryCode())", viewModel: viewModel)
                                 .frame(height: 350)
                         }
                     })
-                    
-//                        .background(.white)
-//                        .navigationViewStyle(.columns)
-//                        .listStyle(.plain)
-//                        .background(.red)
                 }
             }
+           
 
             .navigationBarHidden(true)
         }
         .offset(y: -95)
-//        .ignoresSafeArea(edges: .top)
+       
     }
 
-//    private func deleteItems(offsets: IndexSet) {
-//        withAnimation {
-//            offsets.map { fruits[$0] }.forEach(viewContext.delete)
-//
-//            do {
-//                try viewContext.save()
-//            } catch {
-//                let nsError = error as NSError
-//                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-//            }
-//        }
-//    }
-//    func delete(at offsets: IndexSet) {
-    ////        viewModel.order.fruit.remove(atOffsets: offsets)
-//    }
+
 }
 
 struct CartView_Previews: PreviewProvider {

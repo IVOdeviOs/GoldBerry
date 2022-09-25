@@ -90,20 +90,20 @@ struct MakingTheOrderView: View {
                             .foregroundColor(Color.theme.lightGreen)
                             .padding()
                     }
-                    TextFieldView(text: $viewModel.customer, placeholder: "Имя получателя")
+                    TextFieldView(text: $viewModel.customer, placeholder: "Имя получателя",text1: "")
                         .onTapGesture {
                             hideKeyboard()
                         }
-                    TextFieldView(text: $viewModel.customerPhone, placeholder: "Телефон получателя")
+                    TextFieldView(text: $viewModel.customerPhone, placeholder: "Телефон получателя",text1: "")
                         .keyboardType(.numberPad)
                         .onTapGesture {
                             hideKeyboard()
                         }
-                    TextFieldView(text: $viewModel.address, placeholder: "Адрес доставки")
+                    TextFieldView(text: $viewModel.address, placeholder: "Адрес доставки",text1: "")
                         .onTapGesture {
                             hideKeyboard()
                         }
-                    TextFieldView(text: $viewModel.comment, placeholder: "Комментарий")
+                    TextFieldView(text: $viewModel.comment, placeholder: "Комментарий",text1: "")
                         .onTapGesture {
                             hideKeyboard()
                         }

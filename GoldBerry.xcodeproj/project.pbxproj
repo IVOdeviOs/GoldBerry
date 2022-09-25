@@ -35,6 +35,12 @@
 		DCA5251728AEBC5200A994F5 /* UZSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCA5251228AEBC5200A994F5 /* UZSans-Bold.ttf */; };
 		DCA5251828AEBC5200A994F5 /* UZSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCA5251328AEBC5200A994F5 /* UZSans-Regular.ttf */; };
 		DD2CEE6D28DA3B870060B77A /* RegistrationCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CEE6C28DA3B870060B77A /* RegistrationCheckView.swift */; };
+		DD2CEE7228DC93C00060B77A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = DD2CEE7128DC93C00060B77A /* FirebaseAuth */; };
+		DD2CEE7428DC93C00060B77A /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = DD2CEE7328DC93C00060B77A /* FirebaseAuthCombine-Community */; };
+		DD2CEE7628DC9B8E0060B77A /* FireBaseAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CEE7528DC9B8E0060B77A /* FireBaseAuth.swift */; };
+		DD2CEE7828DCABD30060B77A /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CEE7728DCABD30060B77A /* AlertView.swift */; };
+		DD2CEE7A28E0CAA50060B77A /* AuthCodeRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CEE7928E0CAA50060B77A /* AuthCodeRegistrationView.swift */; };
+		DD2CEE7C28E0DEA10060B77A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD2CEE7B28E0DEA10060B77A /* GoogleService-Info.plist */; };
 		DD539A59289AEFDD006F1CD1 /* ProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A58289AEFDD006F1CD1 /* ProductsView.swift */; };
 		DD539A6528A02839006F1CD1 /* FruitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A6428A02839006F1CD1 /* FruitViewModel.swift */; };
 		DD539A6928A02A63006F1CD1 /* OrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A6828A02A62006F1CD1 /* OrdersView.swift */; };
@@ -86,6 +92,10 @@
 		DCA5251228AEBC5200A994F5 /* UZSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UZSans-Bold.ttf"; sourceTree = "<group>"; };
 		DCA5251328AEBC5200A994F5 /* UZSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UZSans-Regular.ttf"; sourceTree = "<group>"; };
 		DD2CEE6C28DA3B870060B77A /* RegistrationCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCheckView.swift; sourceTree = "<group>"; };
+		DD2CEE7528DC9B8E0060B77A /* FireBaseAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseAuth.swift; sourceTree = "<group>"; };
+		DD2CEE7728DCABD30060B77A /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		DD2CEE7928E0CAA50060B77A /* AuthCodeRegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCodeRegistrationView.swift; sourceTree = "<group>"; };
+		DD2CEE7B28E0DEA10060B77A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DD539A58289AEFDD006F1CD1 /* ProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsView.swift; sourceTree = "<group>"; };
 		DD539A6428A02839006F1CD1 /* FruitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitViewModel.swift; sourceTree = "<group>"; };
 		DD539A6828A02A62006F1CD1 /* OrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersView.swift; sourceTree = "<group>"; };
@@ -114,6 +124,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD2CEE7228DC93C00060B77A /* FirebaseAuth in Frameworks */,
+				DD2CEE7428DC93C00060B77A /* FirebaseAuthCombine-Community in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +188,7 @@
 				DD539A6428A02839006F1CD1 /* FruitViewModel.swift */,
 				DD93807028B52FA900808E88 /* OrderViewModel.swift */,
 				DD93807828B6349B00808E88 /* RemoteImageView.swift */,
+				DD2CEE7528DC9B8E0060B77A /* FireBaseAuth.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -189,6 +202,8 @@
 				DD539A6A28A040C4006F1CD1 /* Categories */,
 				DCA5250628AE7F2B00A994F5 /* OrdersView */,
 				DD2CEE6C28DA3B870060B77A /* RegistrationCheckView.swift */,
+				DD2CEE7728DCABD30060B77A /* AlertView.swift */,
+				DD2CEE7928E0CAA50060B77A /* AuthCodeRegistrationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -258,6 +273,7 @@
 				DD539A54289AEAF6006F1CD1 /* ViewModels */,
 				DD95A8362899ABD600DF346B /* Assets.xcassets */,
 				DD95A8322899ABD200DF346B /* GoldBerryApp.swift */,
+				DD2CEE7B28E0DEA10060B77A /* GoogleService-Info.plist */,
 				DD95A83D2899ABD600DF346B /* GoldBerry.xcdatamodeld */,
 				DD95A8382899ABD600DF346B /* Preview Content */,
 			);
@@ -327,6 +343,10 @@
 			dependencies = (
 			);
 			name = GoldBerry;
+			packageProductDependencies = (
+				DD2CEE7128DC93C00060B77A /* FirebaseAuth */,
+				DD2CEE7328DC93C00060B77A /* FirebaseAuthCombine-Community */,
+			);
 			productName = GoldBerry;
 			productReference = DD95A82F2899ABD200DF346B /* GoldBerry.app */;
 			productType = "com.apple.product-type.application";
@@ -355,6 +375,9 @@
 				Base,
 			);
 			mainGroup = DD95A8262899ABD100DF346B;
+			packageReferences = (
+				DD2CEE7028DC93C00060B77A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = DD95A8302899ABD200DF346B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -371,6 +394,7 @@
 			files = (
 				DCA5250328AE715100A994F5 /* helveticacyrillicupright.ttf in Resources */,
 				DCA5251828AEBC5200A994F5 /* UZSans-Regular.ttf in Resources */,
+				DD2CEE7C28E0DEA10060B77A /* GoogleService-Info.plist in Resources */,
 				DD95A83A2899ABD600DF346B /* Preview Assets.xcassets in Resources */,
 				DD95A8372899ABD600DF346B /* Assets.xcassets in Resources */,
 				DCA5251728AEBC5200A994F5 /* UZSans-Bold.ttf in Resources */,
@@ -402,6 +426,7 @@
 				DCA5250A28AE813700A994F5 /* OrderCell.swift in Sources */,
 				DC4807F428C9DC8F001416B6 /* User.swift in Sources */,
 				DD93807928B6349B00808E88 /* RemoteImageView.swift in Sources */,
+				DD2CEE7628DC9B8E0060B77A /* FireBaseAuth.swift in Sources */,
 				DC4807E828BC8965001416B6 /* ProfileView.swift in Sources */,
 				DC4807F828CA9D1A001416B6 /* DeliveryInfoView.swift in Sources */,
 				DC4807FE28CB1B7E001416B6 /* DisclaimerOfLiabilityView.swift in Sources */,
@@ -409,11 +434,13 @@
 				DCA524D528AD31CD00A994F5 /* Font+.swift in Sources */,
 				DDBA58E228A16E3B00FFC3A5 /* InformationProductView.swift in Sources */,
 				DD93807128B52FA900808E88 /* OrderViewModel.swift in Sources */,
+				DD2CEE7828DCABD30060B77A /* AlertView.swift in Sources */,
 				DD95A8352899ABD200DF346B /* ContentView.swift in Sources */,
 				DCA5250828AE7F7E00A994F5 /* Order.swift in Sources */,
 				DC224EC028BB480700F8760D /* MakingTheOrderView.swift in Sources */,
 				DD95A8332899ABD200DF346B /* GoldBerryApp.swift in Sources */,
 				DD2CEE6D28DA3B870060B77A /* RegistrationCheckView.swift in Sources */,
+				DD2CEE7A28E0CAA50060B77A /* AuthCodeRegistrationView.swift in Sources */,
 				DC4807FA28CB123F001416B6 /* ConfidentialView.swift in Sources */,
 				DD539A6928A02A63006F1CD1 /* OrdersView.swift in Sources */,
 				DC4807E328BB7E8A001416B6 /* TextField+.swift in Sources */,
@@ -556,7 +583,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GoldBerry/Preview Content\"";
-				DEVELOPMENT_TEAM = 3H4J882387;
+				DEVELOPMENT_TEAM = B9S2MDX3F7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GoldBerry/Info.plist;
@@ -572,9 +599,12 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = .goldberry;
+				PRODUCT_BUNDLE_IDENTIFIER = "-1011.GoldBerry";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -606,8 +636,11 @@
 				);
 				MARKETING_VERSION = 1.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "-1101.GoldBerry";
+				PRODUCT_BUNDLE_IDENTIFIER = "-1011.GoldBerry";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -636,6 +669,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DD2CEE7028DC93C00060B77A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DD2CEE7128DC93C00060B77A /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD2CEE7028DC93C00060B77A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		DD2CEE7328DC93C00060B77A /* FirebaseAuthCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD2CEE7028DC93C00060B77A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseAuthCombine-Community";
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		DD95A83D2899ABD600DF346B /* GoldBerry.xcdatamodeld */ = {
