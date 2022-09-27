@@ -11,7 +11,7 @@ struct ProfileView: View {
     
     var numberPhone = "+375336096300"
     @StateObject var user = FruitViewModel()
-    
+    @State var alert = false
     var body: some View {
         VStack {
             ZStack {
@@ -40,8 +40,8 @@ struct ProfileView: View {
                             viewModel: viewModel,
                             userName: viewModel.user.userName,
                             userSurname: viewModel.user.userSurname,
-                            userPhone: viewModel.user.userPhone,
-                            userEmail: viewModel.user.userEmail
+                            userPhone: viewModel.user.userPhone
+//                            userEmail: viewModel.user.userEmail
                         )
                     })
                 }
@@ -180,13 +180,31 @@ struct ProfileView: View {
             Spacer()
             HStack {
                 Button {
-                    viewModel.selected = 0
+                    alert = true
+
                 } label: {
                     Text("Выход")
-                        .frame(width: 100, height: 50)
-                        .foregroundColor(Color.theme.gray)
-                        .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
+                    HStack(spacing: 25) {
+                        Image("out")
+                            .foregroundColor(Color.white)
+                        Text("Exit")
+                            .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
+                            .foregroundColor(Color.white)
+                    }
+
                 }
+                .alert(isPresented: $alert) {
+                    Alert(title: Text("Sign Out"),
+                          message: Text("Are you sure you want to log out of your account?"),
+                          primaryButton: .destructive(Text("Yes")) {
+                                  UserDefaults.standard.set(false, forKey: "status")
+                                  NotificationCenter.default.post(name: NSNotification.Name("statusChange"),
+                                                                  object: nil)
+                          },
+                          secondaryButton: .cancel())
+                }
+                .padding(.vertical, 10)
+                .padding(.horizontal)
                 .padding(.leading, 10)
                 Spacer()
             }

@@ -4,10 +4,7 @@ import SwiftUI
 struct CartView: View {
     @StateObject var viewModel = FruitViewModel()
     @Environment(\.managedObjectContext) private var viewContext
-
-//    @FetchRequest(
-//        sortDescriptors: [NSSortDescriptor(keyPath: \Fruits.name, ascending: true)],
-//        animation: .default)
+    
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
     var fruits: FetchedResults<FruitEntity>
 
@@ -58,7 +55,7 @@ struct WithoutPurchase: View {
 
 struct WithPurchase: View {
     @ObservedObject var viewModel: FruitViewModel
-@ObservedObject var reg = FireBaseLogin()
+//    @ObservedObject var reg = FireBaseLogin()
     @State var show = false
     
     @Environment(\.managedObjectContext) private var viewContext
@@ -108,11 +105,7 @@ struct WithPurchase: View {
                     Spacer()
 
                     Button {
-                        if user.isEmpty {
-                            self.viewModel.userRegShow.toggle()
-                        } else {
                             self.show.toggle()
-                        }
                     } label: {
                         Text("Оформить заказ   \(NSString(format: "%.2f", viewModel.price)) р")
                             .foregroundColor(.white)
@@ -125,16 +118,7 @@ struct WithPurchase: View {
                     .sheet(isPresented: $show, content: {
                         MakingTheOrderView(viewModel: viewModel)
                     })
-                    
-                    .sheet(isPresented: $viewModel.userRegShow,content:  {
-                        if #available(iOS 16.0, *) {
-                            RegistrationCheckView(numberPhoneRegistration: "", prefix: "+\(reg.getCountryCode())", viewModel: viewModel)
-                                .presentationDetents([.height(350)])
-                        } else {
-                            RegistrationCheckView(numberPhoneRegistration: "\(reg.getCountryCode())", prefix: "+\(reg.getCountryCode())", viewModel: viewModel)
-                                .frame(height: 350)
-                        }
-                    })
+
                 }
             }
            

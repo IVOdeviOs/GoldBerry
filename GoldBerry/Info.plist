@@ -20,9 +20,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>com.googleusercontent.apps.681087587207-ghv24t1dldpm2v1ih95nsplr0b54v590</string>
-			</array>
+			<array/>
 		</dict>
 	</array>
 	<key>NSAppClip</key>
@@ -42,8 +40,6 @@
 		<string>UZSans-SemiBold.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
-	<array>
-		<string>remote-notification</string>
-	</array>
+	<array/>
 </dict>
 </plist>

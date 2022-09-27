@@ -4,11 +4,10 @@ struct TextFieldView: View {
     
     var text: Binding<String>
     var placeholder: String = ""
-    var text1: String
     var body: some View {
         VStack {
            
-            TextField(placeholder, text: text,prompt: Text(text1).bold().foregroundColor(.black))
+            TextField(placeholder, text: text)
                 .foregroundColor(.black)
                 .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
                 .padding(.leading, 20)
@@ -27,6 +26,6 @@ struct TextFieldView: View {
 
 struct TextFieldView_Previews: PreviewProvider {
     static var previews: some View {
-        TextFieldView(text: Binding<String>.constant("dddd"), placeholder: "sdss", text1: "")
+        TextFieldView(text: Binding<String>.constant("dddd"), placeholder: "sdss")
     }
 }

@@ -6,7 +6,7 @@ struct UserInfoView: View {
     @State var userName: String
     @State var userSurname: String
     @State var userPhone: String
-    @State var userEmail: String
+//    @State var userEmail: String
     
     var body: some View {
         VStack {
@@ -17,29 +17,29 @@ struct UserInfoView: View {
             Color.theme.gray
                 .opacity(0.3)
                 .frame(height: 10)
-            TextFieldView(text: $userSurname, placeholder: "Фамилия",text1: "")
+            TextFieldView(text: $userSurname, placeholder: "Фамилия")
                 .onTapGesture {
                             hideKeyboard()
                     }
-            TextFieldView(text: $userName, placeholder: "Имя",text1: "")
+            TextFieldView(text: $userName, placeholder: "Имя")
                 .onTapGesture {
                             hideKeyboard()
                     }
-            TextFieldView(text: $userPhone, placeholder: "Телефон",text1: "")
+            TextFieldView(text: $userPhone, placeholder: "Телефон")
                 .keyboardType(.numberPad)
                 .onTapGesture {
                             hideKeyboard()
                     }
-            TextFieldView(text: $userEmail, placeholder: "E-mail",text1: "")
-                .keyboardType(.emailAddress)
-                .onTapGesture {
-                            hideKeyboard()
-                    }
+//            TextFieldView(text: $userEmail, placeholder: "E-mail")
+//                .keyboardType(.emailAddress)
+//                .onTapGesture {
+//                            hideKeyboard()
+//                    }
             Button {
                 viewModel.user.userSurname = userSurname
                 viewModel.user.userName = userName
                 viewModel.user.userPhone = userPhone
-                viewModel.user.userEmail = userEmail
+//                viewModel.user.userEmail = userEmail
                 ProfileView(viewModel: viewModel)
             } label: {
                 ZStack {
@@ -62,8 +62,8 @@ struct UserInfoView_Previews: PreviewProvider {
             viewModel: FruitViewModel(),
             userName: "",
             userSurname: "",
-            userPhone: "",
-            userEmail: ""
+            userPhone: ""
+//            userEmail: ""
         )
     }
 }

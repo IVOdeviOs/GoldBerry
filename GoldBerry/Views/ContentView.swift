@@ -9,6 +9,30 @@ extension Color {
 
 struct ContentView: View {
     @StateObject var viewModel = FruitViewModel()
+   
+    @State var status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
+
+    var body: some View {
+
+        NavigationView {
+            if status {
+                ViewProfile(viewModel: viewModel)
+            } else {
+                LoginView(signUP: LogIn())
+            }
+        }.onAppear {
+            NotificationCenter.default.addObserver(forName: NSNotification.Name("statusChange"),
+                                                   object: nil,
+                                                   queue: .main)
+            { _ in
+                let status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
+                self.status = status
+            }
+        }
+    }
+}
+struct ViewProfile:View{
+    @StateObject var viewModel = FruitViewModel()
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
@@ -16,28 +40,25 @@ struct ContentView: View {
         animation: .default
     )
     var fruits: FetchedResults<FruitEntity>
-
-    var body: some View {
-
-        NavigationView {
+    var body: some View{
+        ZStack {
+            ExtractedView(viewModel: viewModel)
             ZStack {
-                ExtractedView(viewModel: viewModel)
-                ZStack {
-                    VStack {
-                        ZStack {
-                            HStack {
-                           
-                                Text("GoldBerry")
-                                    .font(Font(uiFont: .fontLibrary(32, .uzSansBold)))
-                                    .foregroundColor(viewModel.selected == 3 ? .white : Color.theme.lightGreen)
-                                    .padding()
-                                Spacer()
-                                Image("goldBerryLogo")
-                                    .resizable()
-                                    .frame(width: 50, height: 50)
-                                    .cornerRadius(8)
-                                    .padding()
-                            }
+                VStack {
+                    ZStack {
+                        HStack {
+                       
+                            Text("GoldBerry")
+                                .font(Font(uiFont: .fontLibrary(32, .uzSansBold)))
+                                .foregroundColor(viewModel.selected == 3 ? .white : Color.theme.lightGreen)
+                                .padding()
+                            Spacer()
+                            Image("goldBerryLogo")
+                                .resizable()
+                                .frame(width: 50, height: 50)
+                                .cornerRadius(8)
+                                .padding()
+                        }
 //                                HStack(spacing: 5) {
 //                                    Image(systemName: "cart.fill")
 //                                        .resizable()
@@ -62,102 +83,102 @@ struct ContentView: View {
 //                                .shadow(color: .green.opacity(0.2), radius: 10, x: 0, y: 10)
 //                                .padding(.horizontal, 30)
 //                            }
-                            .padding(.top, 40)
-                        }
+                        .padding(.top, 40)
+                    }
 
-                        Spacer()
-                        ZStack(alignment: .bottom) {
-                            HStack {
-                                Button {
-                                    viewModel.selected = 0
-                                } label: {
-                                    VStack {
-                                        Image(systemName: "house")
-                                            .resizable()
-                                            .frame(width: 23, height: 20)
-                                        Text("Главная")
-                                            .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                                    }
-                                }.foregroundColor(viewModel.selected == 0 ? Color.theme.lightGreen : Color.theme.gray)
-                                Spacer(minLength: 12)
-
-                                Button {
-                                    viewModel.selected = 1
-                                } label: {
-                                    ZStack {
-                                        ZStack {
-                                            if fruits.count != 0 {
-                                        Color.red
-                                            .frame(width: 20, height: 20)
-                                            .cornerRadius(10)
-                                                Text("\(fruits.count)")
-                                                    .minimumScaleFactor(0.5)
-                                                .foregroundColor(.white)
-                                                .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                                            } else {
-                                              
-                                            }
-                                        }
-                                        .offset(x: 20, y: -20)
-                                        
-                                        VStack {
-                                    Image(systemName: "cart")
+                    Spacer()
+                    ZStack(alignment: .bottom) {
+                        HStack {
+                            Button {
+                                viewModel.selected = 0
+                            } label: {
+                                VStack {
+                                    Image(systemName: "house")
                                         .resizable()
                                         .frame(width: 23, height: 20)
-                                        Text("Корзина")
+                                    Text("Главная")
+                                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                                }
+                            }.foregroundColor(viewModel.selected == 0 ? Color.theme.lightGreen : Color.theme.gray)
+                            Spacer(minLength: 12)
+
+                            Button {
+                                viewModel.selected = 1
+                            } label: {
+                                ZStack {
+                                    ZStack {
+                                        if fruits.count != 0 {
+                                    Color.red
+                                        .frame(width: 20, height: 20)
+                                        .cornerRadius(10)
+                                            Text("\(fruits.count)")
+                                                .minimumScaleFactor(0.5)
+                                            .foregroundColor(.white)
                                             .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                                        } else {
+                                          
                                         }
                                     }
-                                }.foregroundColor(viewModel.selected == 1 ? Color.theme.lightGreen : Color.theme.gray)
-                                Spacer()
-
-                                Button {
-                                    viewModel.selected = 2
-                                } label: {
+                                    .offset(x: 20, y: -20)
+                                    
                                     VStack {
-                                        Image(systemName: viewModel.selected == 2 ? "bag.fill" : "bag")
-                                            .resizable()
-                                            .frame(width: 23, height: 20)
-                                        Text("Заказы")
-                                            .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                                Image(systemName: "cart")
+                                    .resizable()
+                                    .frame(width: 23, height: 20)
+                                    Text("Корзина")
+                                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                                     }
-                                }.foregroundColor(viewModel.selected == 2 ? Color.theme.lightGreen : Color.theme.gray)
-                                Spacer(minLength: 12)
+                                }
+                            }.foregroundColor(viewModel.selected == 1 ? Color.theme.lightGreen : Color.theme.gray)
+                            Spacer()
 
-                                Button {
-                                    viewModel.selected = 3
-                                } label: {
-                                    VStack {
-                                        Image(systemName: viewModel.selected == 3 ? "person.fill" : "person")
-                                            .resizable()
-                                            .frame(width: 23, height: 20)
-                                        Text("Профиль")
-                                            .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                                    }
-                                }.foregroundColor(viewModel.selected == 3 ? Color.theme.lightGreen : Color.theme.gray)
-                            }
-                            .padding()
-                            .padding(.horizontal, 22)
-                            //                        .background(Color.background)
-                            .background(.white)
+                            Button {
+                                viewModel.selected = 2
+                            } label: {
+                                VStack {
+                                    Image(systemName: viewModel.selected == 2 ? "bag.fill" : "bag")
+                                        .resizable()
+                                        .frame(width: 23, height: 20)
+                                    Text("Заказы")
+                                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                                }
+                            }.foregroundColor(viewModel.selected == 2 ? Color.theme.lightGreen : Color.theme.gray)
+                            Spacer(minLength: 12)
+
+                            Button {
+                                viewModel.selected = 3
+                            } label: {
+                                VStack {
+                                    Image(systemName: viewModel.selected == 3 ? "person.fill" : "person")
+                                        .resizable()
+                                        .frame(width: 23, height: 20)
+                                    Text("Профиль")
+                                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                                }
+                            }.foregroundColor(viewModel.selected == 3 ? Color.theme.lightGreen : Color.theme.gray)
                         }
-
-                        //                    .padding()
-                        //                    .foregroundColor(Color.neumorphismtextColor)
-                        //                    .background(Color.background)
-                        .clipShape(RoundedRectangle(cornerRadius: 20))
                         .padding()
-                        //                    .shadow(color: Color.lightShadow, radius: 5, x: -4, y: -4)
-                        //                    .shadow(color: Color.darkShadow, radius: 5, x: 4, y: 4)
-                        .padding(.bottom, 30)
-                        .shadow(color: .green.opacity(0.5), radius: 20, x: 0, y: 10)
+                        .padding(.horizontal, 22)
+                        //                        .background(Color.background)
+                        .background(.white)
                     }
+
+                    //                    .padding()
+                    //                    .foregroundColor(Color.neumorphismtextColor)
+                    //                    .background(Color.background)
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                    .padding()
+                    //                    .shadow(color: Color.lightShadow, radius: 5, x: -4, y: -4)
+                    //                    .shadow(color: Color.darkShadow, radius: 5, x: 4, y: 4)
+                    .padding(.bottom, 30)
+                    .shadow(color: .green.opacity(0.5), radius: 20, x: 0, y: 10)
                 }
             }
-            .ignoresSafeArea()
-            .background(.white)
         }
+        .ignoresSafeArea()
+        .background(.white)
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
