@@ -231,6 +231,17 @@ struct ExtractedView: View {
                     }
             case 3:
                 ProfileView(viewModel: viewModel)
+                    .onAppear {
+                        
+                        Task {
+                            do {
+                                try await viewModel.fetchUser()
+                            } catch {
+                                print("❌ERORR \(error)")
+                            }
+                        }
+                    }
+
             default:
                 ProductsView(viewModel: viewModel)
             }

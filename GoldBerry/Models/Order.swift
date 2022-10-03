@@ -20,7 +20,7 @@ struct Order:Identifiable, Codable {
     var date: String
     var fruit: [Fruit]
     var address: String
-    var price: Int
+    var price: Double
     var customer, customerPhone, comment: String
 
 }

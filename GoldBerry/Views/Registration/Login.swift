@@ -5,6 +5,10 @@ import SwiftUI
 struct Login: View {
     @StateObject private var login = LogIn()
     @Binding var index: Int
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(entity: UserRegEntity.entity(), sortDescriptors: [])
+    var users: FetchedResults<UserRegEntity>
+    
     var body: some View {
         ZStack(alignment: .bottom) {
             VStack {
@@ -79,10 +83,13 @@ struct Login: View {
                         login.message = status
                         login.alert.toggle()
                     } else {
+                        UserDefaults.standard.set(login.email, forKey: "userEmail")
+
+//                        addUser()
                         UserDefaults.standard.set(true, forKey: "status")
                         NotificationCenter.default
                             .post(name: NSNotification.Name("statusChange"), object: nil)
-                        UserDefaults.standard.set(login.email, forKey: "1")
+//                        UserDefaults.standard.set(login.email, forKey: "1")
                     }
                 }
             } label: {
@@ -105,6 +112,25 @@ struct Login: View {
             }
             .offset(y: 30)
             .opacity(index == 0 ? 1 : 0)
+        }
+    }
+
+    func addUser() {
+        withAnimation {
+            let newUser = UserRegEntity(context: viewContext)
+            newUser.email = login.email
+            for i in users{
+                if newUser.email == i.email{
+                    viewContext.delete(newUser)
+                }
+            }
+
+            do {
+                try viewContext.save()
+            } catch {
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
         }
     }
 }

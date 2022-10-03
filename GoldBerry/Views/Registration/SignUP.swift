@@ -1,15 +1,20 @@
-
 import Combine
 import FirebaseAuth
 import FirebaseCore
 import SwiftUI
+import CoreData
 
 struct SignUP: View {
 
     @StateObject private var signUP = LogIn()
     @Binding var index: Int
     @Binding var show: Bool
-
+    
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(entity: UserRegEntity.entity(), sortDescriptors: [])
+    var users: FetchedResults<UserRegEntity>
+    
+    
     var body: some View {
         ZStack(alignment: .bottom) {
             VStack {
@@ -117,10 +122,13 @@ struct SignUP: View {
                         signUP.message = status
                         signUP.alert.toggle()
                     } else {
+                        UserDefaults.standard.set(signUP.email, forKey: "userEmail")
+
+//                        addUser()
                         UserDefaults.standard.set(true, forKey: "status")
                         show.toggle()
                         NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
-                        UserDefaults.standard.set(signUP.email, forKey: "1")
+//                        UserDefaults.standard.set(signUP.email, forKey: "1")
                     }
                 }
             } label: {
@@ -155,6 +163,25 @@ struct SignUP: View {
 
         }
     }
+    func addUser() {
+        withAnimation {
+            let newUser = UserRegEntity(context: viewContext)
+            newUser.email = signUP.email
+            for i in users{
+                if newUser.email == i.email{
+                    viewContext.delete(newUser)
+                }
+            }
+
+            do {
+                try viewContext.save()
+            } catch {
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
+    }
+    
 }
 
 struct SignUP_Previews: PreviewProvider {

@@ -2,16 +2,23 @@ import SwiftUI
 
 struct ProfileView: View {
     
+    @FetchRequest(entity: UserRegEntity.entity(), sortDescriptors: [])
+    var users: FetchedResults<UserRegEntity>
+    
+    
     @StateObject var viewModel: FruitViewModel
     //    @StateObject var viewModels: OrderViewModel
-    @State var showUserInfoView = false
+//    @State var showUserInfoView = false
     @State var showServiceInfoView = false
     @State var showShopView = false
     @State var showFavouriteProductsView = false
-    
+
     var numberPhone = "+375336096300"
     @StateObject var user = FruitViewModel()
     @State var alert = false
+    
+    let email = UserDefaults.standard.value(forKey: "userEmail")
+    
     var body: some View {
         VStack {
             ZStack {
@@ -20,14 +27,14 @@ struct ProfileView: View {
                     .offset(y: -50)
                 HStack {
                     VStack {
-                        Text(viewModel.user.userName.isEmpty && viewModel.user.userSurname.isEmpty ? "Имя Фамилия" : "\(viewModel.user.userName) \(viewModel.user.userSurname)")
+                        Text(viewModel.userName.isEmpty && viewModel.userSurname.isEmpty ? "Имя Фамилия" : "\(viewModel.userName) \(viewModel.userSurname)")
                             .foregroundColor(.white)
                             .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
                             .padding()
                     }
-                    Spacer()
+                                        Spacer()
                     Button {
-                        self.showUserInfoView.toggle()
+                        self.viewModel.showUserInfoView.toggle()
                     } label: {
                         Image(systemName: "arrow.right")
                             .resizable()
@@ -35,12 +42,12 @@ struct ProfileView: View {
                             .foregroundColor(.white)
                             .padding(.trailing, 20)
                     }
-                    .sheet(isPresented: $showUserInfoView, content: {
+                    .sheet(isPresented: $viewModel.showUserInfoView, content: {
                         UserInfoView(
-                            viewModel: viewModel,
-                            userName: viewModel.user.userName,
-                            userSurname: viewModel.user.userSurname,
-                            userPhone: viewModel.user.userPhone
+                            viewModel: viewModel
+//                            userName: viewModel.users.userName,
+//                            userSurname: viewModel.users.userSurname,
+//                            userPhone: viewModel.users.userPhone
 //                            userEmail: viewModel.user.userEmail
                         )
                     })
@@ -183,13 +190,12 @@ struct ProfileView: View {
                     alert = true
 
                 } label: {
-                    Text("Выход")
-                    HStack(spacing: 25) {
+                    HStack(spacing: 5) {
                         Image("out")
                             .foregroundColor(Color.white)
-                        Text("Exit")
+                        Text("Выход")
                             .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
-                            .foregroundColor(Color.white)
+                            .foregroundColor(Color.black)
                     }
 
                 }
@@ -210,9 +216,19 @@ struct ProfileView: View {
             }
             .offset(y: -70)
             .navigationBarHidden(true)
-        }
+        }       
         .offset(y: -40)
         .ignoresSafeArea()
+        .onAppear{
+            for item in viewModel.user{
+                if email as! String  == item.userEmail{
+                    viewModel.userName = item.userName
+                    viewModel.userSurname = item.userSurname
+                }
+            }
+            
+        }
+
     }
 }
 

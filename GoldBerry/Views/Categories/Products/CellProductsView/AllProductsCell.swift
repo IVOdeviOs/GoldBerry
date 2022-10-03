@@ -114,8 +114,8 @@ struct AllProductsCell: View {
 
                         //                        viewModel.order.price -= price
                         //                        print("\(price)")
-                        fruit.price = fruit.price
-                        print("\(String(describing: fruit.price))")
+//                        fruit.price = fruit.price
+//                        print("\(String(describing: fruit.price))")
                     }
                 } label: {
                     Image(systemName: "minus.square.fill")
@@ -183,6 +183,13 @@ struct AllProductsCell: View {
         withAnimation {
             let newFruit = FruitEntity(context: viewContext)
             newFruit.id = fruit.id
+            newFruit.count = Int16(fruit.count)
+
+            for i in fruits{
+                if newFruit.id == i.id {
+                    viewContext.delete(newFruit)
+                }
+            }
 //            newFruit.name = fruit.name
 //            newFruit.image = fruit.image
 //            newFruit.cost = fruit.cost
@@ -197,8 +204,10 @@ struct AllProductsCell: View {
 //            newFruit.itog = Double(fruit.itog)
 //            print(newFruit.name! + "😍")
             do {
-
+              
                 try viewContext.save()
+                
+                
             } catch {
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
@@ -212,3 +221,4 @@ struct AllProductsCell_Previews: PreviewProvider {
         AllProductsCell(fruit: Fruit(cost: 1, weightOrPieces: "", categories: "", favorite: true, count: 1, image: "", name: "", percent: 1, descriptions: "", price: 1)).previewLayout(.fixed(width: 180, height: 290))
     }
 }
+

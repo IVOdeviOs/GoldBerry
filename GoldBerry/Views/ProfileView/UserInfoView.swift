@@ -1,13 +1,17 @@
 import SwiftUI
 
 struct UserInfoView: View {
-    
+//    @FetchRequest(entity: UserRegEntity.entity(), sortDescriptors: [])
+//    var users: FetchedResults<UserRegEntity>
+    @Environment(\.presentationMode) var presentationMode
     @StateObject var viewModel: FruitViewModel
-    @State var userName: String
-    @State var userSurname: String
-    @State var userPhone: String
-//    @State var userEmail: String
-    
+//    @State var userName: String
+//    @State var userSurname: String
+//    @State var userPhone: String
+//    @State var userEmail = ""
+    let email = UserDefaults.standard.value(forKey: "userEmail")
+    @State var modal: ModalType? = nil
+
     var body: some View {
         VStack {
             Text("Мои данные")
@@ -17,30 +21,71 @@ struct UserInfoView: View {
             Color.theme.gray
                 .opacity(0.3)
                 .frame(height: 10)
-            TextFieldView(text: $userSurname, placeholder: "Фамилия")
+            TextFieldView(text: $viewModel.userSurname, placeholder: "Фамилия")
                 .onTapGesture {
-                            hideKeyboard()
-                    }
-            TextFieldView(text: $userName, placeholder: "Имя")
+                    hideKeyboard()
+                }
+            TextFieldView(text: $viewModel.userName, placeholder: "Имя")
                 .onTapGesture {
-                            hideKeyboard()
-                    }
-            TextFieldView(text: $userPhone, placeholder: "Телефон")
+                    hideKeyboard()
+                }
+            TextFieldView(text: $viewModel.userPhone, placeholder: "Телефон")
                 .keyboardType(.numberPad)
                 .onTapGesture {
-                            hideKeyboard()
-                    }
+                    hideKeyboard()
+                }
 //            TextFieldView(text: $userEmail, placeholder: "E-mail")
 //                .keyboardType(.emailAddress)
 //                .onTapGesture {
 //                            hideKeyboard()
 //                    }
             Button {
-                viewModel.user.userSurname = userSurname
-                viewModel.user.userName = userName
-                viewModel.user.userPhone = userPhone
+
+                viewModel.user.forEach { i in
+                    if i.userEmail == email as! String {
+//                        Task {
+                        ////                            do {
+                        ////                                try await viewModel.updateUser()
+                        ////                            } catch {
+                        ////                                print("❌ ERORR🥰")
+                        ////                            }
+//
+//                        }
+                        modal = .update(User(id:viewModel.userId, userName: viewModel.userName, userSurname: viewModel.userSurname, userPhone: viewModel.userPhone, userEmail: email as! String))
+
+                    } else {
+                        Task {
+                            do {
+                                try await viewModel.addUser()
+                            } catch {
+                                print("❌ ERORR😤")
+                            }
+                        }
+                    }
+                }
+
+//                modal = .update(User(userName: viewModel.userName, userSurname: viewModel.userSurname, userPhone: viewModel.userPhone, userEmail: email as! String))
+
+                //                userEmail = email as! String
+//
+//                let use = User(userName: userName,
+//                               userSurname: userSurname,
+//                               userPhone: userPhone,
+//                               userEmail: userEmail)
+
+//                Task {
+//                    do {
+//                        try await viewModel.addUser()
+//                    } catch {
+//                        print("❌ ERORR")
+//                    }
+//                }
+                self.viewModel.showUserInfoView = false
+//                viewModel.users.userSurname = userSurname
+//                viewModel.users.userName = userName
+//                viewModel.users.userPhone = userPhone
 //                viewModel.user.userEmail = userEmail
-                ProfileView(viewModel: viewModel)
+//                ProfileView(viewModel: viewModel)
             } label: {
                 ZStack {
                     Color.theme.lightGreen
@@ -52,6 +97,15 @@ struct UserInfoView: View {
                 }
             }
             Spacer()
+        }.onAppear {
+
+            for item in viewModel.user {
+                if email as! String == item.userEmail {
+                    viewModel.userName = item.userName
+                    viewModel.userSurname = item.userSurname
+                    viewModel.userPhone = item.userPhone
+                }
+            }
         }
     }
 }
@@ -59,13 +113,11 @@ struct UserInfoView: View {
 struct UserInfoView_Previews: PreviewProvider {
     static var previews: some View {
         UserInfoView(
-            viewModel: FruitViewModel(),
-            userName: "",
-            userSurname: "",
-            userPhone: ""
+            viewModel: FruitViewModel()
+//            userName: "",
+//            userSurname: "",
+//            userPhone: "",
 //            userEmail: ""
         )
     }
 }
-
-

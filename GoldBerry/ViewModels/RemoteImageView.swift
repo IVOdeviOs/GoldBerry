@@ -36,6 +36,9 @@ struct RemoteImageView<Placeholder: View, ConfiguredImage: View>: View {
     }
 }
 
+
+
+
 class ImageLoaderService: ObservableObject {
     @Published var image = UIImage()
 

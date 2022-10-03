@@ -16,6 +16,6 @@
         <attribute name="weightOrPieces" optional="YES" attributeType="String"/>
     </entity>
     <entity name="UserRegEntity" representedClassName="UserRegEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="numberPhone" optional="YES" attributeType="String"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
     </entity>
 </model>

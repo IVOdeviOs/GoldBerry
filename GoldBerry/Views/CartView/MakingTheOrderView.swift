@@ -145,7 +145,7 @@ struct MakingTheOrderView: View {
                     let orde = Order(orderNumber: viewModel.orderNumber,
                                      date: viewModel.date, fruit: currentTopics(fruitss: fruits),
                                      address: viewModel.address,
-                                     price: Int(viewModel.price),
+                                     price: viewModel.price,
                                      customer: viewModel.customer,
                                      customerPhone: viewModel.customerPhone,
                                      comment: viewModel.comment)

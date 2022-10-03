@@ -2,9 +2,9 @@ import CoreData
 import SwiftUI
 
 struct CartView: View {
-    @StateObject var viewModel = FruitViewModel()
-    @Environment(\.managedObjectContext) private var viewContext
-    
+    @ObservedObject var viewModel = FruitViewModel()
+//    @Environment(\.managedObjectContext) private var viewContext
+//
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
     var fruits: FetchedResults<FruitEntity>
 
@@ -57,26 +57,22 @@ struct WithPurchase: View {
     @ObservedObject var viewModel: FruitViewModel
 //    @ObservedObject var reg = FireBaseLogin()
     @State var show = false
-    
-    @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.image, ascending: true)])
 
     var fruits: FetchedResults<FruitEntity>
 
-    @FetchRequest(entity: UserRegEntity.entity(), sortDescriptors: [])
-
-    var user: FetchedResults<UserRegEntity>
-
+    
+   
     
     var body: some View {
         ZStack(alignment: .top) {
-           
+
             ScrollView(showsIndicators: false) {
 
                 ForEach(viewModel.fruit) { item in
                     ForEach(fruits) { i in
-                        if i.id == item.id {
+                        if i.id == item.id  {
                             CartCell(
                                 viewModel: viewModel,
                                 imageName: item.image,
@@ -89,14 +85,13 @@ struct WithPurchase: View {
                             )
                         }
                     }
-
                     .padding(.vertical, 3)
                     .padding(.horizontal, 10)
                 }
 
                 .padding(.top, 125)
                 .padding(.bottom, 100)
-          
+
                 .ignoresSafeArea()
             }
             ZStack {
@@ -105,7 +100,8 @@ struct WithPurchase: View {
                     Spacer()
 
                     Button {
-                            self.show.toggle()
+                        
+                        self.show.toggle()
                     } label: {
                         Text("Оформить заказ   \(NSString(format: "%.2f", viewModel.price)) р")
                             .foregroundColor(.white)
@@ -118,18 +114,12 @@ struct WithPurchase: View {
                     .sheet(isPresented: $show, content: {
                         MakingTheOrderView(viewModel: viewModel)
                     })
-
                 }
             }
-           
-
             .navigationBarHidden(true)
         }
         .offset(y: -95)
-       
     }
-
-
 }
 
 struct CartView_Previews: PreviewProvider {
