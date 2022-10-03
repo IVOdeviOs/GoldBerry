@@ -1,25 +1,44 @@
 import CoreData
+import FirebaseAuth
 import Foundation
 import SwiftUI
-import FirebaseAuth
 class FruitViewModel: ObservableObject {
-    
+
 //    @FetchRequest(entity: UserRegEntity.entity(), sortDescriptors: [])
 //    var userss: FetchedResults<UserRegEntity>
     let email = UserDefaults.standard.value(forKey: "userEmail")
-    
+
     @Published var showUserInfoView = false
     var userId: UUID?
 
     var isUpdating: Bool {
         userId != nil
     }
-//    var buttonTitle: String {
-//        userId != nil ? "Update user" : "Add user"
-//    }
+
     @Published var userName = " "
     @Published var userSurname = " "
     @Published var userPhone = " "
+
+    @Published var cost:Double = 1
+    @Published var weightOrPieces = ""
+    @Published var categories = ""
+    @Published var favorite = true
+    @Published var count = 1
+    @Published var image = ""
+    @Published var name = ""
+    @Published var percent: Int? = 1
+    @Published var descriptions: String? = ""
+    @Published var price: Double? = 1
+    @Published var comment: String? = ""
+    var itog: Double {
+
+        let per = Double(percent!)
+        let del = (per / 100)
+        let sa = 1 - del
+        let sum = cost * sa
+
+        return sum
+    }
 
     init() {}
     init(currentUser: User) {
@@ -28,40 +47,39 @@ class FruitViewModel: ObservableObject {
         self.userPhone = currentUser.userPhone
 //        self.userId = currentUser.id
     }
-    
+
 //    @Published var fru: Fruit = Fruit(cost: 1, weightOrPieces: "", categories: "", favorite: false, count: 1, image: "", name: "")
-         
-    
+
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
-    
+
     @Published var show = false
     @Published var userRegShow = false
     @Published var viewState: CGSize = .zero
-    
+
     @Published var fruit = [Fruit]()
     @Published var fruitOrder = [Fruit]()
-    
+
     @Published var selected = 0
     @Published var orderNumber = 0
     @Published var order = [Order]()
-    @Published var users: User =
-    User(
-        userName: "",
-        userSurname: "",
-        userPhone: "",
-        userEmail: ""
-    )
+    @Published var users =
+        User(
+            userName: "",
+            userSurname: "",
+            userPhone: "",
+            userEmail: ""
+        )
     @Published var user = [User]()
-    
+
     @Published var date = ""
     @Published var address = ""
-    @Published var price: Double = 0
+//    @Published var price: Double = 0
     @Published var customer = ""
     @Published var customerPhone = ""
-    @Published var comment = ""
+    @Published var comments = ""
     @Published var favouriteProducts: [Fruit] = [
         //    Fruit(
 //        cost: 5.60,
@@ -90,10 +108,11 @@ class FruitViewModel: ObservableObject {
         }
         let usersId = UserDefaults.standard.value(forKey: email as! String)
 
-        let userToUpdate = User(id: usersId as! UUID ,userName: userName, userSurname: userSurname, userPhone: userPhone, userEmail: email as! String)
+        let userToUpdate = User(id: usersId as! UUID, userName: userName, userSurname: userSurname, userPhone: userPhone, userEmail: email as! String)
 
         try await HttpClient.shared.sendData(to: url, object: userToUpdate, httpMethod: HttpMethods.PUT.rawValue)
     }
+
 //    func addUpdateAction(completion: @escaping () -> Void) {
 //        Task {
 //            do {
@@ -111,9 +130,6 @@ class FruitViewModel: ObservableObject {
 //        }
 //    }
 
-    
-    
-    
     func fetchOrder() async throws {
         let urlString = Constants.baseURL + EndPoints.order
 
@@ -145,10 +161,12 @@ class FruitViewModel: ObservableObject {
         }
         let fruitResponse: [Fruit] = try await HttpClient.shared.fetch(url: url)
 
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [self] in
             self.fruit = fruitResponse
+           
         }
     }
+
     func fetchUser() async throws {
         let urlString = Constants.baseURL + EndPoints.user
 
@@ -168,10 +186,9 @@ class FruitViewModel: ObservableObject {
         guard let url = URL(string: urlString) else {
             throw HttpError.badURL
         }
-        
 
-        let user = User( userName: userName, userSurname: userSurname, userPhone: userPhone, userEmail: email as! String)
-   
+        let user = User(userName: userName, userSurname: userSurname, userPhone: userPhone, userEmail: email as! String)
+
         UserDefaults.standard.set(user.id, forKey: email as! String)
 
         try await HttpClient.shared.sendData(to: url, object: user, httpMethod: HttpMethods.POST.rawValue)
@@ -196,6 +213,4 @@ class FruitViewModel: ObservableObject {
 //
 //        user.remove(atOffsets: offSets)
 //    }
-    
-
 }

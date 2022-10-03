@@ -44,7 +44,7 @@ struct CartCell: View {
                 VStack(alignment: .leading, spacing: 10) {
                    
                     HStack {
-                        Text("\(NSString(format: "%.2f", fruit.cost)) р/кг")
+                        Text("\(NSString(format: "%.2f", fruit.itog)) р/кг")
                             .foregroundColor(Color.theme.lightGreen)
                         .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
 //                        Text("\(id)")

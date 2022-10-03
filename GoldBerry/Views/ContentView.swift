@@ -9,7 +9,7 @@ extension Color {
 
 struct ContentView: View {
     @StateObject var viewModel = FruitViewModel()
-   
+
     @State var status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
 
     var body: some View {
@@ -31,7 +31,8 @@ struct ContentView: View {
         }
     }
 }
-struct ViewProfile:View{
+
+struct ViewProfile: View {
     @StateObject var viewModel = FruitViewModel()
     @Environment(\.managedObjectContext) private var viewContext
 
@@ -40,14 +41,14 @@ struct ViewProfile:View{
         animation: .default
     )
     var fruits: FetchedResults<FruitEntity>
-    var body: some View{
+    var body: some View {
         ZStack {
             ExtractedView(viewModel: viewModel)
             ZStack {
                 VStack {
                     ZStack {
                         HStack {
-                       
+
                             Text("GoldBerry")
                                 .font(Font(uiFont: .fontLibrary(32, .uzSansBold)))
                                 .foregroundColor(viewModel.selected == 3 ? .white : Color.theme.lightGreen)
@@ -103,30 +104,29 @@ struct ViewProfile:View{
                             Spacer(minLength: 12)
 
                             Button {
+                               
                                 viewModel.selected = 1
                             } label: {
                                 ZStack {
                                     ZStack {
-                                        if fruits.count != 0 {
-                                    Color.red
-                                        .frame(width: 20, height: 20)
-                                        .cornerRadius(10)
+                                        if !fruits.isEmpty {
+                                            Color.red
+                                                .frame(width: 20, height: 20)
+                                                .cornerRadius(10)
                                             Text("\(fruits.count)")
                                                 .minimumScaleFactor(0.5)
-                                            .foregroundColor(.white)
-                                            .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                                        } else {
-                                          
-                                        }
+                                                .foregroundColor(.white)
+                                                .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                                        } else {}
                                     }
                                     .offset(x: 20, y: -20)
-                                    
+
                                     VStack {
-                                Image(systemName: "cart")
-                                    .resizable()
-                                    .frame(width: 23, height: 20)
-                                    Text("Корзина")
-                                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                                        Image(systemName: "cart")
+                                            .resizable()
+                                            .frame(width: 23, height: 20)
+                                        Text("Корзина")
+                                            .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                                     }
                                 }
                             }.foregroundColor(viewModel.selected == 1 ? Color.theme.lightGreen : Color.theme.gray)
@@ -178,7 +178,6 @@ struct ViewProfile:View{
         .ignoresSafeArea()
         .background(.white)
     }
-    
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -187,11 +186,14 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
+
 struct ExtractedView: View {
     @ObservedObject var viewModel = FruitViewModel()
 
 //    @ObservedObject var viewModels = OrderViewModel()
+    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
 
+    var fruits: FetchedResults<FruitEntity>
     var body: some View {
         ZStack {
             switch viewModel.selected {
@@ -209,6 +211,16 @@ struct ExtractedView: View {
             case 1:
                 CartView(viewModel: viewModel)
                     .onAppear {
+                        fruits.forEach { i in
+                            viewModel.fruit.forEach { item in
+                              
+                                if item.id == i.id {
+                                  var sort = viewModel.fruitOrder.append(item)
+//                                    viewModel.fruitOrder.filter(item.id)
+                                    print("🥰\(viewModel.fruitOrder.count)")
+                                }
+                            }
+                        }
                         Task {
                             do {
                                 try await viewModel.fetchFruit()
@@ -232,7 +244,7 @@ struct ExtractedView: View {
             case 3:
                 ProfileView(viewModel: viewModel)
                     .onAppear {
-                        
+
                         Task {
                             do {
                                 try await viewModel.fetchUser()
@@ -248,5 +260,11 @@ struct ExtractedView: View {
         }
         //            .padding()
         .padding(.top, 90)
+    }
+}
+extension Sequence where Element: Hashable {
+    func uniqued() -> [Element] {
+        var set = Set<Element>()
+        return filter { set.insert($0).inserted }
     }
 }

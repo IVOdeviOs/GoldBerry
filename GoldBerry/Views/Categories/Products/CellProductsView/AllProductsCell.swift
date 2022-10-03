@@ -2,7 +2,7 @@ import SwiftUI
 
 struct AllProductsCell: View {
     @State var fruit: Fruit
-
+//    @ObservedObject var viewModel = FruitViewModel()
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
