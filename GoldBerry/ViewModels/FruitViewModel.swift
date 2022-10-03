@@ -42,7 +42,7 @@ class FruitViewModel: ObservableObject {
     @Published var userRegShow = false
     @Published var viewState: CGSize = .zero
     @Published var fruit = [Fruit]()
-    @Published var fruitOrder = [Fruit]()
+//    @Published var fruitOrder = [Fruit]()
     @Published var selected = 0
     @Published var orderNumber = 0
     @Published var order = [Order]()
@@ -165,7 +165,7 @@ class FruitViewModel: ObservableObject {
         guard let url = URL(string: urlString) else {
             throw HttpError.badURL
         }
-        let user = User(userName: userName, userSurname: userSurname, userPhone: userPhone, userEmail: email as! String)
+        let user = User(id: userId, userName: userName, userSurname: userSurname, userPhone: userPhone, userEmail: email as! String)
         try await HttpClient.shared.sendData(to: url, object: user, httpMethod: HttpMethods.POST.rawValue)
     }
 //

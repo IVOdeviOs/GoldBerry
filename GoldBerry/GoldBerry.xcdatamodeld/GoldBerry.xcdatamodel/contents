@@ -17,5 +17,6 @@
     </entity>
     <entity name="UserRegEntity" representedClassName="UserRegEntity" syncable="YES" codeGenerationType="class">
         <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
     </entity>
 </model>
