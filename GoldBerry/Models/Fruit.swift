@@ -3,18 +3,6 @@ import SwiftUI
 
 struct Fruit: Identifiable, Codable {
 
-   // var id = UUID().uuidString
-   // var image: String
-  //  var name: String
-   // var description: String?
-//    var cost: Double
-//    var count: Int
-//    var weightOrPieces: String
-//    var favorite: Bool
-//    var price: Double?
-//    var percent: Int?
-//    var categories: String?
-//
     var id : UUID?
     var cost: Double
     var weightOrPieces, categories: String
@@ -37,16 +25,7 @@ struct Fruit: Identifiable, Codable {
     }
 }
 
-//struct Fruits:Identifiable, Codable {
-//    var id : UUID?
-//    var cost: Int
-//    var weightOrPieces, categories: String
-//    var favorite: Bool
-//    var count: Int
-//    var image: String
-//    var name: String
-//    var percent: Int
-//}
+
 
 //let watermelon = Fruit(id: "1", image: "watermelon", name: "Watermelon", cost: 1000, count: 1, weightOrPieces: "кг", favorite: false)
 //let apple = Fruit(id: "2", image: "apple", name: "Apple", cost: 400, count: 1, weightOrPieces: "кг", favorite: false)

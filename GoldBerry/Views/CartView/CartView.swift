@@ -61,10 +61,8 @@ struct WithPurchase: View {
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.image, ascending: true)])
 
     var fruits: FetchedResults<FruitEntity>
+    @State var fru = [Fruit]()
 
-    
-   
-    
     var body: some View {
         ZStack(alignment: .top) {
 
@@ -72,26 +70,35 @@ struct WithPurchase: View {
 
                 ForEach(viewModel.fruit) { item in
                     ForEach(fruits) { i in
-                        if i.id == item.id  {
+                        if i.id == item.id {
+
                             CartCell(
                                 viewModel: viewModel,
-                                imageName: item.image,
-                                cost: item.itog,
-                                name: item.name,
-                                index: item.name,
-                                description: item.descriptions ?? "",
-                                count: Int(item.count),
-                                price: Double(item.cost)
+                                fruit: item
+                                    
+                                
+//                                ,
+//                                imageName: item.image,
+//                                cost: item.itog,
+//                                name: item.name,
+//                                index: item.name,
+//                                description: item.descriptions ?? "",
+//                                count: Int(item.count),
+//                                price: Double(item.cost)
                             )
+                            
                         }
                     }
+                    .task {
+                        viewModel.fruitOrder.append(item)
+
+                    }
+                   
                     .padding(.vertical, 3)
                     .padding(.horizontal, 10)
                 }
-
                 .padding(.top, 125)
                 .padding(.bottom, 100)
-
                 .ignoresSafeArea()
             }
             ZStack {
@@ -100,6 +107,9 @@ struct WithPurchase: View {
                     Spacer()
 
                     Button {
+                        viewModel.fruitOrder.forEach { i in
+                            print("😗\(i.count)")
+                        }
                         
                         self.show.toggle()
                     } label: {

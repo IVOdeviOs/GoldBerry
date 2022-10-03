@@ -7,7 +7,6 @@ class FruitViewModel: ObservableObject {
 //    @FetchRequest(entity: UserRegEntity.entity(), sortDescriptors: [])
 //    var userss: FetchedResults<UserRegEntity>
     let email = UserDefaults.standard.value(forKey: "userEmail")
-
     
     @Published var showUserInfoView = false
     var userId: UUID?
@@ -27,11 +26,11 @@ class FruitViewModel: ObservableObject {
         self.userName = currentUser.userName
         self.userSurname = currentUser.userSurname
         self.userPhone = currentUser.userPhone
-        self.userId = currentUser.id
+//        self.userId = currentUser.id
     }
     
-    
-    
+//    @Published var fru: Fruit = Fruit(cost: 1, weightOrPieces: "", categories: "", favorite: false, count: 1, image: "", name: "")
+         
     
     let columns = [
         GridItem(.flexible()),
@@ -41,8 +40,10 @@ class FruitViewModel: ObservableObject {
     @Published var show = false
     @Published var userRegShow = false
     @Published var viewState: CGSize = .zero
+    
     @Published var fruit = [Fruit]()
-//    @Published var fruitOrder = [Fruit]()
+    @Published var fruitOrder = [Fruit]()
+    
     @Published var selected = 0
     @Published var orderNumber = 0
     @Published var order = [Order]()
@@ -87,7 +88,9 @@ class FruitViewModel: ObservableObject {
         guard let url = URL(string: urlString) else {
             throw HttpError.badURL
         }
-        let userToUpdate = User(userName: userName, userSurname: userSurname, userPhone: userPhone, userEmail: email as! String)
+        let usersId = UserDefaults.standard.value(forKey: email as! String)
+
+        let userToUpdate = User(id: usersId as! UUID ,userName: userName, userSurname: userSurname, userPhone: userPhone, userEmail: email as! String)
 
         try await HttpClient.shared.sendData(to: url, object: userToUpdate, httpMethod: HttpMethods.PUT.rawValue)
     }
@@ -165,7 +168,12 @@ class FruitViewModel: ObservableObject {
         guard let url = URL(string: urlString) else {
             throw HttpError.badURL
         }
-        let user = User(id: userId, userName: userName, userSurname: userSurname, userPhone: userPhone, userEmail: email as! String)
+        
+
+        let user = User( userName: userName, userSurname: userSurname, userPhone: userPhone, userEmail: email as! String)
+   
+        UserDefaults.standard.set(user.id, forKey: email as! String)
+
         try await HttpClient.shared.sendData(to: url, object: user, httpMethod: HttpMethods.POST.rawValue)
     }
 //

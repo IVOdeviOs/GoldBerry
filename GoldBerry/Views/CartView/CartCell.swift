@@ -4,25 +4,27 @@ struct CartCell: View {
 //    @ObservedObject var viewModel: FruitViewModel
 
     @ObservedObject var viewModel:FruitViewModel
-    @State var imageName: String
-    @State var cost: Double
-    @State var name: String
-    @State var index: String
-    @State var description: String
-    @State var count: Int
-    @State var price: Double
-    @State var id = UUID()
+    @State var fruit: Fruit
+    
+//    @State var imageName: String
+//    @State var cost: Double
+//    @State var name: String
+//    @State var index: String
+//    @State var description: String
+//    @State var count: Int
+//    @State var price: Double
+//    @State var id = UUID()
 //
-    @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)])
-     var fruits: FetchedResults<FruitEntity>
+//    @Environment(\.managedObjectContext) private var viewContext
+//    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)])
+//     var fruits: FetchedResults<FruitEntity>
 
     var body: some View {
         VStack {
             HStack {
                 ZStack(alignment: .top) {
                     RemoteImageView(
-                        url: URL(string: imageName)!,
+                        url: URL(string: fruit.image)!,
                         placeholder: {
                             Image(systemName: "icloud.and.arrow.up").frame(width: 300,height: 300)
                         },
@@ -42,7 +44,7 @@ struct CartCell: View {
                 VStack(alignment: .leading, spacing: 10) {
                    
                     HStack {
-                        Text("\(NSString(format: "%.2f", cost)) р/кг")
+                        Text("\(NSString(format: "%.2f", fruit.cost)) р/кг")
                             .foregroundColor(Color.theme.lightGreen)
                         .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
 //                        Text("\(id)")
@@ -61,10 +63,10 @@ struct CartCell: View {
 
                     }
                     
-                    Text(name)
+                    Text(fruit.name)
                         .foregroundColor(.black)
                         .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
-                    Text(description)
+                    Text(fruit.descriptions ?? "")
                         .fixedSize(horizontal: false, vertical: true)
                         .foregroundColor(.black)
                         .font(Font(uiFont: .fontLibrary(14, .uzSansRegular)))
@@ -73,17 +75,17 @@ struct CartCell: View {
             }
             HStack {
                 Button {
-                    if count >= 2 {
-                        count -= 1
-                        if price == 0 {
-                            price = cost
+                    if fruit.count >= 2 {
+                        fruit.count -= 1
+                        if fruit.price == 0 {
+                            fruit.price = fruit.cost
                         } else {
-                        price = cost * Double(count)
+                            fruit.price = fruit.cost * Double(fruit.count)
                         }
                     
 //                        viewModel.order.price -= price
 //                        print("\(price)")
-                        viewModel.price = price
+                        viewModel.price = fruit.price!
                         print("\(viewModel.price)")
                     }
                 } label: {
@@ -92,20 +94,20 @@ struct CartCell: View {
                         .frame(width: 40, height: 40)
                         .foregroundColor(Color.theme.gray)
                 }
-                Text("\(count) кг")
+                Text("\(fruit.count) кг")
                     .foregroundColor(.black)
                     .font(Font(uiFont: .fontLibrary(24, .uzSansRegular)))
                 Button {
-                    count += 1
-                    if price == 0 {
-                        price = cost
+                    fruit.count += 1
+                    if fruit.price == 0 {
+                        fruit.price = fruit.cost
                     } else {
-                    price = cost * Double(count)
+                        fruit.price = fruit.cost * Double(fruit.count)
                     }
 //                    viewModel.order.price += price
 //                    print("\(price)")
 //                    viewModel.price = price
-                    viewModel.price = price
+                    viewModel.price = fruit.price ?? 1
                     print("\(viewModel.price)")
 
                 } label: {
@@ -116,20 +118,20 @@ struct CartCell: View {
                 }
             }
             HStack {
-                Text("Итого: \(NSString(format: "%.2f", price )) р")
+                Text("Итого: \(NSString(format: "%.2f", fruit.price ?? 0 )) р")
                     .foregroundColor(Color.theme.lightGreen)
                     .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
                     .padding(.leading, 10)
                 Spacer()
             }
         }
-        .onAppear{
-            if price == 0 {
-                price = cost
-            } else {
-            price = cost * Double(count)
-            }
-        }
+//        .onAppear{
+//            if viewModel.fru.price == 0 {
+//                viewModel.fru.price = viewModel.fru.cost
+//            } else {
+//                viewModel.fru.price = viewModel.fru.cost * Double(viewModel.fru.count)
+//            }
+//        }
         .padding()
         .background(.gray.opacity(0.1))
         .overlay(
@@ -147,13 +149,14 @@ struct CartCell: View {
 struct CartCell_Previews: PreviewProvider {
     static var previews: some View {
         CartCell(
-            viewModel: FruitViewModel(), imageName: "apple",
-            cost: 1,
-            name: "Apple",
-            index: "1",
-            description: "Apple 2022",
-            count: 1,
-            price: 1, id: UUID()
+            viewModel: FruitViewModel(), fruit: Fruit(cost: 1, weightOrPieces: "", categories: "", favorite: true, count: 1, image: "", name: "")
+//            , imageName: "apple",
+//            cost: 1,
+//            name: "Apple",
+//            index: "1",
+//            description: "Apple 2022",
+//            count: 1,
+//            price: 1, id: UUID()
         )
     }
 }

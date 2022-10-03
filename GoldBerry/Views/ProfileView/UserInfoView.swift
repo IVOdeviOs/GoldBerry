@@ -43,15 +43,14 @@ struct UserInfoView: View {
 
                 viewModel.user.forEach { i in
                     if i.userEmail == email as! String {
-//                        Task {
-                        ////                            do {
-                        ////                                try await viewModel.updateUser()
-                        ////                            } catch {
-                        ////                                print("❌ ERORR🥰")
-                        ////                            }
-//
-//                        }
-                        modal = .update(User(id:viewModel.userId, userName: viewModel.userName, userSurname: viewModel.userSurname, userPhone: viewModel.userPhone, userEmail: email as! String))
+                        Task {
+                            do {
+                                try await viewModel.updateUser()
+                            } catch {
+                                print("❌ ERORR🥰")
+                            }
+                        }
+//                        modal = .update(User(id:viewModel.userId, userName: viewModel.userName, userSurname: viewModel.userSurname, userPhone: viewModel.userPhone, userEmail: email as! String))
 
                     } else {
                         Task {

@@ -135,7 +135,7 @@ struct AllProductsCell: View {
                     }
                     //                    viewModel.order.price += price
                     //                    print("\(price)")
-                    fruit.price = fruit.price
+//                    fruit.price = fruit.price
 //                    print("\(fruit.price)")
 
                 } label: {
