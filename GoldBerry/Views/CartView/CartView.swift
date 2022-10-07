@@ -64,7 +64,7 @@ struct WithPurchase: View {
 //    @FetchRequest(entity: FruitOrderEntity.entity(), sortDescriptors: [])
 //
 //    var fruitOrder: FetchedResults<FruitOrderEntity>
-
+    @State var fruitOrder = [Fruit]()
     var body: some View {
         ZStack(alignment: .top) {
 
@@ -73,6 +73,7 @@ struct WithPurchase: View {
                 ForEach(viewModel.fruit) { item in
                     ForEach(fruits) { i in
                         if i.id == item.id {
+                            
 //                            im.append(item)
                             CartCell(
                                 viewModel: viewModel,
@@ -87,13 +88,16 @@ struct WithPurchase: View {
 //                                count: Int(item.count),
 //                                price: Double(item.cost)
                             )
+                            .onTapGesture {
+                                viewModel.fruitOrder.forEach { i in
+                                    print("😍\(i.count)")
+                                }
+                            }
                         }
                     }
                     .padding(.vertical, 3)
                     .padding(.horizontal, 10)
                 }
-                .padding(.vertical, 3)
-                .padding(.horizontal, 10)
                 .padding(.top, 125)
                 .padding(.bottom, 100)
                 .ignoresSafeArea()
@@ -103,11 +107,13 @@ struct WithPurchase: View {
 
                     Spacer()
 
-                    Button {
-
+                    NavigationLink {
+                        MakingTheOrderView(viewModel: viewModel)
 //                        viewModel.sort()
 //                        addFruit()
-                        self.show.toggle()
+//                        self.show.toggle()
+//                        print("🤩\(viewModel.fruitOrder.count)")
+
                     } label: {
                         Text("Оформить заказ   \(NSString(format: "%.2f", viewModel.price!)) р")
                             .foregroundColor(.white)
@@ -117,9 +123,10 @@ struct WithPurchase: View {
                             .padding(.bottom, 150)
                     }
                     .offset(y: 115)
-                    .sheet(isPresented: $show, content: {
-                        MakingTheOrderView(viewModel: viewModel)
-                    })
+//                    .fullScreenCover(isPresented: $show, content: {
+//                        MakingTheOrderView(viewModel: viewModel)
+//
+//                    })
                 }
             }
             .navigationBarHidden(true)

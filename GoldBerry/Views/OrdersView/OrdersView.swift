@@ -54,32 +54,47 @@ struct WithOrders: View {
     @ObservedObject var viewModel: FruitViewModel
 
     @State var show = false
+    let email = UserDefaults.standard.value(forKey: "userEmail")
 
     var body: some View {
         NavigationView {
             List(viewModel.order) { item in
-                Button(action: {
-                    show.toggle()
-
-                    print("\(item.date)")
-                }, label: {
-                    OrderCell(
-                        date: item.date,
-                        number: item.orderNumber,
-                        price: Double(item.price),
-                        purchases: item.fruit,
-                        address: item.address
-                    )
-                })
-                .sheet(isPresented: $show, content: {
-
-                    OrderInfoView(order: item)
-
-                })
-
-//                .padding()
+                if item.email == email as! String{
+                    NavigationLink {
+                        OrderInfoView(order: item)
+                    } label: {
+                        OrderCell(
+                            date: item.date,
+                            number: item.orderNumber,
+                            price: Double(item.price),
+                            purchases: item.fruit,
+                            address: item.address
+                        )
+                    }
+                }
+//                Button(action: {
+//                    show.toggle()
+//
+//                    print("\(item.date)")
+//                }, label: {
+//                    OrderCell(
+//                        date: item.date,
+//                        number: item.orderNumber,
+//                        price: Double(item.price),
+//                        purchases: item.fruit,
+//                        address: item.address
+//                    )
+//                })
+//                .sheet(isPresented: $show, content: {
+//
+//                    OrderInfoView(order: item)
+//
+//                })
+//
+                ////                .padding()
             }
-            .offset( y: 20)
+
+            .offset(y: 20)
             .navigationViewStyle(.columns)
             .listStyle(.plain)
         }

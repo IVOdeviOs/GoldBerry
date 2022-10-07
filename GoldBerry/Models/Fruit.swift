@@ -1,7 +1,7 @@
 import Foundation
 import SwiftUI
 
-struct Fruit: Identifiable, Codable {
+struct Fruit: Identifiable, Codable,Hashable {
 
     var id : UUID?
     var cost: Double

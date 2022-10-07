@@ -19,7 +19,19 @@ struct MakingTheOrderView: View {
         dateFormatter.dateFormat = "dd.MM.yyyy.HH.mm"
         viewModel.date = dateFormatter.string(from: deliveryDate)
     }
+    func deleteAllRecords(entity : String) {
 
+            let managedContext = viewContext //your context
+            let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+            
+            do {
+                try managedContext.execute(deleteRequest)
+                try managedContext.save()
+            } catch {
+                print ("There was an error")
+            }
+        }
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
@@ -29,6 +41,8 @@ struct MakingTheOrderView: View {
     var fruits: FetchedResults<FruitEntity>
 
     @State var orderFruit = [Fruit]()
+    let email = UserDefaults.standard.value(forKey: "userEmail")
+
     var body: some View {
         VStack {
             Text("Оформление заказа")
@@ -116,7 +130,7 @@ struct MakingTheOrderView: View {
                     }
                     dateFormatter()
                     print(viewModel.date)
-
+                    deleteAllRecords(entity: "FruitEntity")
 //                    func currentTopics(fruitss: FetchedResults<FruitEntity>) -> [Fruit] {
 //                        var collected = [Fruit]()
 //                        for item in viewModel.fruit {
@@ -142,8 +156,15 @@ struct MakingTheOrderView: View {
 //
 //                        return collected
 //                    }
+//                    viewModel.fruitOrder.forEach { i in
+//                        Array(Set(i))
+//                    }
+                    
+
                     let orde = Order(orderNumber: viewModel.orderNumber,
-                                     date: viewModel.date, fruit: viewModel.fruitOrder,
+                                     date: viewModel.date,
+                                     email: email as! String,
+                                     fruit: viewModel.fruitOrder,
                                      address: viewModel.address,
                                      price: viewModel.price ?? 0 ,
                                      customer: viewModel.customer,

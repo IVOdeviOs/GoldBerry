@@ -78,15 +78,15 @@ struct CartCell: View {
                     if fruit.count >= 2 {
                         fruit.count -= 1
                         if fruit.price == 0 {
-                            fruit.price = fruit.cost
+                            fruit.price = fruit.itog
                         } else {
-                            fruit.price = fruit.cost * Double(fruit.count)
+                            fruit.price = fruit.itog * Double(fruit.count)
                         }
                     
 //                        viewModel.order.price -= price
 //                        print("\(price)")
                         viewModel.price = fruit.price!
-                        print("\(viewModel.price)")
+                        print("\(String(describing: viewModel.price))")
                     }
                 } label: {
                     Image(systemName: "minus.square.fill")
@@ -100,14 +100,14 @@ struct CartCell: View {
                 Button {
                     fruit.count += 1
                     if fruit.price == 0 {
-                        fruit.price = fruit.cost
+                        fruit.price = fruit.itog
                     } else {
-                        fruit.price = fruit.cost * Double(fruit.count)
+                        fruit.price = fruit.itog * Double(fruit.count)
                     }
 //                    viewModel.order.price += price
 //                    print("\(price)")
 //                    viewModel.price = price
-                    viewModel.price = fruit.price ?? 1
+                    viewModel.price = fruit.price!
                     print("\(viewModel.price)")
 
                 } label: {
@@ -118,12 +118,25 @@ struct CartCell: View {
                 }
             }
             HStack {
-                Text("Итого: \(NSString(format: "%.2f", fruit.price ?? 0 )) р")
+                Text("Итого: \(NSString(format: "%.2f", fruit.price ?? fruit.itog )) р")
                     .foregroundColor(Color.theme.lightGreen)
                     .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
                     .padding(.leading, 10)
                 Spacer()
             }
+        }
+     
+        .onDisappear{
+            
+           
+         
+                    viewModel.fruitOrder.append(fruit)
+    
+//            if viewModel.fruitOrder.isEmpty {
+//                viewModel.fruitOrder.append(fruit)
+//            }else {
+//                viewModel.fruitOrder.append(fruit)
+//            }
         }
 //        .onAppear{
 //            if viewModel.fru.price == 0 {

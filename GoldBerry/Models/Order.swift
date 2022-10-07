@@ -18,6 +18,7 @@ struct Order:Identifiable, Codable {
     var id : UUID?
     var orderNumber: Int
     var date: String
+    var email: String
     var fruit: [Fruit]
     var address: String
     var price: Double
