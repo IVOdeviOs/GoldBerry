@@ -61,22 +61,22 @@ struct WithPurchase: View {
 
     var fruits: FetchedResults<FruitEntity>
 
-    @FetchRequest(entity: FruitOrderEntity.entity(), sortDescriptors: [])
-
-    var fruitOrder: FetchedResults<FruitOrderEntity>
+//    @FetchRequest(entity: FruitOrderEntity.entity(), sortDescriptors: [])
+//
+//    var fruitOrder: FetchedResults<FruitOrderEntity>
 
     var body: some View {
         ZStack(alignment: .top) {
 
             ScrollView(showsIndicators: false) {
 
-                ForEach(viewModel.fruitOrder) { item in
-//                    ForEach(fruits) { i in
-//                        if i.id == item.id {
+                ForEach(viewModel.fruit) { item in
+                    ForEach(fruits) { i in
+                        if i.id == item.id {
 //                            im.append(item)
-                    CartCell(
-                        viewModel: viewModel,
-                        fruit: item
+                            CartCell(
+                                viewModel: viewModel,
+                                fruit: item
 
 //                                ,
 //                                imageName: item.image,
@@ -86,12 +86,11 @@ struct WithPurchase: View {
 //                                description: item.descriptions ?? "",
 //                                count: Int(item.count),
 //                                price: Double(item.cost)
-                    )
-
-//                        }
-//                    }
-//                    .padding(.vertical, 3)
-//                    .padding(.horizontal, 10)
+                            )
+                        }
+                    }
+                    .padding(.vertical, 3)
+                    .padding(.horizontal, 10)
                 }
                 .padding(.vertical, 3)
                 .padding(.horizontal, 10)

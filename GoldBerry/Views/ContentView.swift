@@ -104,7 +104,7 @@ struct ViewProfile: View {
                             Spacer(minLength: 12)
 
                             Button {
-                               
+
                                 viewModel.selected = 1
                             } label: {
                                 ZStack {
@@ -186,7 +186,6 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-
 struct ExtractedView: View {
     @ObservedObject var viewModel = FruitViewModel()
 
@@ -211,16 +210,21 @@ struct ExtractedView: View {
             case 1:
                 CartView(viewModel: viewModel)
                     .onAppear {
-                        fruits.forEach { i in
-                            viewModel.fruit.forEach { item in
-                              
-                                if item.id == i.id {
-                                  var sort = viewModel.fruitOrder.append(item)
-//                                    viewModel.fruitOrder.filter(item.id)
-                                    print("🥰\(viewModel.fruitOrder.count)")
-                                }
-                            }
-                        }
+//                        fruits.forEach { i in
+//                            viewModel.fruit.forEach { item in
+//
+////                                viewModel.fruitOrder.forEach { f in
+//                                    if  item.id == i.id {
+//                                        
+//                                        viewModel.fruitOrder = [item]
+//                                        print("🥰\(viewModel.fruitOrder.count)")
+////                                    }
+//                                }
+//
+////                                    viewModel.fruitOrder.filter(item.id)
+//                            }
+//                        }
+                        
                         Task {
                             do {
                                 try await viewModel.fetchFruit()
@@ -262,6 +266,7 @@ struct ExtractedView: View {
         .padding(.top, 90)
     }
 }
+
 extension Sequence where Element: Hashable {
     func uniqued() -> [Element] {
         var set = Set<Element>()
