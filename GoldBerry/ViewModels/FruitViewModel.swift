@@ -14,6 +14,7 @@ class FruitViewModel: ObservableObject {
     var isUpdating: Bool {
         userId != nil
     }
+    @Published var uniqFruits = [Fruit]()
 
     @Published var userName = " "
     @Published var userSurname = " "

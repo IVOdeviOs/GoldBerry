@@ -64,45 +64,25 @@ struct WithPurchase: View {
 //    @FetchRequest(entity: FruitOrderEntity.entity(), sortDescriptors: [])
 //
 //    var fruitOrder: FetchedResults<FruitOrderEntity>
-    @State var fruitOrder = [Fruit]()
+//    @State var fruitOrder = [Fruit]()
     @State var suma: Double = 0
     @State var fruitO = [Fruit]()
-    @State var uniqFruits = [Fruit]()
 
     var body: some View {
         ZStack(alignment: .top) {
 
             ScrollView(showsIndicators: false) {
-//                Text("\(viewModel.fruitOrder.count)")
-//                    .font(.system(size: 30))
-//                ForEach(viewModel.fruit) { item in
-//                    ForEach(fruits) { i in
-                ForEach(uniqFruits) { item in
-//                        if i.id == item.id {
-
-//                            im.append(item)
+                ForEach(viewModel.uniqFruits) { item in
                     CartCell(
                         viewModel: viewModel,
                         fruit: item
-//                                ,
-//                                imageName: item.image,
-//                                cost: item.itog,
-//                                name: item.name,
-//                                index: item.name,
-//                                description: item.descriptions ?? "",
-//                                count: Int(item.count),
-//                                price: Double(item.cost)
                     )
                     .onTapGesture {
-                        viewModel.fruitOrder.forEach { i in
-                            print("😍\(i.count)")
-                        }
+                        print("\(item.count)")
                     }
-//                        }
                 }
                 .padding(.vertical, 3)
                 .padding(.horizontal, 10)
-//                }
                 .padding(.top, 125)
                 .padding(.bottom, 100)
                 .ignoresSafeArea()
@@ -115,9 +95,6 @@ struct WithPurchase: View {
                     NavigationLink {
                         MakingTheOrderView(viewModel: viewModel)
 
-//                        self.show.toggle()
-//                        print("🤩\(viewModel.fruitOrder.count)")
-
                     } label: {
                         Text("Оформить заказ   \(NSString(format: "%.2f", viewModel.price!)) р")
                             .foregroundColor(.white)
@@ -127,10 +104,6 @@ struct WithPurchase: View {
                             .padding(.bottom, 150)
                     }
                     .offset(y: 115)
-//                    .fullScreenCover(isPresented: $show, content: {
-//                        MakingTheOrderView(viewModel: viewModel)
-//
-//                    })
                 }
             }
             .navigationBarHidden(true)
@@ -141,34 +114,23 @@ struct WithPurchase: View {
             for item in viewModel.fruit {
                 for i in fruits {
                     if i.id == item.id {
-//                        for s in fruitO{
-//                            if s.id != item.id{
-                                fruitO.append(item)
-                        for s in fruitO{
-                            viewModel.price!  += s.price ?? 1
-                        }
-                        
-                        uniqFruits = uniq(source: fruitO)
+                        fruitO.append(item)
+                        viewModel.uniqFruits = uniq(source: fruitO)
                         print("😶‍🌫️\(fruitO.count)")
-//                            }
-//                        }
                     }
                 }
             }
         }
- 
     }
- 
-
 }
-
 
 struct CartView_Previews: PreviewProvider {
     static var previews: some View {
         CartView(viewModel: FruitViewModel())
     }
 }
-private func uniq<S: Sequence, T: Hashable> (source: S) -> [T] where S.Iterator.Element == T {
+
+private func uniq<S: Sequence, T: Hashable>(source: S) -> [T] where S.Iterator.Element == T {
     var buffer = [T]() // возвращаемый массив
     var added = Set<T>() // набор - уникальные значения
     for elem in source {

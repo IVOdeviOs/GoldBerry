@@ -128,25 +128,8 @@ struct CartCell: View {
 
         .onDisappear {
 
-//                    viewModel.fruitOrder.append(fruit)
+                    viewModel.uniqFruits.append(fruit)
 
-            if viewModel.fruitOrder.isEmpty {
-                viewModel.fruitOrder.append(fruit)
-            } else {
-                viewModel.fruitOrder.removeAll()
-                print("___________\(viewModel.fruitOrder.count)")
-
-//                for i in viewModel.fruitOrder {
-//                    if i.id == fruit.id {
-//
-////                        viewModel.fruitOrder.remove(at: i.id)
-//                        print("abrakadabra")
-//                    } else {
-                        viewModel.fruitOrder.append(fruit)
-                print("___________\(viewModel.fruitOrder.count)")
-//                    }
-//                }
-            }
         }
         .onAppear {
             for i in fruits {

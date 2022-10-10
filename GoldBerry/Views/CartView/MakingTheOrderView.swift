@@ -164,7 +164,7 @@ struct MakingTheOrderView: View {
                     let orde = Order(orderNumber: viewModel.orderNumber,
                                      date: viewModel.date,
                                      email: email as! String,
-                                     fruit: viewModel.fruitOrder,
+                                     fruit: viewModel.uniqFruits,
                                      address: viewModel.address,
                                      price: viewModel.price ?? 0 ,
                                      customer: viewModel.customer,
