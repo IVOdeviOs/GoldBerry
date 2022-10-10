@@ -2,20 +2,23 @@ import SwiftUI
 
 struct OrdersView: View {
 
-    @StateObject var viewModel: FruitViewModel
+    @ObservedObject var orderViewModel: OrderViewModel
+    @StateObject var fruitViewModel: FruitViewModel
 
     var body: some View {
-        if viewModel.order.isEmpty {
-            WithoutOrders(viewModel: viewModel)
+        if orderViewModel.order.isEmpty {
+            WithoutOrders(orderViewModel: orderViewModel, fruitViewModel: fruitViewModel)
         } else {
-            WithOrders(viewModel: viewModel)
+            WithOrders(orderViewModel: orderViewModel)
         }
     }
 }
 
 struct WithoutOrders: View {
-    @StateObject var viewModel: FruitViewModel
 
+    @ObservedObject var orderViewModel: OrderViewModel
+    @ObservedObject var fruitViewModel: FruitViewModel
+    
     var body: some View {
         VStack {
             Image("noOrders")
@@ -35,7 +38,7 @@ struct WithoutOrders: View {
                 .foregroundColor(Color.theme.gray)
                 .padding(.horizontal, 10)
             Button {
-                viewModel.selected = 0
+                fruitViewModel.selected = 0
             } label: {
                 Text("Перейти к выбору товаров")
                     .frame(width: 300, height: 50)
@@ -51,14 +54,14 @@ struct WithoutOrders: View {
 }
 
 struct WithOrders: View {
-    @ObservedObject var viewModel: FruitViewModel
+    @ObservedObject var orderViewModel: OrderViewModel
 
     @State var show = false
     let email = UserDefaults.standard.value(forKey: "userEmail")
 
     var body: some View {
         NavigationView {
-            List(viewModel.order) { item in
+            List(orderViewModel.order) { item in
                 if item.email == email as! String{
                     NavigationLink {
                         OrderInfoView(order: item)
@@ -103,8 +106,8 @@ struct WithOrders: View {
     }
 }
 
-struct OrdersView_Previews: PreviewProvider {
-    static var previews: some View {
-        OrdersView(viewModel: FruitViewModel())
-    }
-}
+//struct OrdersView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        OrdersView(viewModel: FruitViewModel())
+//    }
+//}

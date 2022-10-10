@@ -2,22 +2,24 @@ import CoreData
 import SwiftUI
 
 struct CartView: View {
-    @ObservedObject var viewModel = FruitViewModel()
+    @ObservedObject var fruitViewModel = FruitViewModel()
+    @ObservedObject var orderViewModel = OrderViewModel()
 //    @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
     var fruits: FetchedResults<FruitEntity>
 
     var body: some View {
         if self.fruits.isEmpty {
-            WithoutPurchase(viewModel: viewModel)
+            WithoutPurchase(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
         } else {
-            WithPurchase(viewModel: viewModel)
+            WithPurchase(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
         }
     }
 }
 
 struct WithoutPurchase: View {
-    @StateObject var viewModel: FruitViewModel
+    @ObservedObject var fruitViewModel = FruitViewModel()
+    @ObservedObject var orderViewModel = OrderViewModel()
 
     var body: some View {
         VStack {
@@ -37,7 +39,7 @@ struct WithoutPurchase: View {
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color.theme.gray)
             Button {
-                viewModel.selected = 0
+                fruitViewModel.selected = 0
             } label: {
                 Text("Перейти к выбору товаров")
                     .frame(width: 300, height: 50)
@@ -53,33 +55,22 @@ struct WithoutPurchase: View {
 }
 
 struct WithPurchase: View {
-    @ObservedObject var viewModel: FruitViewModel
-    @State var show = false
+    @ObservedObject var fruitViewModel = FruitViewModel()
+    @ObservedObject var orderViewModel = OrderViewModel()
+ 
     @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.id, ascending: true)])
-
+    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
     var fruits: FetchedResults<FruitEntity>
-
-//    @FetchRequest(entity: FruitOrderEntity.entity(), sortDescriptors: [])
-//
-//    var fruitOrder: FetchedResults<FruitOrderEntity>
-//    @State var fruitOrder = [Fruit]()
-    @State var suma: Double = 0
     @State var fruitO = [Fruit]()
 
     var body: some View {
         ZStack(alignment: .top) {
 
             ScrollView(showsIndicators: false) {
-                ForEach(viewModel.uniqFruits) { item in
-                    CartCell(
-                        viewModel: viewModel,
-                        fruit: item
-                    )
-                    .onTapGesture {
-                        print("\(item.count)")
-                    }
+                ForEach(fruitViewModel.uniqFruits) { item in
+                  CartCell(fruitViewModel: fruitViewModel,
+                           orderViewModel: orderViewModel,
+                           fruit: item)
                 }
                 .padding(.vertical, 3)
                 .padding(.horizontal, 10)
@@ -89,14 +80,14 @@ struct WithPurchase: View {
             }
             ZStack {
                 VStack {
-
+                 
                     Spacer()
 
-                    NavigationLink {
-                        MakingTheOrderView(viewModel: viewModel)
-
+                    Button{
+//                        MakingTheOrderView(viewModel: viewModel)
+                        orderViewModel.show.toggle()
                     } label: {
-                        Text("Оформить заказ   \(NSString(format: "%.2f", viewModel.price!)) р")
+                        Text("COl\(fruitViewModel.uniqFruits.count)   Оформить заказ    \(NSString(format: "%.2f", orderViewModel.price!)) р")
                             .foregroundColor(.white)
                             .frame(width: UIScreen.main.bounds.width - 30, height: 50)
                             .background(Color.theme.lightGreen)
@@ -107,16 +98,20 @@ struct WithPurchase: View {
                 }
             }
             .navigationBarHidden(true)
-        }
+        }.sheet(isPresented: $orderViewModel.show, content: {
+            MakingTheOrderView(orderViewModel: orderViewModel, fruitViewModel: fruitViewModel)
+        })
 
         .offset(y: -95)
         .onAppear {
-            for item in viewModel.fruit {
+            for item in fruitViewModel.fruit {
                 for i in fruits {
                     if i.id == item.id {
                         fruitO.append(item)
-                        viewModel.uniqFruits = uniq(source: fruitO)
-                        print("😶‍🌫️\(fruitO.count)")
+                        fruitViewModel.uniqFruits = uniq(source: fruitO)
+                        for asd in fruitViewModel.uniqFruits {
+                            print("😶‍🌫️\(asd.count)")
+                        }
                     }
                 }
             }
@@ -124,11 +119,11 @@ struct WithPurchase: View {
     }
 }
 
-struct CartView_Previews: PreviewProvider {
-    static var previews: some View {
-        CartView(viewModel: FruitViewModel())
-    }
-}
+//struct CartView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CartView(viewModel: FruitViewModel())
+//    }
+//}
 
 private func uniq<S: Sequence, T: Hashable>(source: S) -> [T] where S.Iterator.Element == T {
     var buffer = [T]() // возвращаемый массив

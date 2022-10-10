@@ -2,46 +2,28 @@ import CoreData
 import SwiftUI
 struct MakingTheOrderView: View {
 
-    func sendRequest(completion: @escaping (Bool) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-            completion(tog == false)
-        }
-    }
+//    func sendRequest(completion: @escaping (Bool) -> Void) {
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+//            completion(tog == false)
+//        }
+//    }
 
     @Environment(\.presentationMode) var presentation
-    @ObservedObject var viewModel: FruitViewModel
-    @State var tog = false
-    @State var tog1 = false
-
-    @State var deliveryDate = Date()
-    func dateFormatter() {
-        @State var dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy.HH.mm"
-        viewModel.date = dateFormatter.string(from: deliveryDate)
-    }
-    func deleteAllRecords(entity : String) {
-
-            let managedContext = viewContext //your context
-            let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
-            let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
-            
-            do {
-                try managedContext.execute(deleteRequest)
-                try managedContext.save()
-            } catch {
-                print ("There was an error")
-            }
-        }
+    @ObservedObject var orderViewModel: OrderViewModel
+    @ObservedObject var fruitViewModel: FruitViewModel
+    
+    
+    
+//    @State var tog = false
+//    @State var tog1 = false
+//
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.id, ascending: true)],
-        animation: .default
+        sortDescriptors: []
     )
     var fruits: FetchedResults<FruitEntity>
-
-    @State var orderFruit = [Fruit]()
-    let email = UserDefaults.standard.value(forKey: "userEmail")
+//    @State var orderFruit = [Fruit]()
 
     var body: some View {
         VStack {
@@ -76,7 +58,7 @@ struct MakingTheOrderView: View {
                     .opacity(0.3)
                     .frame(height: 10)
                 HStack {
-                    Text("Когда доставить")
+                    Text("Когда доставить \(fruitViewModel.uniqFruits.count)")
                         .foregroundColor(.black)
                         .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
                         .padding()
@@ -87,7 +69,7 @@ struct MakingTheOrderView: View {
                         .foregroundColor(Color.theme.lightGreen)
                         .padding()
                 }
-                DatePicker("", selection: $deliveryDate)
+                DatePicker("", selection: $orderViewModel.deliveryDate)
                     .datePickerStyle(.compact)
 
                     .padding()
@@ -104,76 +86,45 @@ struct MakingTheOrderView: View {
                             .foregroundColor(Color.theme.lightGreen)
                             .padding()
                     }
-                    TextFieldView(text: $viewModel.customer, placeholder: "Имя получателя")
+                    TextFieldView(text: $orderViewModel.customer, placeholder: "Имя получателя")
                         .onTapGesture {
                             hideKeyboard()
                         }
-                    TextFieldView(text: $viewModel.customerPhone, placeholder: "Телефон получателя")
+                    TextFieldView(text: $orderViewModel.customerPhone, placeholder: "Телефон получателя")
                         .keyboardType(.numberPad)
                         .onTapGesture {
                             hideKeyboard()
                         }
-                    TextFieldView(text: $viewModel.address, placeholder: "Адрес доставки")
+                    TextFieldView(text: $orderViewModel.address, placeholder: "Адрес доставки")
                         .onTapGesture {
                             hideKeyboard()
                         }
-                    TextFieldView(text: $viewModel.comments, placeholder: "Комментарий")
+                    TextFieldView(text: $orderViewModel.comments, placeholder: "Комментарий")
                         .onTapGesture {
                             hideKeyboard()
                         }
                 }
                 Button {
-                    self.tog = true
-                    sendRequest { to in
-                        tog = to
-                        tog1 = true
+                    orderViewModel.tog = true
+                    orderViewModel.sendRequest { to in
+                        orderViewModel.tog = to
+                        orderViewModel.tog1 = true
                     }
-                    dateFormatter()
-                    print(viewModel.date)
+                    orderViewModel.dateFormatter()
                     deleteAllRecords(entity: "FruitEntity")
-//                    func currentTopics(fruitss: FetchedResults<FruitEntity>) -> [Fruit] {
-//                        var collected = [Fruit]()
-//                        for item in viewModel.fruit {
-//                            for i in fruitss {
-//                                if i.id == item.id {
-//
-//                                    let col = Fruit(id: item.id,
-//                                                       cost: item.cost,
-//                                                       weightOrPieces: item.weightOrPieces,
-//                                                       categories: item.categories,
-//                                                       favorite: item.favorite,
-//                                                       count: item.count,
-//                                                       image: item.image,
-//                                                       name: item.name,
-//                                                       percent: item.percent,
-//                                                       descriptions: item.descriptions,
-//                                                       price: item.price,
-//                                                       comment: item.comment)
-//                                    collected.append(col)
-//                                }
-//                            }
-//                        }
-//
-//                        return collected
-//                    }
-//                    viewModel.fruitOrder.forEach { i in
-//                        Array(Set(i))
-//                    }
-                    
 
-                    let orde = Order(orderNumber: viewModel.orderNumber,
-                                     date: viewModel.date,
-                                     email: email as! String,
-                                     fruit: viewModel.uniqFruits,
-                                     address: viewModel.address,
-                                     price: viewModel.price ?? 0 ,
-                                     customer: viewModel.customer,
-                                     customerPhone: viewModel.customerPhone,
-                                     comment: viewModel.comment ?? "")
-//
+                    let orde = Order(orderNumber: orderViewModel.orderNumber,
+                                     date: orderViewModel.date,
+                                     email: orderViewModel.email as! String,
+                                     fruit: fruitViewModel.uniqFruits,
+                                     address: orderViewModel.address,
+                                     price: orderViewModel.price ?? 0.1 ,
+                                     customer: orderViewModel.customer,
+                                     customerPhone: orderViewModel.customerPhone,
+                                     comment: fruitViewModel.comment ?? "nooo" )
                     Task {
                         do {
-                            try await viewModel.addOrder(orders: orde)
+                            try await orderViewModel.addOrder(orders: orde)
                         } catch {
                             print("❌ ERORR")
                         }
@@ -186,11 +137,11 @@ struct MakingTheOrderView: View {
                         .background(Color.theme.lightGreen)
                         .cornerRadius(10)
                 }
-                .fullScreenCover(isPresented: $tog) {
+                .fullScreenCover(isPresented: $orderViewModel.tog) {
                     CompletedOrderView()
                 }
-                .fullScreenCover(isPresented: $tog1) {
-                    ContentView(viewModel: FruitViewModel())
+                .fullScreenCover(isPresented: $orderViewModel.tog1) {
+                    ContentView(fruitViewModel: FruitViewModel(), orderViewModel: orderViewModel)
                 }
             }
             Spacer()
@@ -208,10 +159,24 @@ struct MakingTheOrderView: View {
                 }
         )
     }
-}
 
-struct MakingTheOrderView_Previews: PreviewProvider {
-    static var previews: some View {
-        MakingTheOrderView(viewModel: FruitViewModel(), orderFruit: [Fruit(cost: 13, weightOrPieces: "", categories: "", favorite: false, count: 1, image: "", name: "")])
+    func deleteAllRecords(entity: String) {
+
+        let managedContext = viewContext // your context
+        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+
+        do {
+            try managedContext.execute(deleteRequest)
+            try managedContext.save()
+        } catch {
+            print("There was an error")
+        }
     }
 }
+
+//struct MakingTheOrderView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MakingTheOrderView(viewModel: FruitViewModel(), orderFruit: [Fruit(cost: 13, weightOrPieces: "", categories: "", favorite: false, count: 1, image: "", name: "")])
+//    }
+//}

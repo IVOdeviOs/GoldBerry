@@ -1,10 +1,9 @@
 import SwiftUI
 
 struct UserInfoView: View {
-//    @FetchRequest(entity: UserRegEntity.entity(), sortDescriptors: [])
-//    var users: FetchedResults<UserRegEntity>
+
     @Environment(\.presentationMode) var presentationMode
-    @StateObject var viewModel: FruitViewModel
+    @StateObject var userViewModel: UserViewModel
 //    @State var userName: String
 //    @State var userSurname: String
 //    @State var userPhone: String
@@ -21,15 +20,15 @@ struct UserInfoView: View {
             Color.theme.gray
                 .opacity(0.3)
                 .frame(height: 10)
-            TextFieldView(text: $viewModel.userSurname, placeholder: "Фамилия")
+            TextFieldView(text: $userViewModel.userSurname, placeholder: "Фамилия")
                 .onTapGesture {
                     hideKeyboard()
                 }
-            TextFieldView(text: $viewModel.userName, placeholder: "Имя")
+            TextFieldView(text: $userViewModel.userName, placeholder: "Имя")
                 .onTapGesture {
                     hideKeyboard()
                 }
-            TextFieldView(text: $viewModel.userPhone, placeholder: "Телефон")
+            TextFieldView(text: $userViewModel.userPhone, placeholder: "Телефон")
                 .keyboardType(.numberPad)
                 .onTapGesture {
                     hideKeyboard()
@@ -41,11 +40,11 @@ struct UserInfoView: View {
 //                    }
             Button {
 
-                viewModel.user.forEach { i in
+                userViewModel.user.forEach { i in
                     if i.userEmail == email as! String {
                         Task {
                             do {
-                                try await viewModel.updateUser()
+                                try await userViewModel.updateUser()
                             } catch {
                                 print("❌ ERORR🥰")
                             }
@@ -55,7 +54,7 @@ struct UserInfoView: View {
                     } else {
                         Task {
                             do {
-                                try await viewModel.addUser()
+                                try await userViewModel.addUser()
                             } catch {
                                 print("❌ ERORR😤")
                             }
@@ -79,7 +78,7 @@ struct UserInfoView: View {
 //                        print("❌ ERORR")
 //                    }
 //                }
-                self.viewModel.showUserInfoView = false
+                userViewModel.showUserInfoView = false
 //                viewModel.users.userSurname = userSurname
 //                viewModel.users.userName = userName
 //                viewModel.users.userPhone = userPhone
@@ -98,25 +97,25 @@ struct UserInfoView: View {
             Spacer()
         }.onAppear {
 
-            for item in viewModel.user {
+            for item in userViewModel.user {
                 if email as! String == item.userEmail {
-                    viewModel.userName = item.userName
-                    viewModel.userSurname = item.userSurname
-                    viewModel.userPhone = item.userPhone
+                    userViewModel.userName = item.userName
+                    userViewModel.userSurname = item.userSurname
+                    userViewModel.userPhone = item.userPhone
                 }
             }
         }
     }
 }
 
-struct UserInfoView_Previews: PreviewProvider {
-    static var previews: some View {
-        UserInfoView(
-            viewModel: FruitViewModel()
-//            userName: "",
-//            userSurname: "",
-//            userPhone: "",
-//            userEmail: ""
-        )
-    }
-}
+//struct UserInfoView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        UserInfoView(
+//            viewModel: FruitViewModel()
+////            userName: "",
+////            userSurname: "",
+////            userPhone: "",
+////            userEmail: ""
+//        )
+//    }
+//}

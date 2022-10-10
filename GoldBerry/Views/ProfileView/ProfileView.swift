@@ -1,24 +1,13 @@
 import SwiftUI
 
 struct ProfileView: View {
-    
+    @ObservedObject var fruitViewModel = FruitViewModel()
+    @ObservedObject var orderViewModel = OrderViewModel()
+    @ObservedObject var userViewModel = UserViewModel()
+
     @FetchRequest(entity: UserRegEntity.entity(), sortDescriptors: [])
     var users: FetchedResults<UserRegEntity>
-    
-    
-    @StateObject var viewModel: FruitViewModel
-    //    @StateObject var viewModels: OrderViewModel
-//    @State var showUserInfoView = false
-    @State var showServiceInfoView = false
-    @State var showShopView = false
-    @State var showFavouriteProductsView = false
 
-    var numberPhone = "+375336096300"
-    @StateObject var user = FruitViewModel()
-    @State var alert = false
-    @State var countOrder = 0
-    let email = UserDefaults.standard.value(forKey: "userEmail")
-    
     var body: some View {
         VStack {
             ZStack {
@@ -27,14 +16,14 @@ struct ProfileView: View {
                     .offset(y: -50)
                 HStack {
                     VStack {
-                        Text(viewModel.userName.isEmpty && viewModel.userSurname.isEmpty ? "Имя Фамилия" : "\(viewModel.userName) \(viewModel.userSurname)")
+                        Text(userViewModel.userName.isEmpty && userViewModel.userSurname.isEmpty ? "Имя Фамилия" : "\(userViewModel.userName) \(userViewModel.userSurname)")
                             .foregroundColor(.white)
                             .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
                             .padding()
                     }
-                                        Spacer()
+                    Spacer()
                     Button {
-                        self.viewModel.showUserInfoView.toggle()
+                        userViewModel.showUserInfoView.toggle()
                     } label: {
                         Image(systemName: "arrow.right")
                             .resizable()
@@ -42,20 +31,14 @@ struct ProfileView: View {
                             .foregroundColor(.white)
                             .padding(.trailing, 20)
                     }
-                    .sheet(isPresented: $viewModel.showUserInfoView, content: {
-                        UserInfoView(
-                            viewModel: viewModel
-//                            userName: viewModel.users.userName,
-//                            userSurname: viewModel.users.userSurname,
-//                            userPhone: viewModel.users.userPhone
-//                            userEmail: viewModel.user.userEmail
-                        )
+                    .sheet(isPresented: $userViewModel.showUserInfoView, content: {
+                        UserInfoView( userViewModel: userViewModel)
                     })
                 }
             }
             ZStack {
                 Button {
-                    viewModel.selected = 2
+                    fruitViewModel.selected = 2
                 } label: {
                     ZStack {
                         Color.white
@@ -67,7 +50,7 @@ struct ProfileView: View {
                                 .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
                                 .foregroundColor(.black)
                                 .padding(.bottom, 5)
-                            Text("\(countOrder)")
+                            Text("\(userViewModel.countOrder)")
                                 .font(Font(uiFont: .fontLibrary(24, .uzSansSemiBold)))
                                 .foregroundColor(.black)
                         }
@@ -76,7 +59,7 @@ struct ProfileView: View {
                 .offset(x: -110, y: -80)
             }
             Button {
-                self.showShopView.toggle()
+                userViewModel.showShopView.toggle()
             } label: {
                 ZStack {
                     Color.theme.gray
@@ -94,13 +77,13 @@ struct ProfileView: View {
                             .foregroundColor(.black)
                             .padding(.trailing, 20)
                     }
-                    .sheet(isPresented: $showShopView, content: {
-                        ShopsView(viewModel: viewModel)
+                    .sheet(isPresented: $userViewModel.showShopView, content: {
+                        ShopsView(viewModel: fruitViewModel)
                     })
                 }
             }
             Button {
-                self.showFavouriteProductsView.toggle()
+                userViewModel.showFavouriteProductsView.toggle()
             } label: {
                 ZStack {
                     Color.theme.gray
@@ -113,11 +96,11 @@ struct ProfileView: View {
                             .padding(.leading, 15)
                         Spacer()
                         ZStack {
-                            if viewModel.favouriteProducts.count != 0 {
+                            if !userViewModel.favouriteProducts.isEmpty {
                                 Color.red
                                     .frame(width: 20, height: 20)
                                     .cornerRadius(10)
-                                Text("\(viewModel.favouriteProducts.count)")
+                                Text("\(userViewModel.favouriteProducts.count)")
                                     .minimumScaleFactor(0.5)
                                     .foregroundColor(.white)
                                     .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
@@ -129,8 +112,8 @@ struct ProfileView: View {
                             .foregroundColor(.black)
                             .padding(.trailing, 20)
                     }
-                    .sheet(isPresented: $showFavouriteProductsView, content: {
-                        FavouriteProductsView(viewModel: viewModel)
+                    .sheet(isPresented: $userViewModel.showFavouriteProductsView, content: {
+                        FavouriteProductsView(viewModel: fruitViewModel)
                     })
                 }
             }
@@ -147,7 +130,7 @@ struct ProfileView: View {
                             .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                             .padding(.leading, 15)
                         Spacer()
-                        
+
                         Image(systemName: "arrow.right")
                             .resizable()
                             .frame(width: 20, height: 20)
@@ -161,7 +144,7 @@ struct ProfileView: View {
             }
             ZStack {
                 Button {
-                    let formattedString = "tel://" + numberPhone
+                    let formattedString = "tel://" + userViewModel.numberPhone
                     guard let url = URL(string: formattedString) else { return }
                     UIApplication.shared.open(url)
                 } label: {
@@ -187,7 +170,7 @@ struct ProfileView: View {
             Spacer()
             HStack {
                 Button {
-                    alert = true
+                    userViewModel.alert = true
 
                 } label: {
                     HStack(spacing: 5) {
@@ -197,15 +180,14 @@ struct ProfileView: View {
                             .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
                             .foregroundColor(Color.black)
                     }
-
                 }
-                .alert(isPresented: $alert) {
+                .alert(isPresented: $userViewModel.alert) {
                     Alert(title: Text("Sign Out"),
                           message: Text("Are you sure you want to log out of your account?"),
                           primaryButton: .destructive(Text("Yes")) {
-                                  UserDefaults.standard.set(false, forKey: "status")
-                                  NotificationCenter.default.post(name: NSNotification.Name("statusChange"),
-                                                                  object: nil)
+                              UserDefaults.standard.set(false, forKey: "status")
+                              NotificationCenter.default.post(name: NSNotification.Name("statusChange"),
+                                                              object: nil)
                           },
                           secondaryButton: .cancel())
                 }
@@ -216,35 +198,28 @@ struct ProfileView: View {
             }
             .offset(y: -70)
             .navigationBarHidden(true)
-        }       
+        }
         .offset(y: -40)
         .ignoresSafeArea()
-        .onAppear{
-            for item in viewModel.user{
-                if email as! String  == item.userEmail{
-                    viewModel.userName = item.userName
-                    viewModel.userSurname = item.userSurname
+        .onAppear {
+            for item in userViewModel.user {
+                if userViewModel.email as! String == item.userEmail {
+                    userViewModel.userName = item.userName
+                    userViewModel.userSurname = item.userSurname
                 }
             }
-            
-               
-                viewModel.order.forEach { i in
-                   if i.email == email as! String{
-                         countOrder += 1
-                   }
-                }
-                
-                
-         
 
-            
+            orderViewModel.order.forEach { i in
+                if i.email == userViewModel.email as! String {
+                    userViewModel.countOrder += 1
+                }
+            }
         }
     }
-   
 }
 
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileView(viewModel: FruitViewModel())
-    }
-}
+// struct ProfileView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ProfileView(viewModel: FruitViewModel())
+//    }
+// }

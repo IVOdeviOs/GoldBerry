@@ -45,6 +45,7 @@
 		DD539A59289AEFDD006F1CD1 /* ProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A58289AEFDD006F1CD1 /* ProductsView.swift */; };
 		DD539A6528A02839006F1CD1 /* FruitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A6428A02839006F1CD1 /* FruitViewModel.swift */; };
 		DD539A6928A02A63006F1CD1 /* OrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A6828A02A62006F1CD1 /* OrdersView.swift */; };
+		DD53F0BA28F47C2E00439F1A /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD53F0B928F47C2E00439F1A /* UserViewModel.swift */; };
 		DD93807128B52FA900808E88 /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD93807028B52FA900808E88 /* OrderViewModel.swift */; };
 		DD93807328B54CF600808E88 /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD93807228B54CF600808E88 /* HttpClient.swift */; };
 		DD93807528B54D1000808E88 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD93807428B54D1000808E88 /* Constants.swift */; };
@@ -102,6 +103,7 @@
 		DD539A58289AEFDD006F1CD1 /* ProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsView.swift; sourceTree = "<group>"; };
 		DD539A6428A02839006F1CD1 /* FruitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitViewModel.swift; sourceTree = "<group>"; };
 		DD539A6828A02A62006F1CD1 /* OrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersView.swift; sourceTree = "<group>"; };
+		DD53F0B928F47C2E00439F1A /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		DD93807028B52FA900808E88 /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
 		DD93807228B54CF600808E88 /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
 		DD93807428B54D1000808E88 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 		DD539A54289AEAF6006F1CD1 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				DD53F0B928F47C2E00439F1A /* UserViewModel.swift */,
 				DD539A6428A02839006F1CD1 /* FruitViewModel.swift */,
 				DD93807028B52FA900808E88 /* OrderViewModel.swift */,
 				DD93807828B6349B00808E88 /* RemoteImageView.swift */,
@@ -458,6 +461,7 @@
 				DD95A8332899ABD200DF346B /* GoldBerryApp.swift in Sources */,
 				DC4807FA28CB123F001416B6 /* ConfidentialView.swift in Sources */,
 				DD539A6928A02A63006F1CD1 /* OrdersView.swift in Sources */,
+				DD53F0BA28F47C2E00439F1A /* UserViewModel.swift in Sources */,
 				DC4807E328BB7E8A001416B6 /* TextField+.swift in Sources */,
 				DC9DE54A28BB508200057E90 /* CartCell.swift in Sources */,
 				DDBA58E028A1551400FFC3A5 /* AllProductsCell.swift in Sources */,
