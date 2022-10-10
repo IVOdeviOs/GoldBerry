@@ -3,9 +3,9 @@ import SwiftUI
 struct CartCell: View {
 //    @ObservedObject var viewModel: FruitViewModel
 
-    @ObservedObject var viewModel:FruitViewModel
+    @ObservedObject var viewModel: FruitViewModel
     @State var fruit: Fruit
-    
+
 //    @State var imageName: String
 //    @State var cost: Double
 //    @State var name: String
@@ -15,10 +15,10 @@ struct CartCell: View {
 //    @State var price: Double
 //    @State var id = UUID()
 //
-    
+
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.id, ascending: true)])
-     var fruits: FetchedResults<FruitEntity>
+    var fruits: FetchedResults<FruitEntity>
 
     var body: some View {
         VStack {
@@ -27,43 +27,42 @@ struct CartCell: View {
                     RemoteImageView(
                         url: URL(string: fruit.image)!,
                         placeholder: {
-                            Image(systemName: "icloud.and.arrow.up").frame(width: 300,height: 300)
+                            Image(systemName: "icloud.and.arrow.up").frame(width: 300, height: 300)
                         },
                         image: {
                             $0
                                 .resizable()
-                                .frame(width: 150  , height: 150)
+                                .frame(width: 150, height: 150)
                                 .aspectRatio(contentMode: .fit)
                         }
                     )
 //                        .aspectRatio(contentMode: .fill)
 //                        .frame(width: UIScreen.main.bounds.width - 20 ,height:350)
                 }
-                    .frame(width: 150, height: 150)
-                    .cornerRadius(10)
+                .frame(width: 150, height: 150)
+                .cornerRadius(10)
 //                    .padding(.leading, 10)
                 VStack(alignment: .leading, spacing: 10) {
-                   
+
                     HStack {
                         Text("\(NSString(format: "%.2f", fruit.itog)) р/кг")
                             .foregroundColor(Color.theme.lightGreen)
-                        .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
+                            .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
 //                        Text("\(id)")
 //                            .font(.system(size: 30))
                         Spacer()
                         Button {
 //                            EditButton()
 //                            index = 1
-                            
+
                         } label: {
                             Image(systemName: "x.square")
                                 .resizable()
                                 .frame(width: 25, height: 25)
                                 .foregroundColor(.black.opacity(0.6))
                         }
-
                     }
-                    
+
                     Text(fruit.name)
                         .foregroundColor(.black)
                         .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
@@ -83,7 +82,7 @@ struct CartCell: View {
                         } else {
                             fruit.price = fruit.itog * Double(fruit.count)
                         }
-                    
+
 //                        viewModel.order.price -= price
 //                        print("\(price)")
                         viewModel.price = fruit.price!
@@ -119,41 +118,46 @@ struct CartCell: View {
                 }
             }
             HStack {
-                Text("Итого: \(NSString(format: "%.2f", fruit.price ?? fruit.itog )) р")
+                Text("Итого: \(NSString(format: "%.2f", fruit.price ?? 1 )) р")
                     .foregroundColor(Color.theme.lightGreen)
                     .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
                     .padding(.leading, 10)
                 Spacer()
             }
         }
-     
-        .onDisappear{
-            
-           
-         
+
+        .onDisappear {
+
 //                    viewModel.fruitOrder.append(fruit)
-    
+
             if viewModel.fruitOrder.isEmpty {
                 viewModel.fruitOrder.append(fruit)
-            }else {
+            } else {
                 viewModel.fruitOrder.removeAll()
-                
-                viewModel.fruitOrder.append(fruit)
+                print("___________\(viewModel.fruitOrder.count)")
+
+//                for i in viewModel.fruitOrder {
+//                    if i.id == fruit.id {
+//
+////                        viewModel.fruitOrder.remove(at: i.id)
+//                        print("abrakadabra")
+//                    } else {
+                        viewModel.fruitOrder.append(fruit)
+                print("___________\(viewModel.fruitOrder.count)")
+//                    }
+//                }
             }
         }
-        .onAppear{
+        .onAppear {
             for i in fruits {
-                
+
                 if i.id == fruit.id {
                     fruit.count = Int(i.count)
                     fruit.price = Double(fruit.count) * fruit.itog
-                    viewModel.price = fruit.price
+                    viewModel.price = fruit.price!
                     print("😇\(i.count)")
                 }
-                
-                
             }
-                
         }
         .padding()
         .background(.gray.opacity(0.1))
@@ -166,7 +170,6 @@ struct CartCell: View {
 //    func delete(at offsets: IndexSet) {
 //        viewModel.order1.fruit.remove(atOffsets: offsets)
 //      }
-  
 }
 
 struct CartCell_Previews: PreviewProvider {

@@ -65,22 +65,24 @@ struct WithPurchase: View {
 //
 //    var fruitOrder: FetchedResults<FruitOrderEntity>
     @State var fruitOrder = [Fruit]()
-    @State var suma:Double = 0
-    
+    @State var suma: Double = 0
+    @State var fruitO = [Fruit]()
+
     var body: some View {
         ZStack(alignment: .top) {
 
             ScrollView(showsIndicators: false) {
 //                Text("\(viewModel.fruitOrder.count)")
 //                    .font(.system(size: 30))
-                ForEach(viewModel.fruit) { item in
-                    ForEach(fruits) { i in
-                        if i.id == item.id {
-                            
+//                ForEach(viewModel.fruit) { item in
+//                    ForEach(fruits) { i in
+                ForEach(fruitO) { item in
+//                        if i.id == item.id {
+
 //                            im.append(item)
-                            CartCell(
-                                viewModel: viewModel,
-                                fruit: item
+                    CartCell(
+                        viewModel: viewModel,
+                        fruit: item
 
 //                                ,
 //                                imageName: item.image,
@@ -90,17 +92,17 @@ struct WithPurchase: View {
 //                                description: item.descriptions ?? "",
 //                                count: Int(item.count),
 //                                price: Double(item.cost)
-                            )
-                            .onTapGesture {
-                                viewModel.fruitOrder.forEach { i in
-                                    print("😍\(i.count)")
-                                }
-                            }
+                    )
+                    .onTapGesture {
+                        viewModel.fruitOrder.forEach { i in
+                            print("😍\(i.count)")
                         }
                     }
-                    .padding(.vertical, 3)
-                    .padding(.horizontal, 10)
+//                        }
                 }
+                .padding(.vertical, 3)
+                .padding(.horizontal, 10)
+//                }
                 .padding(.top, 125)
                 .padding(.bottom, 100)
                 .ignoresSafeArea()
@@ -112,8 +114,7 @@ struct WithPurchase: View {
 
                     NavigationLink {
                         MakingTheOrderView(viewModel: viewModel)
-//                        viewModel.sort()
-//                        addFruit()
+
 //                        self.show.toggle()
 //                        print("🤩\(viewModel.fruitOrder.count)")
 
@@ -134,51 +135,28 @@ struct WithPurchase: View {
             }
             .navigationBarHidden(true)
         }
-       
+
         .offset(y: -95)
+        .onAppear {
+            for item in viewModel.fruit {
+                for i in fruits {
+                    if i.id == item.id {
+//                        for s in fruitO{
+//                            if s.id != item.id{
+                                fruitO.append(item)
+                        for s in fruitO{
+                            viewModel.price!  += s.price ?? 1
+                        }
+                        
+                        
+                        print("😶‍🌫️\(fruitO.count)")
+//                            }
+//                        }
+                    }
+                }
+            }
+        }
     }
-    
-    
-//    func sum() -> Double{
-//
-////        for i in viewModel.price {
-//        suma += viewModel.price!
-//
-//
-////        }
-//        print("😱\(suma)")
-//        return suma
-//
-//    }
-//    func addFruit(i: Fruit) {
-//        withAnimation {
-//            let newFruit = FruitOrderEntity(context: viewContext)
-//
-//
-//            newFruit.name = i.name
-//            newFruit.image = i.image
-//            newFruit.cost = i.cost
-//            newFruit.percent = Int16(i.percent ?? 1)
-//            newFruit.price = i.price ?? 0
-//            newFruit.favorite = i.favorite
-//            newFruit.categories = i.categories
-//            newFruit.weightOrPieces = i.weightOrPieces
-//            newFruit.count = Int16(i.count)
-//            newFruit.descriptions = i.descriptions
-//            newFruit.comment = i.comment
-//            newFruit.itog = Double(i.itog)
-    ////            print(newFruit.name! + "😍")
-//            do {
-//
-//                try viewContext.save()
-//
-//
-//            } catch {
-//                let nsError = error as NSError
-//                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-//            }
-//        }
-//    }
 }
 
 struct CartView_Previews: PreviewProvider {
