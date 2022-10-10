@@ -43,11 +43,11 @@ class OrderViewModel: ObservableObject {
     }
 
 
-    func sendRequest(completion: @escaping (Bool) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-            completion(self.tog == false)
-        }
-    }
+//    func sendRequest(completion: @escaping (Bool) -> Void) {
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+//            completion(self.tog == false)
+//        }
+//    }
     func dateFormatter() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy.HH.mm"

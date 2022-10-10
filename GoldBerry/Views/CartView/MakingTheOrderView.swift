@@ -2,18 +2,18 @@ import CoreData
 import SwiftUI
 struct MakingTheOrderView: View {
 
-//    func sendRequest(completion: @escaping (Bool) -> Void) {
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-//            completion(tog == false)
-//        }
-//    }
+    func sendRequest(completion: @escaping (Bool) -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+            completion(tog == false)
+        }
+    }
 
     @Environment(\.presentationMode) var presentation
     @ObservedObject var orderViewModel: OrderViewModel
     @ObservedObject var fruitViewModel: FruitViewModel
 
-//    @State var tog = false
-//    @State var tog1 = false
+    @State var tog = false
+    @State var tog1 = false
 //
     @Environment(\.managedObjectContext) private var viewContext
 
@@ -108,7 +108,15 @@ struct MakingTheOrderView: View {
 //                        orderViewModel.tog = to
 //                        orderViewModel.tog1 = true
 //                    }
-
+                    self.tog = true
+                     sendRequest { to in
+                         orderViewModel.dateFormatter()
+                         deleteAllRecords(entity: "FruitEntity")
+                         tog = to
+                         tog1 = true
+                         fruitViewModel.selected = 0
+                     }
+                   
                     let orde = Order(orderNumber: orderViewModel.orderNumber,
                                      date: orderViewModel.date,
                                      email: orderViewModel.email as! String,
@@ -120,15 +128,9 @@ struct MakingTheOrderView: View {
                                      comment: fruitViewModel.comment ?? "nooo")
                     Task {
                         do {
+                            
+                            
                             try await orderViewModel.addOrder(orders: orde)
-                            orderViewModel.dateFormatter()
-                            deleteAllRecords(entity: "FruitEntity")
-//                            fruitViewModel.selected = 0
-                            orderViewModel.tog = true
-                            orderViewModel.sendRequest { to in
-                                orderViewModel.tog = to
-                                orderViewModel.tog1 = true
-                            }
                         } catch {
                             print("❌ ERORR")
                         }
@@ -141,11 +143,11 @@ struct MakingTheOrderView: View {
                         .background(Color.theme.lightGreen)
                         .cornerRadius(10)
                 }
-                .fullScreenCover(isPresented: $orderViewModel.tog) {
+                .fullScreenCover(isPresented: $tog) {
                     CompletedOrderView()
                 }
-                .fullScreenCover(isPresented: $orderViewModel.tog1) {
-                    ContentView(fruitViewModel: FruitViewModel(), orderViewModel: orderViewModel)
+                .fullScreenCover(isPresented: $tog1) {
+                    ContentView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
                 }
             }
             Spacer()
