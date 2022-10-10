@@ -15,9 +15,10 @@ struct CartCell: View {
 //    @State var price: Double
 //    @State var id = UUID()
 //
-//    @Environment(\.managedObjectContext) private var viewContext
-//    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)])
-//     var fruits: FetchedResults<FruitEntity>
+    
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.id, ascending: true)])
+     var fruits: FetchedResults<FruitEntity>
 
     var body: some View {
         VStack {
@@ -130,21 +131,30 @@ struct CartCell: View {
             
            
          
-                    viewModel.fruitOrder.append(fruit)
+//                    viewModel.fruitOrder.append(fruit)
     
-//            if viewModel.fruitOrder.isEmpty {
-//                viewModel.fruitOrder.append(fruit)
-//            }else {
-//                viewModel.fruitOrder.append(fruit)
-//            }
+            if viewModel.fruitOrder.isEmpty {
+                viewModel.fruitOrder.append(fruit)
+            }else {
+                viewModel.fruitOrder.removeAll()
+                
+                viewModel.fruitOrder.append(fruit)
+            }
         }
-//        .onAppear{
-//            if viewModel.fru.price == 0 {
-//                viewModel.fru.price = viewModel.fru.cost
-//            } else {
-//                viewModel.fru.price = viewModel.fru.cost * Double(viewModel.fru.count)
-//            }
-//        }
+        .onAppear{
+            for i in fruits {
+                
+                if i.id == fruit.id {
+                    fruit.count = Int(i.count)
+                    fruit.price = Double(fruit.count) * fruit.itog
+                    viewModel.price = fruit.price
+                    print("😇\(i.count)")
+                }
+                
+                
+            }
+                
+        }
         .padding()
         .background(.gray.opacity(0.1))
         .overlay(

@@ -35,7 +35,7 @@ struct MakingTheOrderView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.id, ascending: true)],
         animation: .default
     )
     var fruits: FetchedResults<FruitEntity>

@@ -16,7 +16,7 @@ struct ProfileView: View {
     var numberPhone = "+375336096300"
     @StateObject var user = FruitViewModel()
     @State var alert = false
-    
+    @State var countOrder = 0
     let email = UserDefaults.standard.value(forKey: "userEmail")
     
     var body: some View {
@@ -67,7 +67,7 @@ struct ProfileView: View {
                                 .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
                                 .foregroundColor(.black)
                                 .padding(.bottom, 5)
-                            Text("\(viewModel.order.count)")
+                            Text("\(countOrder)")
                                 .font(Font(uiFont: .fontLibrary(24, .uzSansSemiBold)))
                                 .foregroundColor(.black)
                         }
@@ -227,9 +227,20 @@ struct ProfileView: View {
                 }
             }
             
-        }
+               
+                viewModel.order.forEach { i in
+                   if i.email == email as! String{
+                         countOrder += 1
+                   }
+                }
+                
+                
+         
 
+            
+        }
     }
+   
 }
 
 struct ProfileView_Previews: PreviewProvider {

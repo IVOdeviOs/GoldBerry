@@ -37,7 +37,7 @@ struct ViewProfile: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.id, ascending: true)],
         animation: .default
     )
     var fruits: FetchedResults<FruitEntity>
@@ -252,6 +252,8 @@ struct ExtractedView: View {
                         Task {
                             do {
                                 try await viewModel.fetchUser()
+                                try await viewModel.fetchOrder()
+
                             } catch {
                                 print("❌ERORR \(error)")
                             }

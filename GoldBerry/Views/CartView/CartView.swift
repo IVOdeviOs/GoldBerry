@@ -57,7 +57,7 @@ struct WithPurchase: View {
     @State var show = false
     @Environment(\.managedObjectContext) private var viewContext
 
-    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.image, ascending: true)])
+    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.id, ascending: true)])
 
     var fruits: FetchedResults<FruitEntity>
 
@@ -65,11 +65,14 @@ struct WithPurchase: View {
 //
 //    var fruitOrder: FetchedResults<FruitOrderEntity>
     @State var fruitOrder = [Fruit]()
+    @State var suma:Double = 0
+    
     var body: some View {
         ZStack(alignment: .top) {
 
             ScrollView(showsIndicators: false) {
-
+//                Text("\(viewModel.fruitOrder.count)")
+//                    .font(.system(size: 30))
                 ForEach(viewModel.fruit) { item in
                     ForEach(fruits) { i in
                         if i.id == item.id {
@@ -131,8 +134,22 @@ struct WithPurchase: View {
             }
             .navigationBarHidden(true)
         }
+       
         .offset(y: -95)
     }
+    
+    
+//    func sum() -> Double{
+//
+////        for i in viewModel.price {
+//        suma += viewModel.price!
+//
+//
+////        }
+//        print("😱\(suma)")
+//        return suma
+//
+//    }
 //    func addFruit(i: Fruit) {
 //        withAnimation {
 //            let newFruit = FruitOrderEntity(context: viewContext)

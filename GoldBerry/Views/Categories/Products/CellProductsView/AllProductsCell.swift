@@ -184,10 +184,12 @@ struct AllProductsCell: View {
             let newFruit = FruitEntity(context: viewContext)
             newFruit.id = fruit.id
             newFruit.count = Int16(fruit.count)
-
+            print("\(newFruit.count)")
             for i in fruits{
-                if newFruit.id == i.id {
+                
+                if newFruit.id == i.id  {
                     viewContext.delete(newFruit)
+                    
                 }
             }
 //            newFruit.name = fruit.name
