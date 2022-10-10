@@ -83,9 +83,9 @@ struct WithPurchase: View {
                  
                     Spacer()
 
-                    Button{
-//                        MakingTheOrderView(viewModel: viewModel)
-                        orderViewModel.show.toggle()
+                    NavigationLink{
+                        MakingTheOrderView(orderViewModel: orderViewModel, fruitViewModel: fruitViewModel)
+//                        orderViewModel.show.toggle()
                     } label: {
                         Text("COl\(fruitViewModel.uniqFruits.count)   Оформить заказ    \(NSString(format: "%.2f", orderViewModel.price!)) р")
                             .foregroundColor(.white)

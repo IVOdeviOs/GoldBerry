@@ -11,9 +11,7 @@ struct MakingTheOrderView: View {
     @Environment(\.presentationMode) var presentation
     @ObservedObject var orderViewModel: OrderViewModel
     @ObservedObject var fruitViewModel: FruitViewModel
-    
-    
-    
+
 //    @State var tog = false
 //    @State var tog1 = false
 //
@@ -105,26 +103,32 @@ struct MakingTheOrderView: View {
                         }
                 }
                 Button {
-                    orderViewModel.tog = true
-                    orderViewModel.sendRequest { to in
-                        orderViewModel.tog = to
-                        orderViewModel.tog1 = true
-                    }
-                    orderViewModel.dateFormatter()
-                    deleteAllRecords(entity: "FruitEntity")
+//                    orderViewModel.tog = true
+//                    orderViewModel.sendRequest { to in
+//                        orderViewModel.tog = to
+//                        orderViewModel.tog1 = true
+//                    }
 
                     let orde = Order(orderNumber: orderViewModel.orderNumber,
                                      date: orderViewModel.date,
                                      email: orderViewModel.email as! String,
                                      fruit: fruitViewModel.uniqFruits,
                                      address: orderViewModel.address,
-                                     price: orderViewModel.price ?? 0.1 ,
+                                     price: orderViewModel.price ?? 0.1,
                                      customer: orderViewModel.customer,
                                      customerPhone: orderViewModel.customerPhone,
-                                     comment: fruitViewModel.comment ?? "nooo" )
+                                     comment: fruitViewModel.comment ?? "nooo")
                     Task {
                         do {
                             try await orderViewModel.addOrder(orders: orde)
+                            orderViewModel.dateFormatter()
+                            deleteAllRecords(entity: "FruitEntity")
+//                            fruitViewModel.selected = 0
+                            orderViewModel.tog = true
+                            orderViewModel.sendRequest { to in
+                                orderViewModel.tog = to
+                                orderViewModel.tog1 = true
+                            }
                         } catch {
                             print("❌ ERORR")
                         }
@@ -175,8 +179,8 @@ struct MakingTheOrderView: View {
     }
 }
 
-//struct MakingTheOrderView_Previews: PreviewProvider {
+// struct MakingTheOrderView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        MakingTheOrderView(viewModel: FruitViewModel(), orderFruit: [Fruit(cost: 13, weightOrPieces: "", categories: "", favorite: false, count: 1, image: "", name: "")])
 //    }
-//}
+// }

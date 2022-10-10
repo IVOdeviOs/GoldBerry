@@ -190,9 +190,9 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 struct ExtractedView: View {
-    @ObservedObject var fruitViewModel = FruitViewModel()
-    @ObservedObject var orderViewModel = OrderViewModel()
-    @ObservedObject var userViewModel = UserViewModel()
+    @StateObject var fruitViewModel = FruitViewModel()
+    @StateObject var orderViewModel = OrderViewModel()
+    @StateObject var userViewModel = UserViewModel()
 
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
 
