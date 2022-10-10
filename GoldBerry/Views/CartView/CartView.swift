@@ -67,6 +67,7 @@ struct WithPurchase: View {
     @State var fruitOrder = [Fruit]()
     @State var suma: Double = 0
     @State var fruitO = [Fruit]()
+    @State var uniqFruits = [Fruit]()
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -76,14 +77,13 @@ struct WithPurchase: View {
 //                    .font(.system(size: 30))
 //                ForEach(viewModel.fruit) { item in
 //                    ForEach(fruits) { i in
-                ForEach(fruitO) { item in
+                ForEach(uniqFruits) { item in
 //                        if i.id == item.id {
 
 //                            im.append(item)
                     CartCell(
                         viewModel: viewModel,
                         fruit: item
-
 //                                ,
 //                                imageName: item.image,
 //                                cost: item.itog,
@@ -148,7 +148,7 @@ struct WithPurchase: View {
                             viewModel.price!  += s.price ?? 1
                         }
                         
-                        
+                        uniqFruits = uniq(source: fruitO)
                         print("😶‍🌫️\(fruitO.count)")
 //                            }
 //                        }
@@ -156,11 +156,26 @@ struct WithPurchase: View {
                 }
             }
         }
+ 
     }
+ 
+
 }
+
 
 struct CartView_Previews: PreviewProvider {
     static var previews: some View {
         CartView(viewModel: FruitViewModel())
     }
+}
+private func uniq<S: Sequence, T: Hashable> (source: S) -> [T] where S.Iterator.Element == T {
+    var buffer = [T]() // возвращаемый массив
+    var added = Set<T>() // набор - уникальные значения
+    for elem in source {
+        if !added.contains(elem) {
+            buffer.append(elem)
+            added.insert(elem)
+        }
+    }
+    return buffer
 }
