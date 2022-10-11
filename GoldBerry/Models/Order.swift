@@ -16,7 +16,7 @@ import Foundation
 
 struct Order:Identifiable, Codable {
     var id : UUID?
-    var orderNumber: Int
+    var orderNumber: String
     var date: String
     var email: String
     var fruit: [Fruit]

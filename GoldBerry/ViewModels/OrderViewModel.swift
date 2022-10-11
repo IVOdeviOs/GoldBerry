@@ -3,6 +3,7 @@ import Foundation
 
 class OrderViewModel: ObservableObject {
     let email = UserDefaults.standard.value(forKey: "userEmail")
+    @Published var id = UUID().uuidString
     @Published var order = [Order]()
     @Published var fruitOrder = [Fruit]()
     @Published var orderNumber = 0

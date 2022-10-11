@@ -68,35 +68,14 @@ struct WithOrders: View {
                     } label: {
                         OrderCell(
                             date: item.date,
-                            number: item.orderNumber,
+                            number: item.orderNumber ,
                             price: Double(item.price),
                             purchases: item.fruit,
                             address: item.address
                         )
                     }
                 }
-//                Button(action: {
-//                    show.toggle()
-//
-//                    print("\(item.date)")
-//                }, label: {
-//                    OrderCell(
-//                        date: item.date,
-//                        number: item.orderNumber,
-//                        price: Double(item.price),
-//                        purchases: item.fruit,
-//                        address: item.address
-//                    )
-//                })
-//                .sheet(isPresented: $show, content: {
-//
-//                    OrderInfoView(order: item)
-//
-//                })
-//
-                ////                .padding()
             }
-
             .offset(y: 20)
             .navigationViewStyle(.columns)
             .listStyle(.plain)

@@ -7,6 +7,7 @@ struct ProfileView: View {
 
     @FetchRequest(entity: UserRegEntity.entity(), sortDescriptors: [])
     var users: FetchedResults<UserRegEntity>
+    let email = UserDefaults.standard.value(forKey: "userEmail")
 
     var body: some View {
         VStack {
@@ -203,14 +204,14 @@ struct ProfileView: View {
         .ignoresSafeArea()
         .onAppear {
             for item in userViewModel.user {
-                if userViewModel.email as! String == item.userEmail {
+                if email as! String == item.userEmail {
                     userViewModel.userName = item.userName
                     userViewModel.userSurname = item.userSurname
                 }
             }
 
             orderViewModel.order.forEach { i in
-                if i.email == userViewModel.email as! String {
+                if i.email == email as! String {
                     userViewModel.countOrder += 1
                 }
             }

@@ -5,7 +5,7 @@ import SwiftUI
 
 class UserViewModel: ObservableObject {
 
-    let email = UserDefaults.standard.value(forKey: "userEmail")
+    let emails = UserDefaults.standard.value(forKey: "userEmail")
 
     var numberPhone = "+375336096300"
    
@@ -30,9 +30,9 @@ class UserViewModel: ObservableObject {
         guard let url = URL(string: urlString) else {
             throw HttpError.badURL
         }
-        let usersId = UserDefaults.standard.value(forKey: email as! String)
+        let usersId = UserDefaults.standard.value(forKey: emails as! String)
 
-        let userToUpdate = User(id: usersId as! UUID, userName: userName, userSurname: userSurname, userPhone: userPhone, userEmail: email as! String)
+        let userToUpdate = User(id: usersId as! UUID, userName: userName, userSurname: userSurname, userPhone: userPhone, userEmail: emails as! String)
 
         try await HttpClient.shared.sendData(to: url, object: userToUpdate, httpMethod: HttpMethods.PUT.rawValue)
     }
@@ -57,9 +57,9 @@ class UserViewModel: ObservableObject {
             throw HttpError.badURL
         }
 
-        let user = User(userName: userName, userSurname: userSurname, userPhone: userPhone, userEmail: email as! String)
+        let user = User(userName: userName, userSurname: userSurname, userPhone: userPhone, userEmail: emails as! String)
 
-        UserDefaults.standard.set(user.id, forKey: email as! String)
+        UserDefaults.standard.set(user.id, forKey: emails as! String)
 
         try await HttpClient.shared.sendData(to: url, object: user, httpMethod: HttpMethods.POST.rawValue)
     }

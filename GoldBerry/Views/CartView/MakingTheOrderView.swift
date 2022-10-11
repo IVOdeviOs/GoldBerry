@@ -7,7 +7,7 @@ struct MakingTheOrderView: View {
             completion(tog == false)
         }
     }
-
+    let email = UserDefaults.standard.value(forKey: "userEmail")
     @Environment(\.presentationMode) var presentation
     @ObservedObject var orderViewModel = OrderViewModel()
     @ObservedObject var fruitViewModel = FruitViewModel()
@@ -70,7 +70,7 @@ struct MakingTheOrderView: View {
                     .opacity(0.3)
                     .frame(height: 10)
                 HStack {
-                    Text("Когда доставить \(fruitViewModel.uniqFruits.count)")
+                    Text("Когда доставить")
                         .foregroundColor(.black)
                         .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
                         .padding()
@@ -125,13 +125,25 @@ struct MakingTheOrderView: View {
                         //                        fruitViewModel.selected = 0
                         //                                 tog1 = true
                     }
+                    
 
+                    var str: String = ""
+                    var i = 0
+                    for char in orderViewModel.id  {
+                    i += 1
+                        if i <= 7 {
+                       
+                            str.append(char)
+                    }
+                    }
+
+                    
                     deleteAllRecords(entity: "FruitEntity")
 
                     orderViewModel.dateFormatter()
-                    let orde = Order(orderNumber: orderViewModel.order.count,
+                    let orde = Order(orderNumber: str ,
                                      date: orderViewModel.date,
-                                     email: orderViewModel.email as! String,
+                                     email: email as! String ,
                                      fruit: fruitViewModel.uniqFruits,
                                      address: orderViewModel.address,
                                      price: orderViewModel.price ?? 0.1,
@@ -163,6 +175,7 @@ struct MakingTheOrderView: View {
             }
             Spacer()
         }
+       
         .offset(y: -15)
         .ignoresSafeArea()
         .navigationBarBackButtonHidden(true)

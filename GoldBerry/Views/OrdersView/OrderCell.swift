@@ -1,9 +1,10 @@
 import SwiftUI
-
+import Foundation
+import UIKit
 struct OrderCell: View {
 
     @State var date: String
-    @State var number: Int
+    @State var number: String
     @State var price: Double
     @State var purchases: [Fruit]
     @State var address: String
@@ -18,7 +19,7 @@ struct OrderCell: View {
                         .padding(.leading, 10)
                         .padding(.top, 10)
                         .padding(.bottom, 1)
-                    Text("Заказ № \(number)")
+                    Text("Заказ № \( number)")
                         .font(Font(uiFont: .fontLibrary(18, .uzSansBold)))
                         .foregroundColor(.black)
                         .padding(.leading, 10)
@@ -123,14 +124,15 @@ struct OrderCell: View {
     }
 }
 
-struct OrderCell_Previews: PreviewProvider {
-    static var previews: some View {
-        OrderCell(
-            date: "18/08/2022",
-            number: 1,
-            price: 1000,
-            purchases: [],
-            address: "Минск, пр-т Независимости, 12-100"
-        )
-    }
-}
+//struct OrderCell_Previews: PreviewProvider {
+//    static var previews: some View {
+//        OrderCell(
+//            date: "18/08/2022",
+//            number: "1",
+//            price: 1000,
+//            purchases: [],
+//            address: "Минск, пр-т Независимости, 12-100"
+//        )
+//    }
+//}
+
