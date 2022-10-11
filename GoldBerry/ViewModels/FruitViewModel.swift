@@ -3,6 +3,17 @@ import FirebaseAuth
 import Foundation
 import SwiftUI
 class FruitViewModel: ObservableObject {
+    
+//    @Published var orderPrice: Double = 0
+    @Published var arrayOfFruitPrice = [String: Double]()
+    func sum() -> Double {
+        var sumOfArray: Double = 0
+        for price in  arrayOfFruitPrice.values {
+        sumOfArray += price
+    }
+        return sumOfArray
+    }
+    
     @Published var selected = 0
 
     let email = UserDefaults.standard.value(forKey: "userEmail")

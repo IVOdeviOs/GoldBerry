@@ -151,7 +151,7 @@ struct AllProductsCell: View {
                 
                 Button {
                     addFruit()
-
+                    fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
                 } label: {
                     HStack {
                         Text("В корзину")

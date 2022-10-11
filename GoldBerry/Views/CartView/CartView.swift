@@ -2,6 +2,8 @@ import CoreData
 import SwiftUI
 
 struct CartView: View {
+    
+    
     @ObservedObject var fruitViewModel: FruitViewModel
     @ObservedObject var orderViewModel: OrderViewModel
 //    @Environment(\.managedObjectContext) private var viewContext
@@ -61,7 +63,8 @@ struct WithPurchase: View {
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
     var fruits: FetchedResults<FruitEntity>
     @State var fruitO = [Fruit]()
-    
+    @State var cartPrice: Double = 0
+
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -89,7 +92,7 @@ struct WithPurchase: View {
                         MakingTheOrderView(orderViewModel: orderViewModel, fruitViewModel: fruitViewModel)
 //                        orderViewModel.show.toggle()
                     } label: {
-                        Text("COl\(1)   Оформить заказ    \(NSString(format: "%.2f", orderViewModel.price!)) р")
+                        Text("COl\(1)   Оформить заказ    \(NSString(format: "%.2f", fruitViewModel.sum())) р")
                             .foregroundColor(.white)
                             .frame(width: UIScreen.main.bounds.width - 30, height: 50)
                             .background(Color.theme.lightGreen)
@@ -106,6 +109,8 @@ struct WithPurchase: View {
 
         .offset(y: -95)
         .onAppear {
+//            orderViewModel.price = fruitViewModel.sum()
+            print("cccc---------- \(fruitViewModel.arrayOfFruitPrice.count)")
             for item in fruitViewModel.fruit {
                 for i in fruits {
                     if i.id == item.id {
@@ -117,6 +122,9 @@ struct WithPurchase: View {
                     }
                 }
             }
+        }
+        .onDisappear {
+            orderViewModel.price = fruitViewModel.sum()
         }
     }
 }

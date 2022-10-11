@@ -82,6 +82,7 @@ struct CartCell: View {
                             fruit.price = fruit.itog
                         } else {
                             fruit.price = fruit.itog * Double(fruit.count)
+                            fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
                         }
 
 //                        viewModel.order.price -= price
@@ -108,8 +109,8 @@ struct CartCell: View {
 //                    viewModel.order.price += price
 //                    print("\(price)")
 //                    viewModel.price = price
-                    orderViewModel.price = fruit.price!
-
+//                    orderViewModel.price = fruit.price!
+                    fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
                 } label: {
                     Image(systemName: "plus.square.fill")
                         .resizable()
@@ -133,6 +134,8 @@ struct CartCell: View {
                     fruitViewModel.uniqFruits.removeFirst()
                     fruitViewModel.uniqFruits.append(fruit)
                     fruit.price = Double(fruit.count) * fruit.itog
+                    fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
+
                 }
             }
         }
@@ -142,12 +145,13 @@ struct CartCell: View {
 //
                 if i.id == fruit.id {
                     fruit.price = Double(fruit.count) * fruit.itog
-                    orderViewModel.price = fruit.price!
+//                    orderViewModel.price = fruit.price!
                     
                     fruit.price = Double(i.count) * fruit.itog
-                    orderViewModel.price = fruit.price
+//                    orderViewModel.price = fruit.price
                     fruit.count = Int(i.count)
                     print("😇\(fruit.count)")
+                    fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
                 }
 //                print("🤬\(fruit.count)")
             }
