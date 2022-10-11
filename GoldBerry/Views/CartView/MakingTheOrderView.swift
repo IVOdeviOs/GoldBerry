@@ -129,7 +129,7 @@ struct MakingTheOrderView: View {
                     deleteAllRecords(entity: "FruitEntity")
 
                     orderViewModel.dateFormatter()
-                    let orde = Order(orderNumber: orderViewModel.orderNumber,
+                    let orde = Order(orderNumber: orderViewModel.order.count,
                                      date: orderViewModel.date,
                                      email: orderViewModel.email as! String,
                                      fruit: fruitViewModel.uniqFruits,
@@ -137,7 +137,7 @@ struct MakingTheOrderView: View {
                                      price: orderViewModel.price ?? 0.1,
                                      customer: orderViewModel.customer,
                                      customerPhone: orderViewModel.customerPhone,
-                                     comment: fruitViewModel.comment ?? "nooo")
+                                     comment: orderViewModel.comments)
                     Task {
                         do {
                             try await orderViewModel.addOrder(orders: orde)
