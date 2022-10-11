@@ -122,7 +122,7 @@ struct MakingTheOrderView: View {
                     sendRequest { to in
                         tog = to
                         dismiss()
-                        fruitViewModel.selected = 0
+                        //                        fruitViewModel.selected = 0
                         //                                 tog1 = true
                     }
 

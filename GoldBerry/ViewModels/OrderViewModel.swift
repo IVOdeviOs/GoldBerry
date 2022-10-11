@@ -7,20 +7,17 @@ class OrderViewModel: ObservableObject {
     @Published var fruitOrder = [Fruit]()
     @Published var orderNumber = 0
     @Published var count = 0
-//    @Published var tog = false
-//    @Published var tog1 = false
     @Published var price: Double? = 1
     @Published var image = ""
-    
     @Published var show = false
     @Published var date = ""
     @Published var address = ""
-////    @Published var price: Double = 0
+
     @Published var customer = ""
     @Published var customerPhone = ""
     @Published var comments = ""
     @Published var deliveryDate = Date()
-    
+
     func fetchOrder() async throws {
         let urlString = Constants.baseURL + EndPoints.order
 
@@ -31,7 +28,6 @@ class OrderViewModel: ObservableObject {
 
         DispatchQueue.main.async {
             self.order = orderResponse
-            
         }
     }
 
@@ -45,16 +41,19 @@ class OrderViewModel: ObservableObject {
         try await HttpClient.shared.sendData(to: url, object: order, httpMethod: HttpMethods.POST.rawValue)
     }
 
-
-//    func sendRequest(completion: @escaping (Bool) -> Void) {
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-//            completion(self.tog == false)
-//        }
-//    }
     func dateFormatter() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy.HH.mm"
-        self.date = dateFormatter.string(from: self.deliveryDate)
+        date = dateFormatter.string(from: deliveryDate)
     }
-    
+
+//    var cancellable: Set<AnyCancellable> = []
+//
+//    private var formattedEmailPublisher: AnyPublisher<String, Never> {
+//        $customer
+//            .map {
+//                $0.count > 8 && $0 != "password"
+//            }
+//            .eraseToAnyPublisher()
+//    }
 }

@@ -92,7 +92,7 @@ struct WithPurchase: View {
                         MakingTheOrderView(orderViewModel: orderViewModel, fruitViewModel: fruitViewModel)
 //                        orderViewModel.show.toggle()
                     } label: {
-                        Text("COl\(1)   Оформить заказ    \(NSString(format: "%.2f", fruitViewModel.sum())) р")
+                        Text("Оформить заказ \(NSString(format: "%.2f", fruitViewModel.sum())) р")
                             .foregroundColor(.white)
                             .frame(width: UIScreen.main.bounds.width - 30, height: 50)
                             .background(Color.theme.lightGreen)
@@ -109,7 +109,6 @@ struct WithPurchase: View {
 
         .offset(y: -95)
         .onAppear {
-//            orderViewModel.price = fruitViewModel.sum()
             print("cccc---------- \(fruitViewModel.arrayOfFruitPrice.count)")
             for item in fruitViewModel.fruit {
                 for i in fruits {
@@ -124,7 +123,7 @@ struct WithPurchase: View {
             }
         }
         .onDisappear {
-            orderViewModel.price = fruitViewModel.sum() ?? 0
+            orderViewModel.price = fruitViewModel.sum()
         }
     }
 }

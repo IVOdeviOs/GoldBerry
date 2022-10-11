@@ -59,7 +59,7 @@ struct OrderCell: View {
                     Text("\(purchases[row].count)")
                         .foregroundColor(.black)
                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                    Text("\(NSString(format: "%.2f", purchases[row].cost)) p.")
+                    Text("\(NSString(format: "%.2f", purchases[row].itog)) p.")
                         .foregroundColor(Color.theme.lightGreen)
                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                         .frame(width: 80, height: 20)
