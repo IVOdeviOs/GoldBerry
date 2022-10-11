@@ -9,12 +9,26 @@ struct MakingTheOrderView: View {
     }
 
     @Environment(\.presentationMode) var presentation
-    @ObservedObject var orderViewModel: OrderViewModel
-    @ObservedObject var fruitViewModel: FruitViewModel
+    @ObservedObject var orderViewModel = OrderViewModel()
+    @ObservedObject var fruitViewModel = FruitViewModel()
 
     @State var tog = false
     @State var tog1 = false
-//
+
+    func deleteAllRecords(entity: String) {
+        let managedContext = viewContext // your context
+        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+
+        do {
+            try managedContext.execute(deleteRequest)
+            try managedContext.save()
+        } catch {
+            print("There was an error")
+        }
+    }
+
+    @Environment(\.dismiss) private var dismiss
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
@@ -103,20 +117,18 @@ struct MakingTheOrderView: View {
                         }
                 }
                 Button {
-//                    orderViewModel.tog = true
-//                    orderViewModel.sendRequest { to in
-//                        orderViewModel.tog = to
-//                        orderViewModel.tog1 = true
-//                    }
-                    self.tog = true
-                     sendRequest { to in
-                         orderViewModel.dateFormatter()
-                         deleteAllRecords(entity: "FruitEntity")
-                         tog = to
-                         tog1 = true
-                         fruitViewModel.selected = 0
-                     }
-                   
+
+                    tog = true
+                    sendRequest { to in
+                        tog = to
+                        dismiss()
+                        fruitViewModel.selected = 0
+                        //                                 tog1 = true
+                    }
+
+                    deleteAllRecords(entity: "FruitEntity")
+
+                    orderViewModel.dateFormatter()
                     let orde = Order(orderNumber: orderViewModel.orderNumber,
                                      date: orderViewModel.date,
                                      email: orderViewModel.email as! String,
@@ -128,9 +140,8 @@ struct MakingTheOrderView: View {
                                      comment: fruitViewModel.comment ?? "nooo")
                     Task {
                         do {
-                            
-                            
                             try await orderViewModel.addOrder(orders: orde)
+
                         } catch {
                             print("❌ ERORR")
                         }
@@ -166,19 +177,20 @@ struct MakingTheOrderView: View {
         )
     }
 
-    func deleteAllRecords(entity: String) {
-
-        let managedContext = viewContext // your context
-        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
-
-        do {
-            try managedContext.execute(deleteRequest)
-            try managedContext.save()
-        } catch {
-            print("There was an error")
-        }
-    }
+//    func deleteAllRecords() {
+//        let entity = "FruitEntity"
+//
+//        let managedContext = viewContext // your context
+//        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+//        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+//
+//        do {
+//            try managedContext.execute(deleteRequest)
+//            try managedContext.save()
+//        } catch {
+//            print("There was an error")
+//        }
+//    }
 }
 
 // struct MakingTheOrderView_Previews: PreviewProvider {

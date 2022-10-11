@@ -2,7 +2,7 @@ import SwiftUI
 
 struct AllProductsCell: View {
     @State var fruit: Fruit
-//    @ObservedObject var viewModel = FruitViewModel()
+    @ObservedObject var fruitViewModel: FruitViewModel
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
@@ -218,9 +218,9 @@ struct AllProductsCell: View {
     }
 }
 
-struct AllProductsCell_Previews: PreviewProvider {
-    static var previews: some View {
-        AllProductsCell(fruit: Fruit(cost: 1, weightOrPieces: "", categories: "", favorite: true, count: 1, image: "", name: "", percent: 1, descriptions: "", price: 1)).previewLayout(.fixed(width: 180, height: 290))
-    }
-}
+//struct AllProductsCell_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AllProductsCell(fruit: Fruit(cost: 1, weightOrPieces: "", categories: "", favorite: true, count: 1, image: "", name: "", percent: 1, descriptions: "", price: 1)).previewLayout(.fixed(width: 180, height: 290))
+//    }
+//}
 

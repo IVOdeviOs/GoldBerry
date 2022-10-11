@@ -9,7 +9,7 @@ struct FavouriteProductsView: View {
         if viewModel.favouriteProducts.isEmpty {
             WithoutFavouriteProductsView(viewModel: viewModel)
         } else {
-            WithFavouriteProductsView(viewModel: viewModel)
+            WithFavouriteProductsView(fruitViewModel: viewModel)
         }
     }
 }
@@ -52,7 +52,7 @@ struct WithoutFavouriteProductsView: View {
 
 struct WithFavouriteProductsView: View {
 
-    @ObservedObject var viewModel: FruitViewModel
+    @ObservedObject var fruitViewModel: FruitViewModel
 
     var body: some View {
 
@@ -65,8 +65,9 @@ struct WithFavouriteProductsView: View {
 
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {
-                        LazyVGrid(columns: viewModel.columns, alignment: .center, spacing: 1, pinnedViews: .sectionFooters, content: {
-                            ForEach(viewModel.fruit) { fruits in
+                        LazyVGrid(columns: fruitViewModel.columns, alignment: .center, spacing: 1, pinnedViews: .sectionFooters, content: {
+                            ForEach(fruitViewModel.fruit) { fruits in
+                                
 //                                NavigationLink {
 //                                    InformationProductView(
 //                                        id: fruits.id ?? UUID() ,
@@ -84,7 +85,7 @@ struct WithFavouriteProductsView: View {
 //                                        categories: fruits.categories
 //                                    )
 //                                } label: {
-                                    AllProductsCell(fruit: fruits)
+                                AllProductsCell(fruit: fruits, fruitViewModel: fruitViewModel)
                                         .padding(.bottom, 30)
 //                                }
                             }

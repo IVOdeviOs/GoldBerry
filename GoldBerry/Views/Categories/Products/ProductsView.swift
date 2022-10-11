@@ -9,7 +9,7 @@ enum categories: String {
 }
 
 struct ProductsView: View {
-    @ObservedObject var viewModel: FruitViewModel
+    @ObservedObject var fruitViewModel: FruitViewModel
 
     @State var tag = categories.all.rawValue
 
@@ -59,9 +59,9 @@ struct ProductsView: View {
 
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {
-                        LazyVGrid(columns: viewModel.columns, alignment: .center, spacing: 0, pinnedViews: .sectionFooters, content: {
-                            ForEach(viewModel.fruit) { fruits in
-                                if fruits.categories == tag {
+                        LazyVGrid(columns: fruitViewModel.columns, alignment: .center, spacing: 0, pinnedViews: .sectionFooters) {
+                            ForEach(fruitViewModel.fruit) { fruits in
+                                if  fruits.categories == tag {
 //                                    NavigationLink {
 //                                        InformationProductView(id: fruits.id ?? UUID(),
 //                                                               image: fruits.image,
@@ -78,16 +78,17 @@ struct ProductsView: View {
 //                                                               categories: fruits.categories)
 //
 //                                    } label: {
-                                        AllProductsCell(fruit: fruits)
+                                    AllProductsCell(fruit: fruits, fruitViewModel: fruitViewModel)
                                             .padding(.bottom, 30)
 //                                    }
                                 } else if tag == categories.all.rawValue {
-                                    AllProductsCell(fruit: fruits)
+                                    AllProductsCell(fruit: fruits, fruitViewModel: fruitViewModel)
                                         .padding(.bottom, 30)
                                 }
                             }
 
-                        }).padding(.bottom, 60)
+                        }.padding(.bottom, 60)
+                            .accessibilityElement()
                     }
                 }
             }
@@ -100,6 +101,6 @@ struct ProductsView: View {
 
 struct ProductsView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductsView(viewModel: FruitViewModel())
+        ProductsView(fruitViewModel: FruitViewModel())
     }
 }

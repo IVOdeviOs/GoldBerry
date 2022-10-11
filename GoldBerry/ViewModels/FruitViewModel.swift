@@ -10,7 +10,7 @@ class FruitViewModel: ObservableObject {
 
     @Published var uniqFruits = [Fruit]()
 
-  
+    
 
     @Published var cost:Double = 1
 //    @Published var weightOrPieces = ""
@@ -46,22 +46,21 @@ class FruitViewModel: ObservableObject {
     
 
 
-    
-    @Published var users =
-        User(
-            userName: "",
-            userSurname: "",
-            userPhone: "",
-            userEmail: ""
-        )
-    @Published var user = [User]()
-    @Published var userName = " "
-    @Published var userSurname = " "
-    @Published var userPhone = " "
+//    
+//    @Published var users =
+//        User(
+//            userName: "",
+//            userSurname: "",
+//            userPhone: "",
+//            userEmail: ""
+//        )
+//    @Published var user = [User]()
+//    @Published var userName = " "
+//    @Published var userSurname = " "
+//    @Published var userPhone = " "
 
     @Published var favouriteProducts: [Fruit] = []
   
-
 
 
     func fetchFruit() async throws {

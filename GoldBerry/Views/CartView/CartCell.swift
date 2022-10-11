@@ -2,8 +2,8 @@ import SwiftUI
 
 struct CartCell: View {
 
-    @StateObject var fruitViewModel = FruitViewModel()
-    @StateObject var orderViewModel = OrderViewModel()
+    @ObservedObject var fruitViewModel: FruitViewModel
+    @ObservedObject var orderViewModel: OrderViewModel
     
     @State var fruit: Fruit
 
@@ -86,8 +86,8 @@ struct CartCell: View {
 
 //                        viewModel.order.price -= price
 //                        print("\(price)")
-                        orderViewModel.price = fruit.price!
-                        print("\(String(describing: orderViewModel.price))")
+//                        orderViewModel.price! -= fruit.price!
+//                        print("\(String(describing: price))")
                     }
                 } label: {
                     Image(systemName: "minus.square.fill")
@@ -130,11 +130,13 @@ struct CartCell: View {
             for i in fruits {
 //
                 if i.id == fruit.id {
+                    fruitViewModel.uniqFruits.removeFirst()
                     fruitViewModel.uniqFruits.append(fruit)
                     fruit.price = Double(fruit.count) * fruit.itog
                 }
             }
         }
+
         .onAppear {
             for i in fruits {
 //
@@ -142,6 +144,8 @@ struct CartCell: View {
                     fruit.price = Double(fruit.count) * fruit.itog
                     orderViewModel.price = fruit.price!
                     
+                    fruit.price = Double(i.count) * fruit.itog
+                    orderViewModel.price = fruit.price
                     fruit.count = Int(i.count)
                     print("😇\(fruit.count)")
                 }

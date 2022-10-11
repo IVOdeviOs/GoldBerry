@@ -2,8 +2,8 @@ import CoreData
 import SwiftUI
 
 struct CartView: View {
-    @ObservedObject var fruitViewModel = FruitViewModel()
-    @ObservedObject var orderViewModel = OrderViewModel()
+    @ObservedObject var fruitViewModel: FruitViewModel
+    @ObservedObject var orderViewModel: OrderViewModel
 //    @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
     var fruits: FetchedResults<FruitEntity>
@@ -18,8 +18,8 @@ struct CartView: View {
 }
 
 struct WithoutPurchase: View {
-    @ObservedObject var fruitViewModel = FruitViewModel()
-    @ObservedObject var orderViewModel = OrderViewModel()
+    @ObservedObject var fruitViewModel: FruitViewModel
+    @ObservedObject var orderViewModel: OrderViewModel
 
     var body: some View {
         VStack {
@@ -55,14 +55,14 @@ struct WithoutPurchase: View {
 }
 
 struct WithPurchase: View {
-    @ObservedObject var fruitViewModel = FruitViewModel()
-    @ObservedObject var orderViewModel = OrderViewModel()
- 
+    @ObservedObject var fruitViewModel: FruitViewModel
+    @ObservedObject var orderViewModel: OrderViewModel
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
     var fruits: FetchedResults<FruitEntity>
     @State var fruitO = [Fruit]()
-
+    
+    
     var body: some View {
         ZStack(alignment: .top) {
 
@@ -81,13 +81,15 @@ struct WithPurchase: View {
             ZStack {
                 VStack {
                  
+                    
                     Spacer()
 
-                    NavigationLink{
+                    NavigationLink {
+                      
                         MakingTheOrderView(orderViewModel: orderViewModel, fruitViewModel: fruitViewModel)
 //                        orderViewModel.show.toggle()
                     } label: {
-                        Text("COl\(fruitViewModel.uniqFruits.count)   Оформить заказ    \(NSString(format: "%.2f", orderViewModel.price!)) р")
+                        Text("COl\(1)   Оформить заказ    \(NSString(format: "%.2f", orderViewModel.price!)) р")
                             .foregroundColor(.white)
                             .frame(width: UIScreen.main.bounds.width - 30, height: 50)
                             .background(Color.theme.lightGreen)
@@ -119,11 +121,11 @@ struct WithPurchase: View {
     }
 }
 
-//struct CartView_Previews: PreviewProvider {
+// struct CartView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        CartView(viewModel: FruitViewModel())
 //    }
-//}
+// }
 
 private func uniq<S: Sequence, T: Hashable>(source: S) -> [T] where S.Iterator.Element == T {
     var buffer = [T]() // возвращаемый массив

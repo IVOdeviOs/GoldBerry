@@ -6,9 +6,11 @@ class OrderViewModel: ObservableObject {
     @Published var order = [Order]()
     @Published var fruitOrder = [Fruit]()
     @Published var orderNumber = 0
-    @Published var tog = false
-    @Published var tog1 = false
+    @Published var count = 0
+//    @Published var tog = false
+//    @Published var tog1 = false
     @Published var price: Double? = 1
+    @Published var image = ""
     
     @Published var show = false
     @Published var date = ""
@@ -29,6 +31,7 @@ class OrderViewModel: ObservableObject {
 
         DispatchQueue.main.async {
             self.order = orderResponse
+            
         }
     }
 

@@ -10,13 +10,15 @@ extension Color {
 struct ContentView: View {
     @StateObject var fruitViewModel = FruitViewModel()
     @StateObject var orderViewModel = OrderViewModel()
+    @StateObject var userViewModel = UserViewModel()
+
     @State var status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
 
     var body: some View {
 
         NavigationView {
             if status {
-                ViewProfile(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
+                ViewProfile(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel, userViewModel: userViewModel)
             } else {
                 LoginView(signUP: LogIn())
             }
@@ -33,16 +35,13 @@ struct ContentView: View {
 }
 
 struct ViewProfile: View {
-    @ObservedObject var fruitViewModel = FruitViewModel()
+    @StateObject var fruitViewModel = FruitViewModel()
     @StateObject var orderViewModel = OrderViewModel()
     @StateObject var userViewModel = UserViewModel()
-
-    @Environment(\.managedObjectContext) private var viewContext
-
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.id, ascending: true)],
-        animation: .default
-    )
+          sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.id, ascending: true)],
+          animation: .default
+      )
     var fruits: FetchedResults<FruitEntity>
     var body: some View {
         ZStack {
@@ -51,7 +50,6 @@ struct ViewProfile: View {
                 VStack {
                     ZStack {
                         HStack {
-
                             Text("GoldBerry")
                                 .font(Font(uiFont: .fontLibrary(32, .uzSansBold)))
                                 .foregroundColor(fruitViewModel.selected == 3 ? .white : Color.theme.lightGreen)
@@ -63,30 +61,6 @@ struct ViewProfile: View {
                                 .cornerRadius(8)
                                 .padding()
                         }
-//                                HStack(spacing: 5) {
-//                                    Image(systemName: "cart.fill")
-//                                        .resizable()
-//                                        .frame(width: 25, height: 25)
-//                                        .foregroundColor(Color.theme.lightGreen)
-//
-//                                    HStack(spacing: 1) {
-//
-//                                        Text("100000")
-//                                            .font(Font(uiFont: .fontLibrary(16, .helvetica)))
-//                                            .foregroundColor(.black)
-//                                            .minimumScaleFactor(0.5)
-//                                        Text("руб")
-//                                            .font(Font(uiFont: .fontLibrary(16, .helvetica)))
-//                                            .foregroundColor(.black)
-//                                    }
-//                                }
-//                                .padding()
-//                                .frame(width: 140, height: 45)
-//                                .background(.white)
-//                                .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-//                                .shadow(color: .green.opacity(0.2), radius: 10, x: 0, y: 10)
-//                                .padding(.horizontal, 30)
-//                            }
                         .padding(.top, 40)
                     }
 
@@ -106,17 +80,19 @@ struct ViewProfile: View {
                             }.foregroundColor(fruitViewModel.selected == 0 ? Color.theme.lightGreen : Color.theme.gray)
                             Spacer(minLength: 12)
 
+                            
                             Button {
-
+                           
+                                print("🥰\(fruits.count)")
                                 fruitViewModel.selected = 1
                             } label: {
                                 ZStack {
                                     ZStack {
-                                        if !fruits.isEmpty {
+                                        if !self.fruits.isEmpty {
                                             Color.red
                                                 .frame(width: 20, height: 20)
                                                 .cornerRadius(10)
-                                            Text("\(fruits.count)")
+                                            Text("\(self.fruits.count)")
                                                 .minimumScaleFactor(0.5)
                                                 .foregroundColor(.white)
                                                 .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
@@ -130,7 +106,7 @@ struct ViewProfile: View {
                                             .frame(width: 23, height: 20)
                                         Text("Корзина")
                                             .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                                    }
+                                    }.badge(fruits.count)
                                 }
                             }.foregroundColor(fruitViewModel.selected == 1 ? Color.theme.lightGreen : Color.theme.gray)
                             Spacer()
@@ -183,27 +159,23 @@ struct ViewProfile: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
-
 struct ExtractedView: View {
-    @ObservedObject var fruitViewModel = FruitViewModel()
-    @ObservedObject var orderViewModel = OrderViewModel()
-    @ObservedObject var userViewModel = UserViewModel()
-
-    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
-
+    @StateObject var fruitViewModel = FruitViewModel()
+    @StateObject var orderViewModel = OrderViewModel()
+    @StateObject var userViewModel = UserViewModel()
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)],
+          animation: .default
+      )
     var fruits: FetchedResults<FruitEntity>
     
     var body: some View {
         ZStack {
             switch fruitViewModel.selected {
             case 0:
-                ProductsView(viewModel: fruitViewModel)
+                ProductsView(fruitViewModel: fruitViewModel)
                     .onAppear {
+                       
                         Task {
                             do {
                                 try await fruitViewModel.fetchFruit()
@@ -212,6 +184,7 @@ struct ExtractedView: View {
                             }
                         }
                     }
+                    
             case 1:
                 CartView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
                     .onAppear {
@@ -251,7 +224,8 @@ struct ExtractedView: View {
                     }
 
             default:
-                ProductsView(viewModel: fruitViewModel)
+                ProductsView(fruitViewModel: fruitViewModel)
+                
             }
         }
         .padding(.top, 90)
