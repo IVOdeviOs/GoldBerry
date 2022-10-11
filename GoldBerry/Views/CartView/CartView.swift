@@ -124,7 +124,7 @@ struct WithPurchase: View {
             }
         }
         .onDisappear {
-            orderViewModel.price = fruitViewModel.sum()
+            orderViewModel.price = fruitViewModel.sum() ?? 0
         }
     }
 }
