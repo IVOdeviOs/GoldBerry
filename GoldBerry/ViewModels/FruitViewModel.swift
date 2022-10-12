@@ -1,29 +1,19 @@
+import Combine
 import CoreData
 import FirebaseAuth
 import Foundation
 import SwiftUI
 class FruitViewModel: ObservableObject {
-    
+
 //    @Published var orderPrice: Double = 0
-    @Published var arrayOfFruitPrice = [String: Double]()
-    func sum() -> Double {
-        var sumOfArray: Double = 0
-        for price in  arrayOfFruitPrice.values {
-        sumOfArray += price
-    }
-        return sumOfArray
-    }
-    
     @Published var selected = 0
+    @Published var fruit = [Fruit]()
 
     let email = UserDefaults.standard.value(forKey: "userEmail")
 
-
     @Published var uniqFruits = [Fruit]()
 
-    
-
-    @Published var cost:Double = 1
+    @Published var cost: Double = 1
 //    @Published var weightOrPieces = ""
 //    @Published var categories = ""
 //    @Published var favorite = true
@@ -33,6 +23,9 @@ class FruitViewModel: ObservableObject {
     @Published var percent: Int? = 1
 //    @Published var descriptions: String? = ""
 //    @Published var price: Double? = 1
+    @Published var isValid = true
+    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
+    var fruits: FetchedResults<FruitEntity>
     @Published var comment: String? = ""
     var itog: Double {
 
@@ -53,26 +46,17 @@ class FruitViewModel: ObservableObject {
 //    @Published var userRegShow = false
     @Published var viewState: CGSize = .zero
 
-    @Published var fruit = [Fruit]()
+
+    @Published var arrayOfFruitPrice = [String: Double]()
+    func sum() -> Double {
+        var sumOfArray: Double = 0
+        for price in arrayOfFruitPrice.values {
+            sumOfArray += price
+        }
+        return sumOfArray
+    }
     
-
-
-//    
-//    @Published var users =
-//        User(
-//            userName: "",
-//            userSurname: "",
-//            userPhone: "",
-//            userEmail: ""
-//        )
-//    @Published var user = [User]()
-//    @Published var userName = " "
-//    @Published var userSurname = " "
-//    @Published var userPhone = " "
-
     @Published var favouriteProducts: [Fruit] = []
-  
-
 
     func fetchFruit() async throws {
         let urlString = Constants.baseURL + EndPoints.fruit
@@ -84,7 +68,6 @@ class FruitViewModel: ObservableObject {
 
         DispatchQueue.main.async { [self] in
             self.fruit = fruitResponse
-           
         }
     }
 //    init() {}
@@ -96,5 +79,4 @@ class FruitViewModel: ObservableObject {
     //    }
 
     //    @Published var fru: Fruit = Fruit(cost: 1, weightOrPieces: "", categories: "", favorite: false, count: 1, image: "", name: "")
-
 }

@@ -11,7 +11,7 @@ struct OrderInfoView: View {
 
         VStack {
             VStack {
-                Text("Заказ № \(NSString(format: "%.7f", order.orderNumber) as String)")
+                Text("Заказ № \( order.orderNumber)")
                     .font(Font(uiFont: .fontLibrary(24, .uzSansBold)))
                     .foregroundColor(.black)
                     .padding()

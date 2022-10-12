@@ -3,7 +3,7 @@ import SwiftUI
 struct OrdersView: View {
 
     @ObservedObject var orderViewModel: OrderViewModel
-    @StateObject var fruitViewModel: FruitViewModel
+    @ObservedObject var fruitViewModel: FruitViewModel
 
     var body: some View {
         if orderViewModel.order.isEmpty {
@@ -76,6 +76,8 @@ struct WithOrders: View {
                     }
                 }
             }
+            .padding(.bottom, 100)
+            .accessibilityElement()
             .offset(y: 20)
             .navigationViewStyle(.columns)
             .listStyle(.plain)

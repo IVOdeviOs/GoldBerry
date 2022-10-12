@@ -11,8 +11,8 @@ struct AllProductsCell: View {
     var body: some View {
         VStack(spacing: 6) {
             ZStack(alignment: .bottomLeading) {
-    //                    .padding(.horizontal)
-                
+                //                    .padding(.horizontal)
+
                 RemoteImageView(
                     url: URL(string: fruit.image)!,
                     placeholder: {
@@ -50,15 +50,14 @@ struct AllProductsCell: View {
                                     .frame(width: 30, height: 30)
                                     .padding(5)
                                     .animation(.easeInOut(duration: 1.5))
-                                    .background(.white.opacity(0.3))
+                                    .background(.white.opacity(0.5))
                                     .cornerRadius(10)
-                            }.frame(width: 30 ,height: 30)
+                            }.frame(width: 30, height: 30)
                         }
-                        .padding(7)
+                        .padding(10)
                         Spacer()
                     }
                 }
-
             }
             HStack {
                 if fruit.itog == fruit.cost {
@@ -92,14 +91,13 @@ struct AllProductsCell: View {
             .padding(3)
 //            .background(.gray.opacity(0.05))
             .cornerRadius(10)
-            .padding(.horizontal,3)
-            
-            HStack(alignment: .firstTextBaseline) {
+            .padding(.horizontal, 3)
+            HStack(alignment: .top) {
                 Text(fruit.comment ?? "no")
+                    .multilineTextAlignment(.leading)
                     .frame(width: 170, height: 60)
                     .font(.system(size: 12, weight: .light, design: .serif))
                     .foregroundColor(.black.opacity(0.8))
-                    .multilineTextAlignment(.leading)
             }
 
             HStack {
@@ -120,7 +118,7 @@ struct AllProductsCell: View {
                 } label: {
                     Image(systemName: "minus.square.fill")
                         .resizable()
-                        .frame(width: 20, height: 20)
+                        .frame(width: 25, height: 25)
                         .foregroundColor(Color.theme.gray)
                 }
                 Text("\(fruit.count) кг")
@@ -141,42 +139,47 @@ struct AllProductsCell: View {
                 } label: {
                     Image(systemName: "plus.square.fill")
                         .resizable()
-                        .frame(width: 20, height: 20)
+                        .frame(width: 25, height: 25)
                         .foregroundColor(Color.theme.lightGreen)
                 }
             }
             .padding(.horizontal, 10)
             HStack {
 //                Spacer()
-                
+
                 Button {
                     addFruit()
+                    fruit.isValid = false
                     fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
                 } label: {
                     HStack {
                         Text("В корзину")
                             .foregroundColor(.white)
                             .font(.system(size: 12, weight: .light, design: .serif))
-                        //                        Spacer()
-                        //                        Text("\(itog, specifier: "%.2f")₽")
-                        //                            .foregroundColor(.white)
-                        //                            .font(.system(size: 18, weight: .bold, design: .serif))
                     }
-                    .frame(width: 140)
+                    
+                    .frame(width: 140,height: 25)
+                    .background(fruit.isValid ?? true ? Color.theme.lightGreen : Color.gray)
+
                     .padding(8)
-                    .background(Color.theme.lightGreen)
                     .cornerRadius(10)
                     .shadow(color: .black, radius: 2)
-                    //                    .padding(.horizontal, 16)
                 }
+                .disabled(!(fruit.isValid ?? true))
             }
             .padding(7)
-            
         }
         .frame(width: 180, height: 320)
         .background(.white)
         .cornerRadius(20)
         .shadow(color: .gray, radius: 1, x: 0, y: 2)
+        .onAppear {
+            for i in fruits {
+                if i.id == fruit.id {
+                    fruit.isValid = false
+                }
+            }
+        }
     }
 
     func addFruit() {
@@ -185,31 +188,17 @@ struct AllProductsCell: View {
             newFruit.id = fruit.id
             newFruit.count = Int16(fruit.count)
             print("\(newFruit.count)___________")
-            for i in fruits{
-                
-                if newFruit.id == i.id  {
+            for i in fruits {
+
+                if newFruit.id == i.id {
                     viewContext.delete(newFruit)
-                    
                 }
             }
-//            newFruit.name = fruit.name
-//            newFruit.image = fruit.image
-//            newFruit.cost = fruit.cost
-//            newFruit.percent = Int16(fruit.percent ?? 1)
-//            newFruit.price = fruit.price ?? 0
-//            newFruit.favorite = fruit.favorite
-//            newFruit.categories = fruit.categories
-//            newFruit.weightOrPieces = fruit.weightOrPieces
-//            newFruit.count = Int16(fruit.count)
-//            newFruit.descriptions = fruit.descriptions
-//            newFruit.comment = fruit.comment
-//            newFruit.itog = Double(fruit.itog)
-//            print(newFruit.name! + "😍")
+
             do {
-              
+
                 try viewContext.save()
-                
-                
+
             } catch {
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
@@ -218,9 +207,8 @@ struct AllProductsCell: View {
     }
 }
 
-//struct AllProductsCell_Previews: PreviewProvider {
+// struct AllProductsCell_Previews: PreviewProvider {
 //    static var previews: some View {
 //        AllProductsCell(fruit: Fruit(cost: 1, weightOrPieces: "", categories: "", favorite: true, count: 1, image: "", name: "", percent: 1, descriptions: "", price: 1)).previewLayout(.fixed(width: 180, height: 290))
 //    }
-//}
-
+// }

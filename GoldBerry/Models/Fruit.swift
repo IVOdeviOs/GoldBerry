@@ -23,6 +23,7 @@ struct Fruit: Identifiable, Codable,Hashable {
 
         return sum
     }
+    var isValid:Bool?
 }
 
 
