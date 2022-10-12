@@ -7,17 +7,15 @@ struct LoginView: View {
     var body: some View {
         GeometryReader { _ in
             VStack {
-                Spacer()
-                Text("GoldBerry")
-                    .font(.title)
-                    .foregroundColor(Color.yellow)
-                    .padding(.all, 30)
-                    .background(Color(red: 1 / 255,
-                                      green: 50 / 255,
-                                      blue: 32 / 255,
-                                      opacity: 1))
-                    .clipShape(Capsule())
-                    .aspectRatio(contentMode: .fill)
+                Image("goldBerryLogo")
+                    .resizable()
+                    .frame(width: 70, height: 70)
+                    .padding()
+                Text("Бесплатная супербыстрая доставка фруктов по Минску")
+                    .multilineTextAlignment(.center)
+                    .lineLimit(2)
+                    .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
+                        .foregroundColor(Color.theme.lightGreen)
                 Spacer()
                 ZStack {
                     SignUP(index: $signUP.index, show: .constant(false))

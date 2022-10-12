@@ -14,10 +14,9 @@ struct Login: View {
             VStack {
                 HStack {
                     VStack(spacing: 10) {
-                        Text("Login")
+                        Text("LogIn")
                             .foregroundColor(index == 0 ? .white : .gray)
-                            .font(.title)
-                            .fontWeight(.bold)
+                            .font(Font(uiFont: .fontLibrary(22, .uzSansBold)))
                         Capsule()
                             .fill(index == 0 ? Color(red: 243 / 255,
                                                      green: 122 / 255,
@@ -30,34 +29,50 @@ struct Login: View {
                 VStack {
                     HStack(spacing: 15) {
                         Image(systemName: "envelope.fill")
-                            .foregroundColor(.gray)
-                        TextField("Email adress", text: $login.email)
+                            .foregroundColor(.white)
+                        TextField("Email address", text: $login.email)
+                            .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                            .foregroundColor(.white)
+                            .keyboardType(.emailAddress)
                     }
                     Divider()
-                        .background(Color.white.opacity(0.5))
+                        .background(Color.white)
                 }
                 .padding(.horizontal)
                 .padding(.top, 40)
-
+                
                 VStack {
                     HStack(spacing: 15) {
-                        Image(systemName: "eye.slash.fill")
-                            .foregroundColor(.gray)
-                        SecureField("Password", text: $login.password)
-                    }
+                        Button {
+                            login.secure.toggle()
+                        } label: {
+                        Image(systemName: login.secure ? "eye.slash.fill" : "eye.fill")
+                            .foregroundColor(.white)
+                        }
+                        if login.secure {
+                            SecureField("Password", text: $login.password)
+                                .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                        } else {
+                            TextField("Password", text: $login.password)
+                                .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                        }
+                        }
+                    
                     Divider()
-                        .background(Color.white.opacity(0.5))
+                        .background(Color.white)
                 }
                 .padding(.horizontal)
                 .padding(.top, 50)
-
+                
                 HStack {
                     Spacer(minLength: 0)
                     Button {
                         //
                     } label: {
                         Text("Forget Password?")
-                            .foregroundColor(Color.white.opacity(0.6))
+                            .foregroundColor(Color.white)
+                            .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                        
                     }
                 }
                 .padding(.horizontal)
@@ -68,7 +83,7 @@ struct Login: View {
             .background(Color.theme.backgroundMenu)
             .clipShape(CShape())
             .contentShape(CShape())
-            .shadow(color: Color.green.opacity(0.3),
+            .shadow(color: Color.black.opacity(0.3),
                     radius: 5,
                     x: 0,
                     y: -5)
@@ -76,7 +91,7 @@ struct Login: View {
                 index = 0
             }
             .cornerRadius(35)
-
+            
             Button {
                 signInWithEmail(email: login.email, password: login.password) { verified, status in
                     if !verified {
@@ -84,18 +99,18 @@ struct Login: View {
                         login.alert.toggle()
                     } else {
                         UserDefaults.standard.set(login.email, forKey: "userEmail")
-
-//                        addUser()
+                        
+                        //                        addUser()
                         UserDefaults.standard.set(true, forKey: "status")
                         NotificationCenter.default
                             .post(name: NSNotification.Name("statusChange"), object: nil)
-//                        UserDefaults.standard.set(login.email, forKey: "1")
+                        //                        UserDefaults.standard.set(login.email, forKey: "1")
                     }
                 }
             } label: {
                 Text("LogIn")
                     .foregroundColor(Color.white)
-                    .fontWeight(.bold)
+                    .font(Font(uiFont: .fontLibrary(18, .uzSansSemiBold)))
                     .padding(.vertical)
                     .padding(.horizontal, 50)
                     .background(Color(red: 243 / 255,
@@ -114,7 +129,7 @@ struct Login: View {
             .opacity(index == 0 ? 1 : 0)
         }
     }
-
+    
     func addUser() {
         withAnimation {
             let newUser = UserRegEntity(context: viewContext)
@@ -124,7 +139,7 @@ struct Login: View {
                     viewContext.delete(newUser)
                 }
             }
-
+            
             do {
                 try viewContext.save()
             } catch {
