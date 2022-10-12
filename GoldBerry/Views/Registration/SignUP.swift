@@ -103,7 +103,7 @@ struct SignUP: View {
                     } label: {
                         Image(systemName: signUP.terms ? "square.fill" : "square")
                             .foregroundColor(Color.white)
-                            .padding()
+                            .padding(.bottom, 10)
                     }
                 }
                 .offset(y: 30)
