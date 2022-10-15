@@ -13,7 +13,8 @@ struct ContentView: View {
     @StateObject var userViewModel = UserViewModel()
 
     @State var status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
-
+    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
+    var fruits: FetchedResults<FruitEntity>
     var body: some View {
 
         NavigationView {
@@ -23,6 +24,11 @@ struct ContentView: View {
                 LoginView(signUP: LogIn())
             }
         }.onAppear {
+            if fruits.count != 0{
+                fruitViewModel.isShowCount = true
+            }
+                
+                
             NotificationCenter.default.addObserver(forName: NSNotification.Name("statusChange"),
                                                    object: nil,
                                                    queue: .main)
@@ -35,14 +41,12 @@ struct ContentView: View {
 }
 
 struct ViewProfile: View {
-    @StateObject var fruitViewModel = FruitViewModel()
-    @StateObject var orderViewModel = OrderViewModel()
-    @StateObject var userViewModel = UserViewModel()
-    @FetchRequest(
-          sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.id, ascending: true)],
-          animation: .default
-      )
+    @ObservedObject var fruitViewModel = FruitViewModel()
+    @ObservedObject var orderViewModel = OrderViewModel()
+    @ObservedObject var userViewModel = UserViewModel()
+    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
     var fruits: FetchedResults<FruitEntity>
+
     var body: some View {
         ZStack {
             ExtractedView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel, userViewModel: userViewModel)
@@ -88,11 +92,11 @@ struct ViewProfile: View {
                             } label: {
                                 ZStack {
                                     ZStack {
-                                        if !self.fruits.isEmpty {
+                                        if fruitViewModel.isShowCount{
                                             Color.red
                                                 .frame(width: 20, height: 20)
                                                 .cornerRadius(10)
-                                            Text("\(self.fruits.count)")
+                                            Text("\(fruits.count)")
                                                 .minimumScaleFactor(0.5)
                                                 .foregroundColor(.white)
                                                 .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
@@ -156,29 +160,32 @@ struct ViewProfile: View {
         }
         .ignoresSafeArea()
         .background(.white)
+        
     }
 }
 
 struct ExtractedView: View {
-    @StateObject var fruitViewModel = FruitViewModel()
-    @StateObject var orderViewModel = OrderViewModel()
-    @StateObject var userViewModel = UserViewModel()
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)],
-          animation: .default
-      )
-    var fruits: FetchedResults<FruitEntity>
-    
+    @ObservedObject var fruitViewModel = FruitViewModel()
+    @ObservedObject var orderViewModel = OrderViewModel()
+    @ObservedObject var userViewModel = UserViewModel()
+//    @FetchRequest(
+//        sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)],
+//          animation: .default
+//      )
+//    var fruits: FetchedResults<FruitEntity>
+
     var body: some View {
         ZStack {
             switch fruitViewModel.selected {
             case 0:
-                ProductsView(fruitViewModel: fruitViewModel)
+                ProductsView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
                     .onAppear {
                        
                         Task {
                             do {
+                                try await orderViewModel.fetchOrder()
                                 try await fruitViewModel.fetchFruit()
+                                try await userViewModel.fetchUser()
                             } catch {
                                 print("❌ERORR \(error)")
                             }
@@ -224,7 +231,7 @@ struct ExtractedView: View {
                     }
 
             default:
-                ProductsView(fruitViewModel: fruitViewModel)
+                ProductsView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
                 
             }
         }

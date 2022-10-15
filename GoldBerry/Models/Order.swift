@@ -23,7 +23,7 @@ struct Order:Identifiable, Codable {
     var address: String
     var price: Double
     var customer, customerPhone, comment: String
-
+    var orderCompleted:Bool
 }
 
 

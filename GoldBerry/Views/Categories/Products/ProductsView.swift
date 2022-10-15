@@ -10,6 +10,7 @@ enum categories: String {
 
 struct ProductsView: View {
     @ObservedObject var fruitViewModel: FruitViewModel
+    @ObservedObject var orderViewModel: OrderViewModel
 
     @State var tag = categories.all.rawValue
 
@@ -101,6 +102,6 @@ struct ProductsView: View {
 
 struct ProductsView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductsView(fruitViewModel: FruitViewModel())
+        ProductsView(fruitViewModel: FruitViewModel(), orderViewModel: OrderViewModel())
     }
 }

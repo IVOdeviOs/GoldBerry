@@ -4,9 +4,9 @@ import SwiftUI
 struct CartView: View {
     
     
-    @ObservedObject var fruitViewModel: FruitViewModel
-    @ObservedObject var orderViewModel: OrderViewModel
-//    @Environment(\.managedObjectContext) private var viewContext
+    @ObservedObject var fruitViewModel = FruitViewModel()
+    @ObservedObject var orderViewModel = OrderViewModel()
+
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
     var fruits: FetchedResults<FruitEntity>
 
@@ -59,6 +59,7 @@ struct WithoutPurchase: View {
 struct WithPurchase: View {
     @ObservedObject var fruitViewModel: FruitViewModel
     @ObservedObject var orderViewModel: OrderViewModel
+    
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
     var fruits: FetchedResults<FruitEntity>
@@ -67,6 +68,7 @@ struct WithPurchase: View {
 
     
     var body: some View {
+        
         ZStack(alignment: .top) {
 
             ScrollView(showsIndicators: false) {
@@ -103,21 +105,24 @@ struct WithPurchase: View {
                 }
             }
             .navigationBarHidden(true)
-        }.sheet(isPresented: $orderViewModel.show, content: {
-            MakingTheOrderView(orderViewModel: orderViewModel, fruitViewModel: fruitViewModel)
-        })
+        }
+//        .sheet(isPresented: $orderViewModel.show, content: {
+//            MakingTheOrderView(orderViewModel: orderViewModel, fruitViewModel: fruitViewModel)
+//
+//        })
 
         .offset(y: -95)
         .onAppear {
-            print("cccc---------- \(fruitViewModel.arrayOfFruitPrice.count)")
+//            print("cccc---------- \(fruitViewModel.arrayOfFruitPrice.count)")
             for item in fruitViewModel.fruit {
                 for i in fruits {
                     if i.id == item.id {
+                        
                         fruitO.append(item)
                         fruitViewModel.uniqFruits = uniq(source: fruitO)
-                        for asd in fruitViewModel.uniqFruits {
-                            print("😶‍🌫️\(asd.count)")
-                        }
+//                        for asd in fruitViewModel.uniqFruits {
+//                            print("😶‍🌫️\(asd.count)")
+//                        }
                     }
                 }
             }

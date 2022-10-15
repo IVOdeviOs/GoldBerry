@@ -147,10 +147,10 @@ struct CartCell: View {
                     fruit.price = Double(fruit.count) * fruit.itog
 //                    orderViewModel.price = fruit.price!
                     
-                    fruit.price = Double(i.count) * fruit.itog
+                    fruit.price = Double(i.counts) * fruit.itog
 //                    orderViewModel.price = fruit.price
-                    fruit.count = Int(i.count)
-                    print("😇\(fruit.count)")
+                    fruit.count = Int(i.counts)
+//                    print("😇\(fruit.count)")
                     fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
                 }
 //                print("🤬\(fruit.count)")

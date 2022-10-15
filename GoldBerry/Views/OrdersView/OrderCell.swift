@@ -8,7 +8,7 @@ struct OrderCell: View {
     @State var price: Double
     @State var purchases: [Fruit]
     @State var address: String
-
+    @State var orderCompleted: Bool
     var body: some View {
         VStack {
             HStack {
@@ -23,6 +23,26 @@ struct OrderCell: View {
                         .font(Font(uiFont: .fontLibrary(18, .uzSansBold)))
                         .foregroundColor(.black)
                         .padding(.leading, 10)
+                    if orderCompleted == true {
+                        Text("Заказ выполнен")
+                            .font(Font(uiFont: .fontLibrary(17, .uzSansBold)))
+                            .foregroundColor(.black)
+                            .padding(5)
+                            .background(Color.green)
+                            .cornerRadius(10)
+                            .padding(.leading, 10)
+                            .padding(.top, 5)
+                    } else {
+                        Text("Заказ выполняется")
+                            .font(Font(uiFont: .fontLibrary(17, .uzSansBold)))
+                            .foregroundColor(.black)
+                            .padding(5)
+                            .background(Color.red)
+                            .cornerRadius(10)
+                            .padding(.leading, 10)
+                            .padding(.top, 5)
+                    }
+                    
                 }
                 Spacer()
                 Text("\(NSString(format: "%.2f", price)) p.")

@@ -1,5 +1,5 @@
 import SwiftUI
-
+import CoreData
 struct AllProductsCell: View {
     @State var fruit: Fruit
     @ObservedObject var fruitViewModel: FruitViewModel
@@ -149,6 +149,7 @@ struct AllProductsCell: View {
 
                 Button {
                     addFruit()
+                    fruitViewModel.isShowCount = true
                     fruit.isValid = false
                     fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
                 } label: {
@@ -186,14 +187,14 @@ struct AllProductsCell: View {
         withAnimation {
             let newFruit = FruitEntity(context: viewContext)
             newFruit.id = fruit.id
-            newFruit.count = Int16(fruit.count)
-            print("\(newFruit.count)___________")
-            for i in fruits {
-
-                if newFruit.id == i.id {
-                    viewContext.delete(newFruit)
-                }
-            }
+            newFruit.counts = Int16(fruit.count)
+//            print("\(newFruit.counts)___________")
+//            for i in fruits {
+//
+//                if newFruit.id == i.id {
+//                    viewContext.delete(newFruit)
+//                }
+//            }
 
             do {
 

@@ -4,38 +4,40 @@ struct MakingTheOrderView: View {
 
     func sendRequest(completion: @escaping (Bool) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+            fruitViewModel.selected = 0
+
             completion(tog == false)
         }
     }
+
     let email = UserDefaults.standard.value(forKey: "userEmail")
     @Environment(\.presentationMode) var presentation
-    @ObservedObject var orderViewModel = OrderViewModel()
-    @ObservedObject var fruitViewModel = FruitViewModel()
+    @Environment(\.dismiss) private var dismiss
+
+    @ObservedObject var orderViewModel: OrderViewModel 
+    @ObservedObject var fruitViewModel: FruitViewModel
 
     @State var tog = false
     @State var tog1 = false
 
-    func deleteAllRecords(entity: String) {
-        let managedContext = viewContext // your context
-        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+    
+    @Environment(\.managedObjectContext) private var viewContext
+
+    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
+    var fruits: FetchedResults<FruitEntity>
+
+    func deleteAllRecords() {
+        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "FruitEntity")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
 
         do {
-            try managedContext.execute(deleteRequest)
-            try managedContext.save()
+            try viewContext.execute(deleteRequest)
+
+            try viewContext.save()
         } catch {
             print("There was an error")
         }
     }
-
-    @Environment(\.dismiss) private var dismiss
-    @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: []
-    )
-    var fruits: FetchedResults<FruitEntity>
-//    @State var orderFruit = [Fruit]()
 
     var body: some View {
         VStack {
@@ -117,39 +119,37 @@ struct MakingTheOrderView: View {
                         }
                 }
                 Button {
-
                     tog = true
                     sendRequest { to in
                         tog = to
                         dismiss()
+                        fruitViewModel.isShowCount = false
                         //                        fruitViewModel.selected = 0
                         //                                 tog1 = true
                     }
-                    
 
-                    var str: String = ""
+                    var str = ""
                     var i = 0
-                    for char in orderViewModel.id  {
-                    i += 1
+                    for char in orderViewModel.id {
+                        i += 1
                         if i <= 7 {
-                       
+
                             str.append(char)
-                    }
+                        }
                     }
 
-                    
-                    deleteAllRecords(entity: "FruitEntity")
+                    deleteAllRecords()
 
                     orderViewModel.dateFormatter()
-                    let orde = Order(orderNumber: str ,
+                    let orde = Order(orderNumber: str,
                                      date: orderViewModel.date,
-                                     email: email as! String ,
+                                     email: email as! String,
                                      fruit: fruitViewModel.uniqFruits,
                                      address: orderViewModel.address,
                                      price: orderViewModel.price ?? 0.1,
                                      customer: orderViewModel.customer,
                                      customerPhone: orderViewModel.customerPhone,
-                                     comment: orderViewModel.comments)
+                                     comment: orderViewModel.comments, orderCompleted: false)
                     Task {
                         do {
                             try await orderViewModel.addOrder(orders: orde)
@@ -169,13 +169,13 @@ struct MakingTheOrderView: View {
                 .fullScreenCover(isPresented: $tog) {
                     CompletedOrderView()
                 }
-                .fullScreenCover(isPresented: $tog1) {
-                    ContentView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
-                }
+//                .fullScreenCover(isPresented: $tog1) {
+//                    ContentView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
+//                }
             }
             Spacer()
         }
-       
+
         .offset(y: -15)
         .ignoresSafeArea()
         .navigationBarBackButtonHidden(true)
@@ -190,20 +190,6 @@ struct MakingTheOrderView: View {
         )
     }
 
-//    func deleteAllRecords() {
-//        let entity = "FruitEntity"
-//
-//        let managedContext = viewContext // your context
-//        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
-//        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
-//
-//        do {
-//            try managedContext.execute(deleteRequest)
-//            try managedContext.save()
-//        } catch {
-//            print("There was an error")
-//        }
-//    }
 }
 
 // struct MakingTheOrderView_Previews: PreviewProvider {

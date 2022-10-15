@@ -12,7 +12,7 @@ class FruitViewModel: ObservableObject {
     let email = UserDefaults.standard.value(forKey: "userEmail")
 
     @Published var uniqFruits = [Fruit]()
-
+    @Published var isShowCount = false
     @Published var cost: Double = 1
 //    @Published var weightOrPieces = ""
 //    @Published var categories = ""
