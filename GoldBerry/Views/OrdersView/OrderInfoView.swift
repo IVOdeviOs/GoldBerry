@@ -27,7 +27,7 @@ struct OrderInfoView: View {
                         .cornerRadius(15)
                         .padding()
                     Spacer()
-                    Text("\(order.date)")
+                    Text("\(order.dateOrder)")
                         .foregroundColor(Color.theme.gray)
                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                         .padding()
@@ -97,13 +97,13 @@ struct OrderInfoView: View {
            
             
         }
-        .offset(y: -5)
+        .offset(y: 5)
         .ignoresSafeArea()
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading:
             Image(systemName: "arrow.backward")
                 .resizable()
-                .frame(width: 18, height: 18)
+                .frame(width: 22, height: 20)
                 .foregroundColor(.black)
                 .onTapGesture {
                     self.presentation.wrappedValue.dismiss()
@@ -154,7 +154,7 @@ struct CustomerInfo: View {
 struct OrderInfoView_Previews: PreviewProvider {
     static var previews: some View {
         OrderInfoView(
-            order: Order(orderNumber: "1", date: "",email: "",fruit: [ Fruit( cost: 1, weightOrPieces: "", categories: "", favorite: true, count: 1, image: "", name: "", percent: 1, descriptions: "", price: 1)] ,address: "", price: 1, customer: "", customerPhone: "", comment: "", orderCompleted: false)
+            order: Order(orderNumber: "1", date: "",dateOrder: "", email: "",fruit: [ Fruit( cost: 1, weightOrPieces: "", categories: "", favorite: true, count: 1, image: "", name: "", percent: 1, descriptions: "", price: 1)] ,address: "", price: 1, customer: "", customerPhone: "", comment: "", orderCompleted: false)
         )
     }
 }

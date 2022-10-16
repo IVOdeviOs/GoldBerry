@@ -2,7 +2,7 @@ import Foundation
 
 enum Constants {
 //    static let baseURL = "http://127.0.0.1:8080/"
-   static let baseURL = "https://5ff5-37-214-73-23.eu.ngrok.io/"
+   static let baseURL = "https://f4af-37-214-73-23.eu.ngrok.io/"
 
 }
 

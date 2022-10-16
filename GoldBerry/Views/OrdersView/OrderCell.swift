@@ -4,6 +4,7 @@ import UIKit
 struct OrderCell: View {
 
     @State var date: String
+    @State var dateOrder: String
     @State var number: String
     @State var price: Double
     @State var purchases: [Fruit]
@@ -13,7 +14,7 @@ struct OrderCell: View {
         VStack {
             HStack {
                 VStack(alignment: .leading) {
-                    Text(date)
+                    Text(dateOrder)
                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                         .foregroundColor(Color.theme.gray)
                         .padding(.leading, 10)

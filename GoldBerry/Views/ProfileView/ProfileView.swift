@@ -9,6 +9,16 @@ struct ProfileView: View {
     var users: FetchedResults<UserRegEntity>
     let email = UserDefaults.standard.value(forKey: "userEmail")
 
+    func orderCount() -> Int {
+        var ordersCount = 0
+        for item in orderViewModel.order {
+            if item.email == email as! String {
+                ordersCount += 1
+            }
+        }
+        return ordersCount
+    }
+    
     var body: some View {
         VStack {
             ZStack {
@@ -51,7 +61,7 @@ struct ProfileView: View {
                                 .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
                                 .foregroundColor(.black)
                                 .padding(.bottom, 5)
-                            Text("\(userViewModel.countOrder)")
+                            Text("\(orderCount())")
                                 .font(Font(uiFont: .fontLibrary(24, .uzSansSemiBold)))
                                 .foregroundColor(.black)
                         }
@@ -210,11 +220,11 @@ struct ProfileView: View {
                 }
             }
 
-            orderViewModel.order.forEach { i in
-                if i.email == email as! String {
-                    userViewModel.countOrder += 1
-                }
-            }
+//            orderViewModel.order.forEach { i in
+//                if i.email == email as! String {
+//                    userViewModel.countOrder += 1
+//                }
+//            }
         }
     }
 }

@@ -4,9 +4,21 @@ struct OrdersView: View {
 
     @ObservedObject var orderViewModel: OrderViewModel
     @ObservedObject var fruitViewModel: FruitViewModel
+    let email = UserDefaults.standard.value(forKey: "userEmail")
+
+    func order() -> Bool {
+        var ordersBool = true
+        for item in orderViewModel.order {
+            if item.email == email as! String {
+                ordersBool = false
+            }
+        }
+        return ordersBool
+    }
 
     var body: some View {
-        if orderViewModel.order.isEmpty {
+
+        if order() {
             WithoutOrders(orderViewModel: orderViewModel, fruitViewModel: fruitViewModel)
         } else {
             WithOrders(orderViewModel: orderViewModel)
@@ -18,7 +30,7 @@ struct WithoutOrders: View {
 
     @ObservedObject var orderViewModel: OrderViewModel
     @ObservedObject var fruitViewModel: FruitViewModel
-    
+
     var body: some View {
         VStack {
             Image("noOrders")
@@ -62,18 +74,18 @@ struct WithOrders: View {
     var body: some View {
         NavigationView {
             List(orderViewModel.order) { item in
-                if item.email == email as! String{
+                if item.email == email as! String {
                     NavigationLink {
                         OrderInfoView(order: item)
                     } label: {
                         OrderCell(
                             date: item.date,
-                            number: item.orderNumber ,
+                            dateOrder: item.dateOrder,
+                            number: item.orderNumber,
                             price: Double(item.price),
                             purchases: item.fruit,
                             address: item.address,
                             orderCompleted: item.orderCompleted
-                            
                         )
                     }
                 }
@@ -89,8 +101,8 @@ struct WithOrders: View {
     }
 }
 
-//struct OrdersView_Previews: PreviewProvider {
+// struct OrdersView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        OrdersView(viewModel: FruitViewModel())
 //    }
-//}
+// }

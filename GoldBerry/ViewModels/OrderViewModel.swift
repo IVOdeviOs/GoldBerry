@@ -12,6 +12,8 @@ class OrderViewModel: ObservableObject {
     @Published var image = ""
     @Published var show = false
     @Published var date = ""
+    @Published var dateOrder = ""
+
     @Published var address = ""
 
     @Published var customer = ""
@@ -46,6 +48,7 @@ class OrderViewModel: ObservableObject {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy.HH.mm"
         date = dateFormatter.string(from: deliveryDate)
+        dateOrder = dateFormatter.string(from: .now)
     }
 
 //    var cancellable: Set<AnyCancellable> = []
