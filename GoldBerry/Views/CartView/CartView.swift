@@ -2,8 +2,7 @@ import CoreData
 import SwiftUI
 
 struct CartView: View {
-    
-    
+
     @ObservedObject var fruitViewModel = FruitViewModel()
     @ObservedObject var orderViewModel = OrderViewModel()
 
@@ -59,23 +58,22 @@ struct WithoutPurchase: View {
 struct WithPurchase: View {
     @ObservedObject var fruitViewModel: FruitViewModel
     @ObservedObject var orderViewModel: OrderViewModel
-    
+
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
     var fruits: FetchedResults<FruitEntity>
     @State var fruitO = [Fruit]()
     @State var cartPrice: Double = 0
 
-    
     var body: some View {
-        
+
         ZStack(alignment: .top) {
 
             ScrollView(showsIndicators: false) {
                 ForEach(fruitViewModel.uniqFruits) { item in
-                  CartCell(fruitViewModel: fruitViewModel,
-                           orderViewModel: orderViewModel,
-                           fruit: item)
+                    CartCell(fruitViewModel: fruitViewModel,
+                             orderViewModel: orderViewModel,
+                             fruit: item)
                 }
                 .padding(.vertical, 3)
                 .padding(.horizontal, 10)
@@ -85,12 +83,11 @@ struct WithPurchase: View {
             }
             ZStack {
                 VStack {
-                 
-                    
+
                     Spacer()
 
                     NavigationLink {
-                      
+
                         MakingTheOrderView(orderViewModel: orderViewModel, fruitViewModel: fruitViewModel)
 //                        orderViewModel.show.toggle()
                     } label: {
@@ -116,10 +113,9 @@ struct WithPurchase: View {
             for item in fruitViewModel.fruit {
                 for i in fruits {
                     if i.id == item.id {
-                        
+
                         fruitO.append(item)
                         fruitViewModel.uniqFruits = uniq(source: fruitO)
-
                     }
                 }
             }

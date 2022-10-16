@@ -1,10 +1,10 @@
+import CoreData
 import SwiftUI
-
 struct CartCell: View {
 
     @ObservedObject var fruitViewModel: FruitViewModel
     @ObservedObject var orderViewModel: OrderViewModel
-    
+
     @State var fruit: Fruit
 
     @Environment(\.managedObjectContext) private var viewContext
@@ -45,7 +45,6 @@ struct CartCell: View {
                         Button {
 //                            EditButton()
 //                            index = 1
-                            
                         } label: {
                             Image(systemName: "x.square")
                                 .resizable()
@@ -125,7 +124,6 @@ struct CartCell: View {
                     fruitViewModel.uniqFruits.append(fruit)
                     fruit.price = Double(fruit.count) * fruit.itog
                     fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
-
                 }
             }
         }
@@ -136,7 +134,7 @@ struct CartCell: View {
                 if i.id == fruit.id {
                     fruit.price = Double(fruit.count) * fruit.itog
 //                    orderViewModel.price = fruit.price!
-                    
+
                     fruit.price = Double(i.counts) * fruit.itog
 //                    orderViewModel.price = fruit.price
                     fruit.count = Int(i.counts)
@@ -154,13 +152,12 @@ struct CartCell: View {
         )
         .cornerRadius(20)
     }
-
 }
 
-//struct CartCell_Previews: PreviewProvider {
+// struct CartCell_Previews: PreviewProvider {
 //    static var previews: some View {
 //        CartCell(
 //            viewModel: FruitViewModel(), fruit: Fruit(cost: 1, weightOrPieces: "", categories: "", favorite: true, count: 1, image: "", name: "")
 //        )
 //    }
-//}
+// }
