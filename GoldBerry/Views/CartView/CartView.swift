@@ -113,16 +113,13 @@ struct WithPurchase: View {
 
         .offset(y: -95)
         .onAppear {
-//            print("cccc---------- \(fruitViewModel.arrayOfFruitPrice.count)")
             for item in fruitViewModel.fruit {
                 for i in fruits {
                     if i.id == item.id {
                         
                         fruitO.append(item)
                         fruitViewModel.uniqFruits = uniq(source: fruitO)
-//                        for asd in fruitViewModel.uniqFruits {
-//                            print("😶‍🌫️\(asd.count)")
-//                        }
+
                     }
                 }
             }

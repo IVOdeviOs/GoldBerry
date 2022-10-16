@@ -1,10 +1,9 @@
-import Foundation
+import Combine
 import Firebase
 import FirebaseAuth
-import SwiftUI
-import Combine
-import Foundation
 import FirebaseCore
+import Foundation
+import SwiftUI
 
 final class LogIn: ObservableObject {
     @Published var isLoading = false
@@ -20,9 +19,7 @@ final class LogIn: ObservableObject {
     @Published var isValid = false
     @Published var secure = true
     @Published var secureConfirm = true
-  
-    
-    
+
     var cancellable: Set<AnyCancellable> = []
 
     private var formattedEmailPublisher: AnyPublisher<String, Never> {
@@ -81,6 +78,17 @@ func signInWithEmail(email: String, password: String,
     }
 }
 
+func forGetPassword(email: String) {
+
+    Auth.auth().sendPasswordReset(withEmail: email) { err in
+
+        if err != nil {
+            
+            return
+        }
+    }
+}
+
 func signUpWithEmail(email: String, password: String, confirmPassword: String,
                      completion: @escaping (Bool, String) -> Void)
 {
@@ -94,5 +102,3 @@ func signUpWithEmail(email: String, password: String, confirmPassword: String,
         completion(true, (res?.user.email)!)
     }
 }
-
-

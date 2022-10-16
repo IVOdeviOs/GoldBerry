@@ -4,11 +4,12 @@ import SwiftUI
 
 struct Login: View {
     @StateObject private var login = LogIn()
+//    @ObservedObject var userViewModel = LogIn()
     @Binding var index: Int
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: UserRegEntity.entity(), sortDescriptors: [])
     var users: FetchedResults<UserRegEntity>
-    
+    @State var showForGetPassword = false
     var body: some View {
         ZStack(alignment: .bottom) {
             VStack {
@@ -40,14 +41,14 @@ struct Login: View {
                 }
                 .padding(.horizontal)
                 .padding(.top, 40)
-                
+
                 VStack {
                     HStack(spacing: 15) {
                         Button {
                             login.secure.toggle()
                         } label: {
-                        Image(systemName: login.secure ? "eye.slash.fill" : "eye.fill")
-                            .foregroundColor(.white)
+                            Image(systemName: login.secure ? "eye.slash.fill" : "eye.fill")
+                                .foregroundColor(.white)
                         }
                         if login.secure {
                             SecureField("Password", text: $login.password)
@@ -56,23 +57,23 @@ struct Login: View {
                             TextField("Password", text: $login.password)
                                 .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                         }
-                        }
-                    
+                    }
+
                     Divider()
                         .background(Color.white)
                 }
                 .padding(.horizontal)
                 .padding(.top, 50)
-                
+
                 HStack {
                     Spacer(minLength: 0)
                     Button {
-                        //
+//                        forGetPassword(email: login.email)
+                        self.showForGetPassword.toggle()
                     } label: {
                         Text("Forget Password?")
                             .foregroundColor(Color.white)
                             .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
-                        
                     }
                 }
                 .padding(.horizontal)
@@ -91,7 +92,7 @@ struct Login: View {
                 index = 0
             }
             .cornerRadius(35)
-            
+
             Button {
                 signInWithEmail(email: login.email, password: login.password) { verified, status in
                     if !verified {
@@ -99,12 +100,9 @@ struct Login: View {
                         login.alert.toggle()
                     } else {
                         UserDefaults.standard.set(login.email, forKey: "userEmail")
-                        
-                        //                        addUser()
                         UserDefaults.standard.set(true, forKey: "status")
                         NotificationCenter.default
                             .post(name: NSNotification.Name("statusChange"), object: nil)
-                        //                        UserDefaults.standard.set(login.email, forKey: "1")
                     }
                 }
             } label: {
@@ -127,19 +125,22 @@ struct Login: View {
             }
             .offset(y: 30)
             .opacity(index == 0 ? 1 : 0)
+            .sheet(isPresented: $showForGetPassword) {
+                ForGetPasswordView()
+            }
         }
     }
-    
+
     func addUser() {
         withAnimation {
             let newUser = UserRegEntity(context: viewContext)
             newUser.email = login.email
-            for i in users{
-                if newUser.email == i.email{
+            for i in users {
+                if newUser.email == i.email {
                     viewContext.delete(newUser)
                 }
             }
-            
+
             do {
                 try viewContext.save()
             } catch {

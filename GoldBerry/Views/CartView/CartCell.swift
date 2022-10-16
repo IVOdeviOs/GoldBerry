@@ -7,16 +7,6 @@ struct CartCell: View {
     
     @State var fruit: Fruit
 
-//    @State var imageName: String
-//    @State var cost: Double
-//    @State var name: String
-//    @State var index: String
-//    @State var description: String
-//    @State var count: Int
-//    @State var price: Double
-//    @State var id = UUID()
-//
-
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.id, ascending: true)])
     var fruits: FetchedResults<FruitEntity>
@@ -55,7 +45,7 @@ struct CartCell: View {
                         Button {
 //                            EditButton()
 //                            index = 1
-
+                            
                         } label: {
                             Image(systemName: "x.square")
                                 .resizable()
