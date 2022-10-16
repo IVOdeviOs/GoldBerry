@@ -1,4 +1,4 @@
-
+import Combine
 import Foundation
 
 class OrderViewModel: ObservableObject {
@@ -20,6 +20,61 @@ class OrderViewModel: ObservableObject {
     @Published var customerPhone = ""
     @Published var comments = ""
     @Published var deliveryDate = Date()
+    @Published var isValid = false
+
+    var cancellable: Set<AnyCancellable> = []
+
+//    private var formattedEmailPublisher: AnyPublisher<String, Never> {
+//        $customer
+//            .map { $0.lowercased() }
+//            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+//            .eraseToAnyPublisher()
+//    }
+
+    
+    private var isDateValidPublisher: AnyPublisher<Bool, Never> {
+        $date
+            .map {
+                $0.count > 2
+            }
+            .replaceNil(with: false)
+            .eraseToAnyPublisher()
+    }
+
+    private var isCustomerValidPublisher: AnyPublisher<Bool, Never> {
+        $customer
+            .map {
+                $0.count > 2
+            }
+            .replaceNil(with: false)
+            .eraseToAnyPublisher()
+    }
+    private var isCustomerPhoneValidPublisher: AnyPublisher<Bool, Never> {
+        $customerPhone
+            .map {
+                let regex =  "((375|80)(25|29|33|34)([0-9]{3}([0-9]{2}){2}))"
+                let predicate = NSPredicate(format:"SELF MATCHES %@",regex)
+                let result = predicate.evaluate(with: $0)
+                return result
+            }
+            .eraseToAnyPublisher()
+    }
+    private var isAddressValidPublisher: AnyPublisher<Bool, Never> {
+        $address
+            .map {
+                 $0.count > 2
+            }
+            .eraseToAnyPublisher()
+    }
+
+    var isFormValid: AnyPublisher<Bool, Never> {
+        Publishers.CombineLatest4(isCustomerValidPublisher,
+                                  isDateValidPublisher,
+                                  isCustomerPhoneValidPublisher,
+                                  isAddressValidPublisher)
+            .map { $0.0 && $0.1 && $0.2 && $0.3 }
+            .eraseToAnyPublisher()
+    }
 
     func fetchOrder() async throws {
         let urlString = Constants.baseURL + EndPoints.order
@@ -51,13 +106,13 @@ class OrderViewModel: ObservableObject {
         dateOrder = dateFormatter.string(from: .now)
     }
 
-//    var cancellable: Set<AnyCancellable> = []
-//
-//    private var formattedEmailPublisher: AnyPublisher<String, Never> {
-//        $customer
-//            .map {
-//                $0.count > 8 && $0 != "password"
-//            }
-//            .eraseToAnyPublisher()
-//    }
+    func orders() -> Bool {
+        var ordersBool = true
+        for item in order {
+            if item.email == email as! String {
+                ordersBool = false
+            }
+        }
+        return ordersBool
+    }
 }

@@ -103,7 +103,10 @@ struct MakingTheOrderView: View {
                     }
                     DatePicker("", selection: $orderViewModel.deliveryDate)
                         .datePickerStyle(.compact)
+                        .onTapGesture(perform: {
+                            orderViewModel.dateFormatter()
 
+                        })
                         .padding()
                     VStack {
                         HStack {
@@ -158,7 +161,7 @@ struct MakingTheOrderView: View {
 
                         deleteAllRecords()
 
-                        orderViewModel.dateFormatter()
+//                        orderViewModel.dateFormatter()
                         let orde = Order(orderNumber: str,
                                          date: orderViewModel.date,
                                          dateOrder: orderViewModel.dateOrder,
@@ -182,9 +185,10 @@ struct MakingTheOrderView: View {
                         Text("Сделать заказ")
                             .foregroundColor(.white)
                             .frame(width: 300, height: 50)
-                            .background(Color.theme.lightGreen)
+                            .background(orderViewModel.isValid ? Color.theme.lightGreen : Color.gray)
                             .cornerRadius(10)
                     }
+                    .disabled(!orderViewModel.isValid)
                     .fullScreenCover(isPresented: $tog) {
                         CompletedOrderView()
                     }
@@ -194,6 +198,13 @@ struct MakingTheOrderView: View {
                 }
                 Spacer()
             }
+        }
+        .onAppear {
+            orderViewModel.isFormValid
+                .receive(on: RunLoop.main)
+                .assign(to: \.orderViewModel.isValid, on: self)
+                .store(in: &orderViewModel.cancellable)
+
         }
 //        .offset(y: 15)
 //        .ignoresSafeArea()
