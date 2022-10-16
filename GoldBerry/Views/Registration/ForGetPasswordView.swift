@@ -34,9 +34,20 @@ struct ForGetPasswordView: View {
             }
             .padding(.top, 300)
         }
-        .alert(isPresented: $show) {
-            Alert(title: Text(""), message: Text("Письмо отправлено на указанную почту,оно так же может находиться в папке спам "), dismissButton: .default(Text("Ok")))
-        }
+        .confirmationDialog(Text(""), isPresented: $show, actions: {
+            Button {
+                if let url = URL(string: "googlegmail://") {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)}
+            } label: {
+                Text("Ok")
+            }
+
+        }, message: {
+            Text("Письмо отправлено на указанную почту,оно так же может находиться в папке спам ")
+        })
+//        .alert(isPresented: $show) {
+//            Alert(title: Text(""), message: Text("Письмо отправлено на указанную почту,оно так же может находиться в папке спам ") , dismissButton: .default(Text("Ok")))
+//        }
         .navigationTitle("Восстановление пароля")
     }
 }
