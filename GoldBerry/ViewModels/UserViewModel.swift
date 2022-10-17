@@ -18,9 +18,9 @@ class UserViewModel: ObservableObject {
 
     @Published var userRegShow = false
     @Published var user = [User]()
-    @Published var userName = " "
-    @Published var userSurname = " "
-    @Published var userPhone = " "
+    @Published var userName = ""
+    @Published var userSurname = ""
+    @Published var userPhone = ""
 
     @Published var favouriteProducts: [Fruit] = []
     

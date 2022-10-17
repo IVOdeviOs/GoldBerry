@@ -6,17 +6,16 @@ struct TextFieldView: View {
     var placeholder: String = ""
     var body: some View {
         VStack {
-           
             TextField(placeholder, text: text)
-                .foregroundColor(.black)
+                .foregroundColor(Color.theme.blackWhiteText)
                 .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
                 .padding(.leading, 20)
-                .background(.white)
+                .background(.clear)
                 .frame(height: 50)
 //                .border(.red, width: 1)
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
-                        .stroke(.black, lineWidth: 1)
+                        .stroke(Color.theme.blackWhiteText, lineWidth: 1)
                 )
 //                .cornerRadius(10)
                 .padding()

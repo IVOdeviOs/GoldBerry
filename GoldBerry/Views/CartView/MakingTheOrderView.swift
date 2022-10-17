@@ -49,7 +49,7 @@ struct MakingTheOrderView: View {
                         Image(systemName: "arrow.backward")
                             .resizable()
                             .frame(width: 18, height: 18)
-                            .foregroundColor(.black)
+                            .foregroundColor(Color.theme.blackWhiteText)
 //                        .onTapGesture {
 //                            self.presentation.wrappedValue.dismiss()
 //                        }
@@ -57,7 +57,7 @@ struct MakingTheOrderView: View {
                     .padding(.leading,16)
                     Spacer()
                     Text("Оформление заказа")
-                        .foregroundColor(.black)
+                        .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
                     //                .offset(y: -80)
                         .offset(x:-16)
@@ -71,7 +71,7 @@ struct MakingTheOrderView: View {
                     HStack {
                         Text("Бесплатная  доставка \nпо Минску")
                             .fixedSize(horizontal: false, vertical: true)
-                            .foregroundColor(.black)
+                            .foregroundColor(Color.theme.blackWhiteText)
                             .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
                             .padding()
                         Spacer()
@@ -81,7 +81,7 @@ struct MakingTheOrderView: View {
                             .foregroundColor(Color.theme.lightGreen)
                             .padding()
                     }
-                    .background(.white)
+                    .background(Color.theme.background)
                     .frame(height: 45)
                     .cornerRadius(10)
                     .shadow(color: .gray, radius: 2, x: 1, y: 1)
@@ -91,7 +91,7 @@ struct MakingTheOrderView: View {
                         .frame(height: 10)
                     HStack {
                         Text("Когда доставить")
-                            .foregroundColor(.black)
+                            .foregroundColor(Color.theme.blackWhiteText)
                             .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
                             .padding()
                         Spacer()
@@ -101,7 +101,7 @@ struct MakingTheOrderView: View {
                             .foregroundColor(Color.theme.lightGreen)
                             .padding()
                     }
-                    DatePicker("", selection: $orderViewModel.deliveryDate)
+                    DatePicker("", selection: $orderViewModel.deliveryDate, displayedComponents: .date)
                         .datePickerStyle(.compact)
                         .onTapGesture(perform: {
                             orderViewModel.dateFormatter()
@@ -111,7 +111,7 @@ struct MakingTheOrderView: View {
                     VStack {
                         HStack {
                             Text("Куда доставить")
-                                .foregroundColor(.black)
+                                .foregroundColor(Color.theme.blackWhiteText)
                                 .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
                                 .padding()
                             Spacer()
@@ -126,7 +126,7 @@ struct MakingTheOrderView: View {
                                 hideKeyboard()
                             }
                         TextFieldView(text: $orderViewModel.customerPhone, placeholder: "Телефон получателя")
-                            .keyboardType(.numberPad)
+                            .keyboardType(.phonePad)
                             .onTapGesture {
                                 hideKeyboard()
                             }

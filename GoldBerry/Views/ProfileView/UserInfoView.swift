@@ -15,7 +15,7 @@ struct UserInfoView: View {
         VStack {
             Text("Мои данные")
                 .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
-                .foregroundColor(.black)
+                .foregroundColor(Color.theme.blackWhiteText)
                 .padding()
             Color.theme.gray
                 .opacity(0.3)
@@ -29,7 +29,7 @@ struct UserInfoView: View {
                     hideKeyboard()
                 }
             TextFieldView(text: $userViewModel.userPhone, placeholder: "Телефон")
-                .keyboardType(.numberPad)
+                .keyboardType(.phonePad)
                 .onTapGesture {
                     hideKeyboard()
                 }

@@ -30,7 +30,7 @@ struct CartCell: View {
 //                        .aspectRatio(contentMode: .fill)
 //                        .frame(width: UIScreen.main.bounds.width - 20 ,height:350)
                 }
-                .frame(width: 150, height: 150)
+                .frame(width: 150, height: 110)
                 .cornerRadius(10)
 //                    .padding(.leading, 10)
                 VStack(alignment: .leading, spacing: 10) {
@@ -38,7 +38,7 @@ struct CartCell: View {
                     HStack {
                         Text("\(NSString(format: "%.2f", fruit.itog)) р/кг")
                             .foregroundColor(Color.theme.lightGreen)
-                            .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
+                            .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
 //                        Text("\(id)")
 //                            .font(.system(size: 30))
                         Spacer()
@@ -49,17 +49,19 @@ struct CartCell: View {
                             Image(systemName: "x.square")
                                 .resizable()
                                 .frame(width: 25, height: 25)
-                                .foregroundColor(.black.opacity(0.6))
+//                                .foregroundColor(.black.opacity(0.6))
+                                .foregroundColor(Color.theme.blackWhiteText)
                         }
                     }
 
                     Text(fruit.name)
-                        .foregroundColor(.black)
+                        .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
-                    Text(fruit.descriptions ?? "")
+                    Text(fruit.descriptions ?? "ddd")
                         .fixedSize(horizontal: false, vertical: true)
-                        .foregroundColor(.black)
+                        .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(14, .uzSansRegular)))
+                    Spacer()
                 }
                 Spacer()
             }
@@ -82,12 +84,12 @@ struct CartCell: View {
                 } label: {
                     Image(systemName: "minus.square.fill")
                         .resizable()
-                        .frame(width: 40, height: 40)
+                        .frame(width: 30, height: 30)
                         .foregroundColor(Color.theme.gray)
                 }
                 Text("\(fruit.count) кг")
-                    .foregroundColor(.black)
-                    .font(Font(uiFont: .fontLibrary(24, .uzSansRegular)))
+                    .foregroundColor(Color.theme.blackWhiteText)
+                    .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
                 Button {
                     fruit.count += 1
                     if fruit.price == 0 {
@@ -103,16 +105,16 @@ struct CartCell: View {
                 } label: {
                     Image(systemName: "plus.square.fill")
                         .resizable()
-                        .frame(width: 40, height: 40)
+                        .frame(width: 30, height: 30)
                         .foregroundColor(Color.theme.lightGreen)
                 }
             }
             HStack {
+                Spacer()
                 Text("Итого: \(NSString(format: "%.2f", fruit.price ?? 1)) р")
                     .foregroundColor(Color.theme.lightGreen)
-                    .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
-                    .padding(.leading, 10)
-                Spacer()
+                    .font(Font(uiFont: .fontLibrary(16, .uzSansSemiBold)))
+                    .padding(.trailing, 10)
             }
         }
 
@@ -150,7 +152,7 @@ struct CartCell: View {
             RoundedRectangle(cornerRadius: 20)
                 .stroke(Color.theme.gray, lineWidth: 1)
         )
-        .cornerRadius(20)
+        .cornerRadius(12)
     }
 }
 

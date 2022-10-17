@@ -101,7 +101,7 @@ class OrderViewModel: ObservableObject {
 
     func dateFormatter() {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy.HH.mm"
+        dateFormatter.dateFormat = "dd.MM.yyyy"
         date = dateFormatter.string(from: deliveryDate)
         dateOrder = dateFormatter.string(from: .now)
     }

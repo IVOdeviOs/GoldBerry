@@ -155,7 +155,7 @@ struct ViewProfile: View {
                     //                    .shadow(color: Color.lightShadow, radius: 5, x: -4, y: -4)
                     //                    .shadow(color: Color.darkShadow, radius: 5, x: 4, y: 4)
                     .padding(.bottom, 30)
-                    .shadow(color: Color.theme.lightGreen.opacity(0.5), radius: 20, x: 0, y: 10)
+                    .shadow(color: Color.theme.lightGreen.opacity(0.5), radius: 8, x: 0, y: 5)
                 }
             }
         }

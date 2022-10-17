@@ -15,5 +15,6 @@ struct ColorTheme {
     let tabBarBackground = Color("TabBarBackground")
     let blackWhiteText = Color("WhiteBlackText")
     let grayWhite = Color("GrayWhite")
+    let textFieldBackground = Color("TextFieldBackground")
 }
 
