@@ -31,7 +31,7 @@ struct ProfileView: View {
                 HStack {
                     VStack {
                         Text(userViewModel.userName.isEmpty && userViewModel.userSurname.isEmpty ? "Имя Фамилия" : "\(userViewModel.userName) \(userViewModel.userSurname)")
-                            .foregroundColor(.white)
+                            .foregroundColor(Color.theme.background)
                             .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
                             .padding()
                     }

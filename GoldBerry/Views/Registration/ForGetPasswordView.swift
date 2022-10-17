@@ -4,35 +4,43 @@ struct ForGetPasswordView: View {
     @State var email = ""
     @State var show = false
     var body: some View {
-        ZStack {
-
-            Color.white
-                .ignoresSafeArea(edges: .all)
+        VStack {
             VStack {
-                VStack(spacing: 20) {
-                    TextFieldView(text: $email, placeholder: "Введите почту")
-                }
+                Text("Введите e-mail адрес")
+                    .font(Font(uiFont: .fontLibrary(24, .uzSansBold)))
+                    .foregroundColor(Color.theme.blackWhiteText)
+                    .padding()
+//                VStack(spacing: 20) {
+                    TextFieldView(text: $email, placeholder: "E-mail")
+//                }
                 .padding()
                 .padding(.bottom, 8.0)
-                VStack(spacing: 16) {
+                Spacer()
                     Button {
                         forGetPassword(email: email)
                         self.show.toggle()
                     } label: {
-                        Text("Восстановление пароля")
-                            .frame(maxWidth: .infinity)
-                            .font(.title2)
+                        
+                        Text("Восстановить пароль")
+                            .foregroundColor(.white)
+                            .frame(width: UIScreen.main.bounds.width - 60, height: 50)
+                            .background(Color.theme.lightGreen)
+                            .cornerRadius(10)
+                            .padding(.bottom, 50)
+//                            .frame(maxWidth: .infinity)
+//                            .frame(height: 50)
+//                            .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
+//                            .padding()
                     }
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(Color.red)
-                    .cornerRadius(16)
-                }
+//                    .padding()
+//                    .foregroundColor(.white)
+//                    .background(Color.theme.lightGreen)
+//                    .cornerRadius(16)
+                
                 .padding()
 
-                Spacer()
             }
-            .padding(.top, 300)
+            .padding(.top, 100)
         }
         .confirmationDialog(Text(""), isPresented: $show, actions: {
             Button {
