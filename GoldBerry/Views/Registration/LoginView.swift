@@ -19,7 +19,7 @@ struct LoginView: View {
 //                    .lineLimit(2)
                     .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
                         .foregroundColor(Color.theme.lightGreen)
-//                Spacer()
+                Spacer()
                 ZStack {
                     SignUP(index: $signUP.index, show: .constant(false))
                         .zIndex(Double(signUP.index))
@@ -28,7 +28,7 @@ struct LoginView: View {
                 .offset(y: -100)
                 .ignoresSafeArea(.keyboard, edges: .bottom)
                 .padding(.horizontal, 10)
-                Spacer()
+//                Spacer()
             }
         }
         .background(Color.theme.background)
