@@ -8,7 +8,7 @@ struct ShopsView: View {
     var body: some View {
         VStack {
             Text("Наши торговые точки")
-                .foregroundColor(.black)
+                .foregroundColor(Color.theme.blackWhiteText)
                 .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
                 .padding()
             Color.theme.gray
@@ -45,7 +45,7 @@ struct ShopsInfo: View {
         VStack {
             HStack {
                 Text(shopName)
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.theme.blackWhiteText)
                     .font(Font(uiFont: .fontLibrary(18, .uzSansBold)))
                     .padding(.leading, 10)
                     .padding(.bottom, 5)
@@ -53,7 +53,7 @@ struct ShopsInfo: View {
             }
             HStack {
                 Text("Адрес: \(shopAddress)")
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.theme.blackWhiteText)
                     .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                     .padding(.leading, 10)
                     .padding(.bottom, 5)
@@ -61,7 +61,7 @@ struct ShopsInfo: View {
             }
             HStack {
                 Text("Доставка: 0р.")
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.theme.blackWhiteText)
                     .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                     .padding(.leading, 10)
                     .padding(.bottom, 5)
@@ -93,8 +93,8 @@ struct ShopsInfo: View {
             }
         label: {
             Text("Перейти к заказу товаров")
-                .foregroundColor(.blue)
-                .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                .foregroundColor(Color.theme.lightGreen)
+                .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
                 .padding()
         }
             Color.theme.gray

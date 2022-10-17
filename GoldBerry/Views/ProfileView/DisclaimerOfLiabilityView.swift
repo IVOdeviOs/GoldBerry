@@ -6,7 +6,7 @@ struct DisclaimerOfLiability: View {
             VStack {
                 Text("Отказ от ответственности")
                     .font(Font(uiFont: .fontLibrary(25, .uzSansBold)))
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.theme.blackWhiteText)
                     .minimumScaleFactor(0.5)
                     .multilineTextAlignment(.center)
                     .padding()
@@ -56,7 +56,7 @@ struct DisclaimerOfLiability: View {
 """).multilineTextAlignment(.leading)
                 .padding()
                     .font(Font(uiFont: .fontLibrary(10, .uzSansRegular)))
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.theme.blackWhiteText)
             }
         }
     }

@@ -20,6 +20,9 @@ struct ProfileView: View {
     }
     
     var body: some View {
+        Color.theme.background
+            .ignoresSafeArea()
+            .overlay(
         VStack {
             ZStack {
                 Color.theme.lightGreen
@@ -39,7 +42,7 @@ struct ProfileView: View {
                         Image(systemName: "arrow.right")
                             .resizable()
                             .frame(width: 30, height: 30)
-                            .foregroundColor(.white)
+                            .foregroundColor(Color.theme.background)
                             .padding(.trailing, 20)
                     }
                     .sheet(isPresented: $userViewModel.showUserInfoView, content: {
@@ -52,18 +55,18 @@ struct ProfileView: View {
                     fruitViewModel.selected = 2
                 } label: {
                     ZStack {
-                        Color.white
+                        Color.theme.tabBarBackground
                             .frame(width: 120, height: 70)
                             .cornerRadius(10)
                             .shadow(color: .gray, radius: 2, x: 1, y: 1)
                         VStack {
                             Text("Архив заказов")
                                 .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
-                                .foregroundColor(.black)
+                                .foregroundColor(Color.theme.blackWhiteText)
                                 .padding(.bottom, 5)
                             Text("\(orderCount())")
                                 .font(Font(uiFont: .fontLibrary(24, .uzSansSemiBold)))
-                                .foregroundColor(.black)
+                                .foregroundColor(Color.theme.blackWhiteText)
                         }
                     }
                 }
@@ -73,19 +76,19 @@ struct ProfileView: View {
                 userViewModel.showShopView.toggle()
             } label: {
                 ZStack {
-                    Color.theme.gray
+                    Color.theme.grayWhite
                         .frame(height: 50)
-                        .opacity(0.2)
+//                        .opacity(0.2)
                     HStack {
                         Text("Адреса торговых точек")
-                            .foregroundColor(.black)
+                            .foregroundColor(Color.theme.blackWhiteText)
                             .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                             .padding(.leading, 15)
                         Spacer()
                         Image(systemName: "arrow.right")
                             .resizable()
                             .frame(width: 20, height: 20)
-                            .foregroundColor(.black)
+                            .foregroundColor(Color.theme.blackWhiteText)
                             .padding(.trailing, 20)
                     }
                     .sheet(isPresented: $userViewModel.showShopView, content: {
@@ -97,12 +100,12 @@ struct ProfileView: View {
                 userViewModel.showFavouriteProductsView.toggle()
             } label: {
                 ZStack {
-                    Color.theme.gray
+                    Color.theme.grayWhite
                         .frame(height: 50)
-                        .opacity(0.2)
+//                        .opacity(0.2)
                     HStack {
                         Text("Избранные товары")
-                            .foregroundColor(.black)
+                            .foregroundColor(Color.theme.blackWhiteText)
                             .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                             .padding(.leading, 15)
                         Spacer()
@@ -120,7 +123,7 @@ struct ProfileView: View {
                         Image(systemName: "arrow.right")
                             .resizable()
                             .frame(width: 20, height: 20)
-                            .foregroundColor(.black)
+                            .foregroundColor(Color.theme.blackWhiteText)
                             .padding(.trailing, 20)
                     }
                     .sheet(isPresented: $userViewModel.showFavouriteProductsView, content: {
@@ -132,12 +135,12 @@ struct ProfileView: View {
                 ServiceInfoView()
             } label: {
                 ZStack {
-                    Color.theme.gray
+                    Color.theme.grayWhite
                         .frame(height: 50)
-                        .opacity(0.2)
+//                        .opacity(0.2)
                     HStack {
                         Text("О сервисе")
-                            .foregroundColor(.black)
+                            .foregroundColor(Color.theme.blackWhiteText)
                             .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                             .padding(.leading, 15)
                         Spacer()
@@ -145,7 +148,7 @@ struct ProfileView: View {
                         Image(systemName: "arrow.right")
                             .resizable()
                             .frame(width: 20, height: 20)
-                            .foregroundColor(.black)
+                            .foregroundColor(Color.theme.blackWhiteText)
                             .padding(.trailing, 20)
                     }
 //                    .sheet(isPresented: $showServiceInfoView, content: {
@@ -160,19 +163,19 @@ struct ProfileView: View {
                     UIApplication.shared.open(url)
                 } label: {
                     ZStack {
-                        Color.theme.gray
+                        Color.theme.grayWhite
                             .frame(height: 50)
-                            .opacity(0.2)
+//                            .opacity(0.2)
                         HStack {
                             Text("Служба поддержки")
-                                .foregroundColor(.black)
+                                .foregroundColor(Color.theme.blackWhiteText)
                                 .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                                 .padding(.leading, 15)
                             Spacer()
                             Image(systemName: "arrow.right")
                                 .resizable()
                                 .frame(width: 20, height: 20)
-                                .foregroundColor(.black)
+                                .foregroundColor(Color.theme.blackWhiteText)
                                 .padding(.trailing, 20)
                         }
                     }
@@ -185,11 +188,13 @@ struct ProfileView: View {
 
                 } label: {
                     HStack(spacing: 5) {
-                        Image("out")
-                            .foregroundColor(Color.white)
+                        Image(systemName: "rectangle.portrait.and.arrow.right")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                            .foregroundColor(Color.theme.blackWhiteText)
                         Text("Выход")
                             .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
-                            .foregroundColor(Color.black)
+                            .foregroundColor(Color.theme.blackWhiteText)
                     }
                 }
                 .alert(isPresented: $userViewModel.alert) {
@@ -207,10 +212,12 @@ struct ProfileView: View {
                 .padding(.leading, 10)
                 Spacer()
             }
-            .offset(y: -70)
+            .offset(y: -90)
             .navigationBarHidden(true)
         }
-        .offset(y: -40)
+            .background(Color.theme.background)
+            )
+            .offset(y: -40).background(Color.theme.background)
         .ignoresSafeArea()
         .onAppear {
             for item in userViewModel.user {

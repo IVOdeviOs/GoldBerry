@@ -56,7 +56,7 @@ struct ViewProfile: View {
                         HStack {
                             Text("GoldBerry")
                                 .font(Font(uiFont: .fontLibrary(32, .uzSansBold)))
-                                .foregroundColor(fruitViewModel.selected == 3 ? .white : Color.theme.lightGreen)
+                                .foregroundColor(fruitViewModel.selected == 3 ? Color.theme.background : Color.theme.lightGreen)
                                 .padding()
                             Spacer()
                             Image("goldBerryLogo")
@@ -67,7 +67,7 @@ struct ViewProfile: View {
                         }
                         .padding(.top, 40)
                     }
-                    .background(Color.theme.background)
+                    .background(fruitViewModel.selected == 3 ? Color.theme.lightGreen : Color.theme.background)
                     Spacer()
                     ZStack(alignment: .bottom) {
                         HStack {

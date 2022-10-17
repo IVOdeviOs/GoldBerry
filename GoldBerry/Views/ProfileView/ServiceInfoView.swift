@@ -12,21 +12,23 @@ struct ServiceInfoView: View {
     var body: some View {
         VStack {
             Text("О сервисе")
-                .foregroundColor(.black)
+                .foregroundColor(Color.theme.blackWhiteText)
                 .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
                 .padding()
                 .offset(y: -100)
             ZStack {
-                Color.theme.gray
+                Color.theme.grayWhite
                     .opacity(0.2)
                     .frame(height: 200)
                 VStack {
                     Text("Версия 1.0.0")
-                        .foregroundColor(.gray)
+                        .foregroundColor(Color.theme.blackWhiteText)
+                        .opacity(0.5)
                         .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
                         .padding(.bottom, 5)
                     Text("\u{24B8} 2022 DMTeam")
-                        .foregroundColor(.gray)
+                        .foregroundColor(Color.theme.blackWhiteText)
+                        .opacity(0.5)
                 }
             }
             List {
@@ -37,13 +39,13 @@ struct ServiceInfoView: View {
                 HStack {
                     Text("Оплата и доставка")
                         .minimumScaleFactor(0.5)
-                        .foregroundColor(.black)
+                        .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                     Spacer()
                     Image(systemName: "arrow.right")
                         .resizable()
                         .frame(width: 15, height: 15)
-                        .foregroundColor(.gray)
+                        .foregroundColor(Color.theme.blackWhiteText)
                 }
                 .sheet(isPresented: $showDeliveryInfoView, content: {
                     DeliveryInfoView()
@@ -57,13 +59,13 @@ struct ServiceInfoView: View {
                 HStack {
                     Text("Положение о конфиденциальности")
                         .minimumScaleFactor(0.5)
-                        .foregroundColor(.black)
+                        .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                     Spacer()
                     Image(systemName: "arrow.right")
                         .resizable()
                         .frame(width: 15, height: 15)
-                        .foregroundColor(.gray)
+                        .foregroundColor(Color.theme.blackWhiteText)
                 }
                 .sheet(isPresented: $showConfidentialView, content: {
                     ConfidentialView()
@@ -77,13 +79,13 @@ struct ServiceInfoView: View {
                 HStack {
                     Text("Отказ от ответственности")
                         .minimumScaleFactor(0.5)
-                        .foregroundColor(.black)
+                        .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                     Spacer()
                     Image(systemName: "arrow.right")
                         .resizable()
                         .frame(width: 15, height: 15)
-                        .foregroundColor(.gray)
+                        .foregroundColor(Color.theme.blackWhiteText)
                 }
                 .sheet(isPresented: $showDisclaimerOfLiability, content: {
                     DisclaimerOfLiability()
@@ -99,13 +101,13 @@ struct ServiceInfoView: View {
                 HStack {
                     Text("Контакты")
                         .minimumScaleFactor(0.5)
-                        .foregroundColor(.black)
+                        .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                     Spacer()
                     Image(systemName: "arrow.right")
                         .resizable()
                         .frame(width: 15, height: 15)
-                        .foregroundColor(.gray)
+                        .foregroundColor(Color.theme.blackWhiteText)
                 }
             }
             }
@@ -125,7 +127,7 @@ struct ServiceInfoView: View {
                                 Image(systemName: "arrow.backward")
             .resizable()
             .frame(width: 20, height: 20)
-            .foregroundColor(.black)
+            .foregroundColor(Color.theme.blackWhiteText)
             .onTapGesture {
                 self.presentation.wrappedValue.dismiss()
             }

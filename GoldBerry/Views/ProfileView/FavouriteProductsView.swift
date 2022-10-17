@@ -27,7 +27,7 @@ struct WithoutFavouriteProductsView: View {
                 .padding(.top, 90)
             Text("Нет избранных товаров")
                 .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
-                .foregroundColor(.black)
+                .foregroundColor(Color.theme.blackWhiteText)
                 .padding(.bottom, 10)
             Text("Добавьте товары, чтобы не пропустить ничего важного")
                 .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
