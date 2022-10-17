@@ -42,17 +42,26 @@ struct AllProductsCell: View {
                             Button {
                                 fruit.favorite.toggle()
                             } label: {
+                                ZStack {
+                                    Image(systemName: "heart.fill")
+                                        .resizable()
+                                        .frame(width: 35, height: 35)
+                                        .foregroundColor(.white.opacity(0.5))
+                                        .padding(20)
+                                
                                 Image(systemName: fruit.favorite ? "heart.fill" : "heart")
                                     .resizable()
                                     .renderingMode(.template)
 //                                    .scaleEffect(3)
                                     .foregroundColor(.red)
                                     .frame(width: 30, height: 30)
-                                    .padding(5)
-                                    .animation(.easeInOut(duration: 1.5))
-                                    .background(.white.opacity(0.5))
-                                    .cornerRadius(10)
-                            }.frame(width: 30, height: 30)
+                                    .padding(20)
+//                                    .animation(.easeInOut(duration: 1.5))
+//                                    .background(.white.opacity(0.5))
+//                                    .cornerRadius(10)
+                                }
+                            }.frame(width: 35, height: 45)
+                           
                         }
                         .padding(10)
                         Spacer()
@@ -63,16 +72,19 @@ struct AllProductsCell: View {
                 if fruit.itog == fruit.cost {
                     Text("\(fruit.cost, specifier: "%.2f")₽")
                         .font(.system(size: 14, weight: .bold, design: .serif))
-                        .foregroundColor(.black)
+                        .multilineTextAlignment(.leading)
+                        .foregroundColor(Color.theme.blackWhiteText)
                     Spacer()
                 } else {
                     Text("\(fruit.itog, specifier: "%.2f")₽")
                         .font(.system(size: 14, weight: .bold, design: .serif))
+                        .multilineTextAlignment(.leading)
                         .foregroundColor(.red)
                     ZStack {
                         Text("\(fruit.cost, specifier: "%.2f")₽")
                             .font(.system(size: 12, weight: .light, design: .serif))
-                            .foregroundColor(.black.opacity(0.6))
+                            .foregroundColor(Color.theme.blackWhiteText.opacity(0.6))
+                            .multilineTextAlignment(.leading)
                         Color(CGColor(gray: 0, alpha: 1)).opacity(0.5)
                             .frame(width: 45, height: 0.5)
                     }
@@ -84,8 +96,8 @@ struct AllProductsCell: View {
             HStack {
                 Text(fruit.name)
                     .font(.system(size: 20, weight: .light, design: .serif))
-                    .foregroundColor(.black)
-
+                    .foregroundColor(Color.theme.blackWhiteText)
+                    .multilineTextAlignment(.leading)
                 Spacer()
             }
             .padding(3)
@@ -94,10 +106,10 @@ struct AllProductsCell: View {
             .padding(.horizontal, 3)
             HStack(alignment: .top) {
                 Text(fruit.comment ?? "no")
-                    .multilineTextAlignment(.leading)
                     .frame(width: 170, height: 60)
                     .font(.system(size: 12, weight: .light, design: .serif))
-                    .foregroundColor(.black.opacity(0.8))
+                    .foregroundColor(Color.theme.blackWhiteText.opacity(0.8))
+                    .multilineTextAlignment(.leading)
             }
 
             HStack {
@@ -122,7 +134,7 @@ struct AllProductsCell: View {
                         .foregroundColor(Color.theme.gray)
                 }
                 Text("\(fruit.count) кг")
-                    .foregroundColor(.black)
+                    .multilineTextAlignment(.leading)
                     .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
                 Button {
                     fruit.count += 1
@@ -153,26 +165,24 @@ struct AllProductsCell: View {
                     fruit.isValid = false
                     fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
                 } label: {
-                    HStack {
+                    ZStack {
                         Text("В корзину")
                             .foregroundColor(.white)
                             .font(.system(size: 12, weight: .light, design: .serif))
                     }
-                    
                     .frame(width: 140,height: 25)
                     .background(fruit.isValid ?? true ? Color.theme.lightGreen : Color.gray)
-
+                    .cornerRadius(6)
                     .padding(8)
-                    .cornerRadius(10)
-                    .shadow(color: .black, radius: 2)
+                    .shadow(color: Color.theme.blackWhiteText, radius: 2)
                 }
                 .disabled(!(fruit.isValid ?? true))
             }
             .padding(7)
         }
         .frame(width: 180, height: 320)
-        .background(.white)
-        .cornerRadius(20)
+        .background(Color.theme.background)
+        .cornerRadius(10)
         .shadow(color: .gray, radius: 1, x: 0, y: 2)
         .onAppear {
             for i in fruits {

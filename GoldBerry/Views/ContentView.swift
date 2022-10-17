@@ -67,7 +67,8 @@ struct ViewProfile: View {
                         }
                         .padding(.top, 40)
                     }
-                    .background(fruitViewModel.selected == 3 ? Color.theme.lightGreen : Color.theme.background)
+//                    .background(fruitViewModel.selected == 3 ? Color.theme.lightGreen : Color.theme.background)
+                    .background(.clear)
                     Spacer()
                     ZStack(alignment: .bottom) {
                         HStack {
@@ -159,7 +160,7 @@ struct ViewProfile: View {
             }
         }
         .ignoresSafeArea()
-        .background(.white)
+        .background(.clear)
         
     }
 }
