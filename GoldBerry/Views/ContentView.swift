@@ -67,7 +67,7 @@ struct ViewProfile: View {
                         }
                         .padding(.top, 40)
                     }
-
+                    .background(Color.theme.background)
                     Spacer()
                     ZStack(alignment: .bottom) {
                         HStack {
@@ -143,7 +143,7 @@ struct ViewProfile: View {
                         .padding()
                         .padding(.horizontal, 22)
                         //                        .background(Color.background)
-                        .background(.white)
+                        .background(Color.theme.tabBarBackground)
                     }
 
                     //                    .padding()
@@ -154,7 +154,7 @@ struct ViewProfile: View {
                     //                    .shadow(color: Color.lightShadow, radius: 5, x: -4, y: -4)
                     //                    .shadow(color: Color.darkShadow, radius: 5, x: 4, y: 4)
                     .padding(.bottom, 30)
-                    .shadow(color: .green.opacity(0.5), radius: 20, x: 0, y: 10)
+                    .shadow(color: Color.theme.lightGreen.opacity(0.5), radius: 20, x: 0, y: 10)
                 }
             }
         }

@@ -23,16 +23,19 @@ struct WithoutPurchase: View {
     @ObservedObject var orderViewModel: OrderViewModel
 
     var body: some View {
+        Color.theme.background
+            .ignoresSafeArea()
+            .overlay(
         VStack {
             Image("noOrders")
                 .resizable()
                 .frame(width: 300, height: 300)
                 .cornerRadius(20)
                 .padding()
-                .padding(.top, 90)
+                .padding(.top, 60)
             Text("В корзине пока пусто")
                 .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
-                .foregroundColor(.black)
+                .foregroundColor(Color.theme.blackWhiteText)
                 .padding(.bottom, 10)
             Text("Ваша корзина ждет, пока ее наполнят!")
                 .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
@@ -52,6 +55,8 @@ struct WithoutPurchase: View {
             Spacer()
                 .navigationBarHidden(true)
         }
+            .background(Color.theme.background)
+            )
     }
 }
 

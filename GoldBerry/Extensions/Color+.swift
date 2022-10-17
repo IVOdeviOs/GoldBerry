@@ -12,5 +12,7 @@ struct ColorTheme {
     let menuButton = Color("MenuButton")
     let background = Color("Background")
     let cellColor = Color("CellColor")
+    let tabBarBackground = Color("TabBarBackground")
+    let blackWhiteText = Color("WhiteBlackText")
 }
 

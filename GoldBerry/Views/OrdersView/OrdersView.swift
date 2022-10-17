@@ -24,16 +24,19 @@ struct WithoutOrders: View {
     @ObservedObject var fruitViewModel: FruitViewModel
 
     var body: some View {
+        Color.theme.background
+            .ignoresSafeArea()
+            .overlay(
         VStack {
             Image("noOrders")
                 .resizable()
                 .frame(width: 300, height: 300)
                 .cornerRadius(20)
                 .padding()
-                .padding(.top, 90)
+                .padding(.top, 60)
             Text("У вас пока нет заказов")
                 .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
-                .foregroundColor(.black)
+                .foregroundColor(Color.theme.blackWhiteText)
                 .padding(.bottom, 10)
             Text("Закажите что-нибудь свеженькое в нашем магазине")
                 .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
@@ -54,6 +57,8 @@ struct WithoutOrders: View {
             Spacer()
                 .navigationBarHidden(true)
         }
+            .background(Color.theme.background)
+            )
     }
 }
 
