@@ -22,7 +22,7 @@ struct SignUP: View {
                     Spacer(minLength: 0)
                     VStack(spacing: 10) {
                         Text("SignUp")
-                            .foregroundColor(index == 1 ? .white : Color.theme.gray)
+                            .foregroundColor(index == 1 ? Color.theme.background : Color.theme.gray)
                             .font(Font(uiFont: .fontLibrary(22, .uzSansBold)))
                         Capsule()
                             .fill(index == 1 ? Color(red: 243 / 255,
@@ -35,15 +35,15 @@ struct SignUP: View {
                 VStack {
                     HStack(spacing: 15) {
                         Image(systemName: "envelope.fill")
-                            .foregroundColor(Color.white)
+                            .foregroundColor(Color.theme.background)
                         TextField("Email Address", text: $signUP.email)
                             .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
-                            .foregroundColor(.white)
+                            .foregroundColor(Color.theme.background)
                             .autocapitalization(.none)
                             .keyboardType(.emailAddress)
                     }
                     Divider()
-                        .background(Color.white)
+                        .background(Color.theme.background)
                 }
                 .padding(.horizontal)
                 .padding(.top, 30)
@@ -54,18 +54,20 @@ struct SignUP: View {
                             signUP.secure.toggle()
                         } label: {
                             Image(systemName: signUP.secure ? "eye.slash.fill" : "eye.fill")
-                                .foregroundColor(.white)
+                                .foregroundColor(Color.theme.background)
                         }
                         if signUP.secure {
                             SecureField("Password", text: $signUP.password)
                                 .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                                .foregroundColor(Color.theme.background)
                         } else {
                             TextField("Password", text: $signUP.password)
                                 .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                                .foregroundColor(Color.theme.background)
                         }
                     }
                     Divider()
-                        .background(Color.white)
+                        .background(Color.theme.background)
                 }
                 .padding(.horizontal)
                 .padding(.top, 30)
@@ -75,25 +77,27 @@ struct SignUP: View {
                             signUP.secureConfirm.toggle()
                         } label: {
                             Image(systemName: signUP.secureConfirm ? "eye.slash.fill" : "eye.fill")
-                                .foregroundColor(.white)
+                                .foregroundColor(Color.theme.background)
                         }
                         if signUP.secureConfirm {
                             SecureField("Password", text: $signUP.confirmationPassword)
                                 .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                                .foregroundColor(Color.theme.background)
                         } else {
                             TextField("Password", text: $signUP.confirmationPassword)
                                 .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                                .foregroundColor(Color.theme.background)
                         }
                     }
                     Divider()
-                        .background(Color.white)
+                        .background(Color.theme.background)
                 }
                 .padding(.horizontal)
                 .padding(.top, 30)
 
                 HStack {
                     Text(" I agree to the assessment,\n use and processing of my personal data")
-                        .foregroundColor(.white)
+                        .foregroundColor(Color.theme.background)
                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                         
                         .lineLimit(2)
@@ -102,7 +106,7 @@ struct SignUP: View {
                         signUP.terms.toggle()
                     } label: {
                         Image(systemName: signUP.terms ? "square.fill" : "square")
-                            .foregroundColor(Color.white)
+                            .foregroundColor(Color.theme.background)
                             .padding(.bottom, 10)
                     }
                 }
@@ -142,7 +146,7 @@ struct SignUP: View {
             } label: {
 
                 Text("SignUp")
-                    .foregroundColor(.white)
+                    .foregroundColor(Color.theme.background)
                     .font(Font(uiFont: .fontLibrary(18, .uzSansSemiBold)))
                     .padding(.vertical)
                     .padding(.horizontal, 50)

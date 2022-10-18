@@ -155,6 +155,7 @@ struct AllProductsCell: View {
                         .frame(width: 25, height: 25)
                         .foregroundColor(Color.theme.lightGreen)
                 }
+                .buttonStyle(PlainButtonStyle())
             }
             .padding(.horizontal, 10)
             HStack {

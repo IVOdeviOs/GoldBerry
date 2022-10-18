@@ -16,7 +16,7 @@ struct Login: View {
                 HStack {
                     VStack(spacing: 10) {
                         Text("LogIn")
-                            .foregroundColor(index == 0 ? .white : .gray)
+                            .foregroundColor(index == 0 ? Color.theme.background : .gray)
                             .font(Font(uiFont: .fontLibrary(22, .uzSansBold)))
                         Capsule()
                             .fill(index == 0 ? Color(red: 243 / 255,
@@ -30,14 +30,14 @@ struct Login: View {
                 VStack {
                     HStack(spacing: 15) {
                         Image(systemName: "envelope.fill")
-                            .foregroundColor(.white)
+                            .foregroundColor(Color.theme.background)
                         TextField("Email address", text: $login.email)
                             .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
-                            .foregroundColor(.white)
+                            .foregroundColor(Color.theme.background)
                             .keyboardType(.emailAddress)
                     }
                     Divider()
-                        .background(Color.white)
+                        .background(Color.theme.background)
                 }
                 .padding(.horizontal)
                 .padding(.top, 40)
@@ -48,19 +48,21 @@ struct Login: View {
                             login.secure.toggle()
                         } label: {
                             Image(systemName: login.secure ? "eye.slash.fill" : "eye.fill")
-                                .foregroundColor(.white)
+                                .foregroundColor(Color.theme.background)
                         }
                         if login.secure {
                             SecureField("Password", text: $login.password)
                                 .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                                .foregroundColor(Color.theme.background)
                         } else {
                             TextField("Password", text: $login.password)
                                 .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                                .foregroundColor(Color.theme.background)
                         }
                     }
 
                     Divider()
-                        .background(Color.white)
+                        .background(Color.theme.background)
                 }
                 .padding(.horizontal)
                 .padding(.top, 50)
@@ -72,7 +74,7 @@ struct Login: View {
                         self.showForGetPassword.toggle()
                     } label: {
                         Text("Forget Password?")
-                            .foregroundColor(Color.white)
+                            .foregroundColor(Color.theme.background)
                             .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                     }
                 }
@@ -107,7 +109,7 @@ struct Login: View {
                 }
             } label: {
                 Text("LogIn")
-                    .foregroundColor(Color.white)
+                    .foregroundColor(Color.theme.background)
                     .font(Font(uiFont: .fontLibrary(18, .uzSansSemiBold)))
                     .padding(.vertical)
                     .padding(.horizontal, 50)
