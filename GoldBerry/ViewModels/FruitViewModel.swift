@@ -14,6 +14,7 @@ class FruitViewModel: ObservableObject {
     @Published var uniqFruits = [Fruit]()
     @Published var isShowCount = false
     @Published var cost: Double = 1
+    @Published var countCart = 0
 //    @Published var weightOrPieces = ""
 //    @Published var categories = ""
 //    @Published var favorite = true

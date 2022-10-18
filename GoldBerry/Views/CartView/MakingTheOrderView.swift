@@ -161,6 +161,7 @@ struct MakingTheOrderView: View {
 
                         deleteAllRecords()
 
+                        fruitViewModel.countCart = 0
 //                        orderViewModel.dateFormatter()
                         let orde = Order(orderNumber: str,
                                          date: orderViewModel.date,

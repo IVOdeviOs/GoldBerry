@@ -57,7 +57,7 @@ struct CartCell: View {
                     Text(fruit.name)
                         .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
-                    Text(fruit.descriptions ?? "ddd")
+                    Text(fruit.comment ?? "ddd")
                         .fixedSize(horizontal: false, vertical: true)
                         .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(14, .uzSansRegular)))
@@ -97,10 +97,6 @@ struct CartCell: View {
                     } else {
                         fruit.price = fruit.itog * Double(fruit.count)
                     }
-//                    viewModel.order.price += price
-//                    print("\(price)")
-//                    viewModel.price = price
-//                    orderViewModel.price = fruit.price!
                     fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
                 } label: {
                     Image(systemName: "plus.square.fill")

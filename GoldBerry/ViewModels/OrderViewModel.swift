@@ -109,13 +109,4 @@ class OrderViewModel: ObservableObject {
         dateOrder = dateFormatterOrder.string(from: .now)
     }
 
-    func orders() -> Bool {
-        var ordersBool = true
-        for item in order {
-            if item.email == email as! String {
-                ordersBool = false
-            }
-        }
-        return ordersBool
-    }
 }

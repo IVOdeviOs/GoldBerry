@@ -97,7 +97,7 @@ struct ViewProfile: View {
                                             Color.red
                                                 .frame(width: 20, height: 20)
                                                 .cornerRadius(10)
-                                            Text("\(fruits.count)")
+                                            Text("\(fruitViewModel.countCart)")
                                                 .minimumScaleFactor(0.5)
                                                 .foregroundColor(.white)
                                                 .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
@@ -169,11 +169,11 @@ struct ExtractedView: View {
     @ObservedObject var fruitViewModel = FruitViewModel()
     @ObservedObject var orderViewModel = OrderViewModel()
     @ObservedObject var userViewModel = UserViewModel()
-//    @FetchRequest(
-//        sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)],
-//          animation: .default
-//      )
-//    var fruits: FetchedResults<FruitEntity>
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)],
+          animation: .default
+      )
+    var fruits: FetchedResults<FruitEntity>
 
     var body: some View {
         ZStack {
@@ -181,7 +181,8 @@ struct ExtractedView: View {
             case 0:
                 ProductsView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
                     .onAppear {
-                       
+//                        fruitViewModel.countCart = fruits.count
+//                        print("🚘\(fruitViewModel.countCart)")
                         Task {
                             do {
                                 try await orderViewModel.fetchOrder()

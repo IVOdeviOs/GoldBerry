@@ -6,11 +6,19 @@ struct OrdersView: View {
     @ObservedObject var fruitViewModel: FruitViewModel
     let email = UserDefaults.standard.value(forKey: "userEmail")
 
-   
+    func orders() -> Bool {
+        var ordersBool = true
+        for item in orderViewModel.order {
+            if item.email == email as? String {
+                ordersBool = false
+            }
+        }
+        return ordersBool
+    }
 
     var body: some View {
 
-        if orderViewModel.orders() {
+        if orders() {
             WithoutOrders(orderViewModel: orderViewModel, fruitViewModel: fruitViewModel)
         } else {
             WithOrders(orderViewModel: orderViewModel)
@@ -71,7 +79,7 @@ struct WithOrders: View {
     var body: some View {
 //        NavigationView {
             List(orderViewModel.order) { item in
-                if item.email == email as! String {
+                if item.email == email as? String {
                     NavigationLink {
                         OrderInfoView(order: item)
                     } label: {

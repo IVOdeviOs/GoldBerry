@@ -106,12 +106,15 @@ struct AllProductsCell: View {
             .padding(.horizontal, 3)
             HStack(alignment: .top) {
                 Text(fruit.comment ?? "no")
-                    .frame(width: 170, height: 60)
+//                    .frame(width: 170, height: 60)
                     .font(.system(size: 12, weight: .light, design: .serif))
                     .foregroundColor(Color.theme.blackWhiteText.opacity(0.8))
-                    .multilineTextAlignment(.leading)
+//                    .multilineTextAlignment(.leading)
+                Spacer()
+              
             }
-
+            .padding(.horizontal,5)
+            .frame(height: 60)
             HStack {
                 Button {
                     if fruit.count >= 2 {
@@ -144,10 +147,7 @@ struct AllProductsCell: View {
                     } else {
                         fruit.price = fruit.cost * Double(fruit.count)
                     }
-                    //                    viewModel.order.price += price
-                    //                    print("\(price)")
-//                    fruit.price = fruit.price
-//                    print("\(fruit.price)")
+
 
                 } label: {
                     Image(systemName: "plus.square.fill")
@@ -165,6 +165,7 @@ struct AllProductsCell: View {
                     addFruit()
                     fruitViewModel.isShowCount = true
                     fruit.isValid = false
+                    fruitViewModel.countCart += 1
                     fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
                 } label: {
                     ZStack {
@@ -219,9 +220,3 @@ struct AllProductsCell: View {
         }
     }
 }
-
-// struct AllProductsCell_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AllProductsCell(fruit: Fruit(cost: 1, weightOrPieces: "", categories: "", favorite: true, count: 1, image: "", name: "", percent: 1, descriptions: "", price: 1)).previewLayout(.fixed(width: 180, height: 290))
-//    }
-// }
