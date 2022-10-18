@@ -126,6 +126,7 @@ struct AllProductsCell: View {
                         //                        print("\(price)")
 //                        fruit.price = fruit.price
 //                        print("\(String(describing: fruit.price))")
+                            
                     }
                 } label: {
                     Image(systemName: "minus.square.fill")
