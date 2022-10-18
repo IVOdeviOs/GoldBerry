@@ -42,16 +42,16 @@ struct UserInfoView: View {
 
                 userViewModel.user.forEach { i in
                     if i.userEmail == email as! String {
-                        Task {
-                            do {
-                                try await userViewModel.updateUser()
-                            } catch {
-                                print("❌ ERORR🥰")
-                            }
-                        }
-//                        modal = .update(User(id:viewModel.userId, userName: viewModel.userName, userSurname: viewModel.userSurname, userPhone: viewModel.userPhone, userEmail: email as! String))
-
-                    } else {
+                        //                        Task {
+                        //                            do {
+                        //                                try await userViewModel.updateUser()
+                        //                            } catch {
+                        //                                print("❌ ERORR🥰")
+                        //                            }
+                        //                        }
+                        ////                        modal = .update(User(id:viewModel.userId, userName: viewModel.userName, userSurname: viewModel.userSurname, userPhone: viewModel.userPhone, userEmail: email as! String))
+                        //
+                        //                    } else {
                         Task {
                             do {
                                 try await userViewModel.addUser()
@@ -59,9 +59,9 @@ struct UserInfoView: View {
                                 print("❌ ERORR😤")
                             }
                         }
+                        //                    }
                     }
                 }
-
 //                modal = .update(User(userName: viewModel.userName, userSurname: viewModel.userSurname, userPhone: viewModel.userPhone, userEmail: email as! String))
 
                 //                userEmail = email as! String

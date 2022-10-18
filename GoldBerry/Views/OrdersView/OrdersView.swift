@@ -69,7 +69,7 @@ struct WithOrders: View {
     let email = UserDefaults.standard.value(forKey: "userEmail")
 
     var body: some View {
-        NavigationView {
+//        NavigationView {
             List(orderViewModel.order) { item in
                 if item.email == email as! String {
                     NavigationLink {
@@ -92,7 +92,7 @@ struct WithOrders: View {
             .offset(y: 20)
             .navigationViewStyle(.columns)
             .listStyle(.plain)
-        }
+//        }
         .padding(.top, 0)
         .navigationBarHidden(true)
     }

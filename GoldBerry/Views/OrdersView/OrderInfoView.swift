@@ -95,7 +95,7 @@ struct OrderInfoView: View {
                 Spacer()
             }
         }
-        .offset(y: 5)
+        .offset(y: 35)
         .ignoresSafeArea()
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading:

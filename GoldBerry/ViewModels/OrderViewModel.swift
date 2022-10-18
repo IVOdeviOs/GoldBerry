@@ -31,7 +31,6 @@ class OrderViewModel: ObservableObject {
 //            .eraseToAnyPublisher()
 //    }
 
-    
     private var isDateValidPublisher: AnyPublisher<Bool, Never> {
         $date
             .map {
@@ -49,6 +48,7 @@ class OrderViewModel: ObservableObject {
             .replaceNil(with: false)
             .eraseToAnyPublisher()
     }
+
     private var isCustomerPhoneValidPublisher: AnyPublisher<Bool, Never> {
         $customerPhone
             .map {
@@ -59,10 +59,11 @@ class OrderViewModel: ObservableObject {
             }
             .eraseToAnyPublisher()
     }
+
     private var isAddressValidPublisher: AnyPublisher<Bool, Never> {
         $address
             .map {
-                 $0.count > 2
+                $0.count > 2
             }
             .eraseToAnyPublisher()
     }
@@ -100,10 +101,12 @@ class OrderViewModel: ObservableObject {
     }
 
     func dateFormatter() {
+        let dateFormatterOrder = DateFormatter()
+        dateFormatterOrder.dateFormat = "dd.MM.yyyy.HH.mm"
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"
         date = dateFormatter.string(from: deliveryDate)
-        dateOrder = dateFormatter.string(from: .now)
+        dateOrder = dateFormatterOrder.string(from: .now)
     }
 
     func orders() -> Bool {
