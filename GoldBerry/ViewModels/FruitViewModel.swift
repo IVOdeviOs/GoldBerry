@@ -5,6 +5,8 @@ import Foundation
 import SwiftUI
 class FruitViewModel: ObservableObject {
 
+    @Published var showCartCount = true
+    
     @Published var selected = 0
     @Published var fruit = [Fruit]()
 

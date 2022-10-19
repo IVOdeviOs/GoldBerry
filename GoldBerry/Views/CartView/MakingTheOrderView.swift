@@ -155,7 +155,6 @@ struct MakingTheOrderView: View {
 
                         deleteAllRecords()
 
-                        fruitViewModel.countCart = 0
 
                         let orde = Order(orderNumber: str,
                                          date: orderViewModel.date,
@@ -175,7 +174,8 @@ struct MakingTheOrderView: View {
                                 print("❌ ERORR")
                             }
                         }
-
+                        fruitViewModel.countCart = 0
+                        fruitViewModel.showCartCount = false
                     } label: {
                         Text("Сделать заказ")
                             .foregroundColor(.white)

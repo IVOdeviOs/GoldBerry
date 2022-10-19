@@ -150,7 +150,9 @@ struct ViewProfile: View {
         .ignoresSafeArea()
         .background(.clear)
         .onAppear{
+            if fruitViewModel.showCartCount == true {
             fruitViewModel.countCart = fruits.count
+            }
         }
     }
 }
