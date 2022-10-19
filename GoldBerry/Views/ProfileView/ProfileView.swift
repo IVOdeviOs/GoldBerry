@@ -1,5 +1,5 @@
+import FirebaseAuth
 import SwiftUI
-
 struct ProfileView: View {
     @ObservedObject var fruitViewModel = FruitViewModel()
     @ObservedObject var orderViewModel = OrderViewModel()
@@ -191,9 +191,9 @@ struct ProfileView: View {
                             }
                         }
                         .alert(isPresented: $userViewModel.alert) {
-                            Alert(title: Text("Sign Out"),
-                                  message: Text("Are you sure you want to log out of your account?"),
-                                  primaryButton: .destructive(Text("Yes")) {
+                            Alert(title: Text("Выйти"),
+                                  message: Text("Вы точно хотите выйти из аккаунта?"),
+                                  primaryButton: .destructive(Text("Да")) {
                                       UserDefaults.standard.set(false, forKey: "status")
                                       NotificationCenter.default.post(name: NSNotification.Name("statusChange"),
                                                                       object: nil)
@@ -204,6 +204,45 @@ struct ProfileView: View {
                         .padding(.horizontal)
                         .padding(.leading, 10)
                         Spacer()
+                        Button {
+                            userViewModel.alertDeleted = true
+
+                        } label: {
+                            HStack(spacing: 5) {
+                                Image(systemName: "rectangle.portrait.and.arrow.right")
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+                                    .foregroundColor(Color.theme.blackWhiteText)
+                                Text("Удалить аккаунт")
+                                    .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
+                                    .foregroundColor(Color.theme.blackWhiteText)
+                            }
+                        }
+                        .alert(isPresented: $userViewModel.alertDeleted) {
+                            Alert(title: Text("Удалить аккаунт"),
+                                  message: Text("Вы точно хотите удалить свой аккаунт?"),
+                                  primaryButton: .destructive(Text("Да")) {
+                                      let user = Auth.auth().currentUser
+
+                                      user?.delete { error in
+                                          if error != nil {
+                                          } else {
+                                              do {
+                                                  try Auth.auth().signOut()
+                                                  UserDefaults.standard.set(false, forKey: "status")
+                                                  NotificationCenter.default.post(name: NSNotification.Name("statusChange"),
+                                                                                  object: nil)
+                                              } catch _ {
+                                              }
+                                          }
+                                      }
+
+                                  },
+                                  secondaryButton: .cancel())
+                        }
+                        .padding(.vertical, 10)
+                        .padding(.horizontal)
+                        .padding(.leading, 10)
                     }
                     .offset(y: -90)
                     .navigationBarHidden(true)

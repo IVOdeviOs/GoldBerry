@@ -10,6 +10,8 @@ class UserViewModel: ObservableObject {
     var numberPhone = "+375336096300"
 
     @Published var alert = false
+    @Published var alertDeleted = false
+
     @Published var countOrder = 0
     @Published var showUserInfoView = false
     @Published var showServiceInfoView = false
