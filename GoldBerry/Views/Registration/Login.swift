@@ -4,7 +4,6 @@ import SwiftUI
 
 struct Login: View {
     @StateObject private var login = LogIn()
-//    @ObservedObject var userViewModel = LogIn()
     @Binding var index: Int
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: UserRegEntity.entity(), sortDescriptors: [])
@@ -70,7 +69,6 @@ struct Login: View {
                 HStack {
                     Spacer(minLength: 0)
                     Button {
-//                        forGetPassword(email: login.email)
                         self.showForGetPassword.toggle()
                     } label: {
                         Text("Forget Password?")

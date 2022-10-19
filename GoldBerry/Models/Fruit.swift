@@ -11,7 +11,6 @@ struct Fruit: Identifiable, Codable, Hashable {
     var image: String
     var name: String
     var percent: Int?
-    var descriptions: String?
     var price: Double?
     var comment: String?
     var itog: Double {

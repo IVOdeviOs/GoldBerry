@@ -206,10 +206,9 @@ struct ProfileView: View {
                         Spacer()
                         Button {
                             userViewModel.alertDeleted = true
-
                         } label: {
                             HStack(spacing: 5) {
-                                Image(systemName: "rectangle.portrait.and.arrow.right")
+                                Image(systemName: "x.square")
                                     .resizable()
                                     .frame(width: 20, height: 20)
                                     .foregroundColor(Color.theme.blackWhiteText)
@@ -223,7 +222,6 @@ struct ProfileView: View {
                                   message: Text("Вы точно хотите удалить свой аккаунт?"),
                                   primaryButton: .destructive(Text("Да")) {
                                       let user = Auth.auth().currentUser
-
                                       user?.delete { error in
                                           if error != nil {
                                           } else {

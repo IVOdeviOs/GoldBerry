@@ -10,6 +10,12 @@ struct CartCell: View {
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.id, ascending: true)])
     var fruits: FetchedResults<FruitEntity>
+    func removeCell(at offsets: IndexSet) {
+        for index in offsets {
+            let cell = fruits[index]
+            viewContext.delete(cell)
+        }
+    }
 
     var body: some View {
         VStack {
