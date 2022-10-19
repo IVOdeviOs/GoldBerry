@@ -62,4 +62,8 @@ class FruitViewModel: ObservableObject {
             self.fruit = fruitResponse
         }
     }
+
+
+   
 }
+

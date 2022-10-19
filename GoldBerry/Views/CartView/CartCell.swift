@@ -4,16 +4,24 @@ struct CartCell: View {
 
     @ObservedObject var fruitViewModel: FruitViewModel
     @ObservedObject var orderViewModel: OrderViewModel
-
+   
     @State var fruit: Fruit
 
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.id, ascending: true)])
     var fruits: FetchedResults<FruitEntity>
-    func removeCell(at offsets: IndexSet) {
-        for index in offsets {
-            let cell = fruits[index]
-            viewContext.delete(cell)
+
+    func removeCell(fru: Fruit) {
+        for item in fruits {
+            if fru.id == item.id {
+                viewContext.delete(item)
+                fruitViewModel.uniqFruits.removeFirst()
+                fruitViewModel.countCart -= 1
+                fruitViewModel.arrayOfFruitPrice.removeValue(forKey: item.name ?? "")
+                do {
+                    try viewContext.save()
+                } catch {}
+            }
         }
     }
 
@@ -44,8 +52,7 @@ struct CartCell: View {
                             .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
                         Spacer()
                         Button {
-//                            EditButton()
-//                            index = 1
+                            removeCell(fru: fruit)
                         } label: {
                             Image(systemName: "x.square")
                                 .resizable()

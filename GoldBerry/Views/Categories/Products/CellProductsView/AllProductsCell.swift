@@ -181,6 +181,7 @@ struct AllProductsCell: View {
             let newFruit = FruitEntity(context: viewContext)
             newFruit.id = fruit.id
             newFruit.counts = Int16(fruit.count)
+            newFruit.name = fruit.name
             do {
 
                 try viewContext.save()

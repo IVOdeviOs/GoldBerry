@@ -88,7 +88,7 @@ struct ViewProfile: View {
                             } label: {
                                 ZStack {
                                     ZStack {
-                                        if fruitViewModel.isShowCount {
+                                        if fruitViewModel.isShowCount && fruitViewModel.countCart != 0 {
                                             Color.red
                                                 .frame(width: 20, height: 20)
                                                 .cornerRadius(10)
@@ -149,6 +149,9 @@ struct ViewProfile: View {
         }
         .ignoresSafeArea()
         .background(.clear)
+        .onAppear{
+            fruitViewModel.countCart = fruits.count
+        }
     }
 }
 

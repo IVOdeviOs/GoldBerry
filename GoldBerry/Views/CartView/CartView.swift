@@ -70,36 +70,22 @@ struct WithPurchase: View {
     @State var fruitO = [Fruit]()
     @State var cartPrice: Double = 0
 
-    func removeCell(at offsets: IndexSet) {
-        for index in offsets {
-            let cell = fruits[index]
-            viewContext.delete(cell)
-            fruitViewModel.selected = 0
-
-            do {
-
-                try viewContext.save()
-            } catch {
-                // handle the Core Data error
-            }
-        }
-        fruitViewModel.selected = 1
-    }
 
     var body: some View {
 
         ZStack(alignment: .top) {
 
-            List {
-                ForEach(fruitViewModel.uniqFruits,id: \.id) { item in
+            ScrollView {
+                ForEach(fruitViewModel.uniqFruits, id: \.id) { item in
                     CartCell(fruitViewModel: fruitViewModel,
                              orderViewModel: orderViewModel,
                              fruit: item)
                 }
-                .onDelete(perform: removeCell)
-                .padding(.vertical, 3)
-                .padding(.horizontal, 10)
+                
             }
+            .listStyle(.plain)
+            .padding(.vertical, 3)
+            .padding(.horizontal, 10)
             .padding(.top, 125)
             .padding(.bottom, 100)
             .ignoresSafeArea()
