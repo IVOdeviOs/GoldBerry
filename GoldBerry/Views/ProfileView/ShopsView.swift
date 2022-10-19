@@ -2,9 +2,9 @@
 import SwiftUI
 
 struct ShopsView: View {
-    
+
     @StateObject var viewModel: FruitViewModel
-    
+
     var body: some View {
         VStack {
             Text("Наши торговые точки")
@@ -14,33 +14,20 @@ struct ShopsView: View {
             Color.theme.gray
                 .opacity(0.3)
                 .frame(height: 10)
-            ShopsInfo(viewModel: viewModel, shopName: "Комаровский рынок, место 181", shopAddress: "г. Минск, ул. В. Хоружей, 8", workTime: "с 08:00 до 20:00")
-            ShopsInfo(viewModel: viewModel, shopName: "Рынок Валерианово, место 14", shopAddress: "г. Минск, ул. Логойская, 5а", workTime: "с 08:00 до 21:00")
+            ShopsInfo(shopName: "Комаровский рынок, место 181", shopAddress: "г. Минск, ул. В. Хоружей, 8", workTime: "с 08:00 до 20:00")
+            ShopsInfo(shopName: "Рынок Валерианово, место 14", shopAddress: "г. Минск, ул. Логойская, 5а", workTime: "с 08:00 до 21:00")
             Spacer()
         }
     }
 }
 
-struct ShopsView_Previews: PreviewProvider {
-    static var previews: some View {
-        ShopsView(viewModel: FruitViewModel())
-    }
-}
-
 struct ShopsInfo: View {
-    
-    @StateObject var viewModel: FruitViewModel
+
+    @ObservedObject var viewModel = FruitViewModel()
     @State var shopName: String
     @State var shopAddress: String
     @State var workTime: String
-    
-//    @Environment(\.presentationMode) var presentationMode
-//    private func dismiss() {
-//        viewModel.selected = 0
-//        presentationMode.wrappedValue.dismiss()
-//    }
-    
-    
+
     var body: some View {
         VStack {
             HStack {
@@ -86,22 +73,19 @@ struct ShopsInfo: View {
             Color.theme.gray
                 .opacity(0.3)
                 .frame(height: 1)
-            
+
             Button {
                 viewModel.selected = 0
-                print("🥳")
             }
         label: {
-            Text("Перейти к заказу товаров")
-                .foregroundColor(Color.theme.lightGreen)
-                .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
-                .padding()
-        }
+                Text("Перейти к заказу товаров")
+                    .foregroundColor(Color.theme.lightGreen)
+                    .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
+                    .padding()
+            }
             Color.theme.gray
                 .opacity(0.3)
                 .frame(height: 5)
-//                .navigationBarHidden(true)
-
         }
     }
 }

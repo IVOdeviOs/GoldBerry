@@ -67,27 +67,8 @@ struct WithFavouriteProductsView: View {
                     VStack {
                         LazyVGrid(columns: fruitViewModel.columns, alignment: .center, spacing: 1, pinnedViews: .sectionFooters, content: {
                             ForEach(fruitViewModel.fruit) { fruits in
-                                
-//                                NavigationLink {
-//                                    InformationProductView(
-//                                        id: fruits.id ?? UUID() ,
-//                                        image: fruits.image,
-//                                        name: fruits.name,
-//                                        itog: fruits.itog,
-//                                        cost: fruits.cost,
-//                                        comment: fruits.comment ?? "",
-//                                        favorite: fruits.favorite,
-//                                        count: fruits.count,
-//                                        percent: fruits.percent ?? 0,
-//                                        weightOrPieces: fruits.weightOrPieces,
-//                                        descriptions: fruits.descriptions ?? "",
-//                                        price: fruits.price ?? 1,
-//                                        categories: fruits.categories
-//                                    )
-//                                } label: {
                                 AllProductsCell(fruit: fruits, fruitViewModel: fruitViewModel)
-                                        .padding(.bottom, 30)
-//                                }
+                                    .padding(.bottom, 30)
                             }
 
                         }).padding(.bottom, 60)
@@ -97,11 +78,5 @@ struct WithFavouriteProductsView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarHidden(true)
         }
-    }
-}
-
-struct FavouriteProductsView_Previews: PreviewProvider {
-    static var previews: some View {
-        FavouriteProductsView(viewModel: FruitViewModel())
     }
 }

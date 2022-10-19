@@ -24,13 +24,6 @@ class OrderViewModel: ObservableObject {
 
     var cancellable: Set<AnyCancellable> = []
 
-//    private var formattedEmailPublisher: AnyPublisher<String, Never> {
-//        $customer
-//            .map { $0.lowercased() }
-//            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
-//            .eraseToAnyPublisher()
-//    }
-
     private var isDateValidPublisher: AnyPublisher<Bool, Never> {
         $date
             .map {
@@ -52,8 +45,8 @@ class OrderViewModel: ObservableObject {
     private var isCustomerPhoneValidPublisher: AnyPublisher<Bool, Never> {
         $customerPhone
             .map {
-                let regex =  "((375|80)(25|29|33|34)([0-9]{3}([0-9]{2}){2}))"
-                let predicate = NSPredicate(format:"SELF MATCHES %@",regex)
+                let regex = "((375|80)(25|29|33|34)([0-9]{3}([0-9]{2}){2}))"
+                let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
                 let result = predicate.evaluate(with: $0)
                 return result
             }
@@ -108,5 +101,4 @@ class OrderViewModel: ObservableObject {
         date = dateFormatter.string(from: deliveryDate)
         dateOrder = dateFormatterOrder.string(from: .now)
     }
-
 }

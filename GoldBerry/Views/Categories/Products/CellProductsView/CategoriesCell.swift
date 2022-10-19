@@ -4,7 +4,7 @@ struct CategoriesCell: View {
     var nameImage = ""
     var nameCategories = ""
     var body: some View {
-        ZStack{
+        ZStack {
             Image(nameImage)
                 .resizable()
                 .aspectRatio(contentMode: .fill)

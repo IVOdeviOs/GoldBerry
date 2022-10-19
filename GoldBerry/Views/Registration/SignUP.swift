@@ -1,20 +1,18 @@
 import Combine
+import CoreData
 import FirebaseAuth
 import FirebaseCore
 import SwiftUI
-import CoreData
 
 struct SignUP: View {
-
     @StateObject private var signUP = LogIn()
     @Binding var index: Int
     @Binding var show: Bool
-    
+
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: UserRegEntity.entity(), sortDescriptors: [])
     var users: FetchedResults<UserRegEntity>
-    
-    
+
     var body: some View {
         ZStack(alignment: .bottom) {
             VStack {
@@ -99,7 +97,7 @@ struct SignUP: View {
                     Text(" I agree to the assessment,\n use and processing of my personal data")
                         .foregroundColor(Color.theme.background)
                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                        
+
                         .lineLimit(2)
                     Spacer()
                     Button {
@@ -135,12 +133,9 @@ struct SignUP: View {
                         signUP.alert.toggle()
                     } else {
                         UserDefaults.standard.set(signUP.email, forKey: "userEmail")
-
-//                        addUser()
                         UserDefaults.standard.set(true, forKey: "status")
                         show.toggle()
                         NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
-//                        UserDefaults.standard.set(signUP.email, forKey: "1")
                     }
                 }
             } label: {
@@ -172,15 +167,15 @@ struct SignUP: View {
                 .receive(on: RunLoop.main)
                 .assign(to: \.signUP.isValid, on: self)
                 .store(in: &signUP.cancellable)
-
         }
     }
+
     func addUser() {
         withAnimation {
             let newUser = UserRegEntity(context: viewContext)
             newUser.email = signUP.email
-            for i in users{
-                if newUser.email == i.email{
+            for i in users {
+                if newUser.email == i.email {
                     viewContext.delete(newUser)
                 }
             }
@@ -192,12 +187,5 @@ struct SignUP: View {
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
         }
-    }
-    
-}
-
-struct SignUP_Previews: PreviewProvider {
-    static var previews: some View {
-        SignUP(index: .constant(0), show: .constant(true))
     }
 }

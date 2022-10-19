@@ -4,7 +4,7 @@ import SwiftUI
 class ImagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     @Binding var image: UIImage?
     @Binding var isShow: Bool
-    init(image: Binding<UIImage?>,isShow: Binding<Bool>) {
+    init(image: Binding<UIImage?>, isShow: Binding<Bool>) {
         _image = image
         _isShow = isShow
     }
@@ -15,6 +15,7 @@ class ImagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImageP
             isShow = false
         }
     }
+
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         isShow = false
     }

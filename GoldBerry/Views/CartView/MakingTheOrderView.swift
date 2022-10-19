@@ -50,23 +50,18 @@ struct MakingTheOrderView: View {
                             .resizable()
                             .frame(width: 18, height: 18)
                             .foregroundColor(Color.theme.blackWhiteText)
-//                        .onTapGesture {
-//                            self.presentation.wrappedValue.dismiss()
-//                        }
                     }
-                    .padding(.leading,16)
+                    .padding(.leading, 16)
                     Spacer()
                     Text("Оформление заказа")
                         .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
-                    //                .offset(y: -80)
-                        .offset(x:-16)
+                        .offset(x: -16)
                     Spacer()
                 }
                 Color.theme.gray
                     .opacity(0.3)
                     .frame(height: 10)
-//                .offset(y: -80)
                 ScrollView {
                     HStack {
                         Text("Бесплатная  доставка \nпо Минску")
@@ -145,8 +140,6 @@ struct MakingTheOrderView: View {
                             tog = to
                             dismiss()
                             fruitViewModel.isShowCount = false
-                            //                        fruitViewModel.selected = 0
-                            //                                 tog1 = true
                         }
 
                         var str = ""
@@ -162,7 +155,7 @@ struct MakingTheOrderView: View {
                         deleteAllRecords()
 
                         fruitViewModel.countCart = 0
-//                        orderViewModel.dateFormatter()
+
                         let orde = Order(orderNumber: str,
                                          date: orderViewModel.date,
                                          dateOrder: orderViewModel.dateOrder,
@@ -193,9 +186,6 @@ struct MakingTheOrderView: View {
                     .fullScreenCover(isPresented: $tog) {
                         CompletedOrderView()
                     }
-                    //                .fullScreenCover(isPresented: $tog1) {
-                    //                    ContentView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
-                    //                }
                 }
                 Spacer()
             }
@@ -205,25 +195,8 @@ struct MakingTheOrderView: View {
                 .receive(on: RunLoop.main)
                 .assign(to: \.orderViewModel.isValid, on: self)
                 .store(in: &orderViewModel.cancellable)
-
         }
-//        .offset(y: 15)
-//        .ignoresSafeArea()
+
         .navigationBarBackButtonHidden(true)
-//        .navigationBarItems(leading:
-//            Image(systemName: "arrow.backward")
-//                .resizable()
-//                .frame(width: 18, height: 18)
-//                .foregroundColor(.black)
-//                .onTapGesture {
-//                    self.presentation.wrappedValue.dismiss()
-//                }
-//        )
     }
 }
-
-// struct MakingTheOrderView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MakingTheOrderView(viewModel: FruitViewModel(), orderFruit: [Fruit(cost: 13, weightOrPieces: "", categories: "", favorite: false, count: 1, image: "", name: "")])
-//    }
-// }

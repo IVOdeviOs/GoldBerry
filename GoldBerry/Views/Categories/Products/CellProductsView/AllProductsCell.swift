@@ -1,5 +1,5 @@
-import SwiftUI
 import CoreData
+import SwiftUI
 struct AllProductsCell: View {
     @State var fruit: Fruit
     @ObservedObject var fruitViewModel: FruitViewModel
@@ -11,8 +11,6 @@ struct AllProductsCell: View {
     var body: some View {
         VStack(spacing: 6) {
             ZStack(alignment: .bottomLeading) {
-                //                    .padding(.horizontal)
-
                 RemoteImageView(
                     url: URL(string: fruit.image)!,
                     placeholder: {
@@ -48,20 +46,15 @@ struct AllProductsCell: View {
                                         .frame(width: 35, height: 35)
                                         .foregroundColor(.white.opacity(0.5))
                                         .padding(20)
-                                
-                                Image(systemName: fruit.favorite ? "heart.fill" : "heart")
-                                    .resizable()
-                                    .renderingMode(.template)
-//                                    .scaleEffect(3)
-                                    .foregroundColor(.red)
-                                    .frame(width: 30, height: 30)
-                                    .padding(20)
-//                                    .animation(.easeInOut(duration: 1.5))
-//                                    .background(.white.opacity(0.5))
-//                                    .cornerRadius(10)
+
+                                    Image(systemName: fruit.favorite ? "heart.fill" : "heart")
+                                        .resizable()
+                                        .renderingMode(.template)
+                                        .foregroundColor(.red)
+                                        .frame(width: 30, height: 30)
+                                        .padding(20)
                                 }
                             }.frame(width: 35, height: 45)
-                           
                         }
                         .padding(10)
                         Spacer()
@@ -101,19 +94,15 @@ struct AllProductsCell: View {
                 Spacer()
             }
             .padding(3)
-//            .background(.gray.opacity(0.05))
             .cornerRadius(10)
             .padding(.horizontal, 3)
             HStack(alignment: .top) {
                 Text(fruit.comment ?? "no")
-//                    .frame(width: 170, height: 60)
                     .font(.system(size: 12, weight: .light, design: .serif))
                     .foregroundColor(Color.theme.blackWhiteText.opacity(0.8))
-//                    .multilineTextAlignment(.leading)
                 Spacer()
-              
             }
-            .padding(.horizontal,5)
+            .padding(.horizontal, 5)
             .frame(height: 60)
             HStack {
                 Button {
@@ -124,12 +113,6 @@ struct AllProductsCell: View {
                         } else {
                             fruit.price = fruit.cost * Double(fruit.count)
                         }
-
-                        //                        viewModel.order.price -= price
-                        //                        print("\(price)")
-//                        fruit.price = fruit.price
-//                        print("\(String(describing: fruit.price))")
-                            
                     }
                 } label: {
                     Image(systemName: "minus.square.fill")
@@ -148,7 +131,6 @@ struct AllProductsCell: View {
                         fruit.price = fruit.cost * Double(fruit.count)
                     }
 
-
                 } label: {
                     Image(systemName: "plus.square.fill")
                         .resizable()
@@ -159,8 +141,6 @@ struct AllProductsCell: View {
             }
             .padding(.horizontal, 10)
             HStack {
-//                Spacer()
-
                 Button {
                     addFruit()
                     fruitViewModel.isShowCount = true
@@ -173,7 +153,7 @@ struct AllProductsCell: View {
                             .foregroundColor(.white)
                             .font(.system(size: 12, weight: .light, design: .serif))
                     }
-                    .frame(width: 140,height: 25)
+                    .frame(width: 140, height: 25)
                     .background(fruit.isValid ?? true ? Color.theme.lightGreen : Color.gray)
                     .cornerRadius(6)
                     .padding(8)
@@ -201,14 +181,6 @@ struct AllProductsCell: View {
             let newFruit = FruitEntity(context: viewContext)
             newFruit.id = fruit.id
             newFruit.counts = Int16(fruit.count)
-//            print("\(newFruit.counts)___________")
-//            for i in fruits {
-//
-//                if newFruit.id == i.id {
-//                    viewContext.delete(newFruit)
-//                }
-//            }
-
             do {
 
                 try viewContext.save()

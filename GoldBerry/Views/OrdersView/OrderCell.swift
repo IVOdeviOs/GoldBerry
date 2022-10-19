@@ -1,5 +1,5 @@
-import SwiftUI
 import Foundation
+import SwiftUI
 import UIKit
 struct OrderCell: View {
 
@@ -20,7 +20,7 @@ struct OrderCell: View {
                         .padding(.leading, 10)
                         .padding(.top, 10)
                         .padding(.bottom, 1)
-                    Text("Заказ № \( number)")
+                    Text("Заказ № \(number)")
                         .font(Font(uiFont: .fontLibrary(18, .uzSansBold)))
                         .foregroundColor(Color.theme.blackWhiteText)
                         .padding(.leading, 10)
@@ -44,18 +44,17 @@ struct OrderCell: View {
                             .padding(.top, 5)
                             .padding(.bottom, 10)
                     }
-                    
                 }
                 Spacer()
                 VStack {
-                Text("\(NSString(format: "%.2f", price)) p.")
-                    .frame(width: 120, height: 22)
-                    .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
-                    .minimumScaleFactor(0.5)
-                    .foregroundColor(.white)
-                    .background(Color.theme.lightGreen)
-                    .cornerRadius(5)
-                    .padding()
+                    Text("\(NSString(format: "%.2f", price)) p.")
+                        .frame(width: 120, height: 22)
+                        .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
+                        .minimumScaleFactor(0.5)
+                        .foregroundColor(.white)
+                        .background(Color.theme.lightGreen)
+                        .cornerRadius(5)
+                        .padding()
                     Spacer()
                 }
             }
@@ -75,9 +74,9 @@ struct OrderCell: View {
                                 .aspectRatio(contentMode: .fit)
                         }
                     )
-                        .frame(width: 30, height: 30)
-                        .cornerRadius(5)
-                        .padding(.leading, 10)
+                    .frame(width: 30, height: 30)
+                    .cornerRadius(5)
+                    .padding(.leading, 10)
                     Text(purchases[row].name)
                         .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
@@ -92,21 +91,6 @@ struct OrderCell: View {
                         .padding(.trailing, 10)
                 }
             }
-            //            NavigationView {
-            //                List(purchases) { item in
-            //                    NavigationLink {
-            //                    }
-            //                label: {
-            //                    PurchasesCell(
-            //                        imageName: item.imageName,
-            //                        name: item.name,
-            //                        cost: item.cost,
-            //                        count: item.count
-            //                    )
-            //                }
-            //                }
-            //                .listStyle(.plain)
-            //            }
             HStack {
                 VStack(alignment: .leading, spacing: 10) {
                     HStack {
@@ -148,16 +132,3 @@ struct OrderCell: View {
         .cornerRadius(20)
     }
 }
-
-//struct OrderCell_Previews: PreviewProvider {
-//    static var previews: some View {
-//        OrderCell(
-//            date: "18/08/2022",
-//            number: "1",
-//            price: 1000,
-//            purchases: [],
-//            address: "Минск, пр-т Независимости, 12-100"
-//        )
-//    }
-//}
-

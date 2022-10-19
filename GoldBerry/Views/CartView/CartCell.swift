@@ -27,20 +27,15 @@ struct CartCell: View {
                                 .aspectRatio(contentMode: .fit)
                         }
                     )
-//                        .aspectRatio(contentMode: .fill)
-//                        .frame(width: UIScreen.main.bounds.width - 20 ,height:350)
                 }
                 .frame(width: 150, height: 110)
                 .cornerRadius(10)
-//                    .padding(.leading, 10)
                 VStack(alignment: .leading, spacing: 10) {
 
                     HStack {
                         Text("\(NSString(format: "%.2f", fruit.itog)) р/кг")
                             .foregroundColor(Color.theme.lightGreen)
                             .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
-//                        Text("\(id)")
-//                            .font(.system(size: 30))
                         Spacer()
                         Button {
 //                            EditButton()
@@ -49,7 +44,6 @@ struct CartCell: View {
                             Image(systemName: "x.square")
                                 .resizable()
                                 .frame(width: 25, height: 25)
-//                                .foregroundColor(.black.opacity(0.6))
                                 .foregroundColor(Color.theme.blackWhiteText)
                         }
                     }
@@ -75,11 +69,6 @@ struct CartCell: View {
                             fruit.price = fruit.itog * Double(fruit.count)
                             fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
                         }
-
-//                        viewModel.order.price -= price
-//                        print("\(price)")
-//                        orderViewModel.price! -= fruit.price!
-//                        print("\(String(describing: price))")
                     }
                 } label: {
                     Image(systemName: "minus.square.fill")
@@ -116,7 +105,6 @@ struct CartCell: View {
 
         .onDisappear {
             for i in fruits {
-//
                 if i.id == fruit.id {
                     fruitViewModel.uniqFruits.removeFirst()
                     fruitViewModel.uniqFruits.append(fruit)
@@ -128,18 +116,14 @@ struct CartCell: View {
 
         .onAppear {
             for i in fruits {
-//
+
                 if i.id == fruit.id {
                     fruit.price = Double(fruit.count) * fruit.itog
-//                    orderViewModel.price = fruit.price!
 
                     fruit.price = Double(i.counts) * fruit.itog
-//                    orderViewModel.price = fruit.price
                     fruit.count = Int(i.counts)
-//                    print("😇\(fruit.count)")
                     fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
                 }
-//                print("🤬\(fruit.count)")
             }
         }
         .padding()
@@ -151,11 +135,3 @@ struct CartCell: View {
         .cornerRadius(12)
     }
 }
-
-// struct CartCell_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CartCell(
-//            viewModel: FruitViewModel(), fruit: Fruit(cost: 1, weightOrPieces: "", categories: "", favorite: true, count: 1, image: "", name: "")
-//        )
-//    }
-// }

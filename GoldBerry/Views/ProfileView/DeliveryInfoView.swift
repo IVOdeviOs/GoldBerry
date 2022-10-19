@@ -2,7 +2,7 @@ import SwiftUI
 
 struct DeliveryInfoView: View {
     var body: some View {
-        
+
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
                 Text("Служба поддержки")
@@ -82,11 +82,5 @@ struct DeliveryInfoView: View {
             }
         }
         .background(Color.theme.background)
-    }
-}
-
-struct DeliveryInfoView_Previews: PreviewProvider {
-    static var previews: some View {
-        DeliveryInfoView()
     }
 }

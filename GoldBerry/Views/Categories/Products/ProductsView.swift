@@ -62,26 +62,10 @@ struct ProductsView: View {
                     VStack {
                         LazyVGrid(columns: fruitViewModel.columns, alignment: .center, spacing: 0, pinnedViews: .sectionFooters) {
                             ForEach(fruitViewModel.fruit) { fruits in
-                                if  fruits.categories == tag {
-//                                    NavigationLink {
-//                                        InformationProductView(id: fruits.id ?? UUID(),
-//                                                               image: fruits.image,
-//                                                               name: fruits.name,
-//                                                               itog: fruits.itog,
-//                                                               cost: fruits.cost,
-//                                                               comment: fruits.comment ?? "",
-//                                                               favorite: fruits.favorite,
-//                                                               count: fruits.count,
-//                                                               percent: fruits.percent ?? 1,
-//                                                               weightOrPieces: fruits.weightOrPieces,
-//                                                               descriptions: fruits.descriptions ?? "",
-//                                                               price: fruits.price ?? 1,
-//                                                               categories: fruits.categories)
-//
-//                                    } label: {
+                                if fruits.categories == tag {
+
                                     AllProductsCell(fruit: fruits, fruitViewModel: fruitViewModel)
-                                            .padding(.bottom, 30)
-//                                    }
+                                        .padding(.bottom, 30)
                                 } else if tag == categories.all.rawValue {
                                     AllProductsCell(fruit: fruits, fruitViewModel: fruitViewModel)
                                         .padding(.bottom, 30)
@@ -93,15 +77,8 @@ struct ProductsView: View {
                     }
                 }
             }
-//            .offset( y: -70)
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarHidden(true)
         }
-    }
-}
-
-struct ProductsView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProductsView(fruitViewModel: FruitViewModel(), orderViewModel: OrderViewModel())
     }
 }

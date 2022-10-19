@@ -116,7 +116,6 @@ struct ServiceInfoView: View {
             Link(destination: URL(string: "https://www.instagram.com/nar_juice")!) {
                 Image("instagram")
                     .resizable().frame(width: 60, height: 60).padding()
-//                    .font(.largeTitle)
                 
             }
             Spacer()
@@ -132,11 +131,5 @@ struct ServiceInfoView: View {
                 self.presentation.wrappedValue.dismiss()
             }
         )
-    }
-}
-
-struct ServiceInfoView_Previews: PreviewProvider {
-    static var previews: some View {
-        ServiceInfoView()
     }
 }

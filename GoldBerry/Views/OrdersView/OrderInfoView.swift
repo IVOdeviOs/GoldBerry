@@ -5,13 +5,11 @@ struct OrderInfoView: View {
 
     var order: Order
     @Environment(\.presentationMode) var presentation
-
-//    @ObservedObject var order:OrderViewModel
     var body: some View {
 
         VStack {
             VStack {
-                Text("Заказ № \( order.orderNumber)")
+                Text("Заказ № \(order.orderNumber)")
                     .font(Font(uiFont: .fontLibrary(24, .uzSansBold)))
                     .foregroundColor(Color.theme.blackWhiteText)
                     .padding()
@@ -46,9 +44,9 @@ struct OrderInfoView: View {
                                     .aspectRatio(contentMode: .fit)
                             }
                         )
-                            .frame(width: 30, height: 30)
-                            .cornerRadius(10)
-                            .padding(.leading, 10)
+                        .frame(width: 30, height: 30)
+                        .cornerRadius(10)
+                        .padding(.leading, 10)
                         Text(order.fruit[row].name)
                             .foregroundColor(Color.theme.blackWhiteText)
                             .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
@@ -151,12 +149,3 @@ struct CustomerInfo: View {
         }
     }
 }
-
-struct OrderInfoView_Previews: PreviewProvider {
-    static var previews: some View {
-        OrderInfoView(
-            order: Order(orderNumber: "1", date: "",dateOrder: "", email: "",fruit: [ Fruit( cost: 1, weightOrPieces: "", categories: "", favorite: true, count: 1, image: "", name: "", percent: 1, descriptions: "", price: 1)] ,address: "", price: 1, customer: "", customerPhone: "", comment: "", orderCompleted: false)
-        )
-    }
-}
-

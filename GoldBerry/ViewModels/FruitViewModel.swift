@@ -5,7 +5,6 @@ import Foundation
 import SwiftUI
 class FruitViewModel: ObservableObject {
 
-//    @Published var orderPrice: Double = 0
     @Published var selected = 0
     @Published var fruit = [Fruit]()
 
@@ -15,15 +14,9 @@ class FruitViewModel: ObservableObject {
     @Published var isShowCount = false
     @Published var cost: Double = 1
     @Published var countCart = 0
-//    @Published var weightOrPieces = ""
-//    @Published var categories = ""
-//    @Published var favorite = true
-//    @Published var count = 1
-//    @Published var image = ""
-//    @Published var name = ""
+
     @Published var percent: Int? = 1
-//    @Published var descriptions: String? = ""
-//    @Published var price: Double? = 1
+
     @Published var isValid = true
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
     var fruits: FetchedResults<FruitEntity>
@@ -44,9 +37,7 @@ class FruitViewModel: ObservableObject {
     ]
 
     @Published var show = false
-//    @Published var userRegShow = false
     @Published var viewState: CGSize = .zero
-
 
     @Published var arrayOfFruitPrice = [String: Double]()
     func sum() -> Double {
@@ -56,7 +47,7 @@ class FruitViewModel: ObservableObject {
         }
         return sumOfArray
     }
-    
+
     @Published var favouriteProducts: [Fruit] = []
 
     func fetchFruit() async throws {
@@ -71,13 +62,4 @@ class FruitViewModel: ObservableObject {
             self.fruit = fruitResponse
         }
     }
-//    init() {}
-    //    init(currentUser: User) {
-    //        self.userName = currentUser.userName
-    //        self.userSurname = currentUser.userSurname
-    //        self.userPhone = currentUser.userPhone
-    ////        self.userId = currentUser.id
-    //    }
-
-    //    @Published var fru: Fruit = Fruit(cost: 1, weightOrPieces: "", categories: "", favorite: false, count: 1, image: "", name: "")
 }

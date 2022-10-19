@@ -24,11 +24,10 @@ struct ContentView: View {
                 LoginView(signUP: LogIn())
             }
         }.onAppear {
-            if fruits.count != 0{
+            if !fruits.isEmpty {
                 fruitViewModel.isShowCount = true
             }
-                
-                
+
             NotificationCenter.default.addObserver(forName: NSNotification.Name("statusChange"),
                                                    object: nil,
                                                    queue: .main)
@@ -67,7 +66,6 @@ struct ViewProfile: View {
                         }
                         .padding(.top, 40)
                     }
-//                    .background(fruitViewModel.selected == 3 ? Color.theme.lightGreen : Color.theme.background)
                     .background(.clear)
                     Spacer()
                     ZStack(alignment: .bottom) {
@@ -85,15 +83,12 @@ struct ViewProfile: View {
                             }.foregroundColor(fruitViewModel.selected == 0 ? Color.theme.lightGreen : Color.theme.gray)
                             Spacer(minLength: 12)
 
-                            
                             Button {
-                           
-                                print("🥰\(fruits.count)")
                                 fruitViewModel.selected = 1
                             } label: {
                                 ZStack {
                                     ZStack {
-                                        if fruitViewModel.isShowCount{
+                                        if fruitViewModel.isShowCount {
                                             Color.red
                                                 .frame(width: 20, height: 20)
                                                 .cornerRadius(10)
@@ -143,17 +138,10 @@ struct ViewProfile: View {
                         }
                         .padding()
                         .padding(.horizontal, 22)
-                        //                        .background(Color.background)
                         .background(Color.theme.tabBarBackground)
                     }
-
-                    //                    .padding()
-                    //                    .foregroundColor(Color.neumorphismtextColor)
-                    //                    .background(Color.background)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                     .padding()
-                    //                    .shadow(color: Color.lightShadow, radius: 5, x: -4, y: -4)
-                    //                    .shadow(color: Color.darkShadow, radius: 5, x: 4, y: 4)
                     .padding(.bottom, 30)
                     .shadow(color: Color.theme.lightGreen.opacity(0.5), radius: 8, x: 0, y: 5)
                 }
@@ -161,7 +149,6 @@ struct ViewProfile: View {
         }
         .ignoresSafeArea()
         .background(.clear)
-        
     }
 }
 
@@ -171,8 +158,8 @@ struct ExtractedView: View {
     @ObservedObject var userViewModel = UserViewModel()
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)],
-          animation: .default
-      )
+        animation: .default
+    )
     var fruits: FetchedResults<FruitEntity>
 
     var body: some View {
@@ -181,8 +168,6 @@ struct ExtractedView: View {
             case 0:
                 ProductsView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
                     .onAppear {
-//                        fruitViewModel.countCart = fruits.count
-//                        print("🚘\(fruitViewModel.countCart)")
                         Task {
                             do {
                                 try await orderViewModel.fetchOrder()
@@ -193,7 +178,7 @@ struct ExtractedView: View {
                             }
                         }
                     }
-                    
+
             case 1:
                 CartView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
                     .onAppear {
@@ -234,10 +219,8 @@ struct ExtractedView: View {
 
             default:
                 ProductsView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
-                
             }
         }
         .padding(.top, 90)
     }
 }
-

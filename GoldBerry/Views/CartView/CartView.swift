@@ -26,36 +26,36 @@ struct WithoutPurchase: View {
         Color.theme.background
             .ignoresSafeArea()
             .overlay(
-        VStack {
-            Image("noOrders")
-                .resizable()
-                .frame(width: 300, height: 300)
-                .cornerRadius(20)
-                .padding()
-                .padding(.top, 60)
-            Text("В корзине пока пусто")
-                .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
-                .foregroundColor(Color.theme.blackWhiteText)
-                .padding(.bottom, 10)
-            Text("Ваша корзина ждет, пока ее наполнят!")
-                .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
-                .padding(.bottom, 10)
-                .multilineTextAlignment(.center)
-                .foregroundColor(Color.theme.gray)
-            Button {
-                fruitViewModel.selected = 0
-            } label: {
-                Text("Перейти к выбору товаров")
-                    .frame(width: 300, height: 50)
-                    .foregroundColor(.white)
-                    .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
-                    .background(Color.theme.lightGreen)
-                    .cornerRadius(10)
-            }
-            Spacer()
-                .navigationBarHidden(true)
-        }
-            .background(Color.theme.background)
+                VStack {
+                    Image("noOrders")
+                        .resizable()
+                        .frame(width: 300, height: 300)
+                        .cornerRadius(20)
+                        .padding()
+                        .padding(.top, 60)
+                    Text("В корзине пока пусто")
+                        .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
+                        .foregroundColor(Color.theme.blackWhiteText)
+                        .padding(.bottom, 10)
+                    Text("Ваша корзина ждет, пока ее наполнят!")
+                        .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                        .padding(.bottom, 10)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(Color.theme.gray)
+                    Button {
+                        fruitViewModel.selected = 0
+                    } label: {
+                        Text("Перейти к выбору товаров")
+                            .frame(width: 300, height: 50)
+                            .foregroundColor(.white)
+                            .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                            .background(Color.theme.lightGreen)
+                            .cornerRadius(10)
+                    }
+                    Spacer()
+                        .navigationBarHidden(true)
+                }
+                .background(Color.theme.background)
             )
     }
 }
@@ -94,7 +94,6 @@ struct WithPurchase: View {
                     NavigationLink {
 
                         MakingTheOrderView(orderViewModel: orderViewModel, fruitViewModel: fruitViewModel)
-//                        orderViewModel.show.toggle()
                     } label: {
                         Text("Оформить заказ \(NSString(format: "%.2f", fruitViewModel.sum())) р")
                             .foregroundColor(.white)
@@ -108,17 +107,11 @@ struct WithPurchase: View {
             }
             .navigationBarHidden(true)
         }
-//        .sheet(isPresented: $orderViewModel.show, content: {
-//            MakingTheOrderView(orderViewModel: orderViewModel, fruitViewModel: fruitViewModel)
-//
-//        })
-
         .offset(y: -95)
         .onAppear {
             for item in fruitViewModel.fruit {
                 for i in fruits {
                     if i.id == item.id {
-
                         fruitO.append(item)
                         fruitViewModel.uniqFruits = uniq(source: fruitO)
                     }
@@ -131,15 +124,9 @@ struct WithPurchase: View {
     }
 }
 
-// struct CartView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CartView(viewModel: FruitViewModel())
-//    }
-// }
-
 private func uniq<S: Sequence, T: Hashable>(source: S) -> [T] where S.Iterator.Element == T {
-    var buffer = [T]() // возвращаемый массив
-    var added = Set<T>() // набор - уникальные значения
+    var buffer = [T]()
+    var added = Set<T>()
     for elem in source {
         if !added.contains(elem) {
             buffer.append(elem)

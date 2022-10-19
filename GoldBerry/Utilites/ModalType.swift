@@ -6,6 +6,7 @@ enum ModalType: Identifiable {
         case .update: return "update"
         }
     }
+
     case add
     case update(User)
 }

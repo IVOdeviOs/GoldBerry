@@ -83,7 +83,7 @@ func forGetPassword(email: String) {
     Auth.auth().sendPasswordReset(withEmail: email) { err in
 
         if err != nil {
-            
+
             return
         }
     }

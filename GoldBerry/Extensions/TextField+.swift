@@ -1,9 +1,9 @@
 import SwiftUI
 
 struct TextFieldView: View {
-    
+
     var text: Binding<String>
-    var placeholder: String = ""
+    var placeholder = ""
     var body: some View {
         VStack {
             TextField(placeholder, text: text)
@@ -12,12 +12,10 @@ struct TextFieldView: View {
                 .padding(.leading, 20)
                 .background(.clear)
                 .frame(height: 50)
-//                .border(.red, width: 1)
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.theme.blackWhiteText, lineWidth: 1)
                 )
-//                .cornerRadius(10)
                 .padding()
         }
     }

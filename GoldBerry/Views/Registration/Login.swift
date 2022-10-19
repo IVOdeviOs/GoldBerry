@@ -152,9 +152,3 @@ struct Login: View {
         }
     }
 }
-
-struct Login_Previews: PreviewProvider {
-    static var previews: some View {
-        Login(index: .constant(0))
-    }
-}
