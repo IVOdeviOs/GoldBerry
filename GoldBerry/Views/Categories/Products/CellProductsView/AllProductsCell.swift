@@ -24,7 +24,7 @@ struct AllProductsCell: View {
                     }
                 )
                 if fruit.percent != 0 {
-                    Text("-\(fruit.percent!)%")
+                    Text("-\(fruit.percent)%")
                         .font(.system(size: 12, weight: .light, design: .serif))
                         .foregroundColor(.white)
                         .frame(width: 35, height: 20)
@@ -106,8 +106,8 @@ struct AllProductsCell: View {
             .frame(height: 60)
             HStack {
                 Button {
-                    if fruit.count >= 2 {
-                        fruit.count -= 1
+                    if fruit.count ?? 1 >= 2 {
+                        fruit.count  -= 1
                         if fruit.price == 0 {
                             fruit.price = fruit.cost
                         } else {

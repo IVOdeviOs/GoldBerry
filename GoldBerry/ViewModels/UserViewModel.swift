@@ -6,7 +6,9 @@ import SwiftUI
 class UserViewModel: ObservableObject {
 
     let emails = UserDefaults.standard.value(forKey: "userEmail")
-
+    let nameKey = "nameKey"
+    let surNameKey = "surNameKey"
+    let numberPhoneKey = "numberPhoneKey"
     var numberPhone = "+375336096300"
 
     @Published var alert = false

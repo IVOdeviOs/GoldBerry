@@ -98,6 +98,7 @@ struct WithPurchase: View {
                     NavigationLink {
 
                         MakingTheOrderView(orderViewModel: orderViewModel, fruitViewModel: fruitViewModel)
+                            
                     } label: {
                         Text("Оформить заказ \(NSString(format: "%.2f", fruitViewModel.sum())) р")
                             .foregroundColor(.white)

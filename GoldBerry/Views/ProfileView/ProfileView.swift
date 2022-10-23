@@ -8,7 +8,8 @@ struct ProfileView: View {
     @FetchRequest(entity: UserRegEntity.entity(), sortDescriptors: [])
     var users: FetchedResults<UserRegEntity>
     let email = UserDefaults.standard.value(forKey: "userEmail")
-
+   
+    
     func orderCount() -> Int {
         var ordersCount = 0
         for item in orderViewModel.order {
@@ -249,5 +250,15 @@ struct ProfileView: View {
             )
             .offset(y: -40).background(Color.theme.background)
             .ignoresSafeArea()
+            .onAppear{
+                
+                let name = UserDefaults.standard.value(forKey: userViewModel.nameKey)
+                let surName = UserDefaults.standard.value(forKey: userViewModel.surNameKey)
+                let phone = UserDefaults.standard.value(forKey: userViewModel.numberPhoneKey)
+
+                userViewModel.userName = name as? String ?? ""
+                userViewModel.userSurname = surName as? String ?? ""
+                userViewModel.userPhone = phone as? String ?? ""
+            }
     }
 }

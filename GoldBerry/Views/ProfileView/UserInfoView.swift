@@ -6,7 +6,7 @@ struct UserInfoView: View {
     @StateObject var userViewModel: UserViewModel
     let email = UserDefaults.standard.value(forKey: "userEmail")
     @State var modal: ModalType? = nil
-
+    
     var body: some View {
         VStack {
             Text("Мои данные")
@@ -17,10 +17,12 @@ struct UserInfoView: View {
                 .opacity(0.3)
                 .frame(height: 10)
             TextFieldView(text: $userViewModel.userSurname, placeholder: "Фамилия")
+                .autocorrectionDisabled()
                 .onTapGesture {
                     hideKeyboard()
                 }
             TextFieldView(text: $userViewModel.userName, placeholder: "Имя")
+                .autocorrectionDisabled()
                 .onTapGesture {
                     hideKeyboard()
                 }
@@ -30,19 +32,9 @@ struct UserInfoView: View {
                     hideKeyboard()
                 }
             Button {
-
-                userViewModel.user.forEach { i in
-                    if i.userEmail == email as! String {
-
-                        Task {
-                            do {
-                                try await userViewModel.addUser()
-                            } catch {
-                                print("❌ ERORR😤")
-                            }
-                        }
-                    }
-                }
+                UserDefaults.standard.set(userViewModel.userName, forKey: userViewModel.nameKey)
+                UserDefaults.standard.set(userViewModel.userSurname, forKey: userViewModel.surNameKey)
+                UserDefaults.standard.set(userViewModel.userPhone, forKey: userViewModel.numberPhoneKey)
 
                 userViewModel.showUserInfoView = false
 

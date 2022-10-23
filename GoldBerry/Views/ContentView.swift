@@ -88,7 +88,7 @@ struct ViewProfile: View {
                             } label: {
                                 ZStack {
                                     ZStack {
-                                        if fruitViewModel.isShowCount && fruitViewModel.countCart != 0 {
+                                        if fruitViewModel.isShowCount, fruitViewModel.countCart != 0 {
                                             Color.red
                                                 .frame(width: 20, height: 20)
                                                 .cornerRadius(10)
@@ -149,9 +149,9 @@ struct ViewProfile: View {
         }
         .ignoresSafeArea()
         .background(.clear)
-        .onAppear{
+        .onAppear {
             if fruitViewModel.showCartCount == true {
-            fruitViewModel.countCart = fruits.count
+                fruitViewModel.countCart = fruits.count
             }
         }
     }
@@ -172,60 +172,82 @@ struct ExtractedView: View {
             switch fruitViewModel.selected {
             case 0:
                 ProductsView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
-                    .onAppear {
-                        Task {
-                            do {
-                                try await orderViewModel.fetchOrder()
-                                try await fruitViewModel.fetchFruit()
-                                try await userViewModel.fetchUser()
-                            } catch {
-                                print("❌ERORR \(error)")
-                            }
-                        }
-                    }
+//                    .onAppear {
+//                        Task {
+//                            do {
+//                                try await orderViewModel.fetchOrder()
+//                                try await fruitViewModel.fetchFruit()
+////                                try await userViewModel.fetchUser()
+//                            } catch {
+//                                print("❌ERORR \(error)")
+//                            }
+//                        }
+//                    }
 
             case 1:
                 CartView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
-                    .onAppear {
-                        Task {
-                            do {
-                                try await fruitViewModel.fetchFruit()
-                            } catch {
-                                print("❌ERORR \(error)")
-                            }
-                        }
-                    }
+//                    .onAppear {
+//                        Task {
+//                            do {
+//                                try await fruitViewModel.fetchFruit()
+//                            } catch {
+//                                print("❌ERORR \(error)")
+//                            }
+//                        }
+//                    }
 
             case 2:
                 OrdersView(orderViewModel: orderViewModel, fruitViewModel: fruitViewModel)
-                    .onAppear {
-                        Task {
-                            do {
-                                try await orderViewModel.fetchOrder()
-                            } catch {
-                                print("❌ERORR \(error)")
-                            }
-                        }
-                    }
+//                    .onAppear {
+//                        Task {
+//                            do {
+//                                try await orderViewModel.fetchOrder()
+//                            } catch {
+//                                print("❌ERORR \(error)")
+//                            }
+//                        }
+//                    }
             case 3:
                 ProfileView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel, userViewModel: userViewModel)
-                    .onAppear {
-
-                        Task {
-                            do {
-                                try await userViewModel.fetchUser()
-                                try await orderViewModel.fetchOrder()
-
-                            } catch {
-                                print("❌ERORR \(error)")
-                            }
-                        }
-                    }
+//                    .onAppear {
+//
+//                        Task {
+//                            do {
+////                                try await userViewModel.fetchUser()
+//                                try await orderViewModel.fetchOrder()
+//
+//                            } catch {
+//                                print("❌ERORR \(error)")
+//                            }
+//                        }
+//                    }
 
             default:
                 ProductsView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
             }
         }
+        .gesture(DragGesture(minimumDistance: 3.0, coordinateSpace: .local)
+            .onEnded { value in
+                
+                switch value.translation.width {
+                case 200 ... 300: fruitViewModel.selected -= 1
+                case -300 ... -200: fruitViewModel.selected += 1
+                default: break
+                   
+                }
+            }
+        )
         .padding(.top, 90)
+        .onAppear {
+            Task {
+                do {
+                    try await orderViewModel.fetchOrder()
+                    try await fruitViewModel.fetchFruit()
+//                                try await userViewModel.fetchUser()
+                } catch {
+                    print("❌ERORR \(error)")
+                }
+            }
+        }
     }
 }

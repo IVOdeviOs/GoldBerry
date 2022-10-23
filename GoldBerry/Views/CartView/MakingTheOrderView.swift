@@ -11,6 +11,7 @@ struct MakingTheOrderView: View {
     }
 
     let email = UserDefaults.standard.value(forKey: "userEmail")
+    let phone = UserDefaults.standard.value(forKey: "numberPhoneKey")
     @Environment(\.presentationMode) var presentation
     @Environment(\.dismiss) private var dismiss
 
@@ -110,12 +111,14 @@ struct MakingTheOrderView: View {
                                 .foregroundColor(Color.theme.blackWhiteText)
                                 .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
                                 .padding()
+                               
                             Spacer()
                             Image(systemName: "house.circle.fill")
                                 .resizable()
                                 .frame(width: 30, height: 30)
                                 .foregroundColor(Color.theme.lightGreen)
                                 .padding()
+                            
                         }
                         TextFieldView(text: $orderViewModel.customer, placeholder: "Имя получателя")
                             .onTapGesture {
@@ -127,6 +130,7 @@ struct MakingTheOrderView: View {
                                 hideKeyboard()
                             }
                         TextFieldView(text: $orderViewModel.address, placeholder: "Адрес доставки")
+                            .autocorrectionDisabled()
                             .onTapGesture {
                                 hideKeyboard()
                             }
@@ -189,9 +193,23 @@ struct MakingTheOrderView: View {
                     }
                 }
                 Spacer()
+                    
             }
+           
+            
         }
+        .gesture(DragGesture(minimumDistance: 3.0, coordinateSpace: .local)
+            .onEnded { value in
+                print(value.translation)
+                switch(value.translation.width) {
+                    case (100...300):   self.presentation.wrappedValue.dismiss()
+                    default:  print("no clue")
+                }
+            }
+        )
+     
         .onAppear {
+            orderViewModel.customerPhone = phone as? String ?? ""
             orderViewModel.isFormValid
                 .receive(on: RunLoop.main)
                 .assign(to: \.orderViewModel.isValid, on: self)
