@@ -76,6 +76,7 @@ struct ProductsView: View {
                             .accessibilityElement()
                     }
                 }
+                .isLoading(fruitViewModel.isLoading)
             }
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarHidden(true)

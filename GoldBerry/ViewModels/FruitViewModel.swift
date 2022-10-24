@@ -9,7 +9,7 @@ class FruitViewModel: ObservableObject {
     
     @Published var selected = 0
     @Published var fruit = [Fruit]()
-
+    @Published var isLoading = false
     let email = UserDefaults.standard.value(forKey: "userEmail")
 
     @Published var uniqFruits = [Fruit]()
@@ -53,6 +53,7 @@ class FruitViewModel: ObservableObject {
     @Published var favouriteProducts: [Fruit] = []
 
     func fetchFruit() async throws {
+        self.isLoading = true
         let urlString = Constants.baseURL + EndPoints.fruit
 
         guard let url = URL(string: urlString) else {
@@ -61,6 +62,7 @@ class FruitViewModel: ObservableObject {
         let fruitResponse: [Fruit] = try await HttpClient.shared.fetch(url: url)
 
         DispatchQueue.main.async { [self] in
+            self.isLoading = false
             self.fruit = fruitResponse
         }
     }

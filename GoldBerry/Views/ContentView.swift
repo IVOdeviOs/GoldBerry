@@ -154,6 +154,7 @@ struct ViewProfile: View {
                 fruitViewModel.countCart = fruits.count
             }
         }
+//        .isLoading(fruitViewModel.isLoading)
     }
 }
 
@@ -172,17 +173,15 @@ struct ExtractedView: View {
             switch fruitViewModel.selected {
             case 0:
                 ProductsView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
-//                    .onAppear {
-//                        Task {
-//                            do {
-//                                try await orderViewModel.fetchOrder()
-//                                try await fruitViewModel.fetchFruit()
-////                                try await userViewModel.fetchUser()
-//                            } catch {
-//                                print("❌ERORR \(error)")
-//                            }
-//                        }
-//                    }
+                    .onAppear {
+                        Task {
+                            do {
+                                try await fruitViewModel.fetchFruit()
+                            } catch {
+                                print("❌ERORR \(error)")
+                            }
+                        }
+                    }
 
             case 1:
                 CartView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
@@ -198,15 +197,15 @@ struct ExtractedView: View {
 
             case 2:
                 OrdersView(orderViewModel: orderViewModel, fruitViewModel: fruitViewModel)
-//                    .onAppear {
-//                        Task {
-//                            do {
-//                                try await orderViewModel.fetchOrder()
-//                            } catch {
-//                                print("❌ERORR \(error)")
-//                            }
-//                        }
-//                    }
+                    .onAppear {
+                        Task {
+                            do {
+                                try await orderViewModel.fetchOrder()
+                            } catch {
+                                print("❌ERORR \(error)")
+                            }
+                        }
+                    }
             case 3:
                 ProfileView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel, userViewModel: userViewModel)
 //                    .onAppear {
@@ -226,12 +225,12 @@ struct ExtractedView: View {
                 ProductsView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
             }
         }
-        .gesture(DragGesture(minimumDistance: 35.0, coordinateSpace: .local)
+        .gesture(DragGesture(minimumDistance: 150.0, coordinateSpace: .local)
             .onEnded { value in
                 
                 switch value.translation.width {
-                case 200 ... 300: fruitViewModel.selected -= 1
-                case -300 ... -200: fruitViewModel.selected += 1
+                case 0 ... 500: fruitViewModel.selected -= 1
+                case -500 ... 0: fruitViewModel.selected += 1
                 default: break
                    
                 }
@@ -243,11 +242,11 @@ struct ExtractedView: View {
                 do {
                     try await orderViewModel.fetchOrder()
                     try await fruitViewModel.fetchFruit()
-//                                try await userViewModel.fetchUser()
                 } catch {
                     print("❌ERORR \(error)")
                 }
             }
+            
         }
     }
 }

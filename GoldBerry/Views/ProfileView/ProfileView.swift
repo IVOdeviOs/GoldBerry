@@ -212,10 +212,10 @@ struct ProfileView: View {
                                 Image(systemName: "x.square")
                                     .resizable()
                                     .frame(width: 20, height: 20)
-                                    .foregroundColor(Color.theme.blackWhiteText)
+                                    .foregroundColor(Color.red)
                                 Text("Удалить аккаунт")
                                     .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
-                                    .foregroundColor(Color.theme.blackWhiteText)
+                                    .foregroundColor(Color.red)
                             }
                         }
                         .alert(isPresented: $userViewModel.alertDeleted) {

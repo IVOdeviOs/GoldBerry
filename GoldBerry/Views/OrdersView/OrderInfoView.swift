@@ -107,6 +107,15 @@ struct OrderInfoView: View {
                     self.presentation.wrappedValue.dismiss()
                 }
         )
+        .gesture(DragGesture(minimumDistance: 50.0, coordinateSpace: .local)
+            .onEnded { value in
+                print(value.translation)
+                switch(value.translation.width) {
+                    case (0...500):   self.presentation.wrappedValue.dismiss()
+                    default:  break
+                }
+            }
+        )
     }
 }
 

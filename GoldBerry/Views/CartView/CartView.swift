@@ -75,19 +75,18 @@ struct WithPurchase: View {
 
         ZStack(alignment: .top) {
 
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 ForEach(fruitViewModel.uniqFruits, id: \.id) { item in
                     CartCell(fruitViewModel: fruitViewModel,
                              orderViewModel: orderViewModel,
                              fruit: item)
                 }
-                
+                .padding(.top, 125)
+                .padding(.bottom, 100)
             }
-            .listStyle(.plain)
             .padding(.vertical, 3)
             .padding(.horizontal, 10)
-            .padding(.top, 125)
-            .padding(.bottom, 100)
+            
             .ignoresSafeArea()
 
             ZStack {

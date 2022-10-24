@@ -54,7 +54,10 @@ struct CartCell: View {
                             .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
                         Spacer()
                         Button {
-                            removeCell(fru: fruit)
+                            withAnimation(.linear(duration: 0.5)) {
+                                removeCell(fru: fruit)
+                            }
+                           
                         } label: {
                             Image(systemName: "x.square")
                                 .resizable()
