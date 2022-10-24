@@ -25,25 +25,7 @@ struct CartCell: View {
         }
     }
 
-//    func updateOrder() {
-//        let newFruit = FruitEntity(context: viewContext)
-//
-//        newFruit.counts = Int16(fruit.count)
-//
-//         print("❄️")
-//          viewContext.updatedObjects
-//
-//        }
-//
-    
-    
-    func updateOrder(fru: Fruit) {
-        let newStatus = fru.count
-            viewContext.performAndWait {
-                fruit.count = newStatus
-                try? viewContext.save()
-            }
-        }
+
     
     var body: some View {
         VStack {
@@ -94,7 +76,6 @@ struct CartCell: View {
             }
             HStack {
                 Button {
-                    updateOrder(fru: fruit)
                     if fruit.count >= 2 {
                         fruit.count -= 1
                         if fruit.price == 0 {
@@ -115,7 +96,6 @@ struct CartCell: View {
                     .foregroundColor(Color.theme.blackWhiteText)
                     .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
                 Button {
-                    updateOrder(fru: fruit)
                     fruit.count += 1
                     if fruit.price == 0 {
                         fruit.price = fruit.itog

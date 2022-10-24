@@ -226,7 +226,7 @@ struct ExtractedView: View {
                 ProductsView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
             }
         }
-        .gesture(DragGesture(minimumDistance: 3.0, coordinateSpace: .local)
+        .gesture(DragGesture(minimumDistance: 35.0, coordinateSpace: .local)
             .onEnded { value in
                 
                 switch value.translation.width {
