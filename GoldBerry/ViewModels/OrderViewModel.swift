@@ -45,7 +45,8 @@ class OrderViewModel: ObservableObject {
     private var isCustomerPhoneValidPublisher: AnyPublisher<Bool, Never> {
         $customerPhone
             .map {
-                let regex = "((375|80)(25|29|33|34)([0-9]{3}([0-9]{2}){2}))"
+                let regex = "/^(?:(?:\\(?(?:00|\\+)([1-4]\\d\\d|[1-9]\\d+)\\)?)[\\-\\.\\ \\\\\\/]?)?((?:\\(?\\d{1,}\\)?[\\-\\.\\ \\\\\\/]?)+)(?:[\\-\\.\\ \\\\\\/]?(?:#|ext\\.?|extension|x)[\\-\\.\\ \\\\\\/]?(\\d+))?$/i"
+//                let regex = "((375|80)(25|29|33|34)([0-9]{3}([0-9]{2}){2}))"
                 let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
                 let result = predicate.evaluate(with: $0)
                 return result

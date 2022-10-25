@@ -91,15 +91,6 @@
       }
     },
     {
-      "identity" : "phonenumberkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/marmelroy/PhoneNumberKit",
-      "state" : {
-        "branch" : "master",
-        "revision" : "3d311169dbfe7bff87a149a19e370c592f7782b5"
-      }
-    },
-    {
       "identity" : "promises",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/promises.git",
