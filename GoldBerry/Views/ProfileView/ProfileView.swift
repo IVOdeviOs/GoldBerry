@@ -184,10 +184,10 @@ struct ProfileView: View {
                             HStack(spacing: 5) {
                                 Image(systemName: "rectangle.portrait.and.arrow.right")
                                     .resizable()
-                                    .frame(width: 20, height: 20)
+                                    .frame(width: 14, height: 14)
                                     .foregroundColor(Color.theme.blackWhiteText)
                                 Text("Выход")
-                                    .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
+                                    .font(Font(uiFont: .fontLibrary(14, .uzSansSemiBold)))
                                     .foregroundColor(Color.theme.blackWhiteText)
                             }
                         }
@@ -211,10 +211,10 @@ struct ProfileView: View {
                             HStack(spacing: 5) {
                                 Image(systemName: "x.square")
                                     .resizable()
-                                    .frame(width: 20, height: 20)
+                                    .frame(width: 14, height: 14)
                                     .foregroundColor(Color.red)
                                 Text("Удалить аккаунт")
-                                    .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
+                                    .font(Font(uiFont: .fontLibrary(14, .uzSansSemiBold)))
                                     .foregroundColor(Color.red)
                             }
                         }

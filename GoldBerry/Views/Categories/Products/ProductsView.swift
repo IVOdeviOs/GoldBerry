@@ -36,12 +36,12 @@ struct ProductsView: View {
                         } label: {
                             CategoriesCell(nameImage: categories.granat.rawValue, nameCategories: "Гранат")
                         }
-                        Button {
-                            tag = categories.fresh.rawValue
-
-                        } label: {
-                            CategoriesCell(nameImage: categories.fresh.rawValue, nameCategories: "Фреши и смузи")
-                        }
+//                        Button {
+//                            tag = categories.fresh.rawValue
+//
+//                        } label: {
+//                            CategoriesCell(nameImage: categories.fresh.rawValue, nameCategories: "Фреши и смузи")
+//                        }
                         Button {
                             tag = categories.fruct.rawValue
                         } label: {
