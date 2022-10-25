@@ -372,6 +372,7 @@
 			mainGroup = DD95A8262899ABD100DF346B;
 			packageReferences = (
 				DD2CEE7028DC93C00060B77A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				DC4A26A02907F0E200DBF22D /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
 			);
 			productRefGroup = DD95A8302899ABD200DF346B /* Products */;
 			projectDirPath = "";
@@ -579,7 +580,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GoldBerry/Preview Content\"";
-				DEVELOPMENT_TEAM = B9S2MDX3F7;
+				DEVELOPMENT_TEAM = 3H4J882387;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GoldBerry/Info.plist;
@@ -616,7 +617,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GoldBerry/Preview Content\"";
-				DEVELOPMENT_TEAM = B9S2MDX3F7;
+				DEVELOPMENT_TEAM = 3H4J882387;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GoldBerry/Info.plist;
@@ -669,6 +670,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		DC4A26A02907F0E200DBF22D /* XCRemoteSwiftPackageReference "PhoneNumberKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marmelroy/PhoneNumberKit";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		DD2CEE7028DC93C00060B77A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";

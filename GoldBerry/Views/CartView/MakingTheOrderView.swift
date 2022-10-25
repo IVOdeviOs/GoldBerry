@@ -130,7 +130,7 @@ struct MakingTheOrderView: View {
                                 hideKeyboard()
                             }
                         TextFieldView(text: $orderViewModel.address, placeholder: "Адрес доставки")
-                            .autocorrectionDisabled()
+//                            .autocorrectionDisabled()
                             .onTapGesture {
                                 hideKeyboard()
                             }

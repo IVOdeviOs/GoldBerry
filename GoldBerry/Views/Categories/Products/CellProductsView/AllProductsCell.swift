@@ -7,7 +7,7 @@ struct AllProductsCell: View {
 
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
     var fruits: FetchedResults<FruitEntity>
-
+    @State var newCount: Int = 0
     var body: some View {
         VStack(spacing: 6) {
             ZStack(alignment: .bottomLeading) {
@@ -108,6 +108,7 @@ struct AllProductsCell: View {
                 Button {
                     if fruit.count ?? 1 >= 2 {
                         fruit.count  -= 1
+                        fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = fruit.count
                         if fruit.price == 0 {
                             fruit.price = fruit.cost
                         } else {
@@ -120,11 +121,12 @@ struct AllProductsCell: View {
                         .frame(width: 25, height: 25)
                         .foregroundColor(Color.theme.gray)
                 }
-                Text("\(fruit.count) кг")
+                Text("\(fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1) кг")
                     .multilineTextAlignment(.leading)
                     .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
                 Button {
                     fruit.count += 1
+                    fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = fruit.count
                     if fruit.price == 0 {
                         fruit.price = fruit.cost
                     } else {
@@ -142,11 +144,13 @@ struct AllProductsCell: View {
             .padding(.horizontal, 10)
             HStack {
                 Button {
+                    
                     addFruit()
                     fruitViewModel.isShowCount = true
                     fruit.isValid = false
                     fruitViewModel.countCart += 1
                     fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
+
                 } label: {
                     ZStack {
                         Text("В корзину")
@@ -177,6 +181,9 @@ struct AllProductsCell: View {
     }
 
     func addFruit() {
+        newCount = fruit.count
+        fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = newCount
+
         withAnimation {
             let newFruit = FruitEntity(context: viewContext)
             newFruit.id = fruit.id

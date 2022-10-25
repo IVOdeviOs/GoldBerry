@@ -5,6 +5,7 @@ import Foundation
 import SwiftUI
 class FruitViewModel: ObservableObject {
 
+    @Published var dictionaryOfNameAndCountOfFruits: [String : Int] = ["" : 0]
     @Published var showCartCount = true
     
     @Published var selected = 0

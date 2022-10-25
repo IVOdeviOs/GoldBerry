@@ -6,7 +6,7 @@ struct CartCell: View {
     @ObservedObject var orderViewModel: OrderViewModel
    
     @State var fruit: Fruit
-
+    @State var testCount: Int = 1
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.id, ascending: true)])
     var fruits: FetchedResults<FruitEntity>
@@ -81,6 +81,7 @@ struct CartCell: View {
                 Button {
                     if fruit.count >= 2 {
                         fruit.count -= 1
+                        fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name]! -= 1
                         if fruit.price == 0 {
                             fruit.price = fruit.itog
                         } else {
@@ -95,11 +96,12 @@ struct CartCell: View {
                         .frame(width: 30, height: 30)
                         .foregroundColor(Color.theme.gray)
                 }
-                Text("\(fruit.count) кг")
+                Text("\(fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1) кг")
                     .foregroundColor(Color.theme.blackWhiteText)
                     .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
                 Button {
                     fruit.count += 1
+                    fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name]! += 1
                     if fruit.price == 0 {
                         fruit.price = fruit.itog
                     } else {
@@ -131,6 +133,7 @@ struct CartCell: View {
                     fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
                 }
             }
+            fruit.count = fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1
         }
 
         .onAppear {
@@ -140,7 +143,8 @@ struct CartCell: View {
                     fruit.price = Double(fruit.count) * fruit.itog
 
                     fruit.price = Double(i.counts) * fruit.itog
-                    fruit.count = Int(i.counts)
+//                    fruit.count = Int(i.counts)
+//                    fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = fruit.count
                     fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
                 }
             }

@@ -1,4 +1,6 @@
+
 import SwiftUI
+import PhoneNumberKit
 
 struct UserInfoView: View {
 
@@ -17,12 +19,13 @@ struct UserInfoView: View {
                 .opacity(0.3)
                 .frame(height: 10)
             TextFieldView(text: $userViewModel.userSurname, placeholder: "Фамилия")
-                .autocorrectionDisabled()
+                .disableAutocorrection(false)
+//                .autocorrectionDisabled()
                 .onTapGesture {
                     hideKeyboard()
                 }
             TextFieldView(text: $userViewModel.userName, placeholder: "Имя")
-                .autocorrectionDisabled()
+//                .autocorrectionDisabled()
                 .onTapGesture {
                     hideKeyboard()
                 }

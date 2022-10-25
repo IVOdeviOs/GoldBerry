@@ -41,7 +41,7 @@ final class LogIn: ObservableObject {
     private var isPasswordValidPublisher: AnyPublisher<Bool, Never> {
         $password
             .map {
-                $0.count > 8 && $0 != "password"
+                $0.count >= 6 && $0 != "password"
             }
             .eraseToAnyPublisher()
     }
