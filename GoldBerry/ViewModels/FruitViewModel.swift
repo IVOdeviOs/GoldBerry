@@ -69,7 +69,99 @@ class FruitViewModel: ObservableObject {
         }
     }
 
+//    func fetchAllRestaurants() {
+//        let db = Firestore.firestore()
+//
+//        db.collection("fruit").getDocuments { (querySnapshot, error) -> Void  in
+//            if let error = error {
+//                print("Error getting documents: \(error)")
+//            } else {
+////                self.fruit = querySnapshot!.documents.map({ d in
+////                    print("\(d["name"])")
+////                })
+//
+//                for document in querySnapshot!.documents {
+//
+//                    var f = Fruit(cost: document["cost"] as? Double ?? 1,
+//                                  weightOrPieces: document["weightOrPieces"] as? String ?? "",
+//                                  categories: document["categories"] as? String ?? "" ,
+//                                  favorite: (document["favorite"] != nil),
+//                                  count: document["count"] as? Int ?? 1,
+//                                  image: document["image"] as? String ?? "",
+//                                  name: document["name"] as? String ?? "",
+//                                  percent: document["percent"] as? Int ?? 1,
+//                                  comment: document["comment"] as? String ?? "",
+//                                  isValid: true)
+//                    return self.fruit.append(f)
+////                    print("\(document.documentID): \(document["name"])")
+//                }
+//            }
+//        }
+//    }
 
-   
+//    func getData() {
+//
+//        let db = Firestore.firestore()
+//
+//        db.collection("fruit").getDocuments{ snapshot, error in
+//
+//            if error == nil {
+//
+//                if let snapshot = snapshot {
+//
+//                    DispatchQueue.main.async {
+//
+//                        self.fruit = snapshot.documents.map { d in
+//
+//                            // Create a Todo item for each document returned
+//                          return  Fruit(cost: d["cost"],
+//                                  weightOrPieces: d["weightOrPieces"],
+//                                  categories: d["categories"],
+//                                  favorite: d["favorite"],
+//                                  count: d["count"],
+//                                  image: d["image"],
+//                                  name: d["name"],
+//                                  percent: d["percent"],
+//                                  price: 1,
+//                                  comment: d["comment"],
+//                                  isValid: false)
+//                        }
+//                    }
+//                }
+//            } else {
+//                // Handle the error
+//            }
+//        }
+//    }
+
+//    func getData() {
+//        var db = Firestore.firestore().collection("fruit")
+//        db.getDocuments { snapshot, err in
+//
+    ////        }
+    ////        db.collection("fruit").getDocuments { (snapshot,err) in
+//
+//            if err == nil {
+//                if let snapshot = snapshot {
+//
+//                    DispatchQueue.main.async {
+//                        self.fruit = snapshot.documents.map { d in
+//                            Fruit(cost: d["cost"],
+//                                  weightOrPieces: d["weightOrPieces"],
+//                                  categories: d["categories"],
+//                                  favorite: d["favorite"],
+//                                  count: d["count"],
+//                                  image: d["image"],
+//                                  name: d["name"],
+//                                  percent: d["percent"],
+//                                  price: 1,
+//                                  comment: d["comment"],
+//                                  isValid: false)
+//                        }
+//                    }
+//                }
+//
+//            } else {}
+//        }
+//    }
 }
-

@@ -30,10 +30,10 @@ struct OrderInfoView: View {
                         .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
                         .padding()
                 }
-                ForEach(0 ..< order.fruit.count) { row in
+                ForEach(0 ..< order.fruits.count) { row in
                     HStack {
                         RemoteImageView(
-                            url: URL(string: order.fruit[row].image)!,
+                            url: URL(string: order.fruits[row].image)!,
                             placeholder: {
                                 Image(systemName: "icloud.and.arrow.up").frame(width: 300, height: 300)
                             },
@@ -47,14 +47,14 @@ struct OrderInfoView: View {
                         .frame(width: 30, height: 30)
                         .cornerRadius(10)
                         .padding(.leading, 10)
-                        Text(order.fruit[row].name)
+                        Text(order.fruits[row].name)
                             .foregroundColor(Color.theme.blackWhiteText)
                             .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                         Spacer()
-                        Text("\(order.fruit[row].count ?? 1)")
+                        Text("\(order.fruits[row].count ?? 1)")
                             .foregroundColor(Color.theme.blackWhiteText)
                             .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                        Text("\(NSString(format: "%.2f", order.fruit[row].itog)) p.")
+                        Text("\(NSString(format: "%.2f", order.fruits[row].itog)) p.")
                             .foregroundColor(Color.theme.blackWhiteText)
                             .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                             .frame(width: 80, height: 20)

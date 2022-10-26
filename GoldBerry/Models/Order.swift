@@ -6,7 +6,7 @@ struct Order: Identifiable, Codable {
     var date: String
     var dateOrder: String
     var email: String
-    var fruit: [Fruit]
+    var fruits: [Fruit]
     var address: String
     var price: Double
     var customer, customerPhone, comment: String

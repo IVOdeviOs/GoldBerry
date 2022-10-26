@@ -223,7 +223,7 @@ struct ProfileView: View {
                                   message: Text("Вы точно хотите удалить свой аккаунт?"),
                                   primaryButton: .destructive(Text("Да")) {
                                       let user = Auth.auth().currentUser
-                                      user?.delete { error in
+                                user!.delete { error in
                                           if error != nil {
                                           } else {
                                               do {
