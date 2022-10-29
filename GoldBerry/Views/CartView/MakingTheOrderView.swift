@@ -26,7 +26,6 @@ struct MakingTheOrderView: View {
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
     var fruits: FetchedResults<FruitEntity>
 
-     
     func deleteAllRecords() {
         let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "FruitEntity")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
@@ -111,14 +110,12 @@ struct MakingTheOrderView: View {
                                 .foregroundColor(Color.theme.blackWhiteText)
                                 .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
                                 .padding()
-                               
                             Spacer()
                             Image(systemName: "house.circle.fill")
                                 .resizable()
                                 .frame(width: 30, height: 30)
                                 .foregroundColor(Color.theme.lightGreen)
                                 .padding()
-                            
                         }
                         TextFieldView(text: $orderViewModel.customer, placeholder: "Имя получателя")
                             .onTapGesture {
@@ -141,29 +138,26 @@ struct MakingTheOrderView: View {
                     }
                     Button {
                         tog = true
-                        sendRequest { to in
-                            tog = to
+                        sendRequest { tol in
+                            tog = tol
                             dismiss()
                             fruitViewModel.isShowCount = false
                         }
 
                         var str = ""
-                        var i = 0
+                        var numberId = 0
                         for char in orderViewModel.id {
-                            i += 1
-                            if i <= 7 {
-
+                            numberId += 1
+                            if numberId <= 7 {
                                 str.append(char)
                             }
                         }
 
                         deleteAllRecords()
-
-
                         let orde = Order(orderNumber: str,
                                          date: orderViewModel.date,
                                          dateOrder: orderViewModel.dateOrder,
-                                         email: email as! String,
+                                         email: email as? String ?? "opsss...",
                                          fruits: fruitViewModel.uniqFruits,
                                          address: orderViewModel.address,
                                          price: orderViewModel.price ?? 0.1,
@@ -193,10 +187,7 @@ struct MakingTheOrderView: View {
                     }
                 }
                 Spacer()
-                    
             }
-           
-            
         }
         .gesture(DragGesture(minimumDistance: 3.0, coordinateSpace: .local)
             .onEnded { value in
@@ -207,7 +198,6 @@ struct MakingTheOrderView: View {
                 }
             }
         )
-     
         .onAppear {
             orderViewModel.customerPhone = phone as? String ?? ""
             orderViewModel.isFormValid

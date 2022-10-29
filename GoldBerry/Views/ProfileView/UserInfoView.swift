@@ -56,7 +56,7 @@ struct UserInfoView: View {
         }.onAppear {
 
             for item in userViewModel.user {
-                if email as! String == item.userEmail {
+                if email as? String ?? "error"  == item.userEmail {
                     userViewModel.userName = item.userName
                     userViewModel.userSurname = item.userSurname
                     userViewModel.userPhone = item.userPhone

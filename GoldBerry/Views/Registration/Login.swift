@@ -6,8 +6,7 @@ struct Login: View {
     @StateObject private var login = LogIn()
     @Binding var index: Int
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(entity: UserRegEntity.entity(), sortDescriptors: [])
-    var users: FetchedResults<UserRegEntity>
+   
     @State var showForGetPassword = false
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -127,25 +126,6 @@ struct Login: View {
             .opacity(index == 0 ? 1 : 0)
             .sheet(isPresented: $showForGetPassword) {
                 ForGetPasswordView()
-            }
-        }
-    }
-
-    func addUser() {
-        withAnimation {
-            let newUser = UserRegEntity(context: viewContext)
-            newUser.email = login.email
-            for i in users {
-                if newUser.email == i.email {
-                    viewContext.delete(newUser)
-                }
-            }
-
-            do {
-                try viewContext.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
         }
     }

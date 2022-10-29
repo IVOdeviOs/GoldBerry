@@ -53,7 +53,9 @@ struct WithoutFavouriteProductsView: View {
 struct WithFavouriteProductsView: View {
 
     @ObservedObject var fruitViewModel: FruitViewModel
-
+    @FetchRequest(entity: FavoriteFruit.entity(), sortDescriptors: [])
+    var favoriteFruit: FetchedResults<FavoriteFruit>
+    
     var body: some View {
 
         NavigationView {
@@ -66,9 +68,13 @@ struct WithFavouriteProductsView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {
                         LazyVGrid(columns: fruitViewModel.columns, alignment: .center, spacing: 1, pinnedViews: .sectionFooters, content: {
-                            ForEach(fruitViewModel.fruit) { fruits in
-                                AllProductsCell(fruit: fruits, fruitViewModel: fruitViewModel)
-                                    .padding(.bottom, 30)
+                            ForEach(fruitViewModel.fruit) { fruit in
+                               ForEach(favoriteFruit) { item in
+                                    if item.id == fruit.id{
+                                        AllProductsCell(fruit: fruit, fruitViewModel: fruitViewModel)
+                                            .padding(.bottom, 30)
+                                    }
+                                }
                             }
 
                         }).padding(.bottom, 60)
