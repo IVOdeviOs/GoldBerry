@@ -7,6 +7,9 @@ struct AllProductsCell: View {
 
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
     var fruits: FetchedResults<FruitEntity>
+    @FetchRequest(entity: FavoriteFruit.entity(), sortDescriptors: [])
+    var favoriteFruit: FetchedResults<FavoriteFruit>
+    
     @State var newCount: Int = 0
     var body: some View {
         VStack(spacing: 6) {
@@ -38,6 +41,7 @@ struct AllProductsCell: View {
                         HStack {
                             Spacer()
                             Button {
+                                addFavoriteFruit()
                                 fruit.favorite.toggle()
                             } label: {
                                 ZStack {
@@ -144,7 +148,6 @@ struct AllProductsCell: View {
             .padding(.horizontal, 10)
             HStack {
                 Button {
-                    
                     addFruit()
                     fruitViewModel.isShowCount = true
                     fruit.isValid = false
@@ -172,8 +175,8 @@ struct AllProductsCell: View {
         .cornerRadius(10)
         .shadow(color: .gray, radius: 1, x: 0, y: 2)
         .onAppear {
-            for i in fruits {
-                if i.id == fruit.id {
+            for item in fruits {
+                 if item.id == fruit.id {
                     fruit.isValid = false
                 }
             }
@@ -199,4 +202,22 @@ struct AllProductsCell: View {
             }
         }
     }
+    
+    func addFavoriteFruit() {
+        withAnimation {
+            let newFruit = FavoriteFruit(context: viewContext)
+            newFruit.id = fruit.id
+            newFruit.name = fruit.name
+            newFruit.favorite = fruit.favorite
+            do {
+               print("🥰")
+                try viewContext.save()
+
+            } catch {
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
+    }
+    
 }

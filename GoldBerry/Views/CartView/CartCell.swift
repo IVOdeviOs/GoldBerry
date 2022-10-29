@@ -69,7 +69,7 @@ struct CartCell: View {
                     Text(fruit.name)
                         .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
-                    Text(fruit.comment ?? "ddd")
+                    Text(fruit.comment)
                         .fixedSize(horizontal: false, vertical: true)
                         .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(14, .uzSansRegular)))
@@ -125,8 +125,8 @@ struct CartCell: View {
         }
 
         .onDisappear {
-            for i in fruits {
-                if i.id == fruit.id {
+            for item in fruits {
+                if item.id == fruit.id {
                     fruitViewModel.uniqFruits.removeFirst()
                     fruitViewModel.uniqFruits.append(fruit)
                     fruit.price = Double(fruit.count) * fruit.itog
@@ -137,14 +137,14 @@ struct CartCell: View {
         }
 
         .onAppear {
-            for i in fruits {
+            for items in fruits {
 
-                if i.id == fruit.id {
+                if items.id == fruit.id {
                     fruit.price = Double(fruit.count) * fruit.itog
 
-                    fruit.price = Double(i.counts) * fruit.itog
-//                    fruit.count = Int(i.counts)
-//                    fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = fruit.count
+                    fruit.price = Double(items.counts) * fruit.itog
+                    fruit.count = Int(items.counts)
+                    fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = fruit.count
                     fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
                 }
             }

@@ -5,15 +5,11 @@ struct ProfileView: View {
     @ObservedObject var orderViewModel = OrderViewModel()
     @ObservedObject var userViewModel = UserViewModel()
 
-    @FetchRequest(entity: UserRegEntity.entity(), sortDescriptors: [])
-    var users: FetchedResults<UserRegEntity>
     let email = UserDefaults.standard.value(forKey: "userEmail")
-   
-    
-    func orderCount() -> Int {
+       func orderCount() -> Int {
         var ordersCount = 0
         for item in orderViewModel.order {
-            if item.email == email as! String {
+            if item.email == email as? String ?? "asda" {
                 ordersCount += 1
             }
         }
@@ -251,7 +247,6 @@ struct ProfileView: View {
             .offset(y: -40).background(Color.theme.background)
             .ignoresSafeArea()
             .onAppear{
-                
                 let name = UserDefaults.standard.value(forKey: userViewModel.nameKey)
                 let surName = UserDefaults.standard.value(forKey: userViewModel.surNameKey)
                 let phone = UserDefaults.standard.value(forKey: userViewModel.numberPhoneKey)

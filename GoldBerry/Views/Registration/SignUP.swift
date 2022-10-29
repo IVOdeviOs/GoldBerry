@@ -10,8 +10,7 @@ struct SignUP: View {
     @Binding var show: Bool
 
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(entity: UserRegEntity.entity(), sortDescriptors: [])
-    var users: FetchedResults<UserRegEntity>
+  
 
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -167,25 +166,6 @@ struct SignUP: View {
                 .receive(on: RunLoop.main)
                 .assign(to: \.signUP.isValid, on: self)
                 .store(in: &signUP.cancellable)
-        }
-    }
-
-    func addUser() {
-        withAnimation {
-            let newUser = UserRegEntity(context: viewContext)
-            newUser.email = signUP.email
-            for i in users {
-                if newUser.email == i.email {
-                    viewContext.delete(newUser)
-                }
-            }
-
-            do {
-                try viewContext.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
         }
     }
 }

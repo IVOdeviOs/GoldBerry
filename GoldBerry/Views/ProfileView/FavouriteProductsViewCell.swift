@@ -73,9 +73,3 @@ struct FavouriteProductsViewCell: View {
         .shadow(color: .gray, radius: 1, x: 0, y: 2)
     }
 }
-
-struct FavouriteProductsViewCell_Previews: PreviewProvider {
-    static var previews: some View {
-        FavouriteProductsViewCell(fruit:  Fruit( cost: 1, weightOrPieces: "", categories: "", favorite: true, count: 1, image: "", name: "", percent: 1, description: "", price: 1)).previewLayout(.fixed(width: 180, height: 290))
-    }
-}

@@ -70,7 +70,6 @@ struct WithPurchase: View {
     @State var fruitO = [Fruit]()
     @State var cartPrice: Double = 0
 
-
     var body: some View {
 
         ZStack(alignment: .top) {
@@ -86,7 +85,7 @@ struct WithPurchase: View {
             }
             .padding(.vertical, 3)
             .padding(.horizontal, 10)
-            
+
             .ignoresSafeArea()
 
             ZStack {
@@ -97,7 +96,7 @@ struct WithPurchase: View {
                     NavigationLink {
 
                         MakingTheOrderView(orderViewModel: orderViewModel, fruitViewModel: fruitViewModel)
-                            
+
                     } label: {
                         Text("Оформить заказ \(NSString(format: "%.2f", fruitViewModel.sum())) р")
                             .foregroundColor(.white)
@@ -115,8 +114,8 @@ struct WithPurchase: View {
 
         .onAppear {
             for item in fruitViewModel.fruit {
-                for i in fruits {
-                    if i.id == item.id {
+                for itemsFruits in fruits {
+                    if itemsFruits.id == item.id {
                         fruitO.append(item)
                         fruitViewModel.uniqFruits = uniq(source: fruitO)
                     }

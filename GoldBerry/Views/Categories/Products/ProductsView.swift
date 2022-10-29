@@ -1,6 +1,5 @@
 import SwiftUI
-
-enum categories: String {
+enum CategoriesFruit: String {
     case all
     case watermelon
     case granat
@@ -12,7 +11,7 @@ struct ProductsView: View {
     @ObservedObject var fruitViewModel: FruitViewModel
     @ObservedObject var orderViewModel: OrderViewModel
 
-    @State var tag = categories.all.rawValue
+    @State var tag = CategoriesFruit.all.rawValue
 
     var body: some View {
 
@@ -21,20 +20,20 @@ struct ProductsView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         Button {
-                            tag = categories.all.rawValue
+                            tag = CategoriesFruit.all.rawValue
                         } label: {
-                            CategoriesCell(nameImage: categories.all.rawValue, nameCategories: "Все товары")
+                            CategoriesCell(nameImage: CategoriesFruit.all.rawValue, nameCategories: "Все товары")
                         }
                         Button {
-                            tag = categories.watermelon.rawValue
+                            tag = CategoriesFruit.watermelon.rawValue
                         } label: {
-                            CategoriesCell(nameImage: categories.watermelon.rawValue, nameCategories: "Арбуз и дыня")
+                            CategoriesCell(nameImage: CategoriesFruit.watermelon.rawValue, nameCategories: "Арбуз и дыня")
                         }
                         Button {
-                            tag = categories.granat.rawValue
+                            tag = CategoriesFruit.granat.rawValue
 
                         } label: {
-                            CategoriesCell(nameImage: categories.granat.rawValue, nameCategories: "Гранат")
+                            CategoriesCell(nameImage: CategoriesFruit.granat.rawValue, nameCategories: "Гранат")
                         }
 //                        Button {
 //                            tag = categories.fresh.rawValue
@@ -43,9 +42,9 @@ struct ProductsView: View {
 //                            CategoriesCell(nameImage: categories.fresh.rawValue, nameCategories: "Фреши и смузи")
 //                        }
                         Button {
-                            tag = categories.fruct.rawValue
+                            tag = CategoriesFruit.fruct.rawValue
                         } label: {
-                            CategoriesCell(nameImage: categories.fruct.rawValue, nameCategories: "Фрукты")
+                            CategoriesCell(nameImage: CategoriesFruit.fruct.rawValue, nameCategories: "Фрукты")
                         }
                     }
                     .padding(.horizontal, 10)
@@ -66,7 +65,7 @@ struct ProductsView: View {
 
                                     AllProductsCell(fruit: fruits, fruitViewModel: fruitViewModel)
                                         .padding(.bottom, 30)
-                                } else if tag == categories.all.rawValue {
+                                } else if tag == CategoriesFruit.all.rawValue {
                                     AllProductsCell(fruit: fruits, fruitViewModel: fruitViewModel)
                                         .padding(.bottom, 30)
                                 }
