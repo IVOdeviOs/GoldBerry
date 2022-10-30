@@ -95,7 +95,7 @@ struct WithOrders: View {
                 }
             }
         }
-        .padding(.bottom, 100)
+        .padding(.bottom, 140)
         .accessibilityElement()
         .offset(y: 20)
         .navigationViewStyle(.columns)

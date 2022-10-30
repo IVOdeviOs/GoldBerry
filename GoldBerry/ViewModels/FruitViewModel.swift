@@ -3,6 +3,7 @@ import CoreData
 import FirebaseAuth
 import Foundation
 import SwiftUI
+import FirebaseFirestore
 class FruitViewModel: ObservableObject {
 
     
@@ -11,6 +12,7 @@ class FruitViewModel: ObservableObject {
     
     @Published var selected = 0
     @Published var fruit = [Fruit]()
+    @Published var favoriteFruit = [Fruit]()
     @Published var isLoading = false
     let email = UserDefaults.standard.value(forKey: "userEmail")
 
@@ -22,8 +24,8 @@ class FruitViewModel: ObservableObject {
     @Published var percent: Int? = 1
 
     @Published var isValid = true
-    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
-    var fruits: FetchedResults<FruitEntity>
+//    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
+//    var fruits: FetchedResults<FruitEntity>
     @Published var comment: String? = ""
     var itog: Double {
 
@@ -51,8 +53,6 @@ class FruitViewModel: ObservableObject {
         }
         return sumOfArray
     }
-
-    @Published var favouriteProducts: [Fruit] = []
 
     func fetchFruit() async throws {
         self.isLoading = true

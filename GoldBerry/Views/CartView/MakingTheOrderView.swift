@@ -137,12 +137,7 @@ struct MakingTheOrderView: View {
                             }
                     }
                     Button {
-                        tog = true
-                        sendRequest { tol in
-                            tog = tol
-                            dismiss()
-                            fruitViewModel.isShowCount = false
-                        }
+                      
 
                         var str = ""
                         var numberId = 0
@@ -153,7 +148,7 @@ struct MakingTheOrderView: View {
                             }
                         }
 
-                        deleteAllRecords()
+                        
                         let orde = Order(orderNumber: str,
                                          date: orderViewModel.date,
                                          dateOrder: orderViewModel.dateOrder,
@@ -166,10 +161,19 @@ struct MakingTheOrderView: View {
                                          comment: orderViewModel.comments, orderCompleted: false)
                         Task {
                             do {
+                              
                                 try await orderViewModel.addOrder(orders: orde)
-
+                                tog = true
+                                sendRequest { to in
+                                    tog = to
+        //                            dismiss()
+                                    fruitViewModel.isShowCount = false
+                                }
+                                deleteAllRecords()
+                                
                             } catch {
-                                print("❌ ERORR")
+                               
+                                print("❌ ERORR\( error.localizedDescription)")
                             }
                         }
                         fruitViewModel.countCart = 0
@@ -192,9 +196,9 @@ struct MakingTheOrderView: View {
         .gesture(DragGesture(minimumDistance: 3.0, coordinateSpace: .local)
             .onEnded { value in
                 print(value.translation)
-                switch(value.translation.width) {
-                    case (100...300):   self.presentation.wrappedValue.dismiss()
-                    default:  print("no clue")
+                switch value.translation.width {
+                case 100 ... 300: self.presentation.wrappedValue.dismiss()
+                default: print("no clue")
                 }
             }
         )
