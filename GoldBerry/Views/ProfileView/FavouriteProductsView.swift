@@ -2,20 +2,21 @@ import SwiftUI
 
 struct FavouriteProductsView: View {
 
-    @ObservedObject var viewModel: FruitViewModel
-
+    @ObservedObject var fruitViewModel: FruitViewModel
+    @FetchRequest(entity: FavoriteFruit.entity(), sortDescriptors: [])
+    var favoriteFruit: FetchedResults<FavoriteFruit>
     var body: some View {
 
-        if viewModel.favouriteProducts.isEmpty {
-            WithoutFavouriteProductsView(viewModel: viewModel)
+        if favoriteFruit.isEmpty {
+            WithoutFavouriteProductsView(fruitViewModel: fruitViewModel)
         } else {
-            WithFavouriteProductsView(fruitViewModel: viewModel)
+            WithFavouriteProductsView(fruitViewModel: fruitViewModel)
         }
     }
 }
 
 struct WithoutFavouriteProductsView: View {
-    @StateObject var viewModel: FruitViewModel
+    @StateObject var fruitViewModel: FruitViewModel
 
     var body: some View {
         VStack {
@@ -35,7 +36,7 @@ struct WithoutFavouriteProductsView: View {
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color.theme.gray)
             Button {
-                viewModel.selected = 0
+                fruitViewModel.selected = 0
             } label: {
                 Text("Перейти к выбору товаров")
                     .frame(width: 300, height: 50)
@@ -51,11 +52,14 @@ struct WithoutFavouriteProductsView: View {
 }
 
 struct WithFavouriteProductsView: View {
+    @Environment(\.managedObjectContext) private var viewContext
 
     @ObservedObject var fruitViewModel: FruitViewModel
     @FetchRequest(entity: FavoriteFruit.entity(), sortDescriptors: [])
     var favoriteFruit: FetchedResults<FavoriteFruit>
-    
+    @State var favorite = [Fruit]()
+    @State var uniqFavorite = [Fruit]()
+
     var body: some View {
 
         NavigationView {
@@ -68,13 +72,9 @@ struct WithFavouriteProductsView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {
                         LazyVGrid(columns: fruitViewModel.columns, alignment: .center, spacing: 1, pinnedViews: .sectionFooters, content: {
-                            ForEach(fruitViewModel.fruit) { fruit in
-                               ForEach(favoriteFruit) { item in
-                                    if item.id == fruit.id{
-                                        AllProductsCell(fruit: fruit, fruitViewModel: fruitViewModel)
-                                            .padding(.bottom, 30)
-                                    }
-                                }
+                            ForEach(uniqFavorite) { fruit in
+                                AllProductsCell(fruit: fruit, fruitViewModel: fruitViewModel)
+                                    .padding(.bottom, 30)
                             }
 
                         }).padding(.bottom, 60)
@@ -84,5 +84,27 @@ struct WithFavouriteProductsView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarHidden(true)
         }
+        .onAppear {
+            for item in favoriteFruit {
+                for i in fruitViewModel.fruit {
+                    if item.id == i.id {
+                        favorite.append(i)
+                        uniqFavorite = uniq(source: favorite)
+                    }
+                }
+            }
+        }
     }
+}
+
+private func uniq<S: Sequence, T: Hashable>(source: S) -> [T] where S.Iterator.Element == T {
+    var buffer = [T]()
+    var added = Set<T>()
+    for elem in source {
+        if !added.contains(elem) {
+            buffer.append(elem)
+            added.insert(elem)
+        }
+    }
+    return buffer
 }

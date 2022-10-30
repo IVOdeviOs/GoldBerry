@@ -83,7 +83,7 @@ struct AllProductsCell: View {
                             .foregroundColor(Color.theme.blackWhiteText.opacity(0.6))
                             .multilineTextAlignment(.leading)
                         Color(CGColor(gray: 0, alpha: 1)).opacity(0.5)
-                            .frame(width: 45, height: 0.5)
+                            .frame(width: 45, height: 1)
                     }
 
                     Spacer()
@@ -101,7 +101,7 @@ struct AllProductsCell: View {
             .cornerRadius(10)
             .padding(.horizontal, 3)
             HStack(alignment: .top) {
-                Text(fruit.comment ?? "no")
+                Text(fruit.comment )
                     .font(.system(size: 12, weight: .light, design: .serif))
                     .foregroundColor(Color.theme.blackWhiteText.opacity(0.8))
                 Spacer()
@@ -110,7 +110,7 @@ struct AllProductsCell: View {
             .frame(height: 60)
             HStack {
                 Button {
-                    if fruit.count ?? 1 >= 2 {
+                    if fruit.count >= 2 {
                         fruit.count  -= 1
                         fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = fruit.count
                         if fruit.price == 0 {

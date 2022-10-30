@@ -1,11 +1,5 @@
 import CoreData
 import SwiftUI
-extension Color {
-    static let lightShadow = Color(red: 255 / 255, green: 255 / 255, blue: 255 / 255)
-    static let darkShadow = Color(red: 163 / 255, green: 177 / 255, blue: 198 / 255)
-    static let background = Color(red: 224 / 255, green: 229 / 255, blue: 236 / 255)
-    static let neumorphismtextColor = Color(red: 132 / 255, green: 132 / 255, blue: 132 / 255)
-}
 
 struct ContentView: View {
     @StateObject var fruitViewModel = FruitViewModel()
@@ -173,6 +167,9 @@ struct ExtractedView: View {
             switch fruitViewModel.selected {
             case 0:
                 ProductsView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
+//                    .onAppear{
+//                        fruitViewModel.fetchAllRestaurants()
+//                    }
                     .onAppear {
                         Task {
                             do {
@@ -208,18 +205,18 @@ struct ExtractedView: View {
                     }
             case 3:
                 ProfileView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel, userViewModel: userViewModel)
-//                    .onAppear {
-//
-//                        Task {
-//                            do {
-////                                try await userViewModel.fetchUser()
-//                                try await orderViewModel.fetchOrder()
-//
-//                            } catch {
-//                                print("❌ERORR \(error)")
-//                            }
-//                        }
-//                    }
+                    .onAppear {
+
+                        Task {
+                            do {
+//                                try await userViewModel.fetchUser()
+                                try await fruitViewModel.fetchFruit()
+
+                            } catch {
+                                print("❌ERORR \(error)")
+                            }
+                        }
+                    }
 
             default:
                 ProductsView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)

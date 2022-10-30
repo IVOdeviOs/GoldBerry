@@ -1,4 +1,5 @@
 import FirebaseAuth
+import FirebaseCore
 import SwiftUI
 struct ProfileView: View {
     @ObservedObject var fruitViewModel = FruitViewModel()
@@ -6,7 +7,8 @@ struct ProfileView: View {
     @ObservedObject var userViewModel = UserViewModel()
 
     let email = UserDefaults.standard.value(forKey: "userEmail")
-       func orderCount() -> Int {
+    let user = Auth.auth().currentUser
+    func orderCount() -> Int {
         var ordersCount = 0
         for item in orderViewModel.order {
             if item.email == email as? String ?? "asda" {
@@ -122,7 +124,7 @@ struct ProfileView: View {
                                     .padding(.trailing, 20)
                             }
                             .sheet(isPresented: $userViewModel.showFavouriteProductsView, content: {
-                                FavouriteProductsView(viewModel: fruitViewModel)
+                                FavouriteProductsView(fruitViewModel: fruitViewModel)
                             })
                         }
                     }
@@ -189,7 +191,7 @@ struct ProfileView: View {
                         }
                         .alert(isPresented: $userViewModel.alert) {
                             Alert(title: Text("Выйти"),
-                                  message: Text("Вы точно хотите выйти из аккаунта?"),
+                                  message: Text("Вы точно хотите выйти из аккаунта ?"),
                                   primaryButton: .destructive(Text("Да")) {
                                       UserDefaults.standard.set(false, forKey: "status")
                                       NotificationCenter.default.post(name: NSNotification.Name("statusChange"),
@@ -218,17 +220,18 @@ struct ProfileView: View {
                             Alert(title: Text("Удалить аккаунт"),
                                   message: Text("Вы точно хотите удалить свой аккаунт?"),
                                   primaryButton: .destructive(Text("Да")) {
-                                      let user = Auth.auth().currentUser
-                                user!.delete { error in
+
+                                      user?.delete { error in
                                           if error != nil {
                                           } else {
                                               do {
+                                                  print("🥶")
+
                                                   try Auth.auth().signOut()
                                                   UserDefaults.standard.set(false, forKey: "status")
                                                   NotificationCenter.default.post(name: NSNotification.Name("statusChange"),
                                                                                   object: nil)
-                                              } catch _ {
-                                              }
+                                              } catch _ {}
                                           }
                                       }
 
@@ -246,7 +249,7 @@ struct ProfileView: View {
             )
             .offset(y: -40).background(Color.theme.background)
             .ignoresSafeArea()
-            .onAppear{
+            .onAppear {
                 let name = UserDefaults.standard.value(forKey: userViewModel.nameKey)
                 let surName = UserDefaults.standard.value(forKey: userViewModel.surNameKey)
                 let phone = UserDefaults.standard.value(forKey: userViewModel.numberPhoneKey)

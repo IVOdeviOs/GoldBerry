@@ -51,7 +51,7 @@ struct OrderInfoView: View {
                             .foregroundColor(Color.theme.blackWhiteText)
                             .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                         Spacer()
-                        Text("\(order.fruits[row].count ?? 1)")
+                        Text("\(order.fruits[row].count)")
                             .foregroundColor(Color.theme.blackWhiteText)
                             .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                         Text("\(NSString(format: "%.2f", order.fruits[row].itog)) p.")
