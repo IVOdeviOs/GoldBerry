@@ -40,7 +40,6 @@
 		DD2CEE8728E37C730060B77A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CEE8628E37C730060B77A /* LoginView.swift */; };
 		DD2CEE8928E37C770060B77A /* SignUP.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CEE8828E37C770060B77A /* SignUP.swift */; };
 		DD2CEE8B28E37C9E0060B77A /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CEE8A28E37C9E0060B77A /* Login.swift */; };
-		DD4F8ADA290D72D800C57AAD /* GoldBerry.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DD4F8AD8290D72D800C57AAD /* GoldBerry.xcdatamodeld */; };
 		DD4F8ADD290D830900C57AAD /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = DD4F8ADC290D830900C57AAD /* FirebaseAuth */; };
 		DD4F8ADF290D830900C57AAD /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = DD4F8ADE290D830900C57AAD /* FirebaseAuthCombine-Community */; };
 		DD4F8AE1290D830900C57AAD /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = DD4F8AE0290D830900C57AAD /* FirebaseDatabase */; };
@@ -53,6 +52,7 @@
 		DD4F8AEF290D830900C57AAD /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = DD4F8AEE290D830900C57AAD /* FirebaseMessaging */; };
 		DD4F8AF1290D830900C57AAD /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = DD4F8AF0290D830900C57AAD /* FirebaseStorage */; };
 		DD4F8AF3290D830900C57AAD /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = DD4F8AF2290D830900C57AAD /* FirebaseStorageCombine-Community */; };
+		DD4F8AF9290FB68400C57AAD /* GoldBerry.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DD4F8AF7290FB68400C57AAD /* GoldBerry.xcdatamodeld */; };
 		DD539A59289AEFDD006F1CD1 /* ProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A58289AEFDD006F1CD1 /* ProductsView.swift */; };
 		DD539A6528A02839006F1CD1 /* FruitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A6428A02839006F1CD1 /* FruitViewModel.swift */; };
 		DD539A6928A02A63006F1CD1 /* OrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A6828A02A62006F1CD1 /* OrdersView.swift */; };
@@ -108,8 +108,8 @@
 		DD2CEE8628E37C730060B77A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		DD2CEE8828E37C770060B77A /* SignUP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUP.swift; sourceTree = "<group>"; };
 		DD2CEE8A28E37C9E0060B77A /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
-		DD4F8AD9290D72D800C57AAD /* GoldBerry.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GoldBerry.xcdatamodel; sourceTree = "<group>"; };
 		DD4F8AF6290EEA6400C57AAD /* GoldBerry.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GoldBerry.entitlements; sourceTree = "<group>"; };
+		DD4F8AF8290FB68400C57AAD /* GoldBerry.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GoldBerry.xcdatamodel; sourceTree = "<group>"; };
 		DD539A58289AEFDD006F1CD1 /* ProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsView.swift; sourceTree = "<group>"; };
 		DD539A6428A02839006F1CD1 /* FruitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitViewModel.swift; sourceTree = "<group>"; };
 		DD539A6828A02A62006F1CD1 /* OrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersView.swift; sourceTree = "<group>"; };
@@ -308,10 +308,10 @@
 				DD539A55289AEB22006F1CD1 /* Views */,
 				DD539A54289AEAF6006F1CD1 /* ViewModels */,
 				DD95A8362899ABD600DF346B /* Assets.xcassets */,
-				DD4F8AD8290D72D800C57AAD /* GoldBerry.xcdatamodeld */,
 				DD95A8322899ABD200DF346B /* GoldBerryApp.swift */,
 				DD2CEE7B28E0DEA10060B77A /* GoogleService-Info.plist */,
 				DD95A8382899ABD600DF346B /* Preview Content */,
+				DD4F8AF7290FB68400C57AAD /* GoldBerry.xcdatamodeld */,
 			);
 			path = GoldBerry;
 			sourceTree = "<group>";
@@ -454,7 +454,7 @@
 				DD93807928B6349B00808E88 /* RemoteImageView.swift in Sources */,
 				DD2CEE8028E37A7B0060B77A /* ClipShape+.swift in Sources */,
 				DD2CEE7628DC9B8E0060B77A /* FireBaseAuth.swift in Sources */,
-				DD4F8ADA290D72D800C57AAD /* GoldBerry.xcdatamodeld in Sources */,
+				DD4F8AF9290FB68400C57AAD /* GoldBerry.xcdatamodeld in Sources */,
 				DD2CEE8928E37C770060B77A /* SignUP.swift in Sources */,
 				DC4807E828BC8965001416B6 /* ProfileView.swift in Sources */,
 				DC4807F828CA9D1A001416B6 /* DeliveryInfoView.swift in Sources */,
@@ -783,14 +783,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		DD4F8AD8290D72D800C57AAD /* GoldBerry.xcdatamodeld */ = {
+		DD4F8AF7290FB68400C57AAD /* GoldBerry.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				DD4F8AD9290D72D800C57AAD /* GoldBerry.xcdatamodel */,
+				DD4F8AF8290FB68400C57AAD /* GoldBerry.xcdatamodel */,
 			);
-			currentVersion = DD4F8AD9290D72D800C57AAD /* GoldBerry.xcdatamodel */;
-			name = GoldBerry.xcdatamodeld;
-			path = "../../Рабочий стол — MacBook Air — Vadim/GoldBerry/GoldBerry/GoldBerry.xcdatamodeld";
+			currentVersion = DD4F8AF8290FB68400C57AAD /* GoldBerry.xcdatamodel */;
+			path = GoldBerry.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
