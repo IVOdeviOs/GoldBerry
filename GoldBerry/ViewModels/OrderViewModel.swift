@@ -21,7 +21,8 @@ class OrderViewModel: ObservableObject {
     @Published var comments = ""
     @Published var deliveryDate = Date()
     @Published var isValid = false
-
+    @Published var showAlertOrder = false
+    
     var cancellable: Set<AnyCancellable> = []
 
     private var isDateValidPublisher: AnyPublisher<Bool, Never> {

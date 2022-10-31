@@ -28,43 +28,43 @@ class UserViewModel: ObservableObject {
 
     @Published var favouriteProducts: [Fruit] = []
 
-    func updateUser() async throws {
-        let urlString = Constants.baseURL + EndPoints.user
-
-        guard let url = URL(string: urlString) else {
-            throw HttpError.badURL
-        }
-        let usersId = UserDefaults.standard.value(forKey: emails as? String ?? "")
-
-        let userToUpdate = User(id: usersId as? UUID, userName: userName, userSurname: userSurname, userPhone: userPhone, userEmail: emails as? String ?? "das")
-
-        try await HttpClient.shared.sendData(to: url, object: userToUpdate, httpMethod: HttpMethods.PUT.rawValue)
-    }
-
-    func fetchUser() async throws {
-        let urlString = Constants.baseURL + EndPoints.user
-
-        guard let url = URL(string: urlString) else {
-            throw HttpError.badURL
-        }
-        let userResponse: [User] = try await HttpClient.shared.fetch(url: url)
-
-        DispatchQueue.main.async {
-            self.user = userResponse
-        }
-    }
-
-    func addUser() async throws {
-        let urlString = Constants.baseURL + EndPoints.user
-
-        guard let url = URL(string: urlString) else {
-            throw HttpError.badURL
-        }
-
-        let user = User(userName: userName, userSurname: userSurname, userPhone: userPhone, userEmail: emails as? String ?? "a")
-
-        UserDefaults.standard.set(user.id, forKey: emails as? String ?? "")
-
-        try await HttpClient.shared.sendData(to: url, object: user, httpMethod: HttpMethods.POST.rawValue)
-    }
+//    func updateUser() async throws {
+//        let urlString = Constants.baseURL + EndPoints.user
+//
+//        guard let url = URL(string: urlString) else {
+//            throw HttpError.badURL
+//        }
+//        let usersId = UserDefaults.standard.value(forKey: emails as? String ?? "")
+//
+//        let userToUpdate = User(id: usersId as? UUID, userName: userName, userSurname: userSurname, userPhone: userPhone, userEmail: emails as? String ?? "das")
+//
+//        try await HttpClient.shared.sendData(to: url, object: userToUpdate, httpMethod: HttpMethods.PUT.rawValue)
+//    }
+//
+//    func fetchUser() async throws {
+//        let urlString = Constants.baseURL + EndPoints.user
+//
+//        guard let url = URL(string: urlString) else {
+//            throw HttpError.badURL
+//        }
+//        let userResponse: [User] = try await HttpClient.shared.fetch(url: url)
+//
+//        DispatchQueue.main.async {
+//            self.user = userResponse
+//        }
+//    }
+//
+//    func addUser() async throws {
+//        let urlString = Constants.baseURL + EndPoints.user
+//
+//        guard let url = URL(string: urlString) else {
+//            throw HttpError.badURL
+//        }
+//
+//        let user = User(userName: userName, userSurname: userSurname, userPhone: userPhone, userEmail: emails as? String ?? "a")
+//
+//        UserDefaults.standard.set(user.id, forKey: emails as? String ?? "")
+//
+//        try await HttpClient.shared.sendData(to: url, object: user, httpMethod: HttpMethods.POST.rawValue)
+//    }
 }

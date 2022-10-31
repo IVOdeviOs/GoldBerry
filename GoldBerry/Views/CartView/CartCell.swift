@@ -4,9 +4,9 @@ struct CartCell: View {
 
     @ObservedObject var fruitViewModel: FruitViewModel
     @ObservedObject var orderViewModel: OrderViewModel
-   
+
     @State var fruit: Fruit
-    @State var testCount: Int = 1
+    @State var testCount = 1
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.id, ascending: true)])
     var fruits: FetchedResults<FruitEntity>
@@ -25,8 +25,6 @@ struct CartCell: View {
         }
     }
 
-
-    
     var body: some View {
         VStack {
             HStack {
@@ -44,8 +42,9 @@ struct CartCell: View {
                         }
                     )
                 }
-                .frame(width: 150, height: 110)
-                .cornerRadius(10)
+                .frame(width: 150, height: 135)
+                .cornerRadius(8)
+
                 VStack(alignment: .leading, spacing: 10) {
 
                     HStack {
@@ -57,7 +56,7 @@ struct CartCell: View {
                             withAnimation(.linear(duration: 0.5)) {
                                 removeCell(fru: fruit)
                             }
-                           
+
                         } label: {
                             Image(systemName: "x.square")
                                 .resizable()
@@ -70,57 +69,64 @@ struct CartCell: View {
                         .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
                     Text(fruit.comment)
+                        .frame(minHeight: 20, maxHeight: 40)
                         .fixedSize(horizontal: false, vertical: true)
                         .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(14, .uzSansRegular)))
-                    Spacer()
-                }
-                Spacer()
-            }
-            HStack {
-                Button {
-                    if fruit.count >= 2 {
-                        fruit.count -= 1
-                        fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name]! -= 1
-                        if fruit.price == 0 {
-                            fruit.price = fruit.itog
-                        } else {
-                            fruit.price = fruit.itog * Double(fruit.count)
+//                    Spacer()
+                    HStack {
+                        Button {
+                            if fruit.count >= 2 {
+                                fruit.count -= 1
+                                fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name]! -= 1
+                                if fruit.price == 0 {
+                                    fruit.price = fruit.itog
+                                } else {
+                                    fruit.price = fruit.itog * Double(fruit.count)
+                                    fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
+                                }
+                            }
+
+                        } label: {
+                            Image(systemName: "minus.square.fill")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(Color.theme.gray)
+                        }
+                        Text("\(fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1) кг")
+                            .foregroundColor(Color.theme.blackWhiteText)
+                            .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
+                        Button {
+                            fruit.count += 1
+                            fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name]! += 1
+                            if fruit.price == 0 {
+                                fruit.price = fruit.itog
+                            } else {
+                                fruit.price = fruit.itog * Double(fruit.count)
+                            }
                             fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
+                        } label: {
+                            Image(systemName: "plus.square.fill")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(Color.theme.lightGreen)
                         }
                     }
-                    
-                } label: {
-                    Image(systemName: "minus.square.fill")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .foregroundColor(Color.theme.gray)
                 }
-                Text("\(fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1) кг")
-                    .foregroundColor(Color.theme.blackWhiteText)
-                    .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
-                Button {
-                    fruit.count += 1
-                    fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name]! += 1
-                    if fruit.price == 0 {
-                        fruit.price = fruit.itog
-                    } else {
-                        fruit.price = fruit.itog * Double(fruit.count)
-                    }
-                    fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
-                } label: {
-                    Image(systemName: "plus.square.fill")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .foregroundColor(Color.theme.lightGreen)
-                }
-            }
-            HStack {
                 Spacer()
-                Text("Итого: \(NSString(format: "%.2f", fruit.price ?? 1)) р")
-                    .foregroundColor(Color.theme.lightGreen)
+            }
+            Divider()
+                .background(Color.theme.blackWhiteText)
+            HStack {
+                Text("Итого: ")
+                    .foregroundColor(Color.theme.blackWhiteText)
                     .font(Font(uiFont: .fontLibrary(16, .uzSansSemiBold)))
-                    .padding(.trailing, 10)
+                    .padding(.leading, 20)
+                Spacer()
+                Text("\(NSString(format: "%.2f", fruit.price ?? 1)) р")
+                    .foregroundColor(Color.theme.lightGreen)
+                    .font(Font(uiFont: .fontLibrary(19, .uzSansSemiBold)))
+                    .padding(.trailing, 20)
             }
         }
 
@@ -152,9 +158,9 @@ struct CartCell: View {
         .padding()
         .background(.gray.opacity(0.1))
         .overlay(
-            RoundedRectangle(cornerRadius: 20)
+            RoundedRectangle(cornerRadius: 8)
                 .stroke(Color.theme.gray, lineWidth: 1)
         )
-        .cornerRadius(12)
+        .cornerRadius(8)
     }
 }

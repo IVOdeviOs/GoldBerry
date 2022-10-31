@@ -137,43 +137,41 @@ struct MakingTheOrderView: View {
                             }
                     }
                     Button {
-                      
 
-                        var str = ""
+                        var strID = ""
                         var numberId = 0
-                        for char in orderViewModel.id {
+                        for char in orderViewModel.id{
                             numberId += 1
                             if numberId <= 7 {
-                                str.append(char)
+                                strID.append(char)
                             }
                         }
 
-                        
-                        let orde = Order(orderNumber: str,
-                                         date: orderViewModel.date,
-                                         dateOrder: orderViewModel.dateOrder,
-                                         email: email as? String ?? "opsss...",
-                                         fruits: fruitViewModel.uniqFruits,
-                                         address: orderViewModel.address,
-                                         price: orderViewModel.price ?? 0.1,
-                                         customer: orderViewModel.customer,
-                                         customerPhone: orderViewModel.customerPhone,
-                                         comment: orderViewModel.comments, orderCompleted: false)
+                        let order = Order(orderNumber: strID,
+                                          date: orderViewModel.date,
+                                          dateOrder: orderViewModel.dateOrder,
+                                          email: email as? String ?? "opsss...",
+                                          fruits: fruitViewModel.uniqFruits,
+                                          address: orderViewModel.address,
+                                          price: orderViewModel.price ?? 0.1,
+                                          customer: orderViewModel.customer,
+                                          customerPhone: orderViewModel.customerPhone,
+                                          comment: orderViewModel.comments, orderCompleted: false)
                         Task {
                             do {
-                              
-                                try await orderViewModel.addOrder(orders: orde)
+
+                                try await orderViewModel.addOrder(orders: order)
                                 tog = true
                                 sendRequest { to in
                                     tog = to
-        //                            dismiss()
+                                    //                            dismiss()
                                     fruitViewModel.isShowCount = false
                                 }
                                 deleteAllRecords()
-                                
+
                             } catch {
-                               
-                                print("❌ ERORR\( error.localizedDescription)")
+                                orderViewModel.showAlertOrder.toggle()
+                                print("❌ ERORR  \(error.localizedDescription)")
                             }
                         }
                         fruitViewModel.countCart = 0
@@ -191,8 +189,11 @@ struct MakingTheOrderView: View {
                     }
                 }
                 Spacer()
+            }.sheet(isPresented: $orderViewModel.showAlertOrder) {
+                AlertMakingOrder()
             }
         }
+
         .gesture(DragGesture(minimumDistance: 3.0, coordinateSpace: .local)
             .onEnded { value in
                 print(value.translation)

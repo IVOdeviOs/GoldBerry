@@ -82,7 +82,7 @@ struct AllProductsCell: View {
                             .font(.system(size: 12, weight: .light, design: .serif))
                             .foregroundColor(Color.theme.blackWhiteText.opacity(0.6))
                             .multilineTextAlignment(.leading)
-                        Color(CGColor(gray: 0, alpha: 1)).opacity(0.5)
+                        Color.theme.blackWhiteText.opacity(0.5)
                             .frame(width: 45, height: 1)
                     }
 
@@ -108,51 +108,51 @@ struct AllProductsCell: View {
             }
             .padding(.horizontal, 5)
             .frame(height: 60)
-            HStack {
-                Button {
-                    if fruit.count >= 2 {
-                        fruit.count  -= 1
-                        fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = fruit.count
-                        if fruit.price == 0 {
-                            fruit.price = fruit.cost
-                        } else {
-                            fruit.price = fruit.cost * Double(fruit.count)
-                        }
-                    }
-                } label: {
-                    Image(systemName: "minus.square.fill")
-                        .resizable()
-                        .frame(width: 25, height: 25)
-                        .foregroundColor(Color.theme.gray)
-                }
-                Text("\(fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1) кг")
-                    .multilineTextAlignment(.leading)
-                    .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
-                Button {
-                    fruit.count += 1
-                    fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = fruit.count
-                    if fruit.price == 0 {
-                        fruit.price = fruit.cost
-                    } else {
-                        fruit.price = fruit.cost * Double(fruit.count)
-                    }
-
-                } label: {
-                    Image(systemName: "plus.square.fill")
-                        .resizable()
-                        .frame(width: 25, height: 25)
-                        .foregroundColor(Color.theme.lightGreen)
-                }
-                .buttonStyle(PlainButtonStyle())
-            }
-            .padding(.horizontal, 10)
+//            HStack {
+//                Button {
+//                    if fruit.count >= 2 {
+//                        fruit.count  -= 1
+//                        fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = fruit.count
+//                        if fruit.price == 0 {
+//                            fruit.price = fruit.cost
+//                        } else {
+//                            fruit.price = fruit.cost * Double(fruit.count)
+//                        }
+//                    }
+//                } label: {
+//                    Image(systemName: "minus.square.fill")
+//                        .resizable()
+//                        .frame(width: 25, height: 25)
+//                        .foregroundColor(Color.theme.gray)
+//                }
+//                Text("\(fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1) кг")
+//                    .multilineTextAlignment(.leading)
+//                    .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
+//                Button {
+//                    fruit.count += 1
+//                    fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = fruit.count
+//                    if fruit.price == 0 {
+//                        fruit.price = fruit.cost
+//                    } else {
+//                        fruit.price = fruit.cost * Double(fruit.count)
+//                    }
+//
+//                } label: {
+//                    Image(systemName: "plus.square.fill")
+//                        .resizable()
+//                        .frame(width: 25, height: 25)
+//                        .foregroundColor(Color.theme.lightGreen)
+//                }
+//                .buttonStyle(PlainButtonStyle())
+//            }
+//            .padding(.horizontal, 10)
             HStack {
                 Button {
                     addFruit()
                     fruitViewModel.isShowCount = true
                     fruit.isValid = false
                     fruitViewModel.countCart += 1
-                    fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
+//                    fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
 
                 } label: {
                     ZStack {
@@ -170,7 +170,7 @@ struct AllProductsCell: View {
             }
             .padding(7)
         }
-        .frame(width: 180, height: 320)
+        .frame(width: 180, height: 295)
         .background(Color.theme.background)
         .cornerRadius(10)
         .shadow(color: .gray, radius: 1, x: 0, y: 2)

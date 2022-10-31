@@ -8,5 +8,4 @@ enum Constants {
 enum EndPoints {
     static let fruit = "fruit"
     static let order = "userOrder"
-    static let user = "user"
 }

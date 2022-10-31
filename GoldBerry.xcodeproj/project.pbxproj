@@ -53,6 +53,7 @@
 		DD4F8AF1290D830900C57AAD /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = DD4F8AF0290D830900C57AAD /* FirebaseStorage */; };
 		DD4F8AF3290D830900C57AAD /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = DD4F8AF2290D830900C57AAD /* FirebaseStorageCombine-Community */; };
 		DD4F8AF9290FB68400C57AAD /* GoldBerry.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DD4F8AF7290FB68400C57AAD /* GoldBerry.xcdatamodeld */; };
+		DD4F8AFB29103E6500C57AAD /* AlertMakingOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4F8AFA29103E6500C57AAD /* AlertMakingOrder.swift */; };
 		DD539A59289AEFDD006F1CD1 /* ProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A58289AEFDD006F1CD1 /* ProductsView.swift */; };
 		DD539A6528A02839006F1CD1 /* FruitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A6428A02839006F1CD1 /* FruitViewModel.swift */; };
 		DD539A6928A02A63006F1CD1 /* OrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD539A6828A02A62006F1CD1 /* OrdersView.swift */; };
@@ -110,6 +111,7 @@
 		DD2CEE8A28E37C9E0060B77A /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		DD4F8AF6290EEA6400C57AAD /* GoldBerry.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GoldBerry.entitlements; sourceTree = "<group>"; };
 		DD4F8AF8290FB68400C57AAD /* GoldBerry.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GoldBerry.xcdatamodel; sourceTree = "<group>"; };
+		DD4F8AFA29103E6500C57AAD /* AlertMakingOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertMakingOrder.swift; sourceTree = "<group>"; };
 		DD539A58289AEFDD006F1CD1 /* ProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsView.swift; sourceTree = "<group>"; };
 		DD539A6428A02839006F1CD1 /* FruitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitViewModel.swift; sourceTree = "<group>"; };
 		DD539A6828A02A62006F1CD1 /* OrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersView.swift; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 				DC9DE54928BB508200057E90 /* CartCell.swift */,
 				DC224EBF28BB480700F8760D /* MakingTheOrderView.swift */,
 				DC4807E428BB8328001416B6 /* CompletedOrderView.swift */,
+				DD4F8AFA29103E6500C57AAD /* AlertMakingOrder.swift */,
 			);
 			path = CartView;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 				DC4807F028BC949F001416B6 /* ServiceInfoView.swift in Sources */,
 				DC4807F228BC9925001416B6 /* ImagePicker.swift in Sources */,
 				DD2CEE8728E37C730060B77A /* LoginView.swift in Sources */,
+				DD4F8AFB29103E6500C57AAD /* AlertMakingOrder.swift in Sources */,
 				DDBA58DE28A0419100FFC3A5 /* CategoriesCell.swift in Sources */,
 				DC4807E528BB8328001416B6 /* CompletedOrderView.swift in Sources */,
 				DCA5250528AE750A00A994F5 /* Color+.swift in Sources */,
