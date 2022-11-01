@@ -91,7 +91,6 @@ struct WithPurchase: View {
 
             ZStack {
                 VStack {
-
                     Spacer()
 
                     NavigationLink {

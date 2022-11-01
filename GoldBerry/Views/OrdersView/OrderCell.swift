@@ -65,13 +65,13 @@ struct OrderCell: View {
                     RemoteImageView(
                         url: URL(string: purchases[row].image)!,
                         placeholder: {
-                            Image(systemName: "icloud.and.arrow.up").frame(width: 300, height: 300)
+                            Image(systemName: "icloud.and.arrow.up").frame(width: 30, height: 30)
                         },
                         image: {
                             $0
                                 .resizable()
-                                .frame(width: 180, height: 120)
-                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 30, height: 30)
+                                .aspectRatio(contentMode: .fill)
                         }
                     )
                     .frame(width: 30, height: 30)

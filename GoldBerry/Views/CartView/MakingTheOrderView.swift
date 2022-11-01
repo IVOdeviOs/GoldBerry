@@ -135,6 +135,10 @@ struct MakingTheOrderView: View {
                             .onTapGesture {
                                 hideKeyboard()
                             }
+//                        ForEach(fruitViewModel.uniqFruits){ cd in
+//                            Text("\(cd.count)")
+//                                .font(.system(size: 30))
+//                        }
                     }
                     Button {
 
@@ -146,8 +150,7 @@ struct MakingTheOrderView: View {
                                 strID.append(char)
                             }
                         }
-
-                        let order = Order(orderNumber: strID,
+                        let orde = Order(orderNumber: strID,
                                           date: orderViewModel.date,
                                           dateOrder: orderViewModel.dateOrder,
                                           email: email as? String ?? "opsss...",
@@ -160,7 +163,7 @@ struct MakingTheOrderView: View {
                         Task {
                             do {
 
-                                try await orderViewModel.addOrder(orders: order)
+                                try await orderViewModel.addOrder(orders: orde)
                                 tog = true
                                 sendRequest { to in
                                     tog = to

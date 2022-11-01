@@ -17,13 +17,13 @@ struct AllProductsCell: View {
                 RemoteImageView(
                     url: URL(string: fruit.image)!,
                     placeholder: {
-                        Image(systemName: "icloud.and.arrow.up").frame(width: 300, height: 300)
+                        Image(systemName: "icloud.and.arrow.up").frame(width: 180, height: 120)
                     },
                     image: {
                         $0
                             .resizable()
+                            .aspectRatio(contentMode: .fill)
                             .frame(width: 180, height: 120)
-                            .aspectRatio(contentMode: .fit)
                     }
                 )
                 if fruit.percent != 0 {
@@ -93,7 +93,6 @@ struct AllProductsCell: View {
             HStack {
                 Text(fruit.name)
                     .font(.system(size: 18, weight: .light, design: .serif))
-                
                     .foregroundColor(Color.theme.blackWhiteText)
                     .multilineTextAlignment(.leading)
                 Spacer()

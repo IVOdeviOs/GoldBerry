@@ -56,6 +56,7 @@ class FruitViewModel: ObservableObject {
 
     func fetchFruit() async throws {
         self.isLoading = true
+      
         let urlString = Constants.baseURL + EndPoints.fruit
 
         guard let url = URL(string: urlString) else {

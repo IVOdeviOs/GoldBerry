@@ -170,15 +170,15 @@ struct ExtractedView: View {
 //                    .onAppear{
 //                        fruitViewModel.fetchAllRestaurants()
 //                    }
-                    .onAppear {
-                        Task {
-                            do {
-                                try await fruitViewModel.fetchFruit()
-                            } catch {
-                                print("❌ERORR \(error)")
-                            }
-                        }
-                    }
+//                    .onAppear {
+//                        Task {
+//                            do {
+//                                try await fruitViewModel.fetchFruit()
+//                            } catch {
+//                                print("❌ERORR \(error)")
+//                            }
+//                        }
+//                    }
 
             case 1:
                 CartView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)

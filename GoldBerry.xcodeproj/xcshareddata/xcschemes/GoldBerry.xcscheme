@@ -26,6 +26,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      customLLDBInitFile = "$ xcrun altool --validate-app -f file -t platform -u username [-p password] [--output-format xml]&#10;$ xcrun altool --upload-app -f file -t platform -u username [-p password] [&#x2014;output-format xml]"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
@@ -73,6 +74,7 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
+      customArchiveName = "GoldBerry"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

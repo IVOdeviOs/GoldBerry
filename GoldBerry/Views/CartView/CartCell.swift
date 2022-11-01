@@ -144,10 +144,10 @@ struct CartCell: View {
                     fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
                 }
             }
-            //            testCount = fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1
+//                        testCount = fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1
             //            fruit.count = fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 10
             fruit.count = testCount
-            print("!!!!!!!!\(fruit.count)")
+//            print("!!!!!!!!\(fruit.count)")
         }
         
         .onAppear {
