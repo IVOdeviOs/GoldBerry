@@ -8,7 +8,7 @@ struct CartView: View {
 
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
     var fruits: FetchedResults<FruitEntity>
-
+    
     var body: some View {
         if self.fruits.isEmpty {
             WithoutPurchase(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
@@ -95,7 +95,6 @@ struct WithPurchase: View {
                     Spacer()
 
                     NavigationLink {
-
                         MakingTheOrderView(orderViewModel: orderViewModel, fruitViewModel: fruitViewModel)
                         
                     } label: {

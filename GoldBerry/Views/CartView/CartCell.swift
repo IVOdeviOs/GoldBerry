@@ -145,7 +145,9 @@ struct CartCell: View {
                 }
             }
 //            testCount = fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1
+//            fruit.count = fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 10
             fruit.count = testCount
+            print("!!!!!!!!\(fruit.count)")
         }
 
         .onAppear {
@@ -160,7 +162,7 @@ struct CartCell: View {
                 }
             }
                     fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = testCount
-
+            fruit.count = testCount
         }
         .padding()
         .background(.gray.opacity(0.1))
