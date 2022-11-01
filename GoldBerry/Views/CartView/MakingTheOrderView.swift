@@ -122,7 +122,7 @@ struct MakingTheOrderView: View {
                                 hideKeyboard()
                             }
                         TextFieldView(text: $orderViewModel.customerPhone, placeholder: "Телефон получателя")
-                            .keyboardType(.phonePad)
+                            .keyboardType(.numberPad)
                             .onTapGesture {
                                 hideKeyboard()
                             }

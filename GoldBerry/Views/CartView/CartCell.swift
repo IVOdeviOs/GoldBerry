@@ -76,9 +76,12 @@ struct CartCell: View {
 //                    Spacer()
                     HStack {
                         Button {
-                            if fruit.count >= 2 {
+//                            if fruit.count >= 2 {
+                            if testCount >= 2 {
                                 fruit.count -= 1
-                                fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name]! -= 1
+                                testCount -= 1
+                                fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = testCount
+                                fruit.count = testCount
                                 if fruit.price == 0 {
                                     fruit.price = fruit.itog
                                 } else {
@@ -93,12 +96,14 @@ struct CartCell: View {
                                 .frame(width: 30, height: 30)
                                 .foregroundColor(Color.theme.gray)
                         }
-                        Text("\(fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1) кг")
+                        Text("\(fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 100) кг")
                             .foregroundColor(Color.theme.blackWhiteText)
                             .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
                         Button {
                             fruit.count += 1
-                            fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name]! += 1
+                            testCount += 1
+                            fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = testCount
+                            fruit.count = testCount
                             if fruit.price == 0 {
                                 fruit.price = fruit.itog
                             } else {
@@ -139,7 +144,8 @@ struct CartCell: View {
                     fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
                 }
             }
-            fruit.count = fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1
+//            testCount = fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1
+            fruit.count = testCount
         }
 
         .onAppear {
@@ -150,10 +156,11 @@ struct CartCell: View {
 
                     fruit.price = Double(items.counts) * fruit.itog
                     fruit.count = Int(items.counts)
-                    fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = fruit.count
                     fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
                 }
             }
+                    fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = testCount
+
         }
         .padding()
         .background(.gray.opacity(0.1))

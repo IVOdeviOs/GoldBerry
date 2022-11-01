@@ -78,7 +78,8 @@ struct WithPurchase: View {
                 ForEach(fruitViewModel.uniqFruits, id: \.id) { item in
                     CartCell(fruitViewModel: fruitViewModel,
                              orderViewModel: orderViewModel,
-                             fruit: item)
+                             fruit: item,
+                             testCount: fruitViewModel.dictionaryOfNameAndCountOfFruits[item.name] ?? 1)
                 }
                 .padding(.top, 125)
                 .padding(.bottom, 100)
@@ -96,7 +97,7 @@ struct WithPurchase: View {
                     NavigationLink {
 
                         MakingTheOrderView(orderViewModel: orderViewModel, fruitViewModel: fruitViewModel)
-
+                        
                     } label: {
                         Text("Оформить заказ \(NSString(format: "%.2f", fruitViewModel.sum())) р")
                             .foregroundColor(.white)

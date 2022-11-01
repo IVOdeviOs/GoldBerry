@@ -66,7 +66,7 @@ struct WithFavouriteProductsView: View {
             VStack {
                 Text("Избранные товары")
                     .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
-                    .foregroundColor(.green)
+                    .foregroundColor(Color.theme.lightGreen)
                     .padding()
 
                 ScrollView(.vertical, showsIndicators: false) {
