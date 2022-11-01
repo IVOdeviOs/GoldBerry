@@ -1,16 +1,16 @@
 import CoreData
 import SwiftUI
 struct CartCell: View {
-
+    
     @ObservedObject var fruitViewModel: FruitViewModel
     @ObservedObject var orderViewModel: OrderViewModel
-
+    
     @State var fruit: Fruit
     @State var testCount = 1
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.id, ascending: true)])
     var fruits: FetchedResults<FruitEntity>
-
+    
     func removeCell(fru: Fruit) {
         for item in fruits {
             if fru.id == item.id {
@@ -24,7 +24,7 @@ struct CartCell: View {
             }
         }
     }
-
+    
     var body: some View {
         VStack {
             HStack {
@@ -44,9 +44,9 @@ struct CartCell: View {
                 }
                 .frame(width: 150, height: 135)
                 .cornerRadius(8)
-
+                
                 VStack(alignment: .leading, spacing: 10) {
-
+                    
                     HStack {
                         Text("\(NSString(format: "%.2f", fruit.itog)) р/кг")
                             .foregroundColor(Color.theme.lightGreen)
@@ -56,7 +56,7 @@ struct CartCell: View {
                             withAnimation(.linear(duration: 0.5)) {
                                 removeCell(fru: fruit)
                             }
-
+                            
                         } label: {
                             Image(systemName: "x.square")
                                 .resizable()
@@ -64,7 +64,7 @@ struct CartCell: View {
                                 .foregroundColor(Color.theme.blackWhiteText)
                         }
                     }
-
+                    
                     Text(fruit.name)
                         .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
@@ -73,10 +73,10 @@ struct CartCell: View {
                         .fixedSize(horizontal: false, vertical: true)
                         .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(14, .uzSansRegular)))
-//                    Spacer()
+                    //                    Spacer()
                     HStack {
                         Button {
-//                            if fruit.count >= 2 {
+                            //                            if fruit.count >= 2 {
                             if testCount >= 2 {
                                 fruit.count -= 1
                                 testCount -= 1
@@ -89,7 +89,7 @@ struct CartCell: View {
                                     fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
                                 }
                             }
-
+                            
                         } label: {
                             Image(systemName: "minus.square.fill")
                                 .resizable()
@@ -134,7 +134,7 @@ struct CartCell: View {
                     .padding(.trailing, 20)
             }
         }
-
+        
         .onDisappear {
             for item in fruits {
                 if item.id == fruit.id {
@@ -144,24 +144,24 @@ struct CartCell: View {
                     fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
                 }
             }
-//            testCount = fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1
-//            fruit.count = fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 10
+            //            testCount = fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1
+            //            fruit.count = fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 10
             fruit.count = testCount
             print("!!!!!!!!\(fruit.count)")
         }
-
+        
         .onAppear {
             for items in fruits {
-
+                
                 if items.id == fruit.id {
                     fruit.price = Double(fruit.count) * fruit.itog
-
+                    
                     fruit.price = Double(items.counts) * fruit.itog
                     fruit.count = Int(items.counts)
                     fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
                 }
             }
-                    fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = testCount
+            fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = testCount
             fruit.count = testCount
         }
         .padding()
