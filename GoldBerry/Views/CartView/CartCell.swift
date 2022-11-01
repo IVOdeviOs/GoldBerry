@@ -48,7 +48,7 @@ struct CartCell: View {
                 VStack(alignment: .leading, spacing: 10) {
                     
                     HStack {
-                        Text("\(NSString(format: "%.2f", fruit.itog)) р/кг")
+                        Text("\(NSString(format: "%.2f", fruit.itog)) руб/\(fruit.weightOrPieces)")
                             .foregroundColor(Color.theme.lightGreen)
                             .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
                         Spacer()
@@ -96,7 +96,7 @@ struct CartCell: View {
                                 .frame(width: 30, height: 30)
                                 .foregroundColor(Color.theme.gray)
                         }
-                        Text("\(fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 100) кг")
+                        Text("\(fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1) \(fruit.weightOrPieces)")
                             .foregroundColor(Color.theme.blackWhiteText)
                             .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
                         Button {
@@ -128,7 +128,7 @@ struct CartCell: View {
                     .font(Font(uiFont: .fontLibrary(16, .uzSansSemiBold)))
                     .padding(.leading, 20)
                 Spacer()
-                Text("\(NSString(format: "%.2f", fruit.price ?? 1)) р")
+                Text("\(NSString(format: "%.2f", fruit.price ?? 1)) руб")
                     .foregroundColor(Color.theme.lightGreen)
                     .font(Font(uiFont: .fontLibrary(19, .uzSansSemiBold)))
                     .padding(.trailing, 20)

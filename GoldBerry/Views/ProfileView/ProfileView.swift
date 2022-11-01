@@ -6,6 +6,9 @@ struct ProfileView: View {
     @ObservedObject var orderViewModel = OrderViewModel()
     @ObservedObject var userViewModel = UserViewModel()
 
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.id, ascending: true)])
+    var fruits: FetchedResults<FruitEntity>
     let email = UserDefaults.standard.value(forKey: "userEmail")
     let user = Auth.auth().currentUser
     func orderCount() -> Int {
@@ -225,12 +228,11 @@ struct ProfileView: View {
                                           if error != nil {
                                           } else {
                                               do {
-                                                  print("🥶")
-
-                                                  try Auth.auth().signOut()
                                                   UserDefaults.standard.set(false, forKey: "status")
                                                   NotificationCenter.default.post(name: NSNotification.Name("statusChange"),
                                                                                   object: nil)
+                                                  try Auth.auth().signOut()
+                                                  
                                               } catch _ {}
                                           }
                                       }
