@@ -33,7 +33,7 @@ struct SignUP: View {
 
                         Image(systemName: "envelope.fill")
                             .foregroundColor(Color.theme.background)
-                        TextField("Введите вашу электронную почту", text: $signUP.email)
+                        TextField("E-mail", text: $signUP.email)
                             .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                             .foregroundColor(Color.theme.background)
                             .autocapitalization(.none)
@@ -54,12 +54,12 @@ struct SignUP: View {
                                 .foregroundColor(Color.theme.background)
                         }
                         if signUP.secure {
-                            SecureField("Пароль должен состоять минимум из 6 символов", text: $signUP.password)
+                            SecureField("Минимум 6 символов", text: $signUP.password)
                                 .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                                 .foregroundColor(Color.theme.background)
 
                         } else {
-                            TextField("Пароль должен состоять минимум из 6 символов", text: $signUP.password)
+                            TextField("Минимум 6 символов", text: $signUP.password)
                                 .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                                 .foregroundColor(Color.theme.background)
                         }

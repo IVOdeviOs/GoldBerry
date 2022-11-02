@@ -29,7 +29,7 @@ struct Login: View {
                     HStack(spacing: 15) {
                         Image(systemName: "envelope.fill")
                             .foregroundColor(Color.theme.background)
-                        TextField("Введите вашу электронную почту", text: $login.email)
+                        TextField("E-mail", text: $login.email)
                             .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                             .foregroundColor(Color.theme.background)
                             .keyboardType(.emailAddress)
