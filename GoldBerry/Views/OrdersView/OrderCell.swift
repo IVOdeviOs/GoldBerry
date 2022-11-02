@@ -61,59 +61,62 @@ struct OrderCell: View {
             Color.theme.gray
                 .frame(height: 3)
             HStack {
-                Text("Наименование")
-                    .foregroundColor(Color.theme.blackWhiteText)
-                    .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                    .padding(.leading, 40)
-                    .padding(.trailing, 10)
-                Text("Цена/ед.")
-                    .foregroundColor(Color.theme.blackWhiteText)
-                    .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                    .frame(width: 70, height: 20)
-                Text("Кол-во")
-                    .foregroundColor(Color.theme.blackWhiteText)
-                    .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                Text("Итого")
-                    .foregroundColor(Color.theme.blackWhiteText)
-                    .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                    .frame(width: 80, height: 20)
-                    .padding(.trailing, 10)
-            }
-            ForEach(0 ..< purchases.count) { row in
-                HStack {
-                    RemoteImageView(
-                        url: URL(string: purchases[row].image)!,
-                        placeholder: {
-                            Image(systemName: "icloud.and.arrow.up").frame(width: 30, height: 30)
-                        },
-                        image: {
-                            $0
-                                .resizable()
-                                .frame(width: 30, height: 30)
-                                .aspectRatio(contentMode: .fill)
-                        }
-                    )
-                    .frame(width: 30, height: 30)
-                    .cornerRadius(5)
-                    .padding(.leading, 10)
-                    Text(purchases[row].name)
-                        .foregroundColor(Color.theme.blackWhiteText)
-                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                    Spacer()
-                    Text("\(NSString(format: "%.2f", purchases[row].itog)) p.")
-                        .foregroundColor(Color.theme.blackWhiteText)
-                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                        .frame(width: 80, height: 20)
-                    Text("\(NSString(format: "%.1f", purchases[row].count)) ")
-                        .foregroundColor(Color.theme.blackWhiteText)
-                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                    Text("\(NSString(format: "%.2f", purchases[row].itog * purchases[row].count)) p.")
-                        .foregroundColor(Color.theme.blackWhiteText)
-                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                        .frame(width: 80, height: 20)
-                        .padding(.trailing, 10)
-                }
-            }
+                 Spacer()
+                 Text("Наименование")
+                     .foregroundColor(Color.theme.blackWhiteText)
+                     .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                     .frame(width: UIScreen.main.bounds.width/4, height: 20)
+                 Text("Цена/ед.")
+                     .foregroundColor(Color.theme.blackWhiteText)
+                     .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                     .frame(width: UIScreen.main.bounds.width/7, height: 20)
+                 Text("Кол-во")
+                     .foregroundColor(Color.theme.blackWhiteText)
+                     .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                     .frame(width: UIScreen.main.bounds.width/7, height: 20)
+                 Text("Итого")
+                     .foregroundColor(Color.theme.blackWhiteText)
+                     .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                     .frame(width: UIScreen.main.bounds.width/7, height: 20)
+                     .padding(.trailing, 10)
+             }
+             ForEach(0 ..< purchases.count) { row in
+                 HStack {
+                     RemoteImageView(
+                         url: URL(string: purchases[row].image)!,
+                         placeholder: {
+                             Image(systemName: "icloud.and.arrow.up").frame(width: 30, height: 30)
+                         },
+                         image: {
+                             $0
+                                 .resizable()
+                                 .frame(width: 30, height: 30)
+                                 .aspectRatio(contentMode: .fill)
+                         }
+                     )
+                     .frame(width: 30, height: 30)
+                     .cornerRadius(5)
+                     .padding(.leading, 10)
+                     Text(purchases[row].name)
+                         .foregroundColor(Color.theme.blackWhiteText)
+                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                         .frame(width: UIScreen.main.bounds.width/4, height: 20)
+                         .minimumScaleFactor(0.7)
+                     Text("\(NSString(format: "%.2f", purchases[row].itog)) p.")
+                         .foregroundColor(Color.theme.blackWhiteText)
+                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                         .frame(width: UIScreen.main.bounds.width/7, height: 20)
+                     Text("\(Int(purchases[row].count)) ")
+                         .foregroundColor(Color.theme.blackWhiteText)
+                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                         .frame(width: UIScreen.main.bounds.width/7, height: 20)
+                     Text("\(NSString(format: "%.2f", purchases[row].itog * purchases[row].count)) p.")
+                         .foregroundColor(Color.theme.blackWhiteText)
+                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                         .frame(width: UIScreen.main.bounds.width/7, height: 20)
+                         .padding(.trailing, 10)
+                 }
+             }
             HStack {
                 VStack(alignment: .leading, spacing: 10) {
                     HStack {
