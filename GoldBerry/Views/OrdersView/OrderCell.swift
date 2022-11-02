@@ -61,8 +61,6 @@ struct OrderCell: View {
             Color.theme.gray
                 .frame(height: 3)
             HStack {
-//                Spacer()
-
                 Text("Наименование")
                     .foregroundColor(Color.theme.blackWhiteText)
                     .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
