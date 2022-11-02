@@ -162,6 +162,10 @@ struct MakingTheOrderView: View {
                                          orderCompleted: false)
                         Task {
                             do {
+                                DispatchQueue.main.async {
+                                    fruitViewModel.uniqFruits.removeAll()
+
+                                }
                                 try await orderViewModel.addOrder(orders: orde)
                                 tog = true
                                 sendRequest { to in
@@ -170,9 +174,15 @@ struct MakingTheOrderView: View {
                                     fruitViewModel.isShowCount = false
                                 }
                                 deleteAllRecords()
-                                DispatchQueue.main.async {
-                                    fruitViewModel.uniqFruits.removeAll()
-                                }
+                                
+//                                for ite in  fruitViewModel.arrayOfFruitPrice.keys {
+//                                    fruitViewModel.arrayOfFruitPrice.removeValue(forKey: ite)
+//                                    print("💵\(fruitViewModel.arrayOfFruitPrice.count)")
+//                                }
+//                                for ite in  fruitViewModel.dictionaryOfNameAndCountOfFruits.keys {
+//                                    fruitViewModel.dictionaryOfNameAndCountOfFruits.removeValue(forKey: ite)
+//                                    print("🍔\(fruitViewModel.dictionaryOfNameAndCountOfFruits.count)")
+//                                }
                             } catch {
                                 orderViewModel.showAlertOrder.toggle()
                                 print("❌ ERORR  \(error.localizedDescription)")
