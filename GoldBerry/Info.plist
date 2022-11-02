@@ -39,7 +39,5 @@
 		<string>UZSans-Regular.ttf</string>
 		<string>UZSans-SemiBold.ttf</string>
 	</array>
-	<key>UIBackgroundModes</key>
-	<array/>
 </dict>
 </plist>

@@ -3,7 +3,7 @@ import SwiftUI
 
 struct ShopsView: View {
 
-    @StateObject var viewModel: FruitViewModel
+    @StateObject var fruitViewModel: FruitViewModel
 
     var body: some View {
         VStack {
@@ -14,8 +14,8 @@ struct ShopsView: View {
             Color.theme.gray
                 .opacity(0.3)
                 .frame(height: 10)
-            ShopsInfo(shopName: "Комаровский рынок, место 181", shopAddress: "г. Минск, ул. В. Хоружей, 8", workTime: "с 08:00 до 20:00")
-            ShopsInfo(shopName: "Рынок Валерианово, место 14", shopAddress: "г. Минск, ул. Логойская, 5а", workTime: "с 08:00 до 21:00")
+            ShopsInfo(fruitViewModel: fruitViewModel, shopName: "Комаровский рынок, место 181", shopAddress: "г. Минск, ул. В. Хоружей, 8", workTime: "с 08:00 до 20:00")
+            ShopsInfo(fruitViewModel: fruitViewModel, shopName: "Рынок Валерианово, место 14", shopAddress: "г. Минск, ул. Логойская, 5а", workTime: "с 08:00 до 21:00")
             Spacer()
         }
     }
@@ -23,7 +23,7 @@ struct ShopsView: View {
 
 struct ShopsInfo: View {
 
-    @ObservedObject var viewModel = FruitViewModel()
+    @ObservedObject var fruitViewModel: FruitViewModel
     @State var shopName: String
     @State var shopAddress: String
     @State var workTime: String
@@ -75,7 +75,7 @@ struct ShopsInfo: View {
                 .frame(height: 1)
 
             Button {
-                viewModel.selected = 0
+                fruitViewModel.selected = 0
             }
         label: {
                 Text("Перейти к заказу товаров")

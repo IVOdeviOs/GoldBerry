@@ -6,7 +6,6 @@ struct CartCell: View {
     @ObservedObject var orderViewModel: OrderViewModel
     
     @State var fruit: Fruit
-    @State var testCount = 1
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.id, ascending: true)])
     var fruits: FetchedResults<FruitEntity>
@@ -73,19 +72,15 @@ struct CartCell: View {
                         .fixedSize(horizontal: false, vertical: true)
                         .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(14, .uzSansRegular)))
-                    //                    Spacer()
                     HStack {
                         Button {
-                            //                            if fruit.count >= 2 {
-                            if testCount >= 2 {
-                                fruit.count -= 1
-                                testCount -= 1
-                                fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = testCount
-                                fruit.count = testCount
+                            if fruit.count >= 1.1 {
+                                fruit.count -= 0.2
+                                fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = fruit.count
                                 if fruit.price == 0 {
                                     fruit.price = fruit.itog
                                 } else {
-                                    fruit.price = fruit.itog * Double(fruit.count)
+                                    fruit.price = fruit.itog * fruit.count
                                     fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
                                 }
                             }
@@ -96,18 +91,16 @@ struct CartCell: View {
                                 .frame(width: 30, height: 30)
                                 .foregroundColor(Color.theme.gray)
                         }
-                        Text("\(fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1) \(fruit.weightOrPieces)")
+                        Text("\(NSString(format: "%.1f", fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1)) \(fruit.weightOrPieces)")
                             .foregroundColor(Color.theme.blackWhiteText)
                             .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
                         Button {
-                            fruit.count += 1
-                            testCount += 1
-                            fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = testCount
-                            fruit.count = testCount
+                            fruit.count += 0.2
+                            fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = fruit.count
                             if fruit.price == 0 {
                                 fruit.price = fruit.itog
                             } else {
-                                fruit.price = fruit.itog * Double(fruit.count)
+                                fruit.price = fruit.itog * fruit.count
                             }
                             fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
                         } label: {
@@ -134,7 +127,6 @@ struct CartCell: View {
                     .padding(.trailing, 20)
             }
         }
-        
         .onDisappear {
             for item in fruits {
                 if item.id == fruit.id {
@@ -144,25 +136,17 @@ struct CartCell: View {
                     fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
                 }
             }
-//                        testCount = fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1
-            //            fruit.count = fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 10
-            fruit.count = testCount
-//            print("!!!!!!!!\(fruit.count)")
         }
         
         .onAppear {
             for items in fruits {
-                
                 if items.id == fruit.id {
                     fruit.price = Double(fruit.count) * fruit.itog
-                    
-                    fruit.price = Double(items.counts) * fruit.itog
-                    fruit.count = Int(items.counts)
                     fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
                 }
             }
-            fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = testCount
-            fruit.count = testCount
+            fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = fruit.count
+            fruit.price = fruit.count * fruit.itog
         }
         .padding()
         .background(.gray.opacity(0.1))

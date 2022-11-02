@@ -78,8 +78,7 @@ struct WithPurchase: View {
                 ForEach(fruitViewModel.uniqFruits, id: \.id) { item in
                     CartCell(fruitViewModel: fruitViewModel,
                              orderViewModel: orderViewModel,
-                             fruit: item,
-                             testCount: fruitViewModel.dictionaryOfNameAndCountOfFruits[item.name] ?? 1)
+                             fruit: item)
                 }
                 .padding(.top, 125)
                 .padding(.bottom, 100)
@@ -97,7 +96,7 @@ struct WithPurchase: View {
                         MakingTheOrderView(orderViewModel: orderViewModel, fruitViewModel: fruitViewModel)
                         
                     } label: {
-                        Text("Оформить заказ \(NSString(format: "%.2f", fruitViewModel.sum()))руб")
+                        Text("Оформить заказ \(NSString(format: "%.2f", fruitViewModel.sum())) руб")
                             .foregroundColor(.white)
                             .frame(width: UIScreen.main.bounds.width - 30, height: 50)
                             .background(Color.theme.lightGreen)

@@ -135,10 +135,7 @@ struct MakingTheOrderView: View {
                             .onTapGesture {
                                 hideKeyboard()
                             }
-//                        ForEach(fruitViewModel.uniqFruits){ cd in
-//                            Text("\(cd.count)")
-//                                .font(.system(size: 30))
-//                        }
+
                     }
                     Button {
 
@@ -162,7 +159,6 @@ struct MakingTheOrderView: View {
                                           comment: orderViewModel.comments, orderCompleted: false)
                         Task {
                             do {
-
                                 try await orderViewModel.addOrder(orders: orde)
                                 tog = true
                                 sendRequest { to in
@@ -170,6 +166,8 @@ struct MakingTheOrderView: View {
                                     //                            dismiss()
                                     fruitViewModel.isShowCount = false
                                 }
+//                                fruitViewModel.uniqFruits.removeAll()
+//                                fruitViewModel.arrayOfFruitPrice.removeAll()
                                 deleteAllRecords()
 
                             } catch {
@@ -197,9 +195,9 @@ struct MakingTheOrderView: View {
             }
         }
 
-        .gesture(DragGesture(minimumDistance: 3.0, coordinateSpace: .local)
+        .gesture(DragGesture(minimumDistance: 100.0, coordinateSpace: .local)
             .onEnded { value in
-                print(value.translation)
+                
                 switch value.translation.width {
                 case 100 ... 300: self.presentation.wrappedValue.dismiss()
                 default: print("no clue")

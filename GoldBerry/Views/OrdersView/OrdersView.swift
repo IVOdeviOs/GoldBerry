@@ -78,7 +78,7 @@ struct WithOrders: View {
 
     var body: some View {
 //        NavigationView {
-        List(orderViewModel.order) { item in
+        List(orderViewModel.order.reversed()) { item in
             if item.email == email as? String {
                 NavigationLink {
                     OrderInfoView(order: item)

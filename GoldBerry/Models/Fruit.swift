@@ -7,7 +7,7 @@ struct Fruit: Identifiable, Codable, Hashable {
     var cost: Double
     var weightOrPieces, categories: String
     var favorite: Bool
-    var count: Int 
+    var count: Double
     var image: String
     var name: String
     var percent: Int

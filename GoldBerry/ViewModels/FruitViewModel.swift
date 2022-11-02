@@ -7,7 +7,7 @@ import FirebaseFirestore
 class FruitViewModel: ObservableObject {
 
     
-    @Published var dictionaryOfNameAndCountOfFruits: [String : Int] = ["" : 0]
+    @Published var dictionaryOfNameAndCountOfFruits: [String : Double] = ["" : 0]
     @Published var showCartCount = true
     
     @Published var selected = 0
@@ -24,8 +24,10 @@ class FruitViewModel: ObservableObject {
     @Published var percent: Int? = 1
 
     @Published var isValid = true
-//    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
-//    var fruits: FetchedResults<FruitEntity>
+    @Environment(\.managedObjectContext) private var viewContext
+
+    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
+    var fruits: FetchedResults<FruitEntity>
     @Published var comment: String? = ""
     var itog: Double {
 
@@ -54,6 +56,21 @@ class FruitViewModel: ObservableObject {
         return sumOfArray
     }
 
+    
+    func deleteAllRecords() {
+        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "FruitEntity")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+
+        do {
+            try viewContext.execute(deleteRequest)
+
+            try viewContext.save()
+        } catch {
+            print("There was an error")
+        }
+    }
+    
+    
     func fetchFruit() async throws {
         self.isLoading = true
       

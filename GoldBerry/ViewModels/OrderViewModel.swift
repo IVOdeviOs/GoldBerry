@@ -28,7 +28,7 @@ class OrderViewModel: ObservableObject {
     private var isDateValidPublisher: AnyPublisher<Bool, Never> {
         $date
             .map {
-                $0.count > 2
+                $0.count > 4
             }
             .replaceNil(with: false)
             .eraseToAnyPublisher()
@@ -100,6 +100,7 @@ class OrderViewModel: ObservableObject {
         dateFormatterOrder.dateFormat = "dd.MM.yyyy.HH.mm"
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"
+        
         date = dateFormatter.string(from: deliveryDate)
         dateOrder = dateFormatterOrder.string(from: .now)
     }

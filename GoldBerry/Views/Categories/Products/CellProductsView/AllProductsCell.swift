@@ -10,7 +10,7 @@ struct AllProductsCell: View {
     @FetchRequest(entity: FavoriteFruit.entity(), sortDescriptors: [])
     var favoriteFruit: FetchedResults<FavoriteFruit>
     
-    @State var newCount: Int = 0
+    @State var newCount: Double = 0
     var body: some View {
         VStack(spacing: 6) {
             ZStack(alignment: .bottomLeading) {
@@ -67,18 +67,18 @@ struct AllProductsCell: View {
             }
             HStack {
                 if fruit.itog == fruit.cost {
-                    Text("\(fruit.cost, specifier: "%.2f")руб")
+                    Text("\(fruit.cost, specifier: "%.2f") руб")
                         .font(.system(size: 14, weight: .bold, design: .serif))
                         .multilineTextAlignment(.leading)
                         .foregroundColor(Color.theme.blackWhiteText)
                     Spacer()
                 } else {
-                    Text("\(fruit.itog, specifier: "%.2f")руб")
+                    Text("\(fruit.itog, specifier: "%.2f") руб")
                         .font(.system(size: 14, weight: .bold, design: .serif))
                         .multilineTextAlignment(.leading)
                         .foregroundColor(.red)
                     ZStack {
-                        Text("\(fruit.cost, specifier: "%.2f")руб")
+                        Text("\(fruit.cost, specifier: "%.2f") руб")
                             .font(.system(size: 12, weight: .light, design: .serif))
                             .foregroundColor(Color.theme.blackWhiteText.opacity(0.6))
                             .multilineTextAlignment(.leading)
@@ -184,7 +184,7 @@ struct AllProductsCell: View {
     }
 
     func addFruit() {
-        newCount = fruit.count
+        newCount = Double(fruit.count)
         fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = newCount
 
         withAnimation {
