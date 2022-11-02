@@ -17,20 +17,20 @@ struct UserInfoView: View {
             Color.theme.gray
                 .opacity(0.3)
                 .frame(height: 10)
-            TextFieldView(text: $userViewModel.userSurname, placeholder: "Фамилия")
+            TextFieldView(text: $userViewModel.userSurname, placeholder: "Фамилия", infoText: "")
                 .disableAutocorrection(true)
 //                .autocorrectionDisabled()
                 .onTapGesture {
                     hideKeyboard()
                 }
-            TextFieldView(text: $userViewModel.userName, placeholder: "Имя")
+            TextFieldView(text: $userViewModel.userName, placeholder: "Имя", infoText: "")
 //                .autocorrectionDisabled()
                 .disableAutocorrection(true)
 
                 .onTapGesture {
                     hideKeyboard()
                 }
-            TextFieldView(text: $userViewModel.userPhone, placeholder: "Телефон")
+            TextFieldView(text: $userViewModel.userPhone, placeholder: "Телефон", infoText: "В формате (375)(80)29 1234567")
                 .keyboardType(.phonePad)
                 .onTapGesture {
                     hideKeyboard()

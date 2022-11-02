@@ -117,59 +117,68 @@ struct MakingTheOrderView: View {
                                 .foregroundColor(Color.theme.lightGreen)
                                 .padding()
                         }
-                        TextFieldView(text: $orderViewModel.customer, placeholder: "Имя получателя")
+                        TextFieldView(text: $orderViewModel.customer, placeholder: "Имя получателя", infoText: "Введите имя получателя")
+                            .disableAutocorrection(true)
                             .onTapGesture {
                                 hideKeyboard()
                             }
-                        TextFieldView(text: $orderViewModel.customerPhone, placeholder: "Телефон получателя")
+                        TextFieldView(text: $orderViewModel.customerPhone, placeholder: "Телефон получателя", infoText: "В формате (375)(80)29 1234567")
                             .keyboardType(.numberPad)
+                            .disableAutocorrection(true)
                             .onTapGesture {
                                 hideKeyboard()
                             }
-                        TextFieldView(text: $orderViewModel.address, placeholder: "Адрес доставки")
-//                            .autocorrectionDisabled()
+                        TextFieldView(text: $orderViewModel.address, placeholder: "Адрес доставки", infoText: "Введите адрес доставки")
+                            .disableAutocorrection(true)
                             .onTapGesture {
                                 hideKeyboard()
                             }
-                        TextFieldView(text: $orderViewModel.comments, placeholder: "Комментарий")
+                        TextFieldView(text: $orderViewModel.comments, placeholder: "Комментарий", infoText: "Оставте комментарий к заказу")
                             .onTapGesture {
                                 hideKeyboard()
                             }
-
                     }
                     Button {
 
                         var strID = ""
                         var numberId = 0
-                        for char in orderViewModel.id{
+                        for char in UUID().uuidString {
                             numberId += 1
                             if numberId <= 7 {
                                 strID.append(char)
                             }
                         }
+
                         let orde = Order(orderNumber: strID,
-                                          date: orderViewModel.date,
-                                          dateOrder: orderViewModel.dateOrder,
-                                          email: email as? String ?? "opsss...",
-                                          fruits: fruitViewModel.uniqFruits,
-                                          address: orderViewModel.address,
-                                          price: orderViewModel.price ?? 0.1,
-                                          customer: orderViewModel.customer,
-                                          customerPhone: orderViewModel.customerPhone,
-                                          comment: orderViewModel.comments, orderCompleted: false)
+                                         date: orderViewModel.date,
+                                         dateOrder: orderViewModel.dateOrder,
+                                         email: email as? String ?? "opsss...",
+                                         fruits: fruitViewModel.uniqFruits,
+                                         address: orderViewModel.address,
+                                         price: orderViewModel.price ?? 0.1,
+                                         customer: orderViewModel.customer,
+                                         customerPhone: orderViewModel.customerPhone,
+                                         comment: orderViewModel.comments,
+                                         orderCompleted: false)
                         Task {
                             do {
                                 try await orderViewModel.addOrder(orders: orde)
                                 tog = true
                                 sendRequest { to in
                                     tog = to
-                                    //                            dismiss()
+                                 
                                     fruitViewModel.isShowCount = false
                                 }
-//                                fruitViewModel.uniqFruits.removeAll()
-//                                fruitViewModel.arrayOfFruitPrice.removeAll()
                                 deleteAllRecords()
-
+                                fruitViewModel.fruit.removeAll()
+                                for ite in  fruitViewModel.arrayOfFruitPrice.keys {
+                                    fruitViewModel.arrayOfFruitPrice.removeValue(forKey: ite)
+                                    print("💵\(fruitViewModel.arrayOfFruitPrice.count)")
+                                }
+                                for ite in  fruitViewModel.dictionaryOfNameAndCountOfFruits.keys {
+                                    fruitViewModel.dictionaryOfNameAndCountOfFruits.removeValue(forKey: ite)
+                                    print("🍔\(fruitViewModel.dictionaryOfNameAndCountOfFruits.count)")
+                                }
                             } catch {
                                 orderViewModel.showAlertOrder.toggle()
                                 print("❌ ERORR  \(error.localizedDescription)")
@@ -197,7 +206,7 @@ struct MakingTheOrderView: View {
 
         .gesture(DragGesture(minimumDistance: 100.0, coordinateSpace: .local)
             .onEnded { value in
-                
+
                 switch value.translation.width {
                 case 100 ... 300: self.presentation.wrappedValue.dismiss()
                 default: print("no clue")
