@@ -1,15 +1,15 @@
 import CoreData
 import SwiftUI
 struct CartCell: View {
-    
+
     @ObservedObject var fruitViewModel: FruitViewModel
     @ObservedObject var orderViewModel: OrderViewModel
-    
+
     @State var fruit: Fruit
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.id, ascending: true)])
     var fruits: FetchedResults<FruitEntity>
-    
+
     func removeCell(fru: Fruit) {
         for item in fruits {
             if fru.id == item.id {
@@ -23,7 +23,7 @@ struct CartCell: View {
             }
         }
     }
-    
+
     var body: some View {
         VStack {
             HStack {
@@ -43,9 +43,9 @@ struct CartCell: View {
                 }
                 .frame(width: 150, height: 135)
                 .cornerRadius(8)
-                
+
                 VStack(alignment: .leading, spacing: 10) {
-                    
+
                     HStack {
                         Text("\(NSString(format: "%.2f", fruit.itog)) руб/\(fruit.weightOrPieces)")
                             .foregroundColor(Color.theme.lightGreen)
@@ -55,7 +55,7 @@ struct CartCell: View {
                             withAnimation(.linear(duration: 0.5)) {
                                 removeCell(fru: fruit)
                             }
-                            
+
                         } label: {
                             Image(systemName: "x.square")
                                 .resizable()
@@ -63,7 +63,7 @@ struct CartCell: View {
                                 .foregroundColor(Color.theme.blackWhiteText)
                         }
                     }
-                    
+
                     Text(fruit.name)
                         .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
@@ -84,7 +84,7 @@ struct CartCell: View {
                                     fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
                                 }
                             }
-                            
+
                         } label: {
                             Image(systemName: "minus.square.fill")
                                 .resizable()
@@ -137,9 +137,9 @@ struct CartCell: View {
                 }
             }
         }
-        
+
         .onAppear {
-            
+
             for items in fruits {
                 if items.id == fruit.id {
                     fruit.price = Double(fruit.count) * fruit.itog
