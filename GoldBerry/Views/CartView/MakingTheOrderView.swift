@@ -170,14 +170,8 @@ struct MakingTheOrderView: View {
                                     fruitViewModel.isShowCount = false
                                 }
                                 deleteAllRecords()
-                                fruitViewModel.fruit.removeAll()
-                                for ite in  fruitViewModel.arrayOfFruitPrice.keys {
-                                    fruitViewModel.arrayOfFruitPrice.removeValue(forKey: ite)
-                                    print("💵\(fruitViewModel.arrayOfFruitPrice.count)")
-                                }
-                                for ite in  fruitViewModel.dictionaryOfNameAndCountOfFruits.keys {
-                                    fruitViewModel.dictionaryOfNameAndCountOfFruits.removeValue(forKey: ite)
-                                    print("🍔\(fruitViewModel.dictionaryOfNameAndCountOfFruits.count)")
+                                DispatchQueue.main.async {
+                                    fruitViewModel.uniqFruits.removeAll()
                                 }
                             } catch {
                                 orderViewModel.showAlertOrder.toggle()
