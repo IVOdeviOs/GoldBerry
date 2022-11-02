@@ -60,6 +60,27 @@ struct OrderCell: View {
             }
             Color.theme.gray
                 .frame(height: 3)
+            HStack {
+//                Spacer()
+
+                Text("Наименование")
+                    .foregroundColor(Color.theme.blackWhiteText)
+                    .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                    .padding(.leading, 40)
+                    .padding(.trailing, 10)
+                Text("Цена/ед.")
+                    .foregroundColor(Color.theme.blackWhiteText)
+                    .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                    .frame(width: 70, height: 20)
+                Text("Кол-во")
+                    .foregroundColor(Color.theme.blackWhiteText)
+                    .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                Text("Итого")
+                    .foregroundColor(Color.theme.blackWhiteText)
+                    .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                    .frame(width: 80, height: 20)
+                    .padding(.trailing, 10)
+            }
             ForEach(0 ..< purchases.count) { row in
                 HStack {
                     RemoteImageView(
@@ -81,10 +102,14 @@ struct OrderCell: View {
                         .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                     Spacer()
+                    Text("\(NSString(format: "%.2f", purchases[row].itog)) p.")
+                        .foregroundColor(Color.theme.blackWhiteText)
+                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                        .frame(width: 80, height: 20)
                     Text("\(NSString(format: "%.1f", purchases[row].count)) ")
                         .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                    Text("\(NSString(format: "%.2f", purchases[row].itog)) p.")
+                    Text("\(NSString(format: "%.2f", purchases[row].itog * purchases[row].count)) p.")
                         .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                         .frame(width: 80, height: 20)
