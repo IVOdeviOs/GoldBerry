@@ -44,7 +44,12 @@ struct MakingTheOrderView: View {
             VStack {
                 HStack {
                     Button {
+                        self.fruitViewModel.selected = 0
                         self.presentation.wrappedValue.dismiss()
+                            
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                            self.fruitViewModel.selected = 1
+                        }
 
                     } label: {
                         Image(systemName: "arrow.backward")

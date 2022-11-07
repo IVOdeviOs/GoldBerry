@@ -74,8 +74,8 @@ struct CartCell: View {
                         .font(Font(uiFont: .fontLibrary(14, .uzSansRegular)))
                     HStack {
                         Button {
-                            if fruit.count >= 2 {
-                                fruit.count -= 1
+                            if fruit.count >= fruit.stepCount * 2 {
+                                fruit.count -= fruit.stepCount
                                 fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = fruit.count
                                 if fruit.price == 0 {
                                     fruit.price = fruit.itog
@@ -91,11 +91,11 @@ struct CartCell: View {
                                 .frame(width: 30, height: 30)
                                 .foregroundColor(Color.theme.gray)
                         }
-                        Text("\(Int(fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1)) \(fruit.weightOrPieces)")
+                        Text("\(NSString(format: "%.1f",fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1)) \(fruit.weightOrPieces)")
                             .foregroundColor(Color.theme.blackWhiteText)
                             .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
                         Button {
-                            fruit.count += 1
+                            fruit.count += fruit.stepCount
                             fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = fruit.count
                             if fruit.price == 0 {
                                 fruit.price = fruit.itog
