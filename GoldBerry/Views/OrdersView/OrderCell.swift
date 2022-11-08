@@ -85,16 +85,16 @@ struct OrderCell: View {
                      RemoteImageView(
                          url: URL(string: purchases[row].image)!,
                          placeholder: {
-                             Image(systemName: "icloud.and.arrow.up").frame(width: 30, height: 30)
+                             Image(systemName: "icloud.and.arrow.up").frame(width: 30, height: 20)
                          },
                          image: {
                              $0
                                  .resizable()
-                                 .frame(width: 30, height: 30)
+                                 .frame(width: 30, height: 20)
                                  .aspectRatio(contentMode: .fill)
                          }
                      )
-                     .frame(width: 30, height: 30)
+                     .frame(width: 30, height: 20)
                      .cornerRadius(5)
                      .padding(.leading, 10)
                      Text(purchases[row].name)
@@ -117,6 +117,7 @@ struct OrderCell: View {
                          .padding(.trailing, 10)
                  }
              }
+            
             HStack {
                 VStack(alignment: .leading, spacing: 10) {
                     HStack {

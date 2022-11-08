@@ -50,22 +50,23 @@ struct OrderInfoView: View {
                          .frame(width: UIScreen.main.bounds.width/6, height: 20)
                          .padding(.trailing, 20)
                  }
+                ScrollView(.vertical, showsIndicators: false) {
                  ForEach(0 ..< order.fruits.count) { row in
                      HStack {
                          RemoteImageView(
                              url: URL(string: order.fruits[row].image)!,
                              placeholder: {
-                                 Image(systemName: "icloud.and.arrow.up").frame(width: 30, height: 30)
+                                 Image(systemName: "icloud.and.arrow.up").frame(width: 30, height: 20)
                              },
                              image: {
                                  $0
                                      .resizable()
-                                     .frame(width: 30, height: 30)
+                                     .frame(width: 30, height: 20)
                                      .aspectRatio(contentMode: .fill)
                              }
                          )
-                         .frame(width: 30, height: 30)
-                         .cornerRadius(10)
+                         .frame(width: 30, height: 20)
+                         .cornerRadius(5)
                          .padding(.leading, 10)
                          Text(order.fruits[row].name)
                              .minimumScaleFactor(0.7)
@@ -87,7 +88,7 @@ struct OrderInfoView: View {
                              .padding(.trailing, 10)
                      }
                  }
-
+                }
                 Color.theme.gray
                     .opacity(0.3)
                     .frame(height: 10)

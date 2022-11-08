@@ -36,14 +36,14 @@ struct CartCell: View {
                         image: {
                             $0
                                 .resizable()
-                                .frame(width: 150, height: 150)
+                                .frame(width: 150, height: 100)
                                 .aspectRatio(contentMode: .fit)
                         }
                     )
                 }
-                .frame(width: 150, height: 135)
+                .frame(width: 150, height: 100)
                 .cornerRadius(8)
-                
+                .offset(y: -8)
                 VStack(alignment: .leading, spacing: 10) {
                     
                     HStack {
