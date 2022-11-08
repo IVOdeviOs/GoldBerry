@@ -17,8 +17,8 @@ struct AlertMakingOrder: View {
                     .padding(.bottom, 10)
                 Text("Проверьте Ваше интернет-соединение")
                     .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
-                    .padding(.bottom, 10)
                     .multilineTextAlignment(.center)
+                    .minimumScaleFactor(0.7)
                     .foregroundColor(Color.theme.gray)
                     .padding(.horizontal, 10)
             }
