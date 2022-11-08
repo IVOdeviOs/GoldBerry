@@ -23,7 +23,6 @@ struct AlertMakingOrder: View {
                     .padding(.horizontal, 10)
             }
         }
-//        .frame(width: 300, height: 300, alignment: .center)
     }
 }
 
