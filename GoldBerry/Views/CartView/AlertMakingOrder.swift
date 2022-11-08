@@ -6,15 +6,24 @@ struct AlertMakingOrder: View {
     var body: some View {
         ZStack {
             VStack(spacing: 20 ) {
-                Text("Ууууппппсссс")
-                    .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
-                    .foregroundColor(Color.red)
-                Text("Что-то пошло не так")
-                    .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
-                    .foregroundColor(Color.black)
+                Image("oops")
+                    .resizable()
+                    .frame(width: 300, height: 300)
+                    .cornerRadius(20)
+                    .padding()
+                Text("Что-то пошло не так :(")
+                    .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
+                    .foregroundColor(Color.theme.blackWhiteText)
+                    .padding(.bottom, 10)
+                Text("Проверьте Ваше интернет-соединение")
+                    .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                    .padding(.bottom, 10)
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(Color.theme.gray)
+                    .padding(.horizontal, 10)
             }
         }
-        .frame(width: 300, height: 300, alignment: .center)
+//        .frame(width: 300, height: 300, alignment: .center)
     }
 }
 
