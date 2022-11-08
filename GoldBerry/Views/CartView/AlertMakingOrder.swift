@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct AlertMakingOrder: View {
+    
     @ObservedObject var orderViewModel = OrderViewModel()
     
     var body: some View {
