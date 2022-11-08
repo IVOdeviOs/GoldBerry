@@ -72,9 +72,9 @@ class FruitViewModel: ObservableObject {
     
     
     func fetchFruit() async throws {
-        self.isLoading = true
       
         let urlString = Constants.baseURL + EndPoints.fruit
+        self.isLoading = true
 
         guard let url = URL(string: urlString) else {
             throw HttpError.badURL
@@ -82,8 +82,8 @@ class FruitViewModel: ObservableObject {
         let fruitResponse: [Fruit] = try await HttpClient.shared.fetch(url: url)
 
         DispatchQueue.main.async { [self] in
-            self.isLoading = false
             self.fruit = fruitResponse
+            self.isLoading = false
         }
     }
 

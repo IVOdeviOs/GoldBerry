@@ -10,7 +10,6 @@ struct SignUP: View {
     @Binding var show: Bool
 
     @Environment(\.managedObjectContext) private var viewContext
-  
 
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -18,7 +17,7 @@ struct SignUP: View {
                 HStack {
                     Spacer(minLength: 0)
                     VStack(spacing: 10) {
-                        Text("SignUp")
+                        Text("Регистрация")
                             .foregroundColor(index == 1 ? Color.theme.background : Color.theme.gray)
                             .font(Font(uiFont: .fontLibrary(22, .uzSansBold)))
                         Capsule()
@@ -31,9 +30,10 @@ struct SignUP: View {
                 .padding(.top, 30)
                 VStack {
                     HStack(spacing: 15) {
+
                         Image(systemName: "envelope.fill")
                             .foregroundColor(Color.theme.background)
-                        TextField("Email Address", text: $signUP.email)
+                        TextField("E-mail", text: $signUP.email)
                             .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                             .foregroundColor(Color.theme.background)
                             .autocapitalization(.none)
@@ -54,11 +54,12 @@ struct SignUP: View {
                                 .foregroundColor(Color.theme.background)
                         }
                         if signUP.secure {
-                            SecureField("Password", text: $signUP.password)
+                            SecureField("Минимум 6 символов", text: $signUP.password)
                                 .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                                 .foregroundColor(Color.theme.background)
+
                         } else {
-                            TextField("Password", text: $signUP.password)
+                            TextField("Минимум 6 символов", text: $signUP.password)
                                 .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                                 .foregroundColor(Color.theme.background)
                         }
@@ -77,11 +78,11 @@ struct SignUP: View {
                                 .foregroundColor(Color.theme.background)
                         }
                         if signUP.secureConfirm {
-                            SecureField("Password", text: $signUP.confirmationPassword)
+                            SecureField("Повторите ваш пароль", text: $signUP.confirmationPassword)
                                 .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                                 .foregroundColor(Color.theme.background)
                         } else {
-                            TextField("Password", text: $signUP.confirmationPassword)
+                            TextField("Повторите ваш пароль", text: $signUP.confirmationPassword)
                                 .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                                 .foregroundColor(Color.theme.background)
                         }
@@ -93,7 +94,7 @@ struct SignUP: View {
                 .padding(.top, 30)
 
                 HStack {
-                    Text(" I agree to the assessment,\n use and processing of my personal data")
+                    Text(" Я согласен на использование \nи обработку моих персональных данных")
                         .foregroundColor(Color.theme.background)
                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
 
@@ -139,7 +140,7 @@ struct SignUP: View {
                 }
             } label: {
 
-                Text("SignUp")
+                Text("Зарегистрироваться")
                     .foregroundColor(Color.theme.background)
                     .font(Font(uiFont: .fontLibrary(18, .uzSansSemiBold)))
                     .padding(.vertical)

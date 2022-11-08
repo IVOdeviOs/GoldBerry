@@ -1,15 +1,15 @@
 import CoreData
 import SwiftUI
 struct CartCell: View {
-    
+
     @ObservedObject var fruitViewModel: FruitViewModel
     @ObservedObject var orderViewModel: OrderViewModel
-    
+
     @State var fruit: Fruit
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.id, ascending: true)])
     var fruits: FetchedResults<FruitEntity>
-    
+
     func removeCell(fru: Fruit) {
         for item in fruits {
             if fru.id == item.id {
@@ -23,7 +23,7 @@ struct CartCell: View {
             }
         }
     }
-    
+
     var body: some View {
         VStack {
             HStack {
@@ -45,7 +45,7 @@ struct CartCell: View {
                 .cornerRadius(8)
                 .offset(y: -8)
                 VStack(alignment: .leading, spacing: 10) {
-                    
+
                     HStack {
                         Text("\(NSString(format: "%.2f", fruit.itog)) руб/\(fruit.weightOrPieces)")
                             .foregroundColor(Color.theme.lightGreen)
@@ -55,7 +55,7 @@ struct CartCell: View {
                             withAnimation(.linear(duration: 0.5)) {
                                 removeCell(fru: fruit)
                             }
-                            
+
                         } label: {
                             Image(systemName: "x.square")
                                 .resizable()
@@ -63,7 +63,7 @@ struct CartCell: View {
                                 .foregroundColor(Color.theme.blackWhiteText)
                         }
                     }
-                    
+
                     Text(fruit.name)
                         .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
@@ -74,8 +74,8 @@ struct CartCell: View {
                         .font(Font(uiFont: .fontLibrary(14, .uzSansRegular)))
                     HStack {
                         Button {
-                            if fruit.count >= 1.1 {
-                                fruit.count -= 0.2
+                            if fruit.count >= fruit.stepCount * 2 {
+                                fruit.count -= fruit.stepCount
                                 fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = fruit.count
                                 if fruit.price == 0 {
                                     fruit.price = fruit.itog
@@ -84,18 +84,18 @@ struct CartCell: View {
                                     fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
                                 }
                             }
-                            
+
                         } label: {
                             Image(systemName: "minus.square.fill")
                                 .resizable()
                                 .frame(width: 30, height: 30)
                                 .foregroundColor(Color.theme.gray)
                         }
-                        Text("\(NSString(format: "%.1f", fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1)) \(fruit.weightOrPieces)")
+                        Text("\(NSString(format: "%.1f",fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1)) \(fruit.weightOrPieces)")
                             .foregroundColor(Color.theme.blackWhiteText)
                             .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
                         Button {
-                            fruit.count += 0.2
+                            fruit.count += fruit.stepCount
                             fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = fruit.count
                             if fruit.price == 0 {
                                 fruit.price = fruit.itog
@@ -137,8 +137,9 @@ struct CartCell: View {
                 }
             }
         }
-        
+
         .onAppear {
+
             for items in fruits {
                 if items.id == fruit.id {
                     fruit.price = Double(fruit.count) * fruit.itog

@@ -149,6 +149,7 @@ struct AllProductsCell: View {
             HStack {
                 Button {
                     addFruit()
+                    fruit.count = 1
                     fruitViewModel.isShowCount = true
                     fruit.isValid = false
                     fruitViewModel.countCart += 1

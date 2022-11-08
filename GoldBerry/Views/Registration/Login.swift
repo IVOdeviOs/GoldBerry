@@ -13,7 +13,7 @@ struct Login: View {
             VStack {
                 HStack {
                     VStack(spacing: 10) {
-                        Text("LogIn")
+                        Text("Вход")
                             .foregroundColor(index == 0 ? Color.theme.background : .gray)
                             .font(Font(uiFont: .fontLibrary(22, .uzSansBold)))
                         Capsule()
@@ -29,7 +29,7 @@ struct Login: View {
                     HStack(spacing: 15) {
                         Image(systemName: "envelope.fill")
                             .foregroundColor(Color.theme.background)
-                        TextField("Email address", text: $login.email)
+                        TextField("E-mail", text: $login.email)
                             .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                             .foregroundColor(Color.theme.background)
                             .keyboardType(.emailAddress)
@@ -49,11 +49,11 @@ struct Login: View {
                                 .foregroundColor(Color.theme.background)
                         }
                         if login.secure {
-                            SecureField("Password", text: $login.password)
+                            SecureField("Пароль", text: $login.password)
                                 .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                                 .foregroundColor(Color.theme.background)
                         } else {
-                            TextField("Password", text: $login.password)
+                            TextField("Пароль", text: $login.password)
                                 .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                                 .foregroundColor(Color.theme.background)
                         }
@@ -70,7 +70,7 @@ struct Login: View {
                     Button {
                         self.showForGetPassword.toggle()
                     } label: {
-                        Text("Forget Password?")
+                        Text("Забыли пароль?")
                             .foregroundColor(Color.theme.background)
                             .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                     }
@@ -105,7 +105,7 @@ struct Login: View {
                     }
                 }
             } label: {
-                Text("LogIn")
+                Text("Войти")
                     .foregroundColor(Color.theme.background)
                     .font(Font(uiFont: .fontLibrary(18, .uzSansSemiBold)))
                     .padding(.vertical)

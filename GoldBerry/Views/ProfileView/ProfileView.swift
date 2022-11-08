@@ -1,7 +1,7 @@
+import CoreData
 import FirebaseAuth
 import FirebaseCore
 import SwiftUI
-import CoreData
 
 struct ProfileView: View {
     @ObservedObject var fruitViewModel = FruitViewModel()
@@ -11,7 +11,7 @@ struct ProfileView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.id, ascending: true)])
     var fruits: FetchedResults<FruitEntity>
-    
+
     let email = UserDefaults.standard.value(forKey: "userEmail")
     let user = Auth.auth().currentUser
     func orderCount() -> Int {
@@ -215,7 +215,7 @@ struct ProfileView: View {
                                       UserDefaults.standard.set(false, forKey: "status")
                                       NotificationCenter.default.post(name: NSNotification.Name("statusChange"),
                                                                       object: nil)
-                                deleteAllRecords()
+                                      deleteAllRecords()
 
                                   },
                                   secondaryButton: .cancel())

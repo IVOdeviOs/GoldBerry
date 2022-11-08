@@ -10,7 +10,7 @@ struct ForGetPasswordView: View {
                     .font(Font(uiFont: .fontLibrary(24, .uzSansBold)))
                     .foregroundColor(Color.theme.blackWhiteText)
                     .padding()
-                TextFieldView(text: $email, placeholder: "E-mail")
+                TextFieldView(text: $email, placeholder: "E-mail", infoText: "")
                     .padding()
                     .padding(.bottom, 8.0)
                 Spacer()

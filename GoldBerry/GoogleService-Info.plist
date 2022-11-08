@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>681087587207-ghv24t1dldpm2v1ih95nsplr0b54v590.apps.googleusercontent.com</string>
+	<string>681087587207-03jvsf5mifa2d39m9poq35s5s1u8c3f3.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.681087587207-ghv24t1dldpm2v1ih95nsplr0b54v590</string>
+	<string>com.googleusercontent.apps.681087587207-03jvsf5mifa2d39m9poq35s5s1u8c3f3</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAfdAgG8FsnrtLUsgLTFmkRm3i2EHQ56zc</string>
 	<key>GCM_SENDER_ID</key>
@@ -19,16 +19,18 @@
 	<key>STORAGE_BUCKET</key>
 	<string>goldberry-58e10.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_GCM_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:681087587207:ios:aff0c5e834b4955233b922</string>
+	<string>1:681087587207:ios:b61dc62f3719ca9e33b922</string>
+	<key>DATABASE_URL</key>
+	<string>https://goldberry-58e10-default-rtdb.europe-west1.firebasedatabase.app</string>
 </dict>
 </plist>

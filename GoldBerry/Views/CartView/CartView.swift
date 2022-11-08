@@ -83,6 +83,11 @@ struct WithPurchase: View {
                 .padding(.top, 125)
                 .padding(.bottom, 100)
             }
+            .refreshable {
+                print("⭕️\(fruitViewModel.uniqFruits.count)")
+
+            }
+
             .padding(.vertical, 3)
             .padding(.horizontal, 10)
 
