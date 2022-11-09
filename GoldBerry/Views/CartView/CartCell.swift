@@ -150,7 +150,7 @@ struct CartCell: View {
             fruit.price = fruit.count * fruit.itog
         }
         .padding()
-        .background(.gray.opacity(0.1))
+//        .background(Color.theme.gray.opacity(0.05))
         .overlay(
             RoundedRectangle(cornerRadius: 8)
                 .stroke(Color.theme.gray, lineWidth: 1)
