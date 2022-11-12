@@ -4,9 +4,10 @@ import SwiftUI
 
 struct Login: View {
     @StateObject private var login = LogIn()
+    @StateObject var user = UserViewModel()
     @Binding var index: Int
     @Environment(\.managedObjectContext) private var viewContext
-   
+
     @State var showForGetPassword = false
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -32,7 +33,10 @@ struct Login: View {
                         TextField("E-mail", text: $login.email)
                             .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                             .foregroundColor(Color.theme.background)
+                            .autocapitalization(.none)
                             .keyboardType(.emailAddress)
+                            .disableAutocorrection(true)
+                            
                     }
                     Divider()
                         .background(Color.theme.background)
@@ -93,6 +97,33 @@ struct Login: View {
             .cornerRadius(35)
 
             Button {
+//                Task {
+//                    do {
+//                        try await login.fetchUser()
+//                        for item in login.user{
+//
+//                            if item.login == login.email && item.password == login.password {
+//                                print("✅")
+//                                UserDefaults.standard.set(login.email, forKey: "userEmail")
+//                                UserDefaults.standard.set(true, forKey: "status")
+//                                NotificationCenter.default
+//                                    .post(name: NSNotification.Name("statusChange"), object: nil)
+//                            } else {
+//                                login.alert.toggle()
+//
+//
+//                            }
+//                        }
+//                ////                        UserDefaults.standard.set(login.email, forKey: "userEmail")
+//                ////                        UserDefaults.standard.set(true, forKey: "status")
+//                ////                        NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
+//
+//                    } catch {
+//                        login.alert.toggle()
+//                    }
+//                }
+
+
                 signInWithEmail(email: login.email, password: login.password) { verified, status in
                     if !verified {
                         login.message = status
@@ -120,7 +151,7 @@ struct Login: View {
                             y: 5)
             }
             .alert(isPresented: $login.alert) {
-                Alert(title: Text("Error"), message: Text(login.message), dismissButton: .default(Text("Ok")))
+                Alert(title: Text("Ошибка"), message: Text("Что то пошло не так"), dismissButton: .default(Text("Ok")))
             }
             .offset(y: 30)
             .opacity(index == 0 ? 1 : 0)

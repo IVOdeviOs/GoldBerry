@@ -169,32 +169,21 @@ struct MakingTheOrderView: View {
                             do {
                                 DispatchQueue.main.async {
                                     fruitViewModel.uniqFruits.removeAll()
-
                                 }
                                 try await orderViewModel.addOrder(orders: orde)
                                 tog = true
                                 sendRequest { to in
                                     tog = to
-                                 
-                                    fruitViewModel.isShowCount = false
                                 }
+                                fruitViewModel.countCart = 0
+                                fruitViewModel.isShowCount = false
+                                fruitViewModel.showCartCount = false
                                 deleteAllRecords()
-                                
-//                                for ite in  fruitViewModel.arrayOfFruitPrice.keys {
-//                                    fruitViewModel.arrayOfFruitPrice.removeValue(forKey: ite)
-//                                    print("💵\(fruitViewModel.arrayOfFruitPrice.count)")
-//                                }
-//                                for ite in  fruitViewModel.dictionaryOfNameAndCountOfFruits.keys {
-//                                    fruitViewModel.dictionaryOfNameAndCountOfFruits.removeValue(forKey: ite)
-//                                    print("🍔\(fruitViewModel.dictionaryOfNameAndCountOfFruits.count)")
-//                                }
                             } catch {
                                 orderViewModel.showAlertOrder.toggle()
                                 print("❌ ERORR  \(error.localizedDescription)")
                             }
                         }
-                        fruitViewModel.countCart = 0
-                        fruitViewModel.showCartCount = false
                     } label: {
                         Text("Сделать заказ")
                             .foregroundColor(.white)

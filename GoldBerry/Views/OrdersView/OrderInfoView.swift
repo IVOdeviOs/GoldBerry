@@ -53,18 +53,38 @@ struct OrderInfoView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                  ForEach(0 ..< order.fruits.count) { row in
                      HStack {
-                         RemoteImageView(
-                             url: URL(string: order.fruits[row].image)!,
-                             placeholder: {
-                                 Image(systemName: "icloud.and.arrow.up").frame(width: 30, height: 20)
-                             },
-                             image: {
-                                 $0
+//                         RemoteImageView(
+//                             url: URL(string: order.fruits[row].image)!,
+//                             placeholder: {
+//                                 Image(systemName: "icloud.and.arrow.up").frame(width: 30, height: 20)
+//                             },
+//                             image: {
+//                                 $0
+//                                     .resizable()
+//                                     .frame(width: 30, height: 20)
+//                                     .aspectRatio(contentMode: .fill)
+//                             }
+//                         )
+                         AsyncImage(
+                             url: URL(string: order.fruits[row].image),
+                             transaction: Transaction(animation: .easeInOut)
+                         ) { phase in
+                             switch phase {
+                             case .empty:
+                                 ProgressView()
+                             case .success(let image):
+                                 image
                                      .resizable()
+                                     .transition(.scale(scale: 0.1, anchor: .center))
                                      .frame(width: 30, height: 20)
                                      .aspectRatio(contentMode: .fill)
+                             case .failure:
+                                 Image(systemName: "wifi.slash")
+                             @unknown default:
+                                 EmptyView()
                              }
-                         )
+                         }
+
                          .frame(width: 30, height: 20)
                          .cornerRadius(5)
                          .padding(.leading, 10)

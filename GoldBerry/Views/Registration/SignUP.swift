@@ -125,19 +125,33 @@ struct SignUP: View {
             .cornerRadius(35)
 
             Button {
-                signUpWithEmail(email: signUP.email,
-                                password: signUP.password,
-                                confirmPassword: signUP.confirmationPassword) { verified, status in
-                    if !verified {
-                        signUP.message = status
-                        signUP.alert.toggle()
-                    } else {
+
+                Task {
+                    do {
+                        try await signUP.addOrder(users: LoginUser(login: signUP.email, password: signUP.password, role: ""))
                         UserDefaults.standard.set(signUP.email, forKey: "userEmail")
                         UserDefaults.standard.set(true, forKey: "status")
                         show.toggle()
                         NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
+
+                    } catch {
+                        signUP.alert.toggle()
                     }
                 }
+
+//                signUpWithEmail(email: signUP.email,
+//                                password: signUP.password,
+//                                confirmPassword: signUP.confirmationPassword) { verified, status in
+//                    if !verified {
+//                        signUP.message = status
+//                        signUP.alert.toggle()
+//                    } else {
+//                        UserDefaults.standard.set(signUP.email, forKey: "userEmail")
+//                        UserDefaults.standard.set(true, forKey: "status")
+//                        show.toggle()
+//                        NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
+//                    }
+//                }
             } label: {
 
                 Text("Зарегистрироваться")
@@ -155,9 +169,8 @@ struct SignUP: View {
                             y: -5)
             }
             .disabled(!signUP.isValid)
-
             .alert(isPresented: $signUP.alert) {
-                Alert(title: Text("Error"), message: Text(signUP.message), dismissButton: .default(Text("Ok")))
+                Alert(title: Text("Ошибка"), message: Text("Что-то пошло не так"), dismissButton: .default(Text("Ok")))
             }
             .offset(y: 25)
             .opacity(index == 1 ? 1 : 0)

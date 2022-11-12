@@ -10,7 +10,7 @@ final class LogIn: ObservableObject {
     @Published var show = false
     @Published var message = ""
     @Published var index = 0
-
+    @Published var user = [LoginUser]()
     @Published var email = ""
     @Published var password = ""
     @Published var confirmationPassword = ""
@@ -19,6 +19,34 @@ final class LogIn: ObservableObject {
     @Published var secure = true
     @Published var secureConfirm = true
 
+    func fetchUser() async throws {
+        let urlString = Constants.baseURL + EndPoints.user
+
+        guard let url = URL(string: urlString) else {
+            throw HttpError.badURL
+        }
+        
+        let userResponse: [LoginUser] = try await HttpClient.shared.fetch(url: url)
+
+        DispatchQueue.main.async {
+            self.user = userResponse
+        }
+    }
+
+    
+    func addOrder(users: LoginUser) async throws {
+        let urlString = Constants.baseURL + EndPoints.user
+
+        
+        
+        guard let url = URL(string: urlString) else {
+            throw HttpError.badURL
+        }
+        try await HttpClient.shared.sendData(to: url, object: users, httpMethod: HttpMethods.POST.rawValue)
+    }
+
+    
+    
     var cancellable: Set<AnyCancellable> = []
 
     private var formattedEmailPublisher: AnyPublisher<String, Never> {

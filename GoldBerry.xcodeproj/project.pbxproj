@@ -67,7 +67,6 @@
 		DD95A8372899ABD600DF346B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD95A8362899ABD600DF346B /* Assets.xcassets */; };
 		DD95A83A2899ABD600DF346B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD95A8392899ABD600DF346B /* Preview Assets.xcassets */; };
 		DD95A83C2899ABD600DF346B /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD95A83B2899ABD600DF346B /* Persistence.swift */; };
-		DDA4697F28E9949900DB0AD7 /* ModalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA4697E28E9949900DB0AD7 /* ModalType.swift */; };
 		DDBA58DE28A0419100FFC3A5 /* CategoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBA58DD28A0419100FFC3A5 /* CategoriesCell.swift */; };
 		DDBA58E028A1551400FFC3A5 /* AllProductsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBA58DF28A1551400FFC3A5 /* AllProductsCell.swift */; };
 		DDBA58EB28AAB43900FFC3A5 /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBA58EA28AAB43900FFC3A5 /* Fruit.swift */; };
@@ -125,7 +124,6 @@
 		DD95A8362899ABD600DF346B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DD95A8392899ABD600DF346B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DD95A83B2899ABD600DF346B /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		DDA4697E28E9949900DB0AD7 /* ModalType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalType.swift; sourceTree = "<group>"; };
 		DDBA58DD28A0419100FFC3A5 /* CategoriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCell.swift; sourceTree = "<group>"; };
 		DDBA58DF28A1551400FFC3A5 /* AllProductsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProductsCell.swift; sourceTree = "<group>"; };
 		DDBA58EA28AAB43900FFC3A5 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
@@ -260,7 +258,6 @@
 				DD95A83B2899ABD600DF346B /* Persistence.swift */,
 				DD93807228B54CF600808E88 /* HttpClient.swift */,
 				DD93807428B54D1000808E88 /* Constants.swift */,
-				DDA4697E28E9949900DB0AD7 /* ModalType.swift */,
 			);
 			path = Utilites;
 			sourceTree = "<group>";
@@ -439,7 +436,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDA4697F28E9949900DB0AD7 /* ModalType.swift in Sources */,
 				DC4807F028BC949F001416B6 /* ServiceInfoView.swift in Sources */,
 				DC4807F228BC9925001416B6 /* ImagePicker.swift in Sources */,
 				DD2CEE8728E37C730060B77A /* LoginView.swift in Sources */,

@@ -28,18 +28,38 @@ struct CartCell: View {
         VStack {
             HStack {
                 ZStack(alignment: .top) {
-                    RemoteImageView(
-                        url: URL(string: fruit.image)!,
-                        placeholder: {
-                            Image(systemName: "icloud.and.arrow.up").frame(width: 300, height: 300)
-                        },
-                        image: {
-                            $0
+//                    RemoteImageView(
+//                        url: URL(string: fruit.image)!,
+//                        placeholder: {
+//                            Image(systemName: "icloud.and.arrow.up").frame(width: 300, height: 300)
+//                        },
+//                        image: {
+//                            $0
+//                                .resizable()
+//                                .frame(width: 150, height: 100)
+//                                .aspectRatio(contentMode: .fit)
+//                        }
+//                    )
+                    AsyncImage(
+                        url: URL(string: fruit.image),
+                        transaction: Transaction(animation: .easeInOut)
+                    ) { phase in
+                        switch phase {
+                        case .empty:
+                            ProgressView()
+                        case .success(let image):
+                            image
                                 .resizable()
+                                .transition(.scale(scale: 0.1, anchor: .center))
                                 .frame(width: 150, height: 100)
                                 .aspectRatio(contentMode: .fit)
+                        case .failure:
+                            Image(systemName: "wifi.slash")
+                        @unknown default:
+                            EmptyView()
                         }
-                    )
+                    }
+
                 }
                 .frame(width: 150, height: 100)
                 .cornerRadius(8)

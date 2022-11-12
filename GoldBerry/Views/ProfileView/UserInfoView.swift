@@ -6,7 +6,6 @@ struct UserInfoView: View {
     @Environment(\.presentationMode) var presentationMode
     @StateObject var userViewModel: UserViewModel
     let email = UserDefaults.standard.value(forKey: "userEmail")
-    @State var modal: ModalType? = nil
     
     var body: some View {
         VStack {

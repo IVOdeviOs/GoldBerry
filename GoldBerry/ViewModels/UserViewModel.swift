@@ -22,12 +22,30 @@ class UserViewModel: ObservableObject {
 
     @Published var userRegShow = false
     @Published var user = [User]()
+    @Published var userAuth = [LoginUser]()
     @Published var userName = ""
     @Published var userSurname = ""
     @Published var userPhone = ""
 
     @Published var favouriteProducts: [Fruit] = []
 
+    
+//    func fetchUser() async throws {
+//        let urlString = Constants.baseURL + EndPoints.user
+//
+//        guard let url = URL(string: urlString) else {
+//            throw HttpError.badURL
+//        }
+//        let userResponse: [LoginUser] = try await HttpClient.shared.fetch(url: url)
+//        print("✅")
+//
+//        DispatchQueue.main.async {
+//            self.userAuth = userResponse
+//            print("✅\(self.user.startIndex)")
+//        }
+//    }
+//    
+    
 //    func updateUser() async throws {
 //        let urlString = Constants.baseURL + EndPoints.user
 //

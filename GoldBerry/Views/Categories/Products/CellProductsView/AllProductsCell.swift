@@ -9,23 +9,43 @@ struct AllProductsCell: View {
     var fruits: FetchedResults<FruitEntity>
     @FetchRequest(entity: FavoriteFruit.entity(), sortDescriptors: [])
     var favoriteFruit: FetchedResults<FavoriteFruit>
-    
+
     @State var newCount: Double = 0
     var body: some View {
         VStack(spacing: 6) {
             ZStack(alignment: .bottomLeading) {
-                RemoteImageView(
-                    url: URL(string: fruit.image)!,
-                    placeholder: {
-                        Image(systemName: "icloud.and.arrow.up").frame(width: 180, height: 120)
-                    },
-                    image: {
-                        $0
+//                RemoteImageView(
+//                    url: URL(string: fruit.image)!,
+//                    placeholder: {
+//                        Image(systemName: "icloud.and.arrow.up").frame(width: 180, height: 120)
+//                    },
+//                    image: {
+//                        $0
+//                            .resizable()
+//                            .aspectRatio(contentMode: .fill)
+//                            .frame(width: 180, height: 120)
+//                    }
+//                )
+                AsyncImage(
+                    url: URL(string: fruit.image),
+                    transaction: Transaction(animation: .easeInOut)
+                ) { phase in
+                    switch phase {
+                    case .empty:
+                        ProgressView()
+                    case .success(let image):
+                        image
                             .resizable()
+                            .transition(.scale(scale: 0.1, anchor: .center))
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: 180, height: 120)
+                    case .failure:
+                        Image(systemName: "wifi.slash")
+                    @unknown default:
+                        EmptyView()
                     }
-                )
+                }
+                .frame(width: 180, height: 120)
+
                 if fruit.percent != 0 {
                     Text("-\(fruit.percent)%")
                         .font(.system(size: 12, weight: .light, design: .serif))
@@ -101,7 +121,7 @@ struct AllProductsCell: View {
             .cornerRadius(10)
             .padding(.horizontal, 3)
             HStack(alignment: .top) {
-                Text(fruit.comment )
+                Text(fruit.comment)
                     .font(.system(size: 12, weight: .light, design: .serif))
                     .foregroundColor(Color.theme.blackWhiteText.opacity(0.8))
                 Spacer()
@@ -177,7 +197,7 @@ struct AllProductsCell: View {
         .shadow(color: .gray, radius: 1, x: 0, y: 2)
         .onAppear {
             for item in fruits {
-                 if item.id == fruit.id {
+                if item.id == fruit.id {
                     fruit.isValid = false
                 }
             }
@@ -203,7 +223,7 @@ struct AllProductsCell: View {
             }
         }
     }
-    
+
     func addFavoriteFruit() {
         withAnimation {
             let newFruit = FavoriteFruit(context: viewContext)
@@ -211,7 +231,7 @@ struct AllProductsCell: View {
             newFruit.name = fruit.name
             newFruit.favorite = fruit.favorite
             do {
-               print("🥰")
+                print("🥰")
                 try viewContext.save()
 
             } catch {
@@ -220,5 +240,4 @@ struct AllProductsCell: View {
             }
         }
     }
-    
 }

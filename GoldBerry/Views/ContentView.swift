@@ -222,17 +222,17 @@ struct ExtractedView: View {
                 ProductsView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
             }
         }
-        .gesture(DragGesture(minimumDistance: 150.0, coordinateSpace: .local)
-            .onEnded { value in
-                
-                switch value.translation.width {
-                case 0 ... 500: fruitViewModel.selected -= 1
-                case -500 ... 0: fruitViewModel.selected += 1
-                default: break
-                   
-                }
-            }
-        )
+//        .gesture(DragGesture(minimumDistance: 150.0, coordinateSpace: .local)
+//            .onEnded { value in
+//                
+//                switch value.translation.width {
+//                case 0 ... 500: fruitViewModel.selected -= 1
+//                case -500 ... 0: fruitViewModel.selected += 1
+//                default: break
+//                   
+//                }
+//            }
+//        )
         .padding(.top, 90)
         .onAppear {
             Task {
