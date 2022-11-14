@@ -6,6 +6,7 @@ enum HttpMethods: String {
 
 enum MIMEType: String {
     case JSON = "application/json"
+    case auth = "Authorization"
 }
 
 enum HttpHeaders: String {
@@ -35,8 +36,14 @@ class HttpClient {
 
     func sendData<T: Codable>(to url: URL, object: T, httpMethod: String) async throws {
         var request = URLRequest(url: url)
-
+        var log = "vadim4ik9@gmail.com"
+        var pass = "vadim4ik9"
+        let loginString = String(format: "%@:%@", log, pass)
+        let loginData = loginString.data(using: String.Encoding.utf8)!
+        let base64LoginString = loginData.base64EncodedString()
+        
         request.httpMethod = httpMethod
+        request.addValue("Basic \(base64LoginString)", forHTTPHeaderField: MIMEType.auth.rawValue)
         request.addValue(MIMEType.JSON.rawValue, forHTTPHeaderField: HttpHeaders.contentType.rawValue)
         request.httpBody = try? JSONEncoder().encode(object)
 

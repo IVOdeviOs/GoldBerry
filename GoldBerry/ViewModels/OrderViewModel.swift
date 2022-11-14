@@ -80,7 +80,7 @@ class OrderViewModel: ObservableObject {
             throw HttpError.badURL
         }
         let orderResponse: [Order] = try await HttpClient.shared.fetch(url: url)
-
+        
         DispatchQueue.main.async {
             self.order = orderResponse
         }

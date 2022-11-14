@@ -46,7 +46,7 @@ struct MakingTheOrderView: View {
                     Button {
                         self.fruitViewModel.selected = 0
                         self.presentation.wrappedValue.dismiss()
-                            
+
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                             self.fruitViewModel.selected = 1
                         }
@@ -167,9 +167,7 @@ struct MakingTheOrderView: View {
                                          orderCompleted: false)
                         Task {
                             do {
-                                DispatchQueue.main.async {
-                                    fruitViewModel.uniqFruits.removeAll()
-                                }
+//
                                 try await orderViewModel.addOrder(orders: orde)
                                 tog = true
                                 sendRequest { to in
@@ -179,6 +177,9 @@ struct MakingTheOrderView: View {
                                 fruitViewModel.isShowCount = false
                                 fruitViewModel.showCartCount = false
                                 deleteAllRecords()
+                                DispatchQueue.main.async {
+                                    fruitViewModel.uniqFruits.removeAll()
+                                }
                             } catch {
                                 orderViewModel.showAlertOrder.toggle()
                                 print("❌ ERORR  \(error.localizedDescription)")
