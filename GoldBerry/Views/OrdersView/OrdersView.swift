@@ -78,7 +78,9 @@ struct WithOrders: View {
 
     var body: some View {
 //        NavigationView {
-        List(orderViewModel.order.reversed()) { item in
+        List(orderViewModel.order.sorted(by: { items1, items2 in
+            items1.date > items2.date
+        })) { item in
             if item.email == email as? String {
                 NavigationLink {
                     OrderInfoView(order: item)
@@ -95,6 +97,7 @@ struct WithOrders: View {
                 }
             }
         }
+    
         .padding(.bottom, 140)
         .accessibilityElement()
         .offset(y: 20)

@@ -22,14 +22,13 @@ class OrderViewModel: ObservableObject {
     @Published var deliveryDate = Date()
     @Published var isValid = false
     @Published var showAlertOrder = false
-    
+
     var cancellable: Set<AnyCancellable> = []
 
     private var isDateValidPublisher: AnyPublisher<Bool, Never> {
         $date
             .map {
                 $0.count > 4
-                
             }
             .replaceNil(with: false)
             .eraseToAnyPublisher()
@@ -80,20 +79,20 @@ class OrderViewModel: ObservableObject {
             throw HttpError.badURL
         }
         let orderResponse: [Order] = try await HttpClient.shared.fetch(url: url)
-        
+
         DispatchQueue.main.async {
             self.order = orderResponse
         }
     }
 
-    func addOrder(orders: Order) async throws {
+    func addOrder(orders: Order, log: String, pass: String) async throws {
         let urlString = Constants.baseURL + EndPoints.order
 
         guard let url = URL(string: urlString) else {
             throw HttpError.badURL
         }
         let order = orders
-        try await HttpClient.shared.sendData(to: url, object: order, httpMethod: HttpMethods.POST.rawValue)
+        try await HttpClient.shared.sendData(to: url, object: order, httpMethod: HttpMethods.POST.rawValue, log: log,pass: pass)
     }
 
     func dateFormatter() {

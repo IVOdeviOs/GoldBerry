@@ -216,7 +216,12 @@ struct ProfileView: View {
                                       NotificationCenter.default.post(name: NSNotification.Name("statusChange"),
                                                                       object: nil)
                                       deleteAllRecords()
-
+//                                UserDefaults.standard.set(userViewModel.userName, forKey: userViewModel.nameKey)
+//                                UserDefaults.standard.set(userViewModel.userSurname, forKey: userViewModel.surNameKey)
+//                                UserDefaults.standard.set(userViewModel.userPhone, forKey: userViewModel.numberPhoneKey)
+                                UserDefaults.standard.removeObject(forKey: userViewModel.nameKey)
+                                UserDefaults.standard.removeObject(forKey: userViewModel.surNameKey)
+                                UserDefaults.standard.removeObject(forKey: userViewModel.numberPhoneKey)
                                   },
                                   secondaryButton: .cancel())
                         }
@@ -250,6 +255,9 @@ struct ProfileView: View {
                                                   NotificationCenter.default.post(name: NSNotification.Name("statusChange"),
                                                                                   object: nil)
                                                   deleteAllRecords()
+                                                  UserDefaults.standard.removeObject(forKey: userViewModel.nameKey)
+                                                  UserDefaults.standard.removeObject(forKey: userViewModel.surNameKey)
+                                                  UserDefaults.standard.removeObject(forKey: userViewModel.numberPhoneKey)
                                                   try Auth.auth().signOut()
 
                                               } catch _ {}

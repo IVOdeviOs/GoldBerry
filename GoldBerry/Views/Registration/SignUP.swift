@@ -128,30 +128,31 @@ struct SignUP: View {
 
                 Task {
                     do {
-                        try await signUP.addOrder(users: LoginUser(login: signUP.email, password: signUP.password, role: ""))
-                        UserDefaults.standard.set(signUP.email, forKey: "userEmail")
-                        UserDefaults.standard.set(true, forKey: "status")
-                        show.toggle()
-                        NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
+                        try await signUP.addOrder(users: LoginUser(login: signUP.email, password: signUP.password, role: ""),log: signUP.email,pass: signUP.password)
+//                        UserDefaults.standard.set(signUP.email, forKey: "userEmail")
+//                        UserDefaults.standard.set(true, forKey: "status")
+//                        show.toggle()
+//                        NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
+                        signUpWithEmail(email: signUP.email,
+                                        password: signUP.password,
+                                        confirmPassword: signUP.confirmationPassword) { verified, status in
+                            if !verified {
+                                signUP.message = status
+                                signUP.alert.toggle()
+                            } else {
+                                UserDefaults.standard.set(signUP.email, forKey: "userEmail")
+                                UserDefaults.standard.set(signUP.password, forKey: "userPassword")
+                                UserDefaults.standard.set(true, forKey: "status")
+                                show.toggle()
+                                NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
+                            }
+                        }
 
                     } catch {
                         signUP.alert.toggle()
                     }
                 }
 
-//                signUpWithEmail(email: signUP.email,
-//                                password: signUP.password,
-//                                confirmPassword: signUP.confirmationPassword) { verified, status in
-//                    if !verified {
-//                        signUP.message = status
-//                        signUP.alert.toggle()
-//                    } else {
-//                        UserDefaults.standard.set(signUP.email, forKey: "userEmail")
-//                        UserDefaults.standard.set(true, forKey: "status")
-//                        show.toggle()
-//                        NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
-//                    }
-//                }
             } label: {
 
                 Text("Зарегистрироваться")

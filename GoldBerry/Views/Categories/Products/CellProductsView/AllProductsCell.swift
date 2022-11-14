@@ -9,7 +9,7 @@ struct AllProductsCell: View {
     var fruits: FetchedResults<FruitEntity>
     @FetchRequest(entity: FavoriteFruit.entity(), sortDescriptors: [])
     var favoriteFruit: FetchedResults<FavoriteFruit>
-
+    @State var favorite = false
     @State var newCount: Double = 0
     var body: some View {
         VStack(spacing: 6) {
@@ -62,7 +62,7 @@ struct AllProductsCell: View {
                             Spacer()
                             Button {
                                 addFavoriteFruit()
-                                fruit.favorite.toggle()
+                                favorite.toggle()
                             } label: {
                                 ZStack {
                                     Image(systemName: "heart.fill")
@@ -71,7 +71,7 @@ struct AllProductsCell: View {
                                         .foregroundColor(.white.opacity(0.5))
                                         .padding(20)
 
-                                    Image(systemName: fruit.favorite ? "heart.fill" : "heart")
+                                    Image(systemName: favorite ? "heart.fill" : "heart")
                                         .resizable()
                                         .renderingMode(.template)
                                         .foregroundColor(.red)

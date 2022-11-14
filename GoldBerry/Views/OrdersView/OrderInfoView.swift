@@ -108,7 +108,7 @@ struct OrderInfoView: View {
                              .padding(.trailing, 10)
                      }
                  }
-                }
+                }.frame(height: 200)
                 Color.theme.gray
                     .opacity(0.3)
                     .frame(height: 10)

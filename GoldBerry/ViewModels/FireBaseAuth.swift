@@ -25,7 +25,7 @@ final class LogIn: ObservableObject {
         guard let url = URL(string: urlString) else {
             throw HttpError.badURL
         }
-        
+
         let userResponse: [LoginUser] = try await HttpClient.shared.fetch(url: url)
 
         DispatchQueue.main.async {
@@ -33,20 +33,15 @@ final class LogIn: ObservableObject {
         }
     }
 
-    
-    func addOrder(users: LoginUser) async throws {
+    func addOrder(users: LoginUser, log: String, pass: String) async throws {
         let urlString = Constants.baseURL + EndPoints.user
 
-        
-        
         guard let url = URL(string: urlString) else {
             throw HttpError.badURL
         }
-        try await HttpClient.shared.sendData(to: url, object: users, httpMethod: HttpMethods.POST.rawValue)
+        try await HttpClient.shared.sendData(to: url, object: users, httpMethod: HttpMethods.POST.rawValue, log: log, pass: pass)
     }
 
-    
-    
     var cancellable: Set<AnyCancellable> = []
 
     private var formattedEmailPublisher: AnyPublisher<String, Never> {
