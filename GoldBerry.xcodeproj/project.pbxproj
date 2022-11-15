@@ -72,6 +72,7 @@
 		DDBA58EB28AAB43900FFC3A5 /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBA58EA28AAB43900FFC3A5 /* Fruit.swift */; };
 		DDCF34F828FC7E9A00ECE312 /* ForGetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCF34F728FC7E9A00ECE312 /* ForGetPasswordView.swift */; };
 		DDCF34FA2906D49A00ECE312 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCF34F92906D49A00ECE312 /* LoadingView.swift */; };
+		DDE7CFCC29237EDF0037F074 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE7CFCB29237EDF0037F074 /* LaunchScreenView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -129,6 +130,7 @@
 		DDBA58EA28AAB43900FFC3A5 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		DDCF34F728FC7E9A00ECE312 /* ForGetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForGetPasswordView.swift; sourceTree = "<group>"; };
 		DDCF34F92906D49A00ECE312 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		DDE7CFCB29237EDF0037F074 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +181,7 @@
 				DC4807FB28CB1A28001416B6 /* HideKeyboard.swift */,
 				DD2CEE7F28E37A7B0060B77A /* ClipShape+.swift */,
 				DDCF34F92906D49A00ECE312 /* LoadingView.swift */,
+				DDE7CFCB29237EDF0037F074 /* LaunchScreenView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -471,6 +474,7 @@
 				DC4807E328BB7E8A001416B6 /* TextField+.swift in Sources */,
 				DC9DE54A28BB508200057E90 /* CartCell.swift in Sources */,
 				DDBA58E028A1551400FFC3A5 /* AllProductsCell.swift in Sources */,
+				DDE7CFCC29237EDF0037F074 /* LaunchScreenView.swift in Sources */,
 				DC224EBE28BB3E5900F8760D /* CartView.swift in Sources */,
 				DC4807EE28BC9456001416B6 /* FavouriteProductsView.swift in Sources */,
 				DD93807328B54CF600808E88 /* HttpClient.swift in Sources */,
@@ -608,7 +612,7 @@
 				CODE_SIGN_ENTITLEMENTS = GoldBerry/GoldBerry.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"GoldBerry/Preview Content\"";
 				DEVELOPMENT_TEAM = 467ZVP5475;
 				ENABLE_PREVIEWS = YES;
@@ -628,7 +632,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_execute;
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.1101.goldBerry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -649,7 +653,7 @@
 				CODE_SIGN_ENTITLEMENTS = GoldBerry/GoldBerryRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"GoldBerry/Preview Content\"";
 				DEVELOPMENT_TEAM = 467ZVP5475;
 				ENABLE_PREVIEWS = YES;
@@ -669,7 +673,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_execute;
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.1101.goldBerry;
 				PRODUCT_NAME = "$(TARGET_NAME)";

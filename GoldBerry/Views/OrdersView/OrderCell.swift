@@ -82,18 +82,6 @@ struct OrderCell: View {
              }
              ForEach(0 ..< purchases.count) { row in
                  HStack {
-//                     RemoteImageView(
-//                         url: URL(string: purchases[row].image)!,
-//                         placeholder: {
-//                             Image(systemName: "icloud.and.arrow.up").frame(width: 30, height: 20)
-//                         },
-//                         image: {
-//                             $0
-//                                 .resizable()
-//                                 .frame(width: 30, height: 20)
-//                                 .aspectRatio(contentMode: .fill)
-//                         }
-//                     )
                      AsyncImage(
                          url: URL(string: purchases[row].image),
                          transaction: Transaction(animation: .easeInOut)
@@ -125,7 +113,7 @@ struct OrderCell: View {
                          .foregroundColor(Color.theme.blackWhiteText)
                          .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                          .frame(width: UIScreen.main.bounds.width/7, height: 20)
-                     Text("\(Int(purchases[row].count)) ")
+                     Text("\(NSString(format: "%.1f",purchases[row].count)) ")
                          .foregroundColor(Color.theme.blackWhiteText)
                          .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                          .frame(width: UIScreen.main.bounds.width/7, height: 20)

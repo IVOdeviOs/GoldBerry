@@ -5,21 +5,40 @@ struct ContentView: View {
     @StateObject var fruitViewModel = FruitViewModel()
     @StateObject var orderViewModel = OrderViewModel()
     @StateObject var userViewModel = UserViewModel()
-
+    @State var tog = false
+    @State var tog1 = false
     @State var status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
     var fruits: FetchedResults<FruitEntity>
+    func sendRequesting(completion: @escaping (Bool) -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+
+            completion(tog == false)
+        }
+    }
+
     var body: some View {
 
         NavigationView {
             if status {
-                ViewProfile(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel, userViewModel: userViewModel)
+                if tog {
+                    withAnimation {
+                        LaunchScreenView()
+                    }
+                } else {
+                    ViewProfile(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel, userViewModel: userViewModel)
+                }
             } else {
                 LoginView(signUP: LogIn())
             }
+
         }.onAppear {
             if !fruits.isEmpty {
                 fruitViewModel.isShowCount = true
+            }
+            tog = true
+            sendRequesting { to in
+                tog = to
             }
 
             NotificationCenter.default.addObserver(forName: NSNotification.Name("statusChange"),
@@ -148,7 +167,6 @@ struct ViewProfile: View {
                 fruitViewModel.countCart = fruits.count
             }
         }
-//        .isLoading(fruitViewModel.isLoading)
     }
 }
 
@@ -167,9 +185,6 @@ struct ExtractedView: View {
             switch fruitViewModel.selected {
             case 0:
                 ProductsView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
-//                    .onAppear{
-//                        fruitViewModel.fetchAllRestaurants()
-//                    }
                     .onAppear {
                         Task {
                             do {
@@ -182,16 +197,6 @@ struct ExtractedView: View {
 
             case 1:
                 CartView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
-//                    .onAppear {
-//                        Task {
-//                            do {
-//                                try await fruitViewModel.fetchFruit()
-//                            } catch {
-//                                print("❌ERORR \(error)")
-//                            }
-//                        }
-//                    }
-
             case 2:
                 OrdersView(orderViewModel: orderViewModel, fruitViewModel: fruitViewModel)
                     .onAppear {
@@ -209,7 +214,6 @@ struct ExtractedView: View {
 
                         Task {
                             do {
-//                                try await userViewModel.fetchUser()
                                 try await fruitViewModel.fetchFruit()
 
                             } catch {
@@ -224,12 +228,12 @@ struct ExtractedView: View {
         }
 //        .gesture(DragGesture(minimumDistance: 150.0, coordinateSpace: .local)
 //            .onEnded { value in
-//                
+//
 //                switch value.translation.width {
 //                case 0 ... 500: fruitViewModel.selected -= 1
 //                case -500 ... 0: fruitViewModel.selected += 1
 //                default: break
-//                   
+//
 //                }
 //            }
 //        )
@@ -243,7 +247,6 @@ struct ExtractedView: View {
                     print("❌ERORR \(error)")
                 }
             }
-            
         }
     }
 }
