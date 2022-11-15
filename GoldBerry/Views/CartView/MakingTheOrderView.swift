@@ -102,10 +102,15 @@ struct MakingTheOrderView: View {
                             .foregroundColor(Color.theme.lightGreen)
                             .padding()
                     }
-                    DatePicker("", selection: $orderViewModel.deliveryDate, displayedComponents: .date)
+                    DatePicker("",selection: $orderViewModel.deliveryDate, in: Date()..., displayedComponents: .date)
                         .datePickerStyle(.compact)
                         .onTapGesture(perform: {
-                            orderViewModel.dateFormatter()
+                            let dateFormatterOrder = DateFormatter()
+                            dateFormatterOrder.dateFormat = "dd.MM.yyyy.HH.mm"
+                            let dateFormatter = DateFormatter()
+                            dateFormatter.dateFormat = "dd.MM.yyyy"
+                            orderViewModel.date = dateFormatter.string(from: orderViewModel.deliveryDate)
+                            orderViewModel.dateOrder = dateFormatterOrder.string(from: .now)
 
                         })
                         .padding()
@@ -167,12 +172,10 @@ struct MakingTheOrderView: View {
                                          orderCompleted: false)
                         Task {
                             do {
-//
-//                                UserDefaults.standard.set(signUP.email, forKey: "userEmail")
-//                                UserDefaults.standard.set(signUP.password, forKey: "userPassword")
+
                                 let login = UserDefaults.standard.string(forKey: "userEmail")
                                 let password = UserDefaults.standard.string(forKey: "userPassword")
-                                try await orderViewModel.addOrder(orders: orde,log: login!,pass: password!)
+                                try await orderViewModel.addOrder(orders: orde, log: login ?? "", pass: password ?? "")
                                 tog = true
                                 sendRequest { to in
                                     tog = to
@@ -180,13 +183,13 @@ struct MakingTheOrderView: View {
                                 fruitViewModel.countCart = 0
                                 fruitViewModel.isShowCount = false
                                 fruitViewModel.showCartCount = false
-                                deleteAllRecords()
                                 DispatchQueue.main.async {
+                                    fruitViewModel.arrayOfFruitPrice.removeAll()
+                                    deleteAllRecords()
                                     fruitViewModel.uniqFruits.removeAll()
                                 }
                             } catch {
                                 orderViewModel.showAlertOrder.toggle()
-                                print("❌ ERORR  \(error.localizedDescription)")
                             }
                         }
                     } label: {
@@ -209,7 +212,6 @@ struct MakingTheOrderView: View {
 
         .gesture(DragGesture(minimumDistance: 100.0, coordinateSpace: .local)
             .onEnded { value in
-
                 switch value.translation.width {
                 case 100 ... 300: self.presentation.wrappedValue.dismiss()
                 default: print("no clue")

@@ -33,12 +33,21 @@ struct ContentView: View {
             }
 
         }.onAppear {
+            
             if !fruits.isEmpty {
                 fruitViewModel.isShowCount = true
+            }
+            Task {
+                do {
+                    try await fruitViewModel.fetchFruit()
+                } catch {
+                    print("❌ERORR \(error)")
+                }
             }
             tog = true
             sendRequesting { to in
                 tog = to
+                
             }
 
             NotificationCenter.default.addObserver(forName: NSNotification.Name("statusChange"),
@@ -242,7 +251,7 @@ struct ExtractedView: View {
             Task {
                 do {
                     try await orderViewModel.fetchOrder()
-                    try await fruitViewModel.fetchFruit()
+//                    try await fruitViewModel.fetchFruit()
                 } catch {
                     print("❌ERORR \(error)")
                 }
