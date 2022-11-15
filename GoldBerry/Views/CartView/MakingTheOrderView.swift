@@ -20,7 +20,8 @@ struct MakingTheOrderView: View {
 
     @State var tog = false
     @State var tog1 = false
-
+    @State var dateOfDelivery: Date?
+    
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
@@ -102,18 +103,31 @@ struct MakingTheOrderView: View {
                             .foregroundColor(Color.theme.lightGreen)
                             .padding()
                     }
-                    DatePicker("",selection: $orderViewModel.deliveryDate, in: Date()..., displayedComponents: .date)
-                        .datePickerStyle(.compact)
-                        .onTapGesture(perform: {
-                            let dateFormatterOrder = DateFormatter()
-                            dateFormatterOrder.dateFormat = "dd.MM.yyyy.HH.mm"
-                            let dateFormatter = DateFormatter()
-                            dateFormatter.dateFormat = "dd.MM.yyyy"
-                            orderViewModel.date = dateFormatter.string(from: orderViewModel.deliveryDate)
-                            orderViewModel.dateOrder = dateFormatterOrder.string(from: .now)
-
-                        })
+//                    DatePicker("",selection: $orderViewModel.deliveryDate, in: Date()..., displayedComponents: .date)
+//                        .datePickerStyle(.compact)
+//                        .onTapGesture(perform: {
+//                            let dateFormatterOrder = DateFormatter()
+//                            dateFormatterOrder.dateFormat = "dd.MM.yyyy.HH.mm"
+//                            let dateFormatter = DateFormatter()
+//                            dateFormatter.dateFormat = "dd.MM.yyyy"
+//                            orderViewModel.date = dateFormatter.string(from: orderViewModel.deliveryDate)
+//                            orderViewModel.dateOrder = dateFormatterOrder.string(from: .now)
+//
+//                        })
+//                        .padding()
+//                    
+                    DatePickerTextField(placeholder: "Выберите дату доставки", date: $dateOfDelivery)
+                        .foregroundColor(Color.theme.blackWhiteText)
+                        .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
+                        .padding(.leading, 20)
+                        .background(.clear)
+                        .frame(height: 50)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.theme.blackWhiteText, lineWidth: 1)
+                        )
                         .padding()
+                    
                     VStack {
                         HStack {
                             Text("Куда доставить")
@@ -158,6 +172,12 @@ struct MakingTheOrderView: View {
                                 strID.append(char)
                             }
                         }
+                        let dateFormatterOrder = DateFormatter()
+                        dateFormatterOrder.dateFormat = "dd.MM.yyyy.HH.mm"
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "dd.MM.yyyy"
+                        orderViewModel.date = dateFormatter.string(from: dateOfDelivery ?? .now)
+                        orderViewModel.dateOrder = dateFormatterOrder.string(from: .now)
 
                         let orde = Order(orderNumber: strID,
                                          date: orderViewModel.date,

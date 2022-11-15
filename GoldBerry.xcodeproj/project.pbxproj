@@ -34,6 +34,7 @@
 		DCA5251628AEBC5200A994F5 /* UZSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCA5251128AEBC5200A994F5 /* UZSans-Light.ttf */; };
 		DCA5251728AEBC5200A994F5 /* UZSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCA5251228AEBC5200A994F5 /* UZSans-Bold.ttf */; };
 		DCA5251828AEBC5200A994F5 /* UZSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCA5251328AEBC5200A994F5 /* UZSans-Regular.ttf */; };
+		DCF6ED15292423550019EDB7 /* DatePickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF6ED14292423550019EDB7 /* DatePickerTextField.swift */; };
 		DD2CEE7628DC9B8E0060B77A /* FireBaseAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CEE7528DC9B8E0060B77A /* FireBaseAuth.swift */; };
 		DD2CEE8028E37A7B0060B77A /* ClipShape+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CEE7F28E37A7B0060B77A /* ClipShape+.swift */; };
 		DD2CEE8728E37C730060B77A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CEE8628E37C730060B77A /* LoginView.swift */; };
@@ -103,6 +104,7 @@
 		DCA5251128AEBC5200A994F5 /* UZSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UZSans-Light.ttf"; sourceTree = "<group>"; };
 		DCA5251228AEBC5200A994F5 /* UZSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UZSans-Bold.ttf"; sourceTree = "<group>"; };
 		DCA5251328AEBC5200A994F5 /* UZSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UZSans-Regular.ttf"; sourceTree = "<group>"; };
+		DCF6ED14292423550019EDB7 /* DatePickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerTextField.swift; sourceTree = "<group>"; };
 		DD2CEE7528DC9B8E0060B77A /* FireBaseAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseAuth.swift; sourceTree = "<group>"; };
 		DD2CEE7F28E37A7B0060B77A /* ClipShape+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClipShape+.swift"; sourceTree = "<group>"; };
 		DD2CEE8628E37C730060B77A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				DD2CEE7F28E37A7B0060B77A /* ClipShape+.swift */,
 				DDCF34F92906D49A00ECE312 /* LoadingView.swift */,
 				DDE7CFCB29237EDF0037F074 /* LaunchScreenView.swift */,
+				DCF6ED14292423550019EDB7 /* DatePickerTextField.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				DD4F8AF9290FB68400C57AAD /* GoldBerry.xcdatamodeld in Sources */,
 				DD2CEE8928E37C770060B77A /* SignUP.swift in Sources */,
 				DC4807E828BC8965001416B6 /* ProfileView.swift in Sources */,
+				DCF6ED15292423550019EDB7 /* DatePickerTextField.swift in Sources */,
 				DC4807F828CA9D1A001416B6 /* DeliveryInfoView.swift in Sources */,
 				DC4807FE28CB1B7E001416B6 /* DisclaimerOfLiabilityView.swift in Sources */,
 				DDBA58EB28AAB43900FFC3A5 /* Fruit.swift in Sources */,
