@@ -11,7 +11,7 @@ class OrderViewModel: ObservableObject {
     @Published var price: Double? = 1
     @Published var image = ""
     @Published var show = false
-    @Published var date = ""
+    @Published var date = "25.11"
     @Published var dateOrder = ""
 
     @Published var address = ""
@@ -69,6 +69,7 @@ class OrderViewModel: ObservableObject {
                                   isCustomerPhoneValidPublisher,
                                   isAddressValidPublisher)
             .map { $0.0 && $0.1 && $0.2 && $0.3 }
+
             .eraseToAnyPublisher()
     }
 
