@@ -17,17 +17,15 @@ struct MakingTheOrderView: View {
     
     @ObservedObject var orderViewModel: OrderViewModel
     @ObservedObject var fruitViewModel: FruitViewModel
-    
     @State var tog = false
     @State var tog1 = false
     @State var dateOfDelivery: Date?
-    
     @Environment(\.managedObjectContext) private var viewContext
-    
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
     var fruits: FetchedResults<FruitEntity>
     
     func deleteAllRecords() {
+       
         let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "FruitEntity")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
         
@@ -146,12 +144,11 @@ struct MakingTheOrderView: View {
                             .disableAutocorrection(true)
                             .onTapGesture {
                                 hideKeyboard()
-                                
                                     let dateFormatterOrder = DateFormatter()
                                     dateFormatterOrder.dateFormat = "dd.MM.yyyy.HH.mm"
                                     let dateFormatter = DateFormatter()
                                     dateFormatter.dateFormat = "dd.MM.yyyy"
-                                    orderViewModel.date = dateFormatter.string(from: dateOfDelivery ?? .now)
+                                orderViewModel.date = dateFormatter.string(from: dateOfDelivery ?? .now)
                                     orderViewModel.dateOrder = dateFormatterOrder.string(from: .now)
                                 
                             }

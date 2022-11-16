@@ -111,9 +111,16 @@ struct CartCell: View {
                                 .frame(width: 30, height: 30)
                                 .foregroundColor(Color.theme.gray)
                         }
-                        Text("\(NSString(format: "%.1f",fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1)) \(fruit.weightOrPieces)")
-                            .foregroundColor(Color.theme.blackWhiteText)
-                            .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
+                        switch fruit.weightOrPieces {
+                        case "шт":
+                            Text("\(NSString(format: "%.0f",fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1)) \(fruit.weightOrPieces)")
+                                .foregroundColor(Color.theme.blackWhiteText)
+                                .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
+                        default:
+                            Text("\(NSString(format: "%.1f",fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1)) \(fruit.weightOrPieces)")
+                                .foregroundColor(Color.theme.blackWhiteText)
+                                .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
+                        }
                         Button {
                             fruit.count += fruit.stepCount
                             fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = fruit.count
