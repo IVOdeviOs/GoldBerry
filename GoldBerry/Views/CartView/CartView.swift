@@ -29,7 +29,7 @@ struct WithoutPurchase: View {
                 VStack {
                     Image("noOrders")
                         .resizable()
-                        .frame(width: 300, height: 300)
+                        .frame(width: UIScreen.main.bounds.width/1.1, height: 300)
                         .cornerRadius(20)
                         .padding()
                         .padding(.top, 60)

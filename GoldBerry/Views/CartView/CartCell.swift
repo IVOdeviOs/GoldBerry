@@ -4,7 +4,8 @@ struct CartCell: View {
 
     @ObservedObject var fruitViewModel: FruitViewModel
     @ObservedObject var orderViewModel: OrderViewModel
-
+    
+    @State var buttonIsTupped: Bool = false
     @State var fruit: Fruit
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.id, ascending: true)])
@@ -110,6 +111,7 @@ struct CartCell: View {
                                 .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
                         }
                         Button {
+                            buttonIsTupped = true
                             fruit.count += fruit.stepCount
                             fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = fruit.count
                             if fruit.price == 0 {
