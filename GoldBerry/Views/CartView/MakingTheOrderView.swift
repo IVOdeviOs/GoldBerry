@@ -1,31 +1,33 @@
 import CoreData
 import SwiftUI
 struct MakingTheOrderView: View {
-    
+
     func sendRequest(completion: @escaping (Bool) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
             fruitViewModel.selected = 0
-            
+
             completion(tog == false)
         }
     }
-    
+
     let email = UserDefaults.standard.value(forKey: "userEmail")
     let phone = UserDefaults.standard.value(forKey: "numberPhoneKey")
     @Environment(\.presentationMode) var presentation
     @Environment(\.dismiss) private var dismiss
-    
+
     @ObservedObject var orderViewModel: OrderViewModel
     @ObservedObject var fruitViewModel: FruitViewModel
+
     @State var tog = false
     @State var tog1 = false
     @State var dateOfDelivery: Date?
+
     @Environment(\.managedObjectContext) private var viewContext
+
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
     var fruits: FetchedResults<FruitEntity>
 
     func deleteAllRecords() {
-       
         let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "FruitEntity")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
 
@@ -136,16 +138,6 @@ struct MakingTheOrderView: View {
                             .disableAutocorrection(true)
                             .onTapGesture {
                                 hideKeyboard()
-<<<<<<< HEAD
-                                    let dateFormatterOrder = DateFormatter()
-                                    dateFormatterOrder.dateFormat = "dd.MM.yyyy.HH.mm"
-                                    let dateFormatter = DateFormatter()
-                                    dateFormatter.dateFormat = "dd.MM.yyyy"
-                                orderViewModel.date = dateFormatter.string(from: dateOfDelivery ?? .now)
-                                    orderViewModel.dateOrder = dateFormatterOrder.string(from: .now)
-                                
-=======
->>>>>>> master
                             }
                         TextFieldView(text: $orderViewModel.address, placeholder: "Адрес доставки", infoText: "Введите адрес доставки")
                             .disableAutocorrection(true)
