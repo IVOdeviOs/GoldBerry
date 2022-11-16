@@ -25,6 +25,7 @@ struct DatePickerTextField: UIViewRepresentable {
             action: #selector(self.helper.dateValueChanged),
             for: .valueChanged
         )
+        self.textField.text = dateFormatter.string(from: Date.now)
         self.textField.placeholder = self.placeholder
         self.textField.inputView = self.datePicker
         
