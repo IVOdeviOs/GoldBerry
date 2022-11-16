@@ -26,7 +26,7 @@ class OrderViewModel: ObservableObject {
     var cancellable: Set<AnyCancellable> = []
 
     private var isDateValidPublisher: AnyPublisher<Bool, Never> {
-        $date
+        $date        
             .map {
                 $0.count > 4
             }

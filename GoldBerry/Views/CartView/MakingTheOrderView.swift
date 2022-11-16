@@ -109,6 +109,8 @@ struct MakingTheOrderView: View {
                     //                        .padding()
                     //
                     DatePickerTextField(placeholder: "Выберите дату доставки", date: $dateOfDelivery)
+//                        .onTapGesture(perform: {
+//                        })
                         .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
                         .padding(.leading, 20)
@@ -174,12 +176,12 @@ struct MakingTheOrderView: View {
                             }
                         }
                         
-//                                let dateFormatterOrder = DateFormatter()
-//                                dateFormatterOrder.dateFormat = "dd.MM.yyyy.HH.mm"
-//                                let dateFormatter = DateFormatter()
-//                                dateFormatter.dateFormat = "dd.MM.yyyy"
-//                                orderViewModel.date = dateFormatter.string(from: dateOfDelivery ?? .now)
-//                                orderViewModel.dateOrder = dateFormatterOrder.string(from: .now)
+                                let dateFormatterOrder = DateFormatter()
+                                dateFormatterOrder.dateFormat = "dd.MM.yyyy.HH.mm"
+                                let dateFormatter = DateFormatter()
+                                dateFormatter.dateFormat = "dd.MM.yyyy"
+                                orderViewModel.date = dateFormatter.string(from: dateOfDelivery ?? .now)
+                                orderViewModel.dateOrder = dateFormatterOrder.string(from: .now)
                       
                         let orde = Order(orderNumber: strID,
                                          date: orderViewModel.date,
