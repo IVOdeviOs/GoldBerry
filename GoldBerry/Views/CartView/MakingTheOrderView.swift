@@ -144,6 +144,14 @@ struct MakingTheOrderView: View {
                             .disableAutocorrection(true)
                             .onTapGesture {
                                 hideKeyboard()
+                                
+                                    let dateFormatterOrder = DateFormatter()
+                                    dateFormatterOrder.dateFormat = "dd.MM.yyyy.HH.mm"
+                                    let dateFormatter = DateFormatter()
+                                    dateFormatter.dateFormat = "dd.MM.yyyy"
+                                    orderViewModel.date = dateFormatter.string(from: dateOfDelivery ?? .now)
+                                    orderViewModel.dateOrder = dateFormatterOrder.string(from: .now)
+                                
                             }
                         TextFieldView(text: $orderViewModel.address, placeholder: "Адрес доставки", infoText: "Введите адрес доставки")
                             .disableAutocorrection(true)
@@ -166,12 +174,12 @@ struct MakingTheOrderView: View {
                             }
                         }
                         
-                                let dateFormatterOrder = DateFormatter()
-                                dateFormatterOrder.dateFormat = "dd.MM.yyyy.HH.mm"
-                                let dateFormatter = DateFormatter()
-                                dateFormatter.dateFormat = "dd.MM.yyyy"
-                                orderViewModel.date = dateFormatter.string(from: dateOfDelivery ?? .now)
-                                orderViewModel.dateOrder = dateFormatterOrder.string(from: .now)
+//                                let dateFormatterOrder = DateFormatter()
+//                                dateFormatterOrder.dateFormat = "dd.MM.yyyy.HH.mm"
+//                                let dateFormatter = DateFormatter()
+//                                dateFormatter.dateFormat = "dd.MM.yyyy"
+//                                orderViewModel.date = dateFormatter.string(from: dateOfDelivery ?? .now)
+//                                orderViewModel.dateOrder = dateFormatterOrder.string(from: .now)
                       
                         let orde = Order(orderNumber: strID,
                                          date: orderViewModel.date,
