@@ -23,21 +23,21 @@ struct MakingTheOrderView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
     var fruits: FetchedResults<FruitEntity>
-    
+
     func deleteAllRecords() {
        
         let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "FruitEntity")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
-        
+
         do {
             try viewContext.execute(deleteRequest)
-            
+
             try viewContext.save()
         } catch {
             print("There was an error")
         }
     }
-    
+
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
@@ -45,11 +45,11 @@ struct MakingTheOrderView: View {
                     Button {
                         self.fruitViewModel.selected = 0
                         self.presentation.wrappedValue.dismiss()
-                        
+
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                             self.fruitViewModel.selected = 1
                         }
-                        
+
                     } label: {
                         Image(systemName: "arrow.backward")
                             .resizable()
@@ -101,14 +101,7 @@ struct MakingTheOrderView: View {
                             .foregroundColor(Color.theme.lightGreen)
                             .padding()
                     }
-                    //                    DatePicker("",selection: $orderViewModel.deliveryDate, in: Date()..., displayedComponents: .date)
-                    //                        .datePickerStyle(.compact)
-                    //
-                    //                        .padding()
-                    //
                     DatePickerTextField(placeholder: "Выберите дату доставки", date: $dateOfDelivery)
-//                        .onTapGesture(perform: {
-//                        })
                         .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
                         .padding(.leading, 20)
@@ -119,8 +112,7 @@ struct MakingTheOrderView: View {
                                 .stroke(Color.theme.blackWhiteText, lineWidth: 1)
                         )
                         .padding()
-                      
-                    
+
                     VStack {
                         HStack {
                             Text("Куда доставить")
@@ -144,6 +136,7 @@ struct MakingTheOrderView: View {
                             .disableAutocorrection(true)
                             .onTapGesture {
                                 hideKeyboard()
+<<<<<<< HEAD
                                     let dateFormatterOrder = DateFormatter()
                                     dateFormatterOrder.dateFormat = "dd.MM.yyyy.HH.mm"
                                     let dateFormatter = DateFormatter()
@@ -151,6 +144,8 @@ struct MakingTheOrderView: View {
                                 orderViewModel.date = dateFormatter.string(from: dateOfDelivery ?? .now)
                                     orderViewModel.dateOrder = dateFormatterOrder.string(from: .now)
                                 
+=======
+>>>>>>> master
                             }
                         TextFieldView(text: $orderViewModel.address, placeholder: "Адрес доставки", infoText: "Введите адрес доставки")
                             .disableAutocorrection(true)
@@ -163,7 +158,6 @@ struct MakingTheOrderView: View {
                             }
                     }
                     Button {
-                        
                         var strID = ""
                         var numberId = 0
                         for char in UUID().uuidString {
@@ -172,14 +166,13 @@ struct MakingTheOrderView: View {
                                 strID.append(char)
                             }
                         }
-                        
-                                let dateFormatterOrder = DateFormatter()
-                                dateFormatterOrder.dateFormat = "dd.MM.yyyy.HH.mm"
-                                let dateFormatter = DateFormatter()
-                                dateFormatter.dateFormat = "dd.MM.yyyy"
-                                orderViewModel.date = dateFormatter.string(from: dateOfDelivery ?? .now)
-                                orderViewModel.dateOrder = dateFormatterOrder.string(from: .now)
-                      
+
+                        let dateFormatterOrder = DateFormatter()
+                        dateFormatterOrder.dateFormat = "dd.MM.yyyy.HH.mm"
+                        let da = dateOfDelivery?.formatted(date: .long, time: .omitted)
+                        orderViewModel.date = da ?? "\(dateFormatterOrder.string(from: .now))"
+                        orderViewModel.dateOrder = dateFormatterOrder.string(from: .now)
+
                         let orde = Order(orderNumber: strID,
                                          date: orderViewModel.date,
                                          dateOrder: orderViewModel.dateOrder,
@@ -193,7 +186,7 @@ struct MakingTheOrderView: View {
                                          orderCompleted: false)
                         Task {
                             do {
-                                
+
                                 let login = UserDefaults.standard.string(forKey: "userEmail")
                                 let password = UserDefaults.standard.string(forKey: "userPassword")
                                 try await orderViewModel.addOrder(orders: orde, log: login ?? "", pass: password ?? "")
@@ -230,7 +223,6 @@ struct MakingTheOrderView: View {
                 AlertMakingOrder()
             }
         }
-        
         .gesture(DragGesture(minimumDistance: 100.0, coordinateSpace: .local)
             .onEnded { value in
                 switch value.translation.width {
@@ -246,7 +238,6 @@ struct MakingTheOrderView: View {
                 .assign(to: \.orderViewModel.isValid, on: self)
                 .store(in: &orderViewModel.cancellable)
         }
-        
         .navigationBarBackButtonHidden(true)
     }
 }
