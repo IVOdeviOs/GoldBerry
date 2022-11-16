@@ -28,18 +28,6 @@ struct CartCell: View {
         VStack {
             HStack {
                 ZStack(alignment: .top) {
-//                    RemoteImageView(
-//                        url: URL(string: fruit.image)!,
-//                        placeholder: {
-//                            Image(systemName: "icloud.and.arrow.up").frame(width: 300, height: 300)
-//                        },
-//                        image: {
-//                            $0
-//                                .resizable()
-//                                .frame(width: 150, height: 100)
-//                                .aspectRatio(contentMode: .fit)
-//                        }
-//                    )
                     AsyncImage(
                         url: URL(string: fruit.image),
                         transaction: Transaction(animation: .easeInOut)
