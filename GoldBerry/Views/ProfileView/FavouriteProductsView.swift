@@ -58,7 +58,7 @@ struct WithFavouriteProductsView: View {
     @FetchRequest(entity: FavoriteFruit.entity(), sortDescriptors: [])
     var favoriteFruit: FetchedResults<FavoriteFruit>
     @State var favorite = [Fruit]()
-    @State var uniqFavorite = [Fruit]()
+//    @State var uniqFavorite = [Fruit]()
 
     var body: some View {
 
@@ -72,8 +72,8 @@ struct WithFavouriteProductsView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {
                         LazyVGrid(columns: fruitViewModel.columns, alignment: .center, spacing: 1, pinnedViews: .sectionFooters, content: {
-                            ForEach(uniqFavorite) { fruit in
-                                AllProductsCell(fruit: fruit, fruitViewModel: fruitViewModel)
+                            ForEach(fruitViewModel.favoriteFruits, id:\.id) { fruit in
+                                FavoriteProductCell(fruitViewModel: fruitViewModel, fruit: fruit)
                                     .padding(.bottom, 30)
                             }
 
@@ -89,7 +89,7 @@ struct WithFavouriteProductsView: View {
                 for i in fruitViewModel.fruit {
                     if item.id == i.id {
                         favorite.append(i)
-                        uniqFavorite = uniq(source: favorite)
+                        fruitViewModel.favoriteFruits = uniq(source: favorite)
                     }
                 }
             }

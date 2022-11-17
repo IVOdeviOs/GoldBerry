@@ -33,13 +33,13 @@ final class LogIn: ObservableObject {
         }
     }
 
-    func addOrder(users: LoginUser, log: String, pass: String) async throws {
+    func addOrder(users: LoginUser) async throws {
         let urlString = Constants.baseURL + EndPoints.user
 
         guard let url = URL(string: urlString) else {
             throw HttpError.badURL
         }
-        try await HttpClient.shared.sendData(to: url, object: users, httpMethod: HttpMethods.POST.rawValue, log: log, pass: pass)
+        try await HttpClient.shared.sendData(to: url, object: users, httpMethod: HttpMethods.POST.rawValue)
     }
 
     var cancellable: Set<AnyCancellable> = []
@@ -96,8 +96,6 @@ func signInWithEmail(email: String, password: String,
             completion(false, (err?.localizedDescription)!)
             return
         }
-        UserDefaults.standard.set(res?.user.refreshToken, forKey: "userToken")
-//        UserDefaults.standard.set(res?.user.email, forKey: "delete")
         completion(true, (res!.user.email)!)
     }
 }

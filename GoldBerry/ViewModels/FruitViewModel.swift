@@ -11,7 +11,7 @@ class FruitViewModel: ObservableObject {
 
     @Published var selected = 0
     @Published var fruit = [Fruit]()
-    @Published var favoriteFruit = [Fruit]()
+    @Published var favoriteFruits = [Fruit]()
     @Published var isLoading = false
     let email = UserDefaults.standard.value(forKey: "userEmail")
 

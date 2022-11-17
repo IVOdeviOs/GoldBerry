@@ -102,7 +102,7 @@ struct Login: View {
                         login.alert.toggle()
                     } else {
                         UserDefaults.standard.set(login.email, forKey: "userEmail")
-                        UserDefaults.standard.set(login.password, forKey: "userPassword")
+//                        UserDefaults.standard.set(login.password, forKey: "userPassword")
                         UserDefaults.standard.set(true, forKey: "status")
                         NotificationCenter.default
                             .post(name: NSNotification.Name("statusChange"), object: nil)

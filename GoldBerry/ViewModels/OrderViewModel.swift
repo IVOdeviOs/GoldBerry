@@ -85,14 +85,14 @@ class OrderViewModel: ObservableObject {
         }
     }
 
-    func addOrder(orders: Order, log: String, pass: String) async throws {
+    func addOrder(orders: Order) async throws {
         let urlString = Constants.baseURL + EndPoints.order
 
         guard let url = URL(string: urlString) else {
             throw HttpError.badURL
         }
         let order = orders
-        try await HttpClient.shared.sendData(to: url, object: order, httpMethod: HttpMethods.POST.rawValue, log: log, pass: pass)
+        try await HttpClient.shared.sendData(to: url, object: order, httpMethod: HttpMethods.POST.rawValue)
     }
 
     func dateFormatter() {

@@ -127,7 +127,7 @@ struct SignUP: View {
             Button {
                 Task {
                     do {
-                        try await signUP.addOrder(users: LoginUser(login: signUP.email, password: signUP.password, role: ""), log: signUP.email, pass: signUP.password)
+//                        try await signUP.addOrder(users: LoginUser(login: signUP.email, password: signUP.password, role: ""), log: signUP.email, pass: signUP.password)
                         signUpWithEmail(email: signUP.email,
                                         password: signUP.password,
                                         confirmPassword: signUP.confirmationPassword) { verified, status in

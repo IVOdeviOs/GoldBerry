@@ -114,8 +114,10 @@ struct ProfileView: View {
                             })
                         }
                     }
-                    Button {
+                    Button{
                         userViewModel.showFavouriteProductsView.toggle()
+//                        FavouriteProductsView(fruitViewModel: fruitViewModel)
+
                     } label: {
                         ZStack {
                             Color.theme.grayWhite

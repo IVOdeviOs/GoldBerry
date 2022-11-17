@@ -1,16 +1,30 @@
-import CoreData
 import SwiftUI
-struct AllProductsCell: View {
-    @State var fruit: Fruit
+import CoreData
+
+struct FavoriteProductCell: View {
     @ObservedObject var fruitViewModel: FruitViewModel
     @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
-    var fruits: FetchedResults<FruitEntity>
     @FetchRequest(entity: FavoriteFruit.entity(), sortDescriptors: [])
     var favoriteFruit: FetchedResults<FavoriteFruit>
-    @State var favorite:Bool = false
+    
+    @State var fruit: Fruit
+    @State var favorite = true
     @State var newCount: Double = 0
+    func removeCell(fru: Fruit) {
+        for item in favoriteFruit {
+            if fru.id == item.id {
+                
+                fruitViewModel.favoriteFruits.removeFirst()
+                viewContext.delete(item)
+                
+
+                do {
+                    try viewContext.save()
+                } catch {}
+            }
+        }
+    }
+
     var body: some View {
         VStack(spacing: 6) {
             ZStack(alignment: .bottomLeading) {
@@ -49,8 +63,11 @@ struct AllProductsCell: View {
                         HStack {
                             Spacer()
                             Button {
-                                addFavoriteFruit()
                                 favorite.toggle()
+                                withAnimation(.linear(duration: 0.5)) {
+                                    removeCell(fru: fruit)
+                                }
+                               
                             } label: {
                                 ZStack {
                                     Image(systemName: "heart.fill")
@@ -73,6 +90,7 @@ struct AllProductsCell: View {
                     }
                 }
             }
+            
             HStack {
                 if fruit.itog == fruit.cost {
                     Text("\(fruit.cost, specifier: "%.2f") руб")
@@ -138,25 +156,18 @@ struct AllProductsCell: View {
                 .disabled(!(fruit.isValid ?? true))
             }
             .padding(7)
+        } .onDisappear {
+            for item in favoriteFruit {
+                if item.id == fruit.id {
+                    fruitViewModel.favoriteFruits.removeFirst()
+                    fruitViewModel.favoriteFruits.append(fruit)
+                }
+            }
         }
         .frame(width: 180, height: 295)
         .background(Color.theme.background)
         .cornerRadius(10)
         .shadow(color: .gray, radius: 1, x: 0, y: 2)
-        .onAppear {
-            for item in fruits {
-                if item.id == fruit.id {
-                    fruit.isValid = false
-                }
-            }
-            for asd in favoriteFruit {
-                if asd.favorite == true {
-                    if asd.id == fruit.id {
-                        favorite = true
-                    }
-                }
-            }
-        }
     }
 
     func addFruit() {
@@ -179,19 +190,5 @@ struct AllProductsCell: View {
         }
     }
 
-    func addFavoriteFruit() {
-        withAnimation {
-            let newFruit = FavoriteFruit(context: viewContext)
-            newFruit.id = fruit.id
-            newFruit.name = fruit.name
-            newFruit.favorite = true
-            do {
-                try viewContext.save()
-
-            } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
 }
+
