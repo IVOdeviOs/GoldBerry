@@ -5,8 +5,7 @@ struct User: Identifiable, Codable {
     var userName, userSurname, userPhone, userEmail: String
 }
 
-struct LoginUser:Identifiable, Codable{
+struct LoginUser: Identifiable, Codable {
     var id: UUID?
     var login, password, role: String
-    
 }

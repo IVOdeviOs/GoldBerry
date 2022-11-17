@@ -48,9 +48,8 @@ struct LaunchScreenView: View {
                 }
                 .rotationEffect(.degrees(rotate ? 360 : 0))
 
-                HStack(spacing: 0) {
-                }
-                .opacity(stripesVisible ? 1 : 0)
+                HStack(spacing: 0) {}
+                    .opacity(stripesVisible ? 1 : 0)
 
                 VStack(spacing: 0) {
                     Text("Gold Berry")

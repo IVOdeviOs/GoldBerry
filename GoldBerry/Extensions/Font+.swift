@@ -1,5 +1,5 @@
-import SwiftUI
 import Foundation
+import SwiftUI
 enum FontWeight: String {
     case helvetica = "helveticacyrillicupright"
     case uzSansBold = "UZSans-Bold"

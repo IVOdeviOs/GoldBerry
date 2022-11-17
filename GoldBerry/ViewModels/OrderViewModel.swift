@@ -26,7 +26,7 @@ class OrderViewModel: ObservableObject {
     var cancellable: Set<AnyCancellable> = []
 
     private var isDateValidPublisher: AnyPublisher<Bool, Never> {
-        $date        
+        $date
             .map {
                 $0.count > 4
             }
@@ -46,8 +46,6 @@ class OrderViewModel: ObservableObject {
     private var isCustomerPhoneValidPublisher: AnyPublisher<Bool, Never> {
         $customerPhone
             .map {
-//                let regex = "((375|80)(25|29|33|34)([0-9]{3}([0-9]{2}){2}))"
-
                 let regex = "((25|29|33|34) ([0-9]{3}-([0-9]{2})-([0-9]{2})))"
                 let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
                 let result = predicate.evaluate(with: $0)
@@ -94,7 +92,7 @@ class OrderViewModel: ObservableObject {
             throw HttpError.badURL
         }
         let order = orders
-        try await HttpClient.shared.sendData(to: url, object: order, httpMethod: HttpMethods.POST.rawValue, log: log,pass: pass)
+        try await HttpClient.shared.sendData(to: url, object: order, httpMethod: HttpMethods.POST.rawValue, log: log, pass: pass)
     }
 
     func dateFormatter() {

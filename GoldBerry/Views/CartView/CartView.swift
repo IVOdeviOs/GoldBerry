@@ -8,7 +8,7 @@ struct CartView: View {
 
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
     var fruits: FetchedResults<FruitEntity>
-    
+
     var body: some View {
         if self.fruits.isEmpty {
             WithoutPurchase(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
@@ -29,7 +29,7 @@ struct WithoutPurchase: View {
                 VStack {
                     Image("noOrders")
                         .resizable()
-                        .frame(width: UIScreen.main.bounds.width/1.1, height: 300)
+                        .frame(width: UIScreen.main.bounds.width / 1.1, height: 300)
                         .cornerRadius(20)
                         .padding()
                         .padding(.top, 60)
@@ -83,11 +83,6 @@ struct WithPurchase: View {
                 .padding(.top, 125)
                 .padding(.bottom, 100)
             }
-            .refreshable {
-                print("⭕️\(fruitViewModel.uniqFruits.count)")
-
-            }
-
             .padding(.vertical, 3)
             .padding(.horizontal, 10)
 
@@ -99,7 +94,7 @@ struct WithPurchase: View {
 
                     NavigationLink {
                         MakingTheOrderView(orderViewModel: orderViewModel, fruitViewModel: fruitViewModel)
-                        
+
                     } label: {
                         Text("Оформить заказ \(NSString(format: "%.2f", fruitViewModel.sum())) руб")
                             .foregroundColor(.white)

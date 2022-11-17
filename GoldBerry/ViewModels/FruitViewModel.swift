@@ -1,15 +1,14 @@
 import Combine
 import CoreData
 import FirebaseAuth
+import FirebaseFirestore
 import Foundation
 import SwiftUI
-import FirebaseFirestore
 class FruitViewModel: ObservableObject {
 
-    
-    @Published var dictionaryOfNameAndCountOfFruits: [String : Double] = ["" : 0]
+    @Published var dictionaryOfNameAndCountOfFruits: [String: Double] = ["": 0]
     @Published var showCartCount = true
-    
+
     @Published var selected = 0
     @Published var fruit = [Fruit]()
     @Published var favoriteFruit = [Fruit]()
@@ -56,7 +55,6 @@ class FruitViewModel: ObservableObject {
         return sumOfArray
     }
 
-    
     func deleteAllRecords() {
         let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "FruitEntity")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
@@ -66,15 +64,13 @@ class FruitViewModel: ObservableObject {
 
             try viewContext.save()
         } catch {
-            print("There was an error")
         }
     }
-    
-    
+
     func fetchFruit() async throws {
-      
+
         let urlString = Constants.baseURL + EndPoints.fruit
-        self.isLoading = true
+        isLoading = true
 
         guard let url = URL(string: urlString) else {
             throw HttpError.badURL
@@ -86,5 +82,4 @@ class FruitViewModel: ObservableObject {
             self.isLoading = false
         }
     }
-
 }

@@ -1,14 +1,14 @@
 import SwiftUI
 
 struct ServiceInfoView: View {
-    
+
     @Environment(\.presentationMode) var presentation
     @State var showDeliveryInfoView = false
     @State var showConfidentialView = false
     @State var showDisclaimerOfLiability = false
     @State var showContacts = false
     var numberPhone = "+375336096300"
-    
+
     var body: some View {
         VStack {
             Text("О сервисе")
@@ -36,108 +36,106 @@ struct ServiceInfoView: View {
                     self.showDeliveryInfoView.toggle()
                 }
             label: {
-                HStack {
-                    Text("Оплата и доставка")
-                        .minimumScaleFactor(0.5)
-                        .foregroundColor(Color.theme.blackWhiteText)
-                        .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
-                    Spacer()
-                    Image(systemName: "arrow.right")
-                        .resizable()
-                        .frame(width: 15, height: 15)
-                        .foregroundColor(Color.theme.blackWhiteText)
+                    HStack {
+                        Text("Оплата и доставка")
+                            .minimumScaleFactor(0.5)
+                            .foregroundColor(Color.theme.blackWhiteText)
+                            .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                        Spacer()
+                        Image(systemName: "arrow.right")
+                            .resizable()
+                            .frame(width: 15, height: 15)
+                            .foregroundColor(Color.theme.blackWhiteText)
+                    }
+                    .sheet(isPresented: $showDeliveryInfoView, content: {
+                        DeliveryInfoView()
+                    })
                 }
-                .sheet(isPresented: $showDeliveryInfoView, content: {
-                    DeliveryInfoView()
-                })
-            }
-                
+
                 Button {
                     self.showConfidentialView.toggle()
                 }
             label: {
-                HStack {
-                    Text("Положение о конфиденциальности")
-                        .minimumScaleFactor(0.5)
-                        .foregroundColor(Color.theme.blackWhiteText)
-                        .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
-                    Spacer()
-                    Image(systemName: "arrow.right")
-                        .resizable()
-                        .frame(width: 15, height: 15)
-                        .foregroundColor(Color.theme.blackWhiteText)
+                    HStack {
+                        Text("Положение о конфиденциальности")
+                            .minimumScaleFactor(0.5)
+                            .foregroundColor(Color.theme.blackWhiteText)
+                            .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                        Spacer()
+                        Image(systemName: "arrow.right")
+                            .resizable()
+                            .frame(width: 15, height: 15)
+                            .foregroundColor(Color.theme.blackWhiteText)
+                    }
+                    .sheet(isPresented: $showConfidentialView, content: {
+                        ConfidentialView()
+                    })
                 }
-                .sheet(isPresented: $showConfidentialView, content: {
-                    ConfidentialView()
-                })
-            }
-                
+
                 Button {
                     self.showDisclaimerOfLiability.toggle()
                 }
             label: {
-                HStack {
-                    Text("Отказ от ответственности")
-                        .minimumScaleFactor(0.5)
-                        .foregroundColor(Color.theme.blackWhiteText)
-                        .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
-                    Spacer()
-                    Image(systemName: "arrow.right")
-                        .resizable()
-                        .frame(width: 15, height: 15)
-                        .foregroundColor(Color.theme.blackWhiteText)
+                    HStack {
+                        Text("Отказ от ответственности")
+                            .minimumScaleFactor(0.5)
+                            .foregroundColor(Color.theme.blackWhiteText)
+                            .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                        Spacer()
+                        Image(systemName: "arrow.right")
+                            .resizable()
+                            .frame(width: 15, height: 15)
+                            .foregroundColor(Color.theme.blackWhiteText)
+                    }
+                    .sheet(isPresented: $showDisclaimerOfLiability, content: {
+                        DisclaimerOfLiability()
+                    })
                 }
-                .sheet(isPresented: $showDisclaimerOfLiability, content: {
-                    DisclaimerOfLiability()
-                })
-            }
-                
+
                 Button {
                     let formattedString = "tel://" + numberPhone
                     guard let url = URL(string: formattedString) else { return }
                     UIApplication.shared.open(url)
                 }
             label: {
-                HStack {
-                    Text("Контакты")
-                        .minimumScaleFactor(0.5)
-                        .foregroundColor(Color.theme.blackWhiteText)
-                        .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
-                    Spacer()
-                    Image(systemName: "arrow.right")
-                        .resizable()
-                        .frame(width: 15, height: 15)
-                        .foregroundColor(Color.theme.blackWhiteText)
+                    HStack {
+                        Text("Контакты")
+                            .minimumScaleFactor(0.5)
+                            .foregroundColor(Color.theme.blackWhiteText)
+                            .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                        Spacer()
+                        Image(systemName: "arrow.right")
+                            .resizable()
+                            .frame(width: 15, height: 15)
+                            .foregroundColor(Color.theme.blackWhiteText)
+                    }
                 }
             }
-            }
             .offset(y: -15)
-            
+
             Link(destination: URL(string: "https://www.instagram.com/nar_juice")!) {
                 Image("instagram")
                     .resizable().frame(width: 60, height: 60).padding()
-                
             }
             Spacer()
         }
         .gesture(DragGesture(minimumDistance: 3.0, coordinateSpace: .local)
             .onEnded { value in
-                print(value.translation)
-                switch(value.translation.width) {
-                    case (100...300):   self.presentation.wrappedValue.dismiss()
-                    default:  print("no clue")
+                switch value.translation.width {
+                case 100 ... 300: self.presentation.wrappedValue.dismiss()
+                default: print("no clue")
                 }
             }
         )
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading:
-                                Image(systemName: "arrow.backward")
-            .resizable()
-            .frame(width: 20, height: 20)
-            .foregroundColor(Color.theme.blackWhiteText)
-            .onTapGesture {
-                self.presentation.wrappedValue.dismiss()
-            }
+            Image(systemName: "arrow.backward")
+                .resizable()
+                .frame(width: 20, height: 20)
+                .foregroundColor(Color.theme.blackWhiteText)
+                .onTapGesture {
+                    self.presentation.wrappedValue.dismiss()
+                }
         )
     }
 }

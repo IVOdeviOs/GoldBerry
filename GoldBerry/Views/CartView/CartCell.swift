@@ -4,8 +4,8 @@ struct CartCell: View {
 
     @ObservedObject var fruitViewModel: FruitViewModel
     @ObservedObject var orderViewModel: OrderViewModel
-    
-    @State var buttonIsTupped: Bool = false
+
+    @State var buttonIsTupped = false
     @State var fruit: Fruit
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.id, ascending: true)])
@@ -48,7 +48,6 @@ struct CartCell: View {
                             EmptyView()
                         }
                     }
-
                 }
                 .frame(width: 150, height: 100)
                 .cornerRadius(8)
@@ -102,11 +101,11 @@ struct CartCell: View {
                         }
                         switch fruit.weightOrPieces {
                         case "шт":
-                            Text("\(NSString(format: "%.0f",fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1)) \(fruit.weightOrPieces)")
+                            Text("\(NSString(format: "%.0f", fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1)) \(fruit.weightOrPieces)")
                                 .foregroundColor(Color.theme.blackWhiteText)
                                 .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
                         default:
-                            Text("\(NSString(format: "%.1f",fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1)) \(fruit.weightOrPieces)")
+                            Text("\(NSString(format: "%.1f", fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1)) \(fruit.weightOrPieces)")
                                 .foregroundColor(Color.theme.blackWhiteText)
                                 .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
                         }
@@ -167,7 +166,6 @@ struct CartCell: View {
             fruit.price = fruit.count * fruit.itog
         }
         .padding()
-//        .background(Color.theme.gray.opacity(0.05))
         .overlay(
             RoundedRectangle(cornerRadius: 8)
                 .stroke(Color.theme.gray, lineWidth: 1)

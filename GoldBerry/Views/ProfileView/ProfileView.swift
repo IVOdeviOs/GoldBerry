@@ -33,7 +33,6 @@ struct ProfileView: View {
 
             try viewContext.save()
         } catch {
-            print("There was an error")
         }
     }
 
@@ -253,7 +252,7 @@ struct ProfileView: View {
                                           UserDefaults.standard.set(false, forKey: "status")
                                           NotificationCenter.default.post(name: NSNotification.Name("statusChange"),
                                                                           object: nil)
-                                          
+
                                       } catch {}
 
                                   },

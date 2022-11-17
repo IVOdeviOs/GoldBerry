@@ -36,7 +36,6 @@ struct Login: View {
                             .autocapitalization(.none)
                             .keyboardType(.emailAddress)
                             .disableAutocorrection(true)
-                            
                     }
                     Divider()
                         .background(Color.theme.background)
@@ -97,33 +96,6 @@ struct Login: View {
             .cornerRadius(35)
 
             Button {
-//                Task {
-//                    do {
-//                        try await login.fetchUser()
-//                        for item in login.user{
-//
-//                            if item.login == login.email && item.password == login.password {
-//                                print("✅")
-//                                UserDefaults.standard.set(login.email, forKey: "userEmail")
-//                                UserDefaults.standard.set(true, forKey: "status")
-//                                NotificationCenter.default
-//                                    .post(name: NSNotification.Name("statusChange"), object: nil)
-//                            } else {
-//                                login.alert.toggle()
-//
-//
-//                            }
-//                        }
-//                ////                        UserDefaults.standard.set(login.email, forKey: "userEmail")
-//                ////                        UserDefaults.standard.set(true, forKey: "status")
-//                ////                        NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
-//
-//                    } catch {
-//                        login.alert.toggle()
-//                    }
-//                }
-
-
                 signInWithEmail(email: login.email, password: login.password) { verified, status in
                     if !verified {
                         login.message = status

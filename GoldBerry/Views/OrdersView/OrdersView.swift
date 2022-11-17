@@ -38,7 +38,7 @@ struct WithoutOrders: View {
                 VStack {
                     Image("noOrders")
                         .resizable()
-                        .frame(width: UIScreen.main.bounds.width/1.1, height: 300)
+                        .frame(width: UIScreen.main.bounds.width / 1.1, height: 300)
                         .cornerRadius(20)
                         .padding()
                         .padding(.top, 60)
@@ -77,9 +77,8 @@ struct WithOrders: View {
     let email = UserDefaults.standard.value(forKey: "userEmail")
 
     var body: some View {
-//        NavigationView {
         List(orderViewModel.order.sorted(by: { items1, items2 in
-            items1.date > items2.date
+            items1.date.trimmingCharacters(in: CharacterSet(charactersIn: " ")) > items2.date.trimmingCharacters(in: CharacterSet(charactersIn: " "))
         })) { item in
             if item.email == email as? String {
                 NavigationLink {
@@ -97,13 +96,12 @@ struct WithOrders: View {
                 }
             }
         }
-    
+
         .padding(.bottom, 140)
         .accessibilityElement()
         .offset(y: 20)
         .navigationViewStyle(.columns)
         .listStyle(.plain)
-//        }
         .padding(.top, 0)
         .navigationBarHidden(true)
     }

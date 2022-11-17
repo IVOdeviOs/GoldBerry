@@ -1,12 +1,12 @@
 
-import SwiftUI
 import iPhoneNumberField
+import SwiftUI
 struct UserInfoView: View {
 
     @Environment(\.presentationMode) var presentationMode
     @StateObject var userViewModel: UserViewModel
     let email = UserDefaults.standard.value(forKey: "userEmail")
-    
+
     var body: some View {
         VStack {
             Text("Мои данные")
@@ -18,23 +18,20 @@ struct UserInfoView: View {
                 .frame(height: 10)
             TextFieldView(text: $userViewModel.userSurname, placeholder: "Фамилия", infoText: "")
                 .disableAutocorrection(true)
-//                .autocorrectionDisabled()
                 .onTapGesture {
-                    hideKeyboard()
+                    HideKeyboard()
                 }
             TextFieldView(text: $userViewModel.userName, placeholder: "Имя", infoText: "")
-//                .autocorrectionDisabled()
                 .disableAutocorrection(true)
-
                 .onTapGesture {
-                    hideKeyboard()
+                    HideKeyboard()
                 }
             ZStack(alignment: .leading) {
                 Text("+375")
                     .foregroundColor(Color.theme.blackWhiteText)
                     .font(Font(uiFont: .fontLibrary(18, .uzSansRegular)))
-                    .padding(.leading,30)
-                    .padding(.top,4)
+                    .padding(.leading, 30)
+                    .padding(.top, 4)
                 iPhoneNumberField("Телефон", text: $userViewModel.userPhone)
                     .maximumDigits(9)
                     .defaultRegion("BY")
@@ -46,7 +43,7 @@ struct UserInfoView: View {
                     .keyboardType(.numberPad)
                     .disableAutocorrection(true)
                     .onTapGesture {
-                        hideKeyboard()
+                        HideKeyboard()
                     }
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
@@ -75,7 +72,7 @@ struct UserInfoView: View {
         }.onAppear {
 
             for item in userViewModel.user {
-                if email as? String ?? "error"  == item.userEmail {
+                if email as? String ?? "error" == item.userEmail {
                     userViewModel.userName = item.userName
                     userViewModel.userSurname = item.userSurname
                     userViewModel.userPhone = item.userPhone

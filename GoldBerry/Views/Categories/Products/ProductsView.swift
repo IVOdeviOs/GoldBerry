@@ -35,12 +35,6 @@ struct ProductsView: View {
                         } label: {
                             CategoriesCell(nameImage: CategoriesFruit.granat.rawValue, nameCategories: "Гранат")
                         }
-//                        Button {
-//                            tag = categories.fresh.rawValue
-//
-//                        } label: {
-//                            CategoriesCell(nameImage: categories.fresh.rawValue, nameCategories: "Фреши и смузи")
-//                        }
                         Button {
                             tag = CategoriesFruit.fruct.rawValue
                         } label: {

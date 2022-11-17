@@ -3,9 +3,6 @@ import SwiftUI
 struct LoadingView: View {
     var body: some View {
         ZStack {
-//            Color.white
-//                .opacity(0.7)
-//                .ignoresSafeArea()
             ProgressView()
                 .progressViewStyle(.automatic)
                 .tint(.red)
@@ -13,6 +10,7 @@ struct LoadingView: View {
         }
     }
 }
+
 extension View {
     @ViewBuilder
     func isLoading(_ isLoading: Bool) -> some View {
@@ -25,4 +23,3 @@ extension View {
         .animation(.linear(duration: 0.2), value: isLoading)
     }
 }
-

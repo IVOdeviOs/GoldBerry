@@ -14,18 +14,6 @@ struct AllProductsCell: View {
     var body: some View {
         VStack(spacing: 6) {
             ZStack(alignment: .bottomLeading) {
-//                RemoteImageView(
-//                    url: URL(string: fruit.image)!,
-//                    placeholder: {
-//                        Image(systemName: "icloud.and.arrow.up").frame(width: 180, height: 120)
-//                    },
-//                    image: {
-//                        $0
-//                            .resizable()
-//                            .aspectRatio(contentMode: .fill)
-//                            .frame(width: 180, height: 120)
-//                    }
-//                )
                 AsyncImage(
                     url: URL(string: fruit.image),
                     transaction: Transaction(animation: .easeInOut)
@@ -128,44 +116,6 @@ struct AllProductsCell: View {
             }
             .padding(.horizontal, 5)
             .frame(height: 60)
-//            HStack {
-//                Button {
-//                    if fruit.count >= 2 {
-//                        fruit.count  -= 1
-//                        fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = fruit.count
-//                        if fruit.price == 0 {
-//                            fruit.price = fruit.cost
-//                        } else {
-//                            fruit.price = fruit.cost * Double(fruit.count)
-//                        }
-//                    }
-//                } label: {
-//                    Image(systemName: "minus.square.fill")
-//                        .resizable()
-//                        .frame(width: 25, height: 25)
-//                        .foregroundColor(Color.theme.gray)
-//                }
-//                Text("\(fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1) кг")
-//                    .multilineTextAlignment(.leading)
-//                    .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
-//                Button {
-//                    fruit.count += 1
-//                    fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = fruit.count
-//                    if fruit.price == 0 {
-//                        fruit.price = fruit.cost
-//                    } else {
-//                        fruit.price = fruit.cost * Double(fruit.count)
-//                    }
-//
-//                } label: {
-//                    Image(systemName: "plus.square.fill")
-//                        .resizable()
-//                        .frame(width: 25, height: 25)
-//                        .foregroundColor(Color.theme.lightGreen)
-//                }
-//                .buttonStyle(PlainButtonStyle())
-//            }
-//            .padding(.horizontal, 10)
             HStack {
                 Button {
                     addFruit()
@@ -173,8 +123,6 @@ struct AllProductsCell: View {
                     fruitViewModel.isShowCount = true
                     fruit.isValid = false
                     fruitViewModel.countCart += 1
-//                    fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
-
                 } label: {
                     ZStack {
                         Text("В корзину")
@@ -231,7 +179,6 @@ struct AllProductsCell: View {
             newFruit.name = fruit.name
             newFruit.favorite = fruit.favorite
             do {
-                print("🥰")
                 try viewContext.save()
 
             } catch {

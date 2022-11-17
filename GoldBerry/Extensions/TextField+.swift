@@ -19,20 +19,13 @@ struct TextFieldView: View {
                             .stroke(Color.theme.blackWhiteText, lineWidth: 1)
                     )
                     .padding()
-               
-                    Text(infoText)
-                        .padding(.leading,30)
-                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                        .offset( y: -35)
-                        .opacity(text.wrappedValue.isEmpty ? 0.5 : 1 )
-                
+
+                Text(infoText)
+                    .padding(.leading, 30)
+                    .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                    .offset(y: -35)
+                    .opacity(text.wrappedValue.isEmpty ? 0.5 : 1)
             }
         }
-    }
-}
-
-struct TextFieldView_Previews: PreviewProvider {
-    static var previews: some View {
-        TextFieldView(text: Binding<String>.constant("nfdsjjsd"), placeholder: "sdss", infoText: "")
     }
 }

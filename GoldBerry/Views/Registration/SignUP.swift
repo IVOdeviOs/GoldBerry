@@ -128,11 +128,7 @@ struct SignUP: View {
 
                 Task {
                     do {
-                        try await signUP.addOrder(users: LoginUser(login: signUP.email, password: signUP.password, role: ""),log: signUP.email,pass: signUP.password)
-//                        UserDefaults.standard.set(signUP.email, forKey: "userEmail")
-//                        UserDefaults.standard.set(true, forKey: "status")
-//                        show.toggle()
-//                        NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
+                        try await signUP.addOrder(users: LoginUser(login: signUP.email, password: signUP.password, role: ""), log: signUP.email, pass: signUP.password)
                         signUpWithEmail(email: signUP.email,
                                         password: signUP.password,
                                         confirmPassword: signUP.confirmationPassword) { verified, status in

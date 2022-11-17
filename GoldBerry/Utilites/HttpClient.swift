@@ -36,8 +36,6 @@ class HttpClient {
 
     func sendData<T: Codable>(to url: URL, object: T, httpMethod: String, log: String, pass: String) async throws {
         var request = URLRequest(url: url)
-//        var log = "vadim4ik9@gmail.com"
-//        var pass = "vadim4ik9"
         let loginString = String(format: "%@:%@", log, pass)
         let loginData = loginString.data(using: String.Encoding.utf8)!
         let base64LoginString = loginData.base64EncodedString()

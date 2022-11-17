@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct DatePickerTextField: UIViewRepresentable {
-    
+
     @ObservedObject var orderViewModel = OrderViewModel()
 
     private let textField = UITextField()
@@ -12,23 +12,23 @@ struct DatePickerTextField: UIViewRepresentable {
         dateFormatter.dateFormat = "dd.MM.yyyy"
         return dateFormatter
     }()
-    
+
     public var placeholder: String
     @Binding public var date: Date?
-    
+
     func makeUIView(context: Context) -> UITextField {
-        self.datePicker.datePickerMode = .date
-        self.datePicker.preferredDatePickerStyle = .wheels
-        self.datePicker.minimumDate = .now
-        self.datePicker.addTarget(
-            self.helper,
-            action: #selector(self.helper.dateValueChanged),
+        datePicker.datePickerMode = .date
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.minimumDate = .now
+        datePicker.addTarget(
+            helper,
+            action: #selector(helper.dateValueChanged),
             for: .valueChanged
         )
-        self.textField.text = dateFormatter.string(from: Date.now)
-        self.textField.placeholder = self.placeholder
-        self.textField.inputView = self.datePicker
-        
+        textField.text = dateFormatter.string(from: Date.now)
+        textField.placeholder = placeholder
+        textField.inputView = datePicker
+
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         let flexibleSpace = UIBarButtonItem(
@@ -39,51 +39,49 @@ struct DatePickerTextField: UIViewRepresentable {
         let doneButton = UIBarButtonItem(
             title: "Выбрать",
             style: .plain,
-            target: self.helper,
-            action: #selector(self.helper.doneButtonAction)
+            target: helper,
+            action: #selector(helper.doneButtonAction)
         )
-        
+
         toolbar.setItems([flexibleSpace, doneButton], animated: true)
-        self.textField.inputAccessoryView = toolbar
-        
-        self.helper.dateChanged = {
+        textField.inputAccessoryView = toolbar
+
+        helper.dateChanged = {
             self.date = self.datePicker.date
         }
-        
-        self.helper.doneButtonTapped = {
+
+        helper.doneButtonTapped = {
             if self.date == nil {
                 self.date = self.datePicker.date
             }
             self.textField.resignFirstResponder()
         }
-        
-        return self.textField
+
+        return textField
     }
-    
+
     func updateUIView(_ uiView: UITextField, context: Context) {
-        if let selectedDate = self.date {
-            uiView.text = self.dateFormatter.string(from: selectedDate)
+        if let selectedDate = date {
+            uiView.text = dateFormatter.string(from: selectedDate)
         }
     }
-    
+
     func makeCoordinator() -> Coordinator {
         Coordinator()
     }
-    
+
     class Helper {
         public var dateChanged: (() -> Void)?
         public var doneButtonTapped: (() -> Void)?
-        
+
         @objc func dateValueChanged() {
-            self.dateChanged?()
+            dateChanged?()
         }
-        
+
         @objc func doneButtonAction() {
-            self.doneButtonTapped?()
+            doneButtonTapped?()
         }
     }
-    
-    class Coordinator {
-        
-    }
+
+    class Coordinator {}
 }

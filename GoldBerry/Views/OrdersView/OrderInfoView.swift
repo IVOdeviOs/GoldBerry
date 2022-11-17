@@ -31,83 +31,71 @@ struct OrderInfoView: View {
                         .padding()
                 }
                 HStack {
-                     Spacer()
-                     Text("Наименование")
-                         .foregroundColor(Color.theme.blackWhiteText)
-                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                         .frame(width: UIScreen.main.bounds.width/3, height: 20)
-                     Text("Цена/ед.")
-                         .foregroundColor(Color.theme.blackWhiteText)
-                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                         .frame(width: UIScreen.main.bounds.width/6, height: 20)
-                     Text("Кол-во")
-                         .foregroundColor(Color.theme.blackWhiteText)
-                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                         .frame(width: UIScreen.main.bounds.width/6, height: 20)
-                     Text("Итого")
-                         .foregroundColor(Color.theme.blackWhiteText)
-                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                         .frame(width: UIScreen.main.bounds.width/6, height: 20)
-                         .padding(.trailing, 20)
-                 }
+                    Spacer()
+                    Text("Наименование")
+                        .foregroundColor(Color.theme.blackWhiteText)
+                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                        .frame(width: UIScreen.main.bounds.width / 3, height: 20)
+                    Text("Цена/ед.")
+                        .foregroundColor(Color.theme.blackWhiteText)
+                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                        .frame(width: UIScreen.main.bounds.width / 6, height: 20)
+                    Text("Кол-во")
+                        .foregroundColor(Color.theme.blackWhiteText)
+                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                        .frame(width: UIScreen.main.bounds.width / 6, height: 20)
+                    Text("Итого")
+                        .foregroundColor(Color.theme.blackWhiteText)
+                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                        .frame(width: UIScreen.main.bounds.width / 6, height: 20)
+                        .padding(.trailing, 20)
+                }
                 ScrollView(.vertical, showsIndicators: false) {
-                 ForEach(0 ..< order.fruits.count) { row in
-                     HStack {
-//                         RemoteImageView(
-//                             url: URL(string: order.fruits[row].image)!,
-//                             placeholder: {
-//                                 Image(systemName: "icloud.and.arrow.up").frame(width: 30, height: 20)
-//                             },
-//                             image: {
-//                                 $0
-//                                     .resizable()
-//                                     .frame(width: 30, height: 20)
-//                                     .aspectRatio(contentMode: .fill)
-//                             }
-//                         )
-                         AsyncImage(
-                             url: URL(string: order.fruits[row].image),
-                             transaction: Transaction(animation: .easeInOut)
-                         ) { phase in
-                             switch phase {
-                             case .empty:
-                                 ProgressView()
-                             case .success(let image):
-                                 image
-                                     .resizable()
-                                     .transition(.scale(scale: 0.1, anchor: .center))
-                                     .frame(width: 30, height: 20)
-                                     .aspectRatio(contentMode: .fill)
-                             case .failure:
-                                 Image(systemName: "wifi.slash")
-                             @unknown default:
-                                 EmptyView()
-                             }
-                         }
+                    ForEach(0 ..< order.fruits.count) { row in
+                        HStack {
+                            AsyncImage(
+                                url: URL(string: order.fruits[row].image),
+                                transaction: Transaction(animation: .easeInOut)
+                            ) { phase in
+                                switch phase {
+                                case .empty:
+                                    ProgressView()
+                                case .success(let image):
+                                    image
+                                        .resizable()
+                                        .transition(.scale(scale: 0.1, anchor: .center))
+                                        .frame(width: 30, height: 20)
+                                        .aspectRatio(contentMode: .fill)
+                                case .failure:
+                                    Image(systemName: "wifi.slash")
+                                @unknown default:
+                                    EmptyView()
+                                }
+                            }
 
-                         .frame(width: 30, height: 20)
-                         .cornerRadius(5)
-                         .padding(.leading, 10)
-                         Text(order.fruits[row].name)
-                             .minimumScaleFactor(0.7)
-                             .foregroundColor(Color.theme.blackWhiteText)
-                             .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                             .frame(width: UIScreen.main.bounds.width/4, height: 20)
-                         Text("\(NSString(format: "%.2f", order.fruits[row].itog)) p.")
-                             .foregroundColor(Color.theme.blackWhiteText)
-                             .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                             .frame(width: UIScreen.main.bounds.width/6, height: 20)
-                         Text("\(NSString(format: "%.1f",order.fruits[row].count))")
-                             .foregroundColor(Color.theme.blackWhiteText)
-                             .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                             .frame(width: UIScreen.main.bounds.width/6, height: 20)
-                         Text("\(NSString(format: "%.2f", order.fruits[row].itog * order.fruits[row].count)) p.")
-                             .foregroundColor(Color.theme.blackWhiteText)
-                             .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                             .frame(width: UIScreen.main.bounds.width/6, height: 20)
-                             .padding(.trailing, 10)
-                     }
-                 }
+                            .frame(width: 30, height: 20)
+                            .cornerRadius(5)
+                            .padding(.leading, 10)
+                            Text(order.fruits[row].name)
+                                .minimumScaleFactor(0.7)
+                                .foregroundColor(Color.theme.blackWhiteText)
+                                .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                                .frame(width: UIScreen.main.bounds.width / 4, height: 20)
+                            Text("\(NSString(format: "%.2f", order.fruits[row].itog)) p.")
+                                .foregroundColor(Color.theme.blackWhiteText)
+                                .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                                .frame(width: UIScreen.main.bounds.width / 6, height: 20)
+                            Text("\(NSString(format: "%.1f", order.fruits[row].count))")
+                                .foregroundColor(Color.theme.blackWhiteText)
+                                .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                                .frame(width: UIScreen.main.bounds.width / 6, height: 20)
+                            Text("\(NSString(format: "%.2f", order.fruits[row].itog * order.fruits[row].count)) p.")
+                                .foregroundColor(Color.theme.blackWhiteText)
+                                .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                                .frame(width: UIScreen.main.bounds.width / 6, height: 20)
+                                .padding(.trailing, 10)
+                        }
+                    }
                 }.frame(height: 200)
                 Color.theme.gray
                     .opacity(0.3)
@@ -138,7 +126,6 @@ struct OrderInfoView: View {
                     .opacity(0.3)
                     .frame(height: 10)
                 CustomerInfo(order: order)
-//                Spacer()
             }
         }
         .offset(y: 35)
@@ -157,10 +144,9 @@ struct OrderInfoView: View {
         )
         .gesture(DragGesture(minimumDistance: 50.0, coordinateSpace: .local)
             .onEnded { value in
-                print(value.translation)
-                switch(value.translation.width) {
-                    case (0...500):   self.presentation.wrappedValue.dismiss()
-                    default:  break
+                switch value.translation.width {
+                case 0 ... 500: self.presentation.wrappedValue.dismiss()
+                default: break
                 }
             }
         )

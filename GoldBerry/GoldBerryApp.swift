@@ -1,6 +1,6 @@
-import SwiftUI
 import Firebase
 import FirebaseAuth
+import SwiftUI
 
 @main
 struct GoldBerryApp: App {
@@ -8,6 +8,7 @@ struct GoldBerryApp: App {
     init() {
         FirebaseApp.configure()
     }
+
     var body: some Scene {
         WindowGroup {
             ContentView()

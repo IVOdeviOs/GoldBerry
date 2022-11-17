@@ -33,7 +33,7 @@ struct ContentView: View {
             }
 
         }.onAppear {
-            
+
             if !fruits.isEmpty {
                 fruitViewModel.isShowCount = true
             }
@@ -41,13 +41,11 @@ struct ContentView: View {
                 do {
                     try await fruitViewModel.fetchFruit()
                 } catch {
-                    print("❌ERORR \(error)")
                 }
             }
             tog = true
             sendRequesting { to in
                 tog = to
-                
             }
 
             NotificationCenter.default.addObserver(forName: NSNotification.Name("statusChange"),
@@ -199,7 +197,6 @@ struct ExtractedView: View {
                             do {
                                 try await fruitViewModel.fetchFruit()
                             } catch {
-                                print("❌ERORR \(error)")
                             }
                         }
                     }
@@ -213,7 +210,6 @@ struct ExtractedView: View {
                             do {
                                 try await orderViewModel.fetchOrder()
                             } catch {
-                                print("❌ERORR \(error)")
                             }
                         }
                     }
@@ -226,7 +222,6 @@ struct ExtractedView: View {
                                 try await fruitViewModel.fetchFruit()
 
                             } catch {
-                                print("❌ERORR \(error)")
                             }
                         }
                     }
@@ -235,25 +230,12 @@ struct ExtractedView: View {
                 ProductsView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
             }
         }
-//        .gesture(DragGesture(minimumDistance: 150.0, coordinateSpace: .local)
-//            .onEnded { value in
-//
-//                switch value.translation.width {
-//                case 0 ... 500: fruitViewModel.selected -= 1
-//                case -500 ... 0: fruitViewModel.selected += 1
-//                default: break
-//
-//                }
-//            }
-//        )
         .padding(.top, 90)
         .onAppear {
             Task {
                 do {
                     try await orderViewModel.fetchOrder()
-//                    try await fruitViewModel.fetchFruit()
                 } catch {
-                    print("❌ERORR \(error)")
                 }
             }
         }

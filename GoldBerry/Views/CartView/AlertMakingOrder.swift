@@ -1,12 +1,12 @@
 import SwiftUI
 
 struct AlertMakingOrder: View {
-    
+
     @ObservedObject var orderViewModel = OrderViewModel()
-    
+
     var body: some View {
         ZStack {
-            VStack(spacing: 20 ) {
+            VStack(spacing: 20) {
                 Image("oops")
                     .resizable()
                     .frame(width: 300, height: 300)
