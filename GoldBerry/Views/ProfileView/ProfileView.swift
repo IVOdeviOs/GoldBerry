@@ -24,6 +24,9 @@ struct ProfileView: View {
         return ordersCount
     }
 
+//    var users = UserDefaults.standard.object(forKey:"user")
+//    var us = users as? User
+
     func deleteAllRecords() {
         let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "FruitEntity")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
@@ -243,19 +246,23 @@ struct ProfileView: View {
                             Alert(title: Text("Удалить аккаунт"),
                                   message: Text("Вы точно хотите удалить свой аккаунт?"),
                                   primaryButton: .destructive(Text("Да")) {
-                                      do {
-                                          try Auth.auth().signOut()
-                                          //                                          userViewModel.deleteSong(id: UUID(uuidString: "1ce5be72-7fdb-48c7-8ee8-70f50ee70554")!)
-                                          deleteAllRecords()
-                                          UserDefaults.standard.removeObject(forKey: userViewModel.nameKey)
-                                          UserDefaults.standard.removeObject(forKey: userViewModel.surNameKey)
-                                          UserDefaults.standard.removeObject(forKey: userViewModel.numberPhoneKey)
-                                          UserDefaults.standard.set(false, forKey: "status")
-                                          NotificationCenter.default.post(name: NSNotification.Name("statusChange"),
-                                                                          object: nil)
 
-                                      } catch {}
+                                      user?.delete { error in
+                                          if error != nil {
+                                          } else {}
+                                          do {
+                                              deleteAllRecords()
+                                              UserDefaults.standard.removeObject(forKey: userViewModel.nameKey)
+                                              UserDefaults.standard.removeObject(forKey: userViewModel.surNameKey)
+                                              UserDefaults.standard.removeObject(forKey: userViewModel.numberPhoneKey)
+                                              try Auth.auth().signOut()
 
+                                              UserDefaults.standard.set(false, forKey: "status")
+                                              NotificationCenter.default.post(name: NSNotification.Name("statusChange"),
+                                                                              object: nil)
+
+                                          } catch {}
+                                      }
                                   },
                                   secondaryButton: .cancel())
                         }

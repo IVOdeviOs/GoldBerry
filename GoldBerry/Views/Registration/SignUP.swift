@@ -8,7 +8,7 @@ struct SignUP: View {
     @StateObject private var signUP = LogIn()
     @Binding var index: Int
     @Binding var show: Bool
-
+    var idd = ""
     @Environment(\.managedObjectContext) private var viewContext
 
     var body: some View {

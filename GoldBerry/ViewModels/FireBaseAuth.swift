@@ -123,7 +123,6 @@ func signUpWithEmail(email: String, password: String, confirmPassword: String,
             completion(false, (err?.localizedDescription)!)
             return
         }
-//        UserDefaults.standard.set(res?.user.email, forKey: "delete")
         completion(true, (res?.user.email)!)
     }
 }
