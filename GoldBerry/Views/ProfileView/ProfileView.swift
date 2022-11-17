@@ -245,14 +245,15 @@ struct ProfileView: View {
                                   message: Text("Вы точно хотите удалить свой аккаунт?"),
                                   primaryButton: .destructive(Text("Да")) {
                                       do {
-                                          try Auth.auth().signOut()
-                                          UserDefaults.standard.set(false, forKey: "status")
-                                          NotificationCenter.default.post(name: NSNotification.Name("statusChange"),
-                                                                          object: nil)
                                           deleteAllRecords()
                                           UserDefaults.standard.removeObject(forKey: userViewModel.nameKey)
                                           UserDefaults.standard.removeObject(forKey: userViewModel.surNameKey)
                                           UserDefaults.standard.removeObject(forKey: userViewModel.numberPhoneKey)
+                                          try Auth.auth().signOut()
+                                          UserDefaults.standard.set(false, forKey: "status")
+                                          NotificationCenter.default.post(name: NSNotification.Name("statusChange"),
+                                                                          object: nil)
+                                          
                                       } catch {}
 
                                   },

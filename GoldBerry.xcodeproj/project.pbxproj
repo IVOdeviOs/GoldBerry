@@ -74,6 +74,7 @@
 		DDCF34F828FC7E9A00ECE312 /* ForGetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCF34F728FC7E9A00ECE312 /* ForGetPasswordView.swift */; };
 		DDCF34FA2906D49A00ECE312 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCF34F92906D49A00ECE312 /* LoadingView.swift */; };
 		DDE7CFCC29237EDF0037F074 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE7CFCB29237EDF0037F074 /* LaunchScreenView.swift */; };
+		DDE7CFCF2926624D0037F074 /* iPhoneNumberField in Frameworks */ = {isa = PBXBuildFile; productRef = DDE7CFCE2926624D0037F074 /* iPhoneNumberField */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -143,6 +144,7 @@
 				DD4F8AE3290D830900C57AAD /* FirebaseDatabaseSwift in Frameworks */,
 				DD4F8AE1290D830900C57AAD /* FirebaseDatabase in Frameworks */,
 				DD4F8AEF290D830900C57AAD /* FirebaseMessaging in Frameworks */,
+				DDE7CFCF2926624D0037F074 /* iPhoneNumberField in Frameworks */,
 				DD4F8ADD290D830900C57AAD /* FirebaseAuth in Frameworks */,
 				DD4F8AEB290D830900C57AAD /* FirebaseInAppMessaging-Beta in Frameworks */,
 				DD4F8AE9290D830900C57AAD /* FirebaseFirestoreSwift in Frameworks */,
@@ -377,6 +379,7 @@
 				DD4F8AEE290D830900C57AAD /* FirebaseMessaging */,
 				DD4F8AF0290D830900C57AAD /* FirebaseStorage */,
 				DD4F8AF2290D830900C57AAD /* FirebaseStorageCombine-Community */,
+				DDE7CFCE2926624D0037F074 /* iPhoneNumberField */,
 			);
 			productName = GoldBerry;
 			productReference = DD95A82F2899ABD200DF346B /* GoldBerry.app */;
@@ -408,6 +411,7 @@
 			mainGroup = DD95A8262899ABD100DF346B;
 			packageReferences = (
 				DD4F8ADB290D830900C57AAD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				DDE7CFCD2926624D0037F074 /* XCRemoteSwiftPackageReference "iPhoneNumberField" */,
 			);
 			productRefGroup = DD95A8302899ABD200DF346B /* Products */;
 			projectDirPath = "";
@@ -723,6 +727,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		DDE7CFCD2926624D0037F074 /* XCRemoteSwiftPackageReference "iPhoneNumberField" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MojtabaHs/iPhoneNumberField.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -785,6 +797,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DD4F8ADB290D830900C57AAD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseStorageCombine-Community";
+		};
+		DDE7CFCE2926624D0037F074 /* iPhoneNumberField */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DDE7CFCD2926624D0037F074 /* XCRemoteSwiftPackageReference "iPhoneNumberField" */;
+			productName = iPhoneNumberField;
 		};
 /* End XCSwiftPackageProductDependency section */
 

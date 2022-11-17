@@ -1,6 +1,6 @@
 
 import SwiftUI
-
+import iPhoneNumberField
 struct UserInfoView: View {
 
     @Environment(\.presentationMode) var presentationMode
@@ -29,11 +29,31 @@ struct UserInfoView: View {
                 .onTapGesture {
                     hideKeyboard()
                 }
-            TextFieldView(text: $userViewModel.userPhone, placeholder: "Телефон", infoText: "В формате (375)(80)29 1234567")
-                .keyboardType(.phonePad)
-                .onTapGesture {
-                    hideKeyboard()
-                }
+            ZStack(alignment: .leading) {
+                Text("+375")
+                    .foregroundColor(Color.theme.blackWhiteText)
+                    .font(Font(uiFont: .fontLibrary(18, .uzSansRegular)))
+                    .padding(.leading,30)
+                    .padding(.top,4)
+                iPhoneNumberField("Телефон", text: $userViewModel.userPhone)
+                    .maximumDigits(9)
+                    .defaultRegion("BY")
+                    .foregroundColor(Color.theme.blackWhiteText)
+                    .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
+                    .padding(.leading, 55)
+                    .background(.clear)
+                    .frame(height: 50)
+                    .keyboardType(.numberPad)
+                    .disableAutocorrection(true)
+                    .onTapGesture {
+                        hideKeyboard()
+                    }
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.theme.blackWhiteText, lineWidth: 1)
+                    )
+                    .padding()
+            }
             Button {
                 UserDefaults.standard.set(userViewModel.userName, forKey: userViewModel.nameKey)
                 UserDefaults.standard.set(userViewModel.userSurname, forKey: userViewModel.surNameKey)

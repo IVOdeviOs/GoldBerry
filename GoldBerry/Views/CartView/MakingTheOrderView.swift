@@ -1,5 +1,7 @@
 import CoreData
 import SwiftUI
+import iPhoneNumberField
+
 struct MakingTheOrderView: View {
 
     func sendRequest(completion: @escaping (Bool) -> Void) {
@@ -39,7 +41,7 @@ struct MakingTheOrderView: View {
             print("There was an error")
         }
     }
-
+let prefix = "+375"
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
@@ -133,12 +135,38 @@ struct MakingTheOrderView: View {
                             .onTapGesture {
                                 hideKeyboard()
                             }
-                        TextFieldView(text: $orderViewModel.customerPhone, placeholder: "Телефон получателя", infoText: "В формате (375)(80)29 1234567")
-                            .keyboardType(.numberPad)
-                            .disableAutocorrection(true)
-                            .onTapGesture {
-                                hideKeyboard()
-                            }
+                        ZStack(alignment: .leading) {
+                            Text("+375")
+                                .foregroundColor(Color.theme.blackWhiteText)
+                                .font(Font(uiFont: .fontLibrary(18, .uzSansRegular)))
+                                .padding(.leading,30)
+                                .padding(.top,4)
+                            iPhoneNumberField("Телефон получателя", text: $orderViewModel.customerPhone)
+                                .maximumDigits(9)
+                                .defaultRegion("BY")
+                                .foregroundColor(Color.theme.blackWhiteText)
+                                .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
+                                .padding(.leading, 55)
+                                .background(.clear)
+                                .frame(height: 50)
+                                .keyboardType(.numberPad)
+                                .disableAutocorrection(true)
+                                .onTapGesture {
+                                    hideKeyboard()
+                                }
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.theme.blackWhiteText, lineWidth: 1)
+                                )
+                                .padding()
+                        }
+                        
+//                        TextFieldView(text:  $orderViewModel.customerPhone, placeholder: "Телефон получателя", infoText: "В формате (375)(80)29 1234567")
+//                            .keyboardType(.numberPad)
+//                            .disableAutocorrection(true)
+//                            .onTapGesture {
+//                                hideKeyboard()
+//                            }
                         TextFieldView(text: $orderViewModel.address, placeholder: "Адрес доставки", infoText: "Введите адрес доставки")
                             .disableAutocorrection(true)
                             .onTapGesture {
@@ -173,7 +201,7 @@ struct MakingTheOrderView: View {
                                          address: orderViewModel.address,
                                          price: orderViewModel.price ?? 0.1,
                                          customer: orderViewModel.customer,
-                                         customerPhone: orderViewModel.customerPhone,
+                                         customerPhone: "+375" + orderViewModel.customerPhone,
                                          comment: orderViewModel.comments,
                                          orderCompleted: false)
                         Task {
