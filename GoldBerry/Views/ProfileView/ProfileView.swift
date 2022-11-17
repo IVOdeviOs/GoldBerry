@@ -32,8 +32,7 @@ struct ProfileView: View {
             try viewContext.execute(deleteRequest)
 
             try viewContext.save()
-        } catch {
-        }
+        } catch {}
     }
 
     var body: some View {
@@ -228,6 +227,7 @@ struct ProfileView: View {
                         Spacer()
                         Button {
                             userViewModel.alertDeleted = true
+
                         } label: {
                             HStack(spacing: 5) {
                                 Image(systemName: "x.square")
@@ -244,11 +244,12 @@ struct ProfileView: View {
                                   message: Text("Вы точно хотите удалить свой аккаунт?"),
                                   primaryButton: .destructive(Text("Да")) {
                                       do {
+                                          try Auth.auth().signOut()
+                                          //                                          userViewModel.deleteSong(id: UUID(uuidString: "1ce5be72-7fdb-48c7-8ee8-70f50ee70554")!)
                                           deleteAllRecords()
                                           UserDefaults.standard.removeObject(forKey: userViewModel.nameKey)
                                           UserDefaults.standard.removeObject(forKey: userViewModel.surNameKey)
                                           UserDefaults.standard.removeObject(forKey: userViewModel.numberPhoneKey)
-                                          try Auth.auth().signOut()
                                           UserDefaults.standard.set(false, forKey: "status")
                                           NotificationCenter.default.post(name: NSNotification.Name("statusChange"),
                                                                           object: nil)

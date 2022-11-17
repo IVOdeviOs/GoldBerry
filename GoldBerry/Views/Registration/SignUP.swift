@@ -125,7 +125,6 @@ struct SignUP: View {
             .cornerRadius(35)
 
             Button {
-
                 Task {
                     do {
                         try await signUP.addOrder(users: LoginUser(login: signUP.email, password: signUP.password, role: ""), log: signUP.email, pass: signUP.password)

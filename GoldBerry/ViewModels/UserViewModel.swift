@@ -28,4 +28,20 @@ class UserViewModel: ObservableObject {
     @Published var userPhone = ""
 
     @Published var favouriteProducts: [Fruit] = []
+
+    func deleteSong(id: UUID ) {
+             
+            guard let url = URL(string: Constants.baseURL + EndPoints.user + "/\(id)") else {
+                return
+            }
+            Task {
+                do {
+                    try await HttpClient.shared.delete(at: id, url: url)
+                } catch {
+                }
+            }
+        
+        
+//        userAuth.remove(atOffsets: offSets)
+    }
 }

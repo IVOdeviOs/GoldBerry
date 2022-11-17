@@ -97,7 +97,8 @@ func signInWithEmail(email: String, password: String,
             return
         }
         UserDefaults.standard.set(res?.user.refreshToken, forKey: "userToken")
-        completion(true, (res?.user.email)!)
+//        UserDefaults.standard.set(res?.user.email, forKey: "delete")
+        completion(true, (res!.user.email)!)
     }
 }
 
@@ -122,7 +123,7 @@ func signUpWithEmail(email: String, password: String, confirmPassword: String,
             completion(false, (err?.localizedDescription)!)
             return
         }
-        UserDefaults.standard.set(res?.user.refreshToken, forKey: "userToken")
+//        UserDefaults.standard.set(res?.user.email, forKey: "delete")
         completion(true, (res?.user.email)!)
     }
 }
