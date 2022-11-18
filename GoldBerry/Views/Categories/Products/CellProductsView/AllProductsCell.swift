@@ -9,8 +9,19 @@ struct AllProductsCell: View {
     var fruits: FetchedResults<FruitEntity>
     @FetchRequest(entity: FavoriteFruit.entity(), sortDescriptors: [])
     var favoriteFruit: FetchedResults<FavoriteFruit>
-    @State var favorite:Bool = false
+    @State var favorite = false
     @State var newCount: Double = 0
+    func removeCell(fru: Fruit) {
+        for item in favoriteFruit {
+            if fru.id == item.id {
+                viewContext.delete(item)
+                do {
+                    try viewContext.save()
+                } catch {}
+            }
+        }
+    }
+
     var body: some View {
         VStack(spacing: 6) {
             ZStack(alignment: .bottomLeading) {
@@ -50,6 +61,12 @@ struct AllProductsCell: View {
                             Spacer()
                             Button {
                                 addFavoriteFruit()
+                                for item in favoriteFruit {
+                                    if item.id == fruit.id, favorite == true {
+                                        removeCell(fru: fruit)
+                                    }
+                                }
+
                                 favorite.toggle()
                             } label: {
                                 ZStack {
