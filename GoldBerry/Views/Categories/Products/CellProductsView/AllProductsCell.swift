@@ -21,6 +21,7 @@ struct AllProductsCell: View {
             }
         }
     }
+    @State var status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
 
     var body: some View {
         VStack(spacing: 6) {
@@ -60,14 +61,20 @@ struct AllProductsCell: View {
                         HStack {
                             Spacer()
                             Button {
-                                addFavoriteFruit()
-                                for item in favoriteFruit {
-                                    if item.id == fruit.id, favorite == true {
-                                        removeCell(fru: fruit)
+                                if status {
+                                    addFavoriteFruit()
+                                    for item in favoriteFruit {
+                                        if item.id == fruit.id, favorite == true {
+                                            removeCell(fru: fruit)
+                                        }
                                     }
+                                    favorite.toggle()
+                                } else {
+                                    fruitViewModel.alertFavorite.toggle()
+                                    
                                 }
 
-                                favorite.toggle()
+                               
                             } label: {
                                 ZStack {
                                     Image(systemName: "heart.fill")
@@ -90,6 +97,7 @@ struct AllProductsCell: View {
                     }
                 }
             }
+            
             HStack {
                 if fruit.itog == fruit.cost {
                     Text("\(fruit.cost, specifier: "%.2f") руб")
@@ -172,6 +180,13 @@ struct AllProductsCell: View {
                         favorite = true
                     }
                 }
+            }
+            NotificationCenter.default.addObserver(forName: NSNotification.Name("statusChange"),
+                                                   object: nil,
+                                                   queue: .main)
+            { _ in
+                let status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
+                self.status = status
             }
         }
     }

@@ -69,6 +69,7 @@ struct WithPurchase: View {
     var fruits: FetchedResults<FruitEntity>
     @State var fruitO = [Fruit]()
     @State var cartPrice: Double = 0
+    @State var status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
 
     var body: some View {
 
@@ -93,7 +94,13 @@ struct WithPurchase: View {
                     Spacer()
 
                     NavigationLink {
-                        MakingTheOrderView(orderViewModel: orderViewModel, fruitViewModel: fruitViewModel)
+                        if status {
+                            MakingTheOrderView(orderViewModel: orderViewModel, fruitViewModel: fruitViewModel)
+
+                        } else {
+                            LoginView(signUP: LogIn(), fruitViewModel: fruitViewModel)
+                            
+                        }
 
                     } label: {
                         Text("Оформить заказ \(NSString(format: "%.2f", fruitViewModel.sum())) руб")
@@ -118,6 +125,14 @@ struct WithPurchase: View {
                         fruitViewModel.uniqFruits = uniq(source: fruitO)
                     }
                 }
+            }
+
+            NotificationCenter.default.addObserver(forName: NSNotification.Name("statusChange"),
+                                                   object: nil,
+                                                   queue: .main)
+            { _ in
+                let status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
+                self.status = status
             }
         }
         .onDisappear {

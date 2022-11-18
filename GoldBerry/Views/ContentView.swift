@@ -7,7 +7,7 @@ struct ContentView: View {
     @StateObject var userViewModel = UserViewModel()
     @State var tog = false
     @State var tog1 = false
-    @State var status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
+//    @State var status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
     var fruits: FetchedResults<FruitEntity>
     func sendRequesting(completion: @escaping (Bool) -> Void) {
@@ -20,7 +20,6 @@ struct ContentView: View {
     var body: some View {
 
         NavigationView {
-            if status {
                 if tog {
                     withAnimation {
                         LaunchScreenView()
@@ -28,10 +27,7 @@ struct ContentView: View {
                 } else {
                     ViewProfile(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel, userViewModel: userViewModel)
                 }
-            } else {
-                LoginView(signUP: LogIn())
-            }
-
+            
         }.onAppear {
 
             if !fruits.isEmpty {
@@ -47,14 +43,14 @@ struct ContentView: View {
             sendRequesting { to in
                 tog = to
             }
-
-            NotificationCenter.default.addObserver(forName: NSNotification.Name("statusChange"),
-                                                   object: nil,
-                                                   queue: .main)
-            { _ in
-                let status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
-                self.status = status
-            }
+//
+//            NotificationCenter.default.addObserver(forName: NSNotification.Name("statusChange"),
+//                                                   object: nil,
+//                                                   queue: .main)
+//            { _ in
+//                let status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
+//                self.status = status
+//            }
         }
     }
 }

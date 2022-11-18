@@ -24,8 +24,7 @@ struct ProfileView: View {
         return ordersCount
     }
 
-//    var users = UserDefaults.standard.object(forKey:"user")
-//    var us = users as? User
+    @State var status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
 
     func deleteAllRecords() {
         let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "FruitEntity")
@@ -114,9 +113,8 @@ struct ProfileView: View {
                             })
                         }
                     }
-                    Button{
+                    Button {
                         userViewModel.showFavouriteProductsView.toggle()
-//                        FavouriteProductsView(fruitViewModel: fruitViewModel)
 
                     } label: {
                         ZStack {
@@ -196,85 +194,105 @@ struct ProfileView: View {
                         }
                     }
                     Spacer()
-                    HStack {
+                    if status {
+                        HStack {
+                            Button {
+                                userViewModel.alert = true
+
+                            } label: {
+                                HStack(spacing: 5) {
+                                    Image(systemName: "rectangle.portrait.and.arrow.right")
+                                        .resizable()
+                                        .frame(width: 14, height: 14)
+                                        .foregroundColor(Color.theme.blackWhiteText)
+                                    Text("Выход")
+                                        .font(Font(uiFont: .fontLibrary(14, .uzSansSemiBold)))
+                                        .foregroundColor(Color.theme.blackWhiteText)
+                                }
+                            }
+                            .alert(isPresented: $userViewModel.alert) {
+                                Alert(title: Text("Выйти"),
+                                      message: Text("Вы точно хотите выйти из аккаунта ?"),
+                                      primaryButton: .destructive(Text("Да")) {
+                                          UserDefaults.standard.set(false, forKey: "status")
+                                          NotificationCenter.default.post(name: NSNotification.Name("statusChange"),
+                                                                          object: nil)
+                                          deleteAllRecords()
+                                          UserDefaults.standard.removeObject(forKey: "userEmail")
+                                          UserDefaults.standard.removeObject(forKey: userViewModel.nameKey)
+                                          UserDefaults.standard.removeObject(forKey: userViewModel.surNameKey)
+                                          UserDefaults.standard.removeObject(forKey: userViewModel.numberPhoneKey)
+                                      },
+                                      secondaryButton: .cancel())
+                            }
+                            .padding(.vertical, 10)
+                            .padding(.horizontal)
+                            .padding(.leading, 10)
+                            Spacer()
+                            Button {
+                                userViewModel.alertDeleted = true
+
+                            } label: {
+                                HStack(spacing: 5) {
+                                    Image(systemName: "x.square")
+                                        .resizable()
+                                        .frame(width: 14, height: 14)
+                                        .foregroundColor(Color.red)
+                                    Text("Удалить аккаунт")
+                                        .font(Font(uiFont: .fontLibrary(14, .uzSansSemiBold)))
+                                        .foregroundColor(Color.red)
+                                }
+                            }
+                            .alert(isPresented: $userViewModel.alertDeleted) {
+                                Alert(title: Text("Удалить аккаунт"),
+                                      message: Text("Вы точно хотите удалить свой аккаунт?"),
+                                      primaryButton: .destructive(Text("Да")) {
+
+                                          user?.delete { error in
+                                              if error != nil {
+                                              } else {}
+                                              do {
+                                                  deleteAllRecords()
+                                                  UserDefaults.standard.removeObject(forKey: "userEmail")
+                                                  UserDefaults.standard.removeObject(forKey: userViewModel.nameKey)
+                                                  UserDefaults.standard.removeObject(forKey: userViewModel.surNameKey)
+                                                  UserDefaults.standard.removeObject(forKey: userViewModel.numberPhoneKey)
+                                                  try Auth.auth().signOut()
+
+                                                  UserDefaults.standard.set(false, forKey: "status")
+                                                  NotificationCenter.default.post(name: NSNotification.Name("statusChange"),
+                                                                                  object: nil)
+
+                                              } catch {}
+                                          }
+                                      },
+                                      secondaryButton: .cancel())
+                            }
+                            .padding(.vertical, 10)
+                            .padding(.horizontal)
+                            .padding(.leading, 10)
+                        }
+                        .offset(y: -90)
+                        .navigationBarHidden(true)
+                    } else {
                         Button {
-                            userViewModel.alert = true
+                            fruitViewModel.showAuth.toggle()
+//                            LoginView(signUP: LogIn(), fruitViewModel: fruitViewModel)
 
                         } label: {
-                            HStack(spacing: 5) {
-                                Image(systemName: "rectangle.portrait.and.arrow.right")
-                                    .resizable()
-                                    .frame(width: 14, height: 14)
-                                    .foregroundColor(Color.theme.blackWhiteText)
-                                Text("Выход")
-                                    .font(Font(uiFont: .fontLibrary(14, .uzSansSemiBold)))
-                                    .foregroundColor(Color.theme.blackWhiteText)
-                            }
+                            Text("Войти или Зарегистрироваться")
+                                .foregroundColor(.white)
+                                .frame(width: UIScreen.main.bounds.width - 30, height: 50)
+                                .background(Color.orange)
+                                .cornerRadius(10)
+                                .padding(.bottom, 150)
                         }
-                        .alert(isPresented: $userViewModel.alert) {
-                            Alert(title: Text("Выйти"),
-                                  message: Text("Вы точно хотите выйти из аккаунта ?"),
-                                  primaryButton: .destructive(Text("Да")) {
-                                      UserDefaults.standard.set(false, forKey: "status")
-                                      NotificationCenter.default.post(name: NSNotification.Name("statusChange"),
-                                                                      object: nil)
-                                      deleteAllRecords()
-
-                                      UserDefaults.standard.removeObject(forKey: userViewModel.nameKey)
-                                      UserDefaults.standard.removeObject(forKey: userViewModel.surNameKey)
-                                      UserDefaults.standard.removeObject(forKey: userViewModel.numberPhoneKey)
-                                  },
-                                  secondaryButton: .cancel())
-                        }
-                        .padding(.vertical, 10)
-                        .padding(.horizontal)
-                        .padding(.leading, 10)
-                        Spacer()
-                        Button {
-                            userViewModel.alertDeleted = true
-
-                        } label: {
-                            HStack(spacing: 5) {
-                                Image(systemName: "x.square")
-                                    .resizable()
-                                    .frame(width: 14, height: 14)
-                                    .foregroundColor(Color.red)
-                                Text("Удалить аккаунт")
-                                    .font(Font(uiFont: .fontLibrary(14, .uzSansSemiBold)))
-                                    .foregroundColor(Color.red)
-                            }
-                        }
-                        .alert(isPresented: $userViewModel.alertDeleted) {
-                            Alert(title: Text("Удалить аккаунт"),
-                                  message: Text("Вы точно хотите удалить свой аккаунт?"),
-                                  primaryButton: .destructive(Text("Да")) {
-
-                                      user?.delete { error in
-                                          if error != nil {
-                                          } else {}
-                                          do {
-                                              deleteAllRecords()
-                                              UserDefaults.standard.removeObject(forKey: userViewModel.nameKey)
-                                              UserDefaults.standard.removeObject(forKey: userViewModel.surNameKey)
-                                              UserDefaults.standard.removeObject(forKey: userViewModel.numberPhoneKey)
-                                              try Auth.auth().signOut()
-
-                                              UserDefaults.standard.set(false, forKey: "status")
-                                              NotificationCenter.default.post(name: NSNotification.Name("statusChange"),
-                                                                              object: nil)
-
-                                          } catch {}
-                                      }
-                                  },
-                                  secondaryButton: .cancel())
-                        }
-                        .padding(.vertical, 10)
-                        .padding(.horizontal)
-                        .padding(.leading, 10)
+                        .offset(y: 50)
                     }
-                    .offset(y: -90)
-                    .navigationBarHidden(true)
                 }
+                .fullScreenCover(isPresented: $fruitViewModel.showAuth, content: {
+                    LoginView(signUP: LogIn(), fruitViewModel: fruitViewModel)
+                })
                 .background(Color.theme.background)
             )
             .offset(y: -40).background(Color.theme.background)
@@ -287,6 +305,14 @@ struct ProfileView: View {
                 userViewModel.userName = name as? String ?? ""
                 userViewModel.userSurname = surName as? String ?? ""
                 userViewModel.userPhone = phone as? String ?? ""
+
+                NotificationCenter.default.addObserver(forName: NSNotification.Name("statusChange"),
+                                                       object: nil,
+                                                       queue: .main)
+                { _ in
+                    let status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
+                    self.status = status
+                }
             }
     }
 }

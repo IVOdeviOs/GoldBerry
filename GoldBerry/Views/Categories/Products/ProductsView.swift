@@ -12,45 +12,86 @@ struct ProductsView: View {
     @ObservedObject var orderViewModel: OrderViewModel
 
     @State var tag = CategoriesFruit.all.rawValue
-
+    
     var body: some View {
 
         NavigationView {
+
             VStack {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
-                        Button {
-                            tag = CategoriesFruit.all.rawValue
-                        } label: {
-                            CategoriesCell(nameImage: CategoriesFruit.all.rawValue, nameCategories: "Все товары")
-                        }
-                        Button {
-                            tag = CategoriesFruit.watermelon.rawValue
-                        } label: {
-                            CategoriesCell(nameImage: CategoriesFruit.watermelon.rawValue, nameCategories: "Арбуз и дыня")
-                        }
-                        Button {
-                            tag = CategoriesFruit.granat.rawValue
 
-                        } label: {
-                            CategoriesCell(nameImage: CategoriesFruit.granat.rawValue, nameCategories: "Гранат")
+                ZStack {
+                    if fruitViewModel.alertFavorite {
+                        withAnimation {
+                            ZStack {
+                                VStack {
+                                    HStack {
+                                        Text("Для добавления товара в избранное необходимо Войти или Зарегистрироваться")
+                                            .font(Font(uiFont: UIFont.fontLibrary(16, .uzSansRegular)))
+                                            .foregroundColor(Color.theme.background)
+                                            .frame(width: 300)
+                                            .padding(5)
+                                        Spacer()
+                                        Button {
+                                            fruitViewModel.alertFavorite = false
+                                        } label: {
+                                            Image(systemName: "x.square")
+                                                .resizable()
+                                                .frame(width: 25, height: 25)
+                                                .foregroundColor(Color.theme.background)
+                                        }
+                                        .padding(5)
+                                    }
+                                    Button {
+                                        fruitViewModel.presentedAuth.toggle()
+//                                        LoginView(signUP: LogIn())
+
+                                    } label: {
+                                        Text("Войти или Зарегистрироваться")
+                                            .foregroundColor(.blue)
+                                            .font(Font(uiFont: UIFont.fontLibrary(16, .uzSansRegular)))
+                                            .frame(width: UIScreen.main.bounds.width - 60, height: 30)
+                                            .background(Color.orange)
+                                            .cornerRadius(10)
+                                    }.padding(5)
+                                }
+                                .padding(5)
+                            }
+                            .frame(width: 375, height: 120)
+                            .background(Color.orange)
+                            .cornerRadius(10)
+                            .zIndex(1)
                         }
-                        Button {
-                            tag = CategoriesFruit.fruct.rawValue
-                        } label: {
-                            CategoriesCell(nameImage: CategoriesFruit.fruct.rawValue, nameCategories: "Фрукты")
-                        }
+                        .offset(y: 30)
                     }
-                    .padding(.horizontal, 10)
-                    .padding(.top, 20)
-                }
-                HStack {
-                    Text("Популярные товары")
-                        .font(Font(uiFont: .fontLibrary(25, .uzSansBold)))
-                        .foregroundColor(Color.theme.lightGreen)
-                    Spacer()
-                }.padding(.horizontal, 10)
+                    ScrollView(.horizontal, showsIndicators: false) {
 
+                        HStack {
+                            Button {
+                                tag = CategoriesFruit.all.rawValue
+                            } label: {
+                                CategoriesCell(nameImage: CategoriesFruit.all.rawValue, nameCategories: "Все товары")
+                            }
+                            Button {
+                                tag = CategoriesFruit.watermelon.rawValue
+                            } label: {
+                                CategoriesCell(nameImage: CategoriesFruit.watermelon.rawValue, nameCategories: "Арбуз и дыня")
+                            }
+                            Button {
+                                tag = CategoriesFruit.granat.rawValue
+
+                            } label: {
+                                CategoriesCell(nameImage: CategoriesFruit.granat.rawValue, nameCategories: "Гранат")
+                            }
+                            Button {
+                                tag = CategoriesFruit.fruct.rawValue
+                            } label: {
+                                CategoriesCell(nameImage: CategoriesFruit.fruct.rawValue, nameCategories: "Фрукты")
+                            }
+                        }
+                        .padding(.horizontal, 10)
+                        .padding(.top, 20)
+                    }
+                }
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {
                         LazyVGrid(columns: fruitViewModel.columns, alignment: .center, spacing: 0, pinnedViews: .sectionFooters) {
@@ -69,8 +110,13 @@ struct ProductsView: View {
                             .accessibilityElement()
                     }
                 }
+                .padding(.top, 26)
                 .isLoading(fruitViewModel.isLoading)
             }
+            .fullScreenCover(isPresented: $fruitViewModel.presentedAuth, content: {
+                LoginView(signUP: LogIn(), fruitViewModel: fruitViewModel)
+
+            })
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarHidden(true)
         }

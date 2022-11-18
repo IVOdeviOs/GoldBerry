@@ -8,7 +8,7 @@ struct SignUP: View {
     @StateObject private var signUP = LogIn()
     @Binding var index: Int
     @Binding var show: Bool
-    var idd = ""
+    @ObservedObject var fruitViewModel: FruitViewModel
     @Environment(\.managedObjectContext) private var viewContext
 
     var body: some View {
@@ -138,6 +138,9 @@ struct SignUP: View {
                                 UserDefaults.standard.set(signUP.email, forKey: "userEmail")
                                 UserDefaults.standard.set(signUP.password, forKey: "userPassword")
                                 UserDefaults.standard.set(true, forKey: "status")
+                                fruitViewModel.showAuth = false
+                                fruitViewModel.presentedAuth = false
+                                fruitViewModel.alertFavorite = false
                                 show.toggle()
                                 NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
                             }

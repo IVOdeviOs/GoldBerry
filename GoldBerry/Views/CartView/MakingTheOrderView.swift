@@ -200,8 +200,8 @@ struct MakingTheOrderView: View {
                         Task {
                             do {
 
-                                let login = UserDefaults.standard.string(forKey: "userEmail")
-                                let password = UserDefaults.standard.string(forKey: "userPassword")
+//                                let login = UserDefaults.standard.string(forKey: "userEmail")
+//                                let password = UserDefaults.standard.string(forKey: "userPassword")
                                 try await orderViewModel.addOrder(orders: orde)
                                 tog = true
                                 sendRequest { to in

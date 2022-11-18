@@ -42,10 +42,11 @@ class FruitViewModel: ObservableObject {
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
-
+    @Published var showAuth = false
+    @Published var alertFavorite = false
     @Published var show = false
     @Published var viewState: CGSize = .zero
-
+    @Published var presentedAuth = false
     @Published var arrayOfFruitPrice = [String: Double]()
     func sum() -> Double {
         var sumOfArray: Double = 0
@@ -63,8 +64,7 @@ class FruitViewModel: ObservableObject {
             try viewContext.execute(deleteRequest)
 
             try viewContext.save()
-        } catch {
-        }
+        } catch {}
     }
 
     func fetchFruit() async throws {

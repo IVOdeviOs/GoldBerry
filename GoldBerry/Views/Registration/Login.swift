@@ -5,6 +5,8 @@ import SwiftUI
 struct Login: View {
     @StateObject private var login = LogIn()
     @StateObject var user = UserViewModel()
+    @ObservedObject var fruitViewModel: FruitViewModel
+
     @Binding var index: Int
     @Environment(\.managedObjectContext) private var viewContext
 
@@ -104,6 +106,9 @@ struct Login: View {
                         UserDefaults.standard.set(login.email, forKey: "userEmail")
 //                        UserDefaults.standard.set(login.password, forKey: "userPassword")
                         UserDefaults.standard.set(true, forKey: "status")
+                        fruitViewModel.showAuth = false
+                        fruitViewModel.presentedAuth = false
+                        fruitViewModel.alertFavorite = false
                         NotificationCenter.default
                             .post(name: NSNotification.Name("statusChange"), object: nil)
                     }
