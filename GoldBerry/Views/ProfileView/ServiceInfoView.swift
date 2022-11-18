@@ -21,7 +21,7 @@ struct ServiceInfoView: View {
                     .opacity(0.2)
                     .frame(height: 200)
                 VStack {
-                    Text("Версия 1.7")
+                    Text("Версия 1.8")
                         .foregroundColor(Color.theme.blackWhiteText)
                         .opacity(0.5)
                         .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
