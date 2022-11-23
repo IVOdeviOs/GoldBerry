@@ -217,11 +217,18 @@ struct ProfileView: View {
                                           UserDefaults.standard.set(false, forKey: "status")
                                           NotificationCenter.default.post(name: NSNotification.Name("statusChange"),
                                                                           object: nil)
-                                          deleteAllRecords()
                                           UserDefaults.standard.removeObject(forKey: "userEmail")
                                           UserDefaults.standard.removeObject(forKey: userViewModel.nameKey)
                                           UserDefaults.standard.removeObject(forKey: userViewModel.surNameKey)
                                           UserDefaults.standard.removeObject(forKey: userViewModel.numberPhoneKey)
+                                          fruitViewModel.countCart = 0
+                                          fruitViewModel.isShowCount = false
+                                          fruitViewModel.showCartCount = false
+                                          DispatchQueue.main.async {
+                                              fruitViewModel.arrayOfFruitPrice.removeAll()
+                                              deleteAllRecords()
+                                              fruitViewModel.uniqFruits.removeAll()
+                                          }
                                       },
                                       secondaryButton: .cancel())
                             }
@@ -252,7 +259,6 @@ struct ProfileView: View {
                                               if error != nil {
                                               } else {}
                                               do {
-                                                  deleteAllRecords()
                                                   UserDefaults.standard.removeObject(forKey: "userEmail")
                                                   UserDefaults.standard.removeObject(forKey: userViewModel.nameKey)
                                                   UserDefaults.standard.removeObject(forKey: userViewModel.surNameKey)
@@ -262,6 +268,14 @@ struct ProfileView: View {
                                                   UserDefaults.standard.set(false, forKey: "status")
                                                   NotificationCenter.default.post(name: NSNotification.Name("statusChange"),
                                                                                   object: nil)
+                                                  fruitViewModel.countCart = 0
+                                                  fruitViewModel.isShowCount = false
+                                                  fruitViewModel.showCartCount = false
+                                                  DispatchQueue.main.async {
+                                                      fruitViewModel.arrayOfFruitPrice.removeAll()
+                                                      deleteAllRecords()
+                                                      fruitViewModel.uniqFruits.removeAll()
+                                                  }
 
                                               } catch {}
                                           }
@@ -287,7 +301,7 @@ struct ProfileView: View {
                                 .cornerRadius(10)
                                 .padding(.bottom, 150)
                         }
-                        .offset(y: 50)
+                        .padding(.bottom, -60)
                     }
                 }
                 .fullScreenCover(isPresented: $fruitViewModel.showAuth, content: {

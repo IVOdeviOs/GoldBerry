@@ -72,7 +72,7 @@ struct WithFavouriteProductsView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {
                         LazyVGrid(columns: fruitViewModel.columns, alignment: .center, spacing: 1, pinnedViews: .sectionFooters, content: {
-                            ForEach(fruitViewModel.favoriteFruits, id:\.id) { fruit in
+                            ForEach(fruitViewModel.favoriteFruits, id: \.id) { fruit in
                                 FavoriteProductCell(fruitViewModel: fruitViewModel, fruit: fruit)
                                     .padding(.bottom, 30)
                             }
@@ -85,6 +85,13 @@ struct WithFavouriteProductsView: View {
             .navigationBarHidden(true)
         }
         .onAppear {
+
+            Task {
+                do {
+                    try await fruitViewModel.fetchFruit()
+                } catch {}
+            }
+
             for item in favoriteFruit {
                 for i in fruitViewModel.fruit {
                     if item.id == i.id {

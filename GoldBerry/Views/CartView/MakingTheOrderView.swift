@@ -49,7 +49,7 @@ struct MakingTheOrderView: View {
                     Button {
                         self.fruitViewModel.selected = 0
                         self.presentation.wrappedValue.dismiss()
-
+                        self.orderViewModel.showMakingOrder = false
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                             self.fruitViewModel.selected = 1
                         }
@@ -73,7 +73,7 @@ struct MakingTheOrderView: View {
                     .frame(height: 10)
                 ScrollView {
                     HStack {
-                        Text("Бесплатная  доставка \nпо Минску")
+                        Text("Бесплатная  доставка \nпо Минску от 50р")
                             .fixedSize(horizontal: false, vertical: true)
                             .foregroundColor(Color.theme.blackWhiteText)
                             .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))

@@ -45,6 +45,7 @@ class FruitViewModel: ObservableObject {
     @Published var showAuth = false
     @Published var alertFavorite = false
     @Published var show = false
+    @Published var showAuthCartView = false
     @Published var viewState: CGSize = .zero
     @Published var presentedAuth = false
     @Published var arrayOfFruitPrice = [String: Double]()

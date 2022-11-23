@@ -109,6 +109,8 @@ struct Login: View {
                         fruitViewModel.showAuth = false
                         fruitViewModel.presentedAuth = false
                         fruitViewModel.alertFavorite = false
+                        fruitViewModel.showAuthCartView = false
+
                         NotificationCenter.default
                             .post(name: NSNotification.Name("statusChange"), object: nil)
                     }
@@ -129,7 +131,7 @@ struct Login: View {
                             y: 5)
             }
             .alert(isPresented: $login.alert) {
-                Alert(title: Text("Ошибка"), message: Text("Что то пошло не так"), dismissButton: .default(Text("Ok")))
+                Alert(title: Text("Ошибка"), message: Text("Неверно указан адрес электронной почты или пароль,либо пользователь не зарегистрирован!"), dismissButton: .default(Text("Ok")))
             }
             .offset(y: 30)
             .opacity(index == 0 ? 1 : 0)

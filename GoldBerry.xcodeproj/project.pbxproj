@@ -624,7 +624,7 @@
 				CODE_SIGN_ENTITLEMENTS = GoldBerry/GoldBerry.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"GoldBerry/Preview Content\"";
 				DEVELOPMENT_TEAM = 467ZVP5475;
 				ENABLE_PREVIEWS = YES;
@@ -665,7 +665,7 @@
 				CODE_SIGN_ENTITLEMENTS = GoldBerry/GoldBerryRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"GoldBerry/Preview Content\"";
 				DEVELOPMENT_TEAM = 467ZVP5475;
 				ENABLE_PREVIEWS = YES;

@@ -22,6 +22,7 @@ class OrderViewModel: ObservableObject {
     @Published var deliveryDate = Date()
     @Published var isValid = false
     @Published var showAlertOrder = false
+    @Published var showMakingOrder = false
 
     var cancellable: Set<AnyCancellable> = []
 

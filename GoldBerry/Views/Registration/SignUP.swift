@@ -141,6 +141,7 @@ struct SignUP: View {
                                 fruitViewModel.showAuth = false
                                 fruitViewModel.presentedAuth = false
                                 fruitViewModel.alertFavorite = false
+                                fruitViewModel.showAuthCartView = false
                                 show.toggle()
                                 NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
                             }
@@ -169,7 +170,7 @@ struct SignUP: View {
             }
             .disabled(!signUP.isValid)
             .alert(isPresented: $signUP.alert) {
-                Alert(title: Text("Ошибка"), message: Text("Что-то пошло не так"), dismissButton: .default(Text("Ok")))
+                Alert(title: Text("Ошибка"), message: Text("Неверно указан адрес электронной почты или пароль,либо пользователь уже зарегистрирован!"), dismissButton: .default(Text("Ok")))
             }
             .offset(y: 25)
             .opacity(index == 1 ? 1 : 0)

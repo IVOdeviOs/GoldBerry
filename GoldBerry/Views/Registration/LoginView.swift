@@ -14,6 +14,7 @@ struct LoginView: View {
                             fruitViewModel.presentedAuth = false
                             fruitViewModel.alertFavorite = false
                             fruitViewModel.showAuth = false
+                            fruitViewModel.showAuthCartView = false
                         } label: {
                             Image(systemName: "arrow.backward")
                                 .resizable()
@@ -39,7 +40,7 @@ struct LoginView: View {
                             .zIndex(Double(signUP.index))
                         Login(fruitViewModel: fruitViewModel, index: $signUP.index)
                     }
-                    .offset(y: -100)
+                    .offset(y: -70)
                     .ignoresSafeArea(.keyboard, edges: .bottom)
                     .padding(.horizontal, 10)
                 }
