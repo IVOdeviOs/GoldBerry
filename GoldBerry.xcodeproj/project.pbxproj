@@ -80,6 +80,7 @@
 		DDE7CFE229312EC50037F074 /* OrderAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE7CFE129312EC50037F074 /* OrderAdminView.swift */; };
 		DDE7CFE429312F990037F074 /* OrderAdminCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE7CFE329312F990037F074 /* OrderAdminCell.swift */; };
 		DDE7CFE629313A330037F074 /* OrderinfoAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE7CFE529313A330037F074 /* OrderinfoAdminView.swift */; };
+		DDE7CFE9293151F50037F074 /* FavoriteProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE7CFE8293151F50037F074 /* FavoriteProductCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -144,6 +145,7 @@
 		DDE7CFE129312EC50037F074 /* OrderAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderAdminView.swift; sourceTree = "<group>"; };
 		DDE7CFE329312F990037F074 /* OrderAdminCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderAdminCell.swift; sourceTree = "<group>"; };
 		DDE7CFE529313A330037F074 /* OrderinfoAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderinfoAdminView.swift; sourceTree = "<group>"; };
+		DDE7CFE8293151F50037F074 /* FavoriteProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteProductCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,7 +175,7 @@
 		DC4807E628BC893D001416B6 /* ProfileView */ = {
 			isa = PBXGroup;
 			children = (
-				DDE7CFD02926C8A40037F074 /* FavoriteCell */,
+				DDE7CFE7293151E00037F074 /* FavoriteProductCell */,
 				DC4807E728BC8965001416B6 /* ProfileView.swift */,
 				DC4807EF28BC949F001416B6 /* ServiceInfoView.swift */,
 				DC4807F728CA9D1A001416B6 /* DeliveryInfoView.swift */,
@@ -414,6 +416,14 @@
 			path = Admin;
 			sourceTree = "<group>";
 		};
+		DDE7CFE7293151E00037F074 /* FavoriteProductCell */ = {
+			isa = PBXGroup;
+			children = (
+				DDE7CFE8293151F50037F074 /* FavoriteProductCell.swift */,
+			);
+			path = FavoriteProductCell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -527,6 +537,7 @@
 				DDE7CFE629313A330037F074 /* OrderinfoAdminView.swift in Sources */,
 				DD2CEE7628DC9B8E0060B77A /* FireBaseAuth.swift in Sources */,
 				DD4F8AF9290FB68400C57AAD /* GoldBerry.xcdatamodeld in Sources */,
+				DDE7CFE9293151F50037F074 /* FavoriteProductCell.swift in Sources */,
 				DDE7CFE429312F990037F074 /* OrderAdminCell.swift in Sources */,
 				DD2CEE8928E37C770060B77A /* SignUP.swift in Sources */,
 				DC4807E828BC8965001416B6 /* ProfileView.swift in Sources */,
@@ -534,7 +545,6 @@
 				DC4807F828CA9D1A001416B6 /* DeliveryInfoView.swift in Sources */,
 				DC4807FE28CB1B7E001416B6 /* DisclaimerOfLiabilityView.swift in Sources */,
 				DDBA58EB28AAB43900FFC3A5 /* Fruit.swift in Sources */,
-				DDE7CFD22926C8C20037F074 /* FavoriteProductCell.swift in Sources */,
 				DCA524D528AD31CD00A994F5 /* Font+.swift in Sources */,
 				DD93807128B52FA900808E88 /* OrderViewModel.swift in Sources */,
 				DD95A8352899ABD200DF346B /* ContentView.swift in Sources */,
