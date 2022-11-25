@@ -73,7 +73,13 @@
 		DDCF34FA2906D49A00ECE312 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCF34F92906D49A00ECE312 /* LoadingView.swift */; };
 		DDE7CFCC29237EDF0037F074 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE7CFCB29237EDF0037F074 /* LaunchScreenView.swift */; };
 		DDE7CFCF2926624D0037F074 /* iPhoneNumberField in Frameworks */ = {isa = PBXBuildFile; productRef = DDE7CFCE2926624D0037F074 /* iPhoneNumberField */; };
-		DDE7CFD22926C8C20037F074 /* FavoriteProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE7CFD12926C8C20037F074 /* FavoriteProductCell.swift */; };
+		DDE7CFD8292F9FFE0037F074 /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE7CFD7292F9FFE0037F074 /* ProductView.swift */; };
+		DDE7CFDA292FA0160037F074 /* ProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE7CFD9292FA0160037F074 /* ProductViewCell.swift */; };
+		DDE7CFDE292FA0D00037F074 /* AdminViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE7CFDD292FA0D00037F074 /* AdminViewModel.swift */; };
+		DDE7CFE02930EB430037F074 /* FruitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE7CFDF2930EB430037F074 /* FruitView.swift */; };
+		DDE7CFE229312EC50037F074 /* OrderAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE7CFE129312EC50037F074 /* OrderAdminView.swift */; };
+		DDE7CFE429312F990037F074 /* OrderAdminCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE7CFE329312F990037F074 /* OrderAdminCell.swift */; };
+		DDE7CFE629313A330037F074 /* OrderinfoAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE7CFE529313A330037F074 /* OrderinfoAdminView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -131,7 +137,13 @@
 		DDCF34F728FC7E9A00ECE312 /* ForGetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForGetPasswordView.swift; sourceTree = "<group>"; };
 		DDCF34F92906D49A00ECE312 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		DDE7CFCB29237EDF0037F074 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
-		DDE7CFD12926C8C20037F074 /* FavoriteProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteProductCell.swift; sourceTree = "<group>"; };
+		DDE7CFD7292F9FFE0037F074 /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
+		DDE7CFD9292FA0160037F074 /* ProductViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewCell.swift; sourceTree = "<group>"; };
+		DDE7CFDD292FA0D00037F074 /* AdminViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewModel.swift; sourceTree = "<group>"; };
+		DDE7CFDF2930EB430037F074 /* FruitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitView.swift; sourceTree = "<group>"; };
+		DDE7CFE129312EC50037F074 /* OrderAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderAdminView.swift; sourceTree = "<group>"; };
+		DDE7CFE329312F990037F074 /* OrderAdminCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderAdminCell.swift; sourceTree = "<group>"; };
+		DDE7CFE529313A330037F074 /* OrderinfoAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderinfoAdminView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,10 +238,8 @@
 		DD539A54289AEAF6006F1CD1 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				DD53F0B928F47C2E00439F1A /* UserViewModel.swift */,
-				DD539A6428A02839006F1CD1 /* FruitViewModel.swift */,
-				DD93807028B52FA900808E88 /* OrderViewModel.swift */,
-				DD2CEE7528DC9B8E0060B77A /* FireBaseAuth.swift */,
+				DDE7CFDC292FA0940037F074 /* Admin */,
+				DDE7CFDB292FA0770037F074 /* User */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -237,6 +247,7 @@
 		DD539A55289AEB22006F1CD1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DDE7CFD3292F9F680037F074 /* AdminView */,
 				DD2CEE8128E37C4E0060B77A /* Registration */,
 				DD95A8342899ABD200DF346B /* ContentView.swift */,
 				DC4807E628BC893D001416B6 /* ProfileView */,
@@ -347,12 +358,60 @@
 			path = Products;
 			sourceTree = "<group>";
 		};
-		DDE7CFD02926C8A40037F074 /* FavoriteCell */ = {
+		DDE7CFD3292F9F680037F074 /* AdminView */ = {
 			isa = PBXGroup;
 			children = (
-				DDE7CFD12926C8C20037F074 /* FavoriteProductCell.swift */,
+				DDE7CFD6292F9FD50037F074 /* NotificationView */,
+				DDE7CFD5292F9FC30037F074 /* AdminOrderView */,
+				DDE7CFD4292F9F990037F074 /* ProductView */,
 			);
-			path = FavoriteCell;
+			path = AdminView;
+			sourceTree = "<group>";
+		};
+		DDE7CFD4292F9F990037F074 /* ProductView */ = {
+			isa = PBXGroup;
+			children = (
+				DDE7CFD7292F9FFE0037F074 /* ProductView.swift */,
+				DDE7CFD9292FA0160037F074 /* ProductViewCell.swift */,
+				DDE7CFDF2930EB430037F074 /* FruitView.swift */,
+			);
+			path = ProductView;
+			sourceTree = "<group>";
+		};
+		DDE7CFD5292F9FC30037F074 /* AdminOrderView */ = {
+			isa = PBXGroup;
+			children = (
+				DDE7CFE129312EC50037F074 /* OrderAdminView.swift */,
+				DDE7CFE329312F990037F074 /* OrderAdminCell.swift */,
+				DDE7CFE529313A330037F074 /* OrderinfoAdminView.swift */,
+			);
+			path = AdminOrderView;
+			sourceTree = "<group>";
+		};
+		DDE7CFD6292F9FD50037F074 /* NotificationView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NotificationView;
+			sourceTree = "<group>";
+		};
+		DDE7CFDB292FA0770037F074 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				DD2CEE7528DC9B8E0060B77A /* FireBaseAuth.swift */,
+				DD93807028B52FA900808E88 /* OrderViewModel.swift */,
+				DD53F0B928F47C2E00439F1A /* UserViewModel.swift */,
+				DD539A6428A02839006F1CD1 /* FruitViewModel.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		DDE7CFDC292FA0940037F074 /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				DDE7CFDD292FA0D00037F074 /* AdminViewModel.swift */,
+			);
+			path = Admin;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -454,6 +513,7 @@
 				DC4807F028BC949F001416B6 /* ServiceInfoView.swift in Sources */,
 				DD2CEE8728E37C730060B77A /* LoginView.swift in Sources */,
 				DD4F8AFB29103E6500C57AAD /* AlertMakingOrder.swift in Sources */,
+				DDE7CFD8292F9FFE0037F074 /* ProductView.swift in Sources */,
 				DDBA58DE28A0419100FFC3A5 /* CategoriesCell.swift in Sources */,
 				DC4807E528BB8328001416B6 /* CompletedOrderView.swift in Sources */,
 				DCA5250528AE750A00A994F5 /* Color+.swift in Sources */,
@@ -464,8 +524,10 @@
 				DC4807F428C9DC8F001416B6 /* User.swift in Sources */,
 				DDCF34F828FC7E9A00ECE312 /* ForGetPasswordView.swift in Sources */,
 				DD2CEE8028E37A7B0060B77A /* ClipShape+.swift in Sources */,
+				DDE7CFE629313A330037F074 /* OrderinfoAdminView.swift in Sources */,
 				DD2CEE7628DC9B8E0060B77A /* FireBaseAuth.swift in Sources */,
 				DD4F8AF9290FB68400C57AAD /* GoldBerry.xcdatamodeld in Sources */,
+				DDE7CFE429312F990037F074 /* OrderAdminCell.swift in Sources */,
 				DD2CEE8928E37C770060B77A /* SignUP.swift in Sources */,
 				DC4807E828BC8965001416B6 /* ProfileView.swift in Sources */,
 				DCF6ED15292423550019EDB7 /* DatePickerTextField.swift in Sources */,
@@ -484,8 +546,10 @@
 				DD539A6928A02A63006F1CD1 /* OrdersView.swift in Sources */,
 				DD53F0BA28F47C2E00439F1A /* UserViewModel.swift in Sources */,
 				DC4807E328BB7E8A001416B6 /* TextField+.swift in Sources */,
+				DDE7CFE02930EB430037F074 /* FruitView.swift in Sources */,
 				DC9DE54A28BB508200057E90 /* CartCell.swift in Sources */,
 				DDBA58E028A1551400FFC3A5 /* AllProductsCell.swift in Sources */,
+				DDE7CFDE292FA0D00037F074 /* AdminViewModel.swift in Sources */,
 				DDE7CFCC29237EDF0037F074 /* LaunchScreenView.swift in Sources */,
 				DC224EBE28BB3E5900F8760D /* CartView.swift in Sources */,
 				DC4807EE28BC9456001416B6 /* FavouriteProductsView.swift in Sources */,
@@ -493,9 +557,11 @@
 				DC4807FC28CB1A28001416B6 /* HideKeyboard.swift in Sources */,
 				DD2CEE8B28E37C9E0060B77A /* Login.swift in Sources */,
 				DCA5250C28AE815200A994F5 /* OrderInfoView.swift in Sources */,
+				DDE7CFDA292FA0160037F074 /* ProductViewCell.swift in Sources */,
 				DD539A6528A02839006F1CD1 /* FruitViewModel.swift in Sources */,
 				DC4807EA28BC8CC2001416B6 /* UserInfoView.swift in Sources */,
 				DD539A59289AEFDD006F1CD1 /* ProductsView.swift in Sources */,
+				DDE7CFE229312EC50037F074 /* OrderAdminView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
