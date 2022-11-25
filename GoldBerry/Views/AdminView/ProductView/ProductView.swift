@@ -126,7 +126,7 @@ struct CaseView: View {
                     .onAppear {
                         Task {
                             do {
-                                try await orderViewModel.fetchOrder()
+                                try await adminViewModel.fetchOrder()
                             } catch {
                                 print("❌ERORR \(error)")
                             }
