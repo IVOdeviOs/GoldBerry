@@ -81,6 +81,7 @@
 		DDE7CFE429312F990037F074 /* OrderAdminCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE7CFE329312F990037F074 /* OrderAdminCell.swift */; };
 		DDE7CFE629313A330037F074 /* OrderinfoAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE7CFE529313A330037F074 /* OrderinfoAdminView.swift */; };
 		DDE7CFE9293151F50037F074 /* FavoriteProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE7CFE8293151F50037F074 /* FavoriteProductCell.swift */; };
+		DDE7CFEB293201B50037F074 /* AddFruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE7CFEA293201B50037F074 /* AddFruit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -146,6 +147,7 @@
 		DDE7CFE329312F990037F074 /* OrderAdminCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderAdminCell.swift; sourceTree = "<group>"; };
 		DDE7CFE529313A330037F074 /* OrderinfoAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderinfoAdminView.swift; sourceTree = "<group>"; };
 		DDE7CFE8293151F50037F074 /* FavoriteProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteProductCell.swift; sourceTree = "<group>"; };
+		DDE7CFEA293201B50037F074 /* AddFruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFruit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -376,6 +378,7 @@
 				DDE7CFD7292F9FFE0037F074 /* ProductView.swift */,
 				DDE7CFD9292FA0160037F074 /* ProductViewCell.swift */,
 				DDE7CFDF2930EB430037F074 /* FruitView.swift */,
+				DDE7CFEA293201B50037F074 /* AddFruit.swift */,
 			);
 			path = ProductView;
 			sourceTree = "<group>";
@@ -558,6 +561,7 @@
 				DC4807E328BB7E8A001416B6 /* TextField+.swift in Sources */,
 				DDE7CFE02930EB430037F074 /* FruitView.swift in Sources */,
 				DC9DE54A28BB508200057E90 /* CartCell.swift in Sources */,
+				DDE7CFEB293201B50037F074 /* AddFruit.swift in Sources */,
 				DDBA58E028A1551400FFC3A5 /* AllProductsCell.swift in Sources */,
 				DDE7CFDE292FA0D00037F074 /* AdminViewModel.swift in Sources */,
 				DDE7CFCC29237EDF0037F074 /* LaunchScreenView.swift in Sources */,

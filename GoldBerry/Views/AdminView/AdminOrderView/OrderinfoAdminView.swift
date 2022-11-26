@@ -6,7 +6,7 @@ struct OrderInfoAdminView: View {
     @ObservedObject var adminViewModel: AdminViewModel
 
     @Environment(\.presentationMode) var presentation
-    func updateSong() async throws {
+    func updateOrder() async throws {
         let urlString = Constants.baseURL + EndPoints.order
 
         guard let url = URL(string: urlString) else {
@@ -53,7 +53,6 @@ struct OrderInfoAdminView: View {
                         .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
                         .padding()
                 }
-                //
                 Info()
                 ScrollView(.vertical, showsIndicators: false) {
                     ForEach(0 ..< order.fruits.count) { row in
@@ -127,18 +126,14 @@ struct OrderInfoAdminView: View {
                         .padding(.bottom, 10)
                     Spacer()
                 }
-//                Color.theme.gray
-//                    .opacity(0.3)
-//                    .frame(height: 10)
-
                 UserInfo(order: order)
                 Spacer()
                 if order.orderCompleted == true {} else {
                     Button {
                         Task {
                             do {
-                                try await updateSong()
-//                                adminViewModel.deleteOrder(id: order.id)
+                                try await updateOrder()
+                                self.presentation.wrappedValue.dismiss()
                             } catch {}
                         }
                     } label: {
@@ -241,13 +236,6 @@ struct UserInfo: View {
             Color.theme.gray
                 .opacity(0.3)
                 .frame(height: 10)
-//            Spacer()
         }
     }
 }
-
-// struct OrderinfoAdminView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        OrderInfoAdminView()
-//    }
-// }

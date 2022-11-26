@@ -25,7 +25,7 @@ struct ContentView: View {
                         LaunchScreenView()
                     }
                 } else {
-                    ProductView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
+                    ProductView()
 //                    ViewProfile(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel, userViewModel: userViewModel)
                 }
             

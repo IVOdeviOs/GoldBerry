@@ -10,7 +10,7 @@ struct OrderAdminCell: View {
     @State var order: String
     @State var phoneNumber: String
     @State var count: String
-
+    @Environment(\.presentationMode) var presentation
     var body: some View {
         VStack {
             HStack {

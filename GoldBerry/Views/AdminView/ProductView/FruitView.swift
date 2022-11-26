@@ -1,8 +1,7 @@
 import SwiftUI
 
 struct FruitView: View {
-    @ObservedObject var fruitViewModel: FruitViewModel
-    @ObservedObject var orderViewModel: OrderViewModel
+    @ObservedObject var adminViewModel: AdminViewModel
 
     var body: some View {
 
@@ -10,9 +9,9 @@ struct FruitView: View {
             VStack {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {
-                        LazyVGrid(columns: fruitViewModel.columns, alignment: .center, spacing: 0, pinnedViews: .sectionFooters) {
-                            ForEach(fruitViewModel.fruit) { fruits in
-                                ProductViewCell(fruit: fruits, fruitViewModel: fruitViewModel)
+                        LazyVGrid(columns: adminViewModel.columns, alignment: .center, spacing: 0, pinnedViews: .sectionFooters) {
+                            ForEach(adminViewModel.fruit) { fruits in
+                                ProductViewCell(fruit: fruits, adminViewModel: adminViewModel)
                                     .padding(.bottom, 30)
                             }
 
@@ -20,7 +19,7 @@ struct FruitView: View {
                             .accessibilityElement()
                     }
                 }
-                .isLoading(fruitViewModel.isLoading)
+                .isLoading(adminViewModel.isLoading)
             }
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarHidden(true)

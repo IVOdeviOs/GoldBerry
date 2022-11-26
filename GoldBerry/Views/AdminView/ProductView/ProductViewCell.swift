@@ -2,8 +2,7 @@ import SwiftUI
 
 struct ProductViewCell: View {
     @State var fruit: Fruit
-    @ObservedObject var fruitViewModel: FruitViewModel
-    @State var deleteFruit = false
+    @ObservedObject var adminViewModel: AdminViewModel
 
     var body: some View {
         VStack(spacing: 6) {
@@ -43,7 +42,7 @@ struct ProductViewCell: View {
                         HStack {
                             Spacer()
                             Button {
-                                deleteFruit.toggle()
+                                adminViewModel.deleteFruit.toggle()
 
                             } label: {
 
@@ -55,6 +54,23 @@ struct ProductViewCell: View {
                                     .padding(20)
 
                             }.frame(width: 35, height: 45)
+                                .alert(isPresented: $adminViewModel.deleteFruit) {
+                                    Alert(title: Text("Удалить"),
+                                          message: Text("Вы точно хотите удалить фрукт ?"),
+                                          primaryButton: .destructive(Text("Да")) {
+                                              Task {
+                                                  do {
+                                                      try await adminViewModel.deleteFruit(id: fruit.id)
+                                                      adminViewModel.selected = 1
+                                                      DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                                                          self.adminViewModel.selected = 0
+                                                      }
+                                                  } catch {}
+                                              }
+
+                                          },
+                                          secondaryButton: .cancel())
+                                }
                         }
                         .padding(10)
                         Spacer()

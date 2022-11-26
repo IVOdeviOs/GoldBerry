@@ -1,12 +1,10 @@
 import SwiftUI
 
 struct ProductView: View {
-    @ObservedObject var fruitViewModel = FruitViewModel()
-    @ObservedObject var orderViewModel = OrderViewModel()
     @ObservedObject var adminViewModel = AdminViewModel()
     var body: some View {
         ZStack {
-            CaseView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel,adminViewModel: adminViewModel)
+            CaseView(adminViewModel: adminViewModel)
             ZStack {
                 VStack {
                     ZStack {
@@ -23,7 +21,8 @@ struct ProductView: View {
 
                             Spacer()
                             Button {
-                                //
+                                adminViewModel.showAddFruit.toggle()
+
                             } label: {
                                 Image(systemName: "plus")
                                     .resizable()
@@ -35,12 +34,12 @@ struct ProductView: View {
                         .padding(.horizontal, 20)
                     }
                     .frame(height: 100)
-                    .background(Color.green)
+                    .background(Color.theme.lightGreen)
                     Spacer()
                     ZStack(alignment: .bottom) {
                         HStack {
                             Button {
-                                fruitViewModel.selected = 0
+                                adminViewModel.selected = 0
                             } label: {
                                 VStack {
                                     Image(systemName: "house")
@@ -49,26 +48,26 @@ struct ProductView: View {
                                     Text("Главная")
                                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                                 }
-                            }.foregroundColor(fruitViewModel.selected == 0 ? Color.theme.lightGreen : Color.theme.gray)
+                            }.foregroundColor(adminViewModel.selected == 0 ? Color.theme.lightGreen : Color.theme.gray)
                             Spacer(minLength: 12)
 
                             Button {
-                                fruitViewModel.selected = 1
+                                adminViewModel.selected = 1
                             } label: {
 
                                 VStack {
-                                    Image(systemName: fruitViewModel.selected == 2 ? "bag.fill" : "bag")
+                                    Image(systemName: adminViewModel.selected == 2 ? "bag.fill" : "bag")
                                         .resizable()
                                         .frame(width: 23, height: 20)
                                     Text("Заказы")
                                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                                 }
 
-                            }.foregroundColor(fruitViewModel.selected == 1 ? Color.theme.lightGreen : Color.theme.gray)
+                            }.foregroundColor(adminViewModel.selected == 1 ? Color.theme.lightGreen : Color.theme.gray)
                             Spacer()
 
                             Button {
-                                fruitViewModel.selected = 2
+                                adminViewModel.selected = 2
                             } label: {
                                 VStack {
                                     Image(systemName: "speaker.wave.2.bubble.left")
@@ -77,7 +76,7 @@ struct ProductView: View {
                                     Text("Notification")
                                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                                 }
-                            }.foregroundColor(fruitViewModel.selected == 2 ? Color.theme.lightGreen : Color.theme.gray)
+                            }.foregroundColor(adminViewModel.selected == 2 ? Color.theme.lightGreen : Color.theme.gray)
                         }
                         .padding()
                         .padding(.horizontal, 22)
@@ -90,6 +89,9 @@ struct ProductView: View {
                 }
             }
         }
+        .fullScreenCover(isPresented: $adminViewModel.showAddFruit) {
+            AddFruit(adminViewModel: adminViewModel)
+        }
         .ignoresSafeArea()
         .background(.clear)
         .onAppear {}
@@ -97,24 +99,16 @@ struct ProductView: View {
 }
 
 struct CaseView: View {
-    @ObservedObject var fruitViewModel = FruitViewModel()
-    @ObservedObject var orderViewModel = OrderViewModel()
     @ObservedObject var adminViewModel: AdminViewModel
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)],
-        animation: .default
-    )
-    var fruits: FetchedResults<FruitEntity>
-
     var body: some View {
         ZStack {
-            switch fruitViewModel.selected {
+            switch adminViewModel.selected {
             case 0:
-                FruitView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
+                FruitView(adminViewModel: adminViewModel)
                     .onAppear {
                         Task {
                             do {
-                                try await fruitViewModel.fetchFruit()
+                                try await adminViewModel.fetchFruit()
                             } catch {
                                 print("❌ERORR \(error)")
                             }
@@ -122,7 +116,7 @@ struct CaseView: View {
                     }
 
             case 1:
-                OrderAdminView(orderViewModel: orderViewModel,adminViewModel: adminViewModel)
+                OrderAdminView(adminViewModel: adminViewModel)
                     .onAppear {
                         Task {
                             do {
@@ -144,7 +138,7 @@ struct CaseView: View {
 //                        }
 //                    }
             default:
-                FruitView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
+                FruitView(adminViewModel: adminViewModel)
             }
         }
 
@@ -152,17 +146,11 @@ struct CaseView: View {
         .onAppear {
             Task {
                 do {
-                    try await orderViewModel.fetchOrder()
+                    try await adminViewModel.fetchOrder()
                 } catch {
                     print("❌ERORR \(error)")
                 }
             }
         }
-    }
-}
-
-struct ProductView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProductView()
     }
 }

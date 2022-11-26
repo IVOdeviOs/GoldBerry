@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct OrderAdminView: View {
-    @ObservedObject var orderViewModel: OrderViewModel
     @ObservedObject var adminViewModel: AdminViewModel
     @State var orderCompleted = false
     var body: some View {
@@ -15,7 +14,7 @@ struct OrderAdminView: View {
                 .pickerStyle(.segmented)
             }
             .padding()
-            List(orderViewModel.order) { item in
+            List(adminViewModel.order) { item in
                 if item.orderCompleted == orderCompleted {
                     NavigationLink {
                         OrderInfoAdminView(order: item,adminViewModel: adminViewModel)
@@ -34,11 +33,8 @@ struct OrderAdminView: View {
 
             .padding(.bottom, 140)
             .accessibilityElement()
-//            .offset(y: 20)
             .navigationViewStyle(.columns)
             .listStyle(.plain)
-            //        }
-//            .padding(.top, 0)
             .navigationBarHidden(true)
         }
     }

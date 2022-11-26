@@ -26,6 +26,8 @@ struct TextFieldView: View {
                     .offset(y: -35)
                     .opacity(text.wrappedValue.isEmpty ? 0.5 : 1)
             }
+        }.onTapGesture {
+            HideKeyboard()
         }
     }
 }
