@@ -12,6 +12,7 @@ struct AddFruit: View {
             HStack {
                 Button {
                     adminViewModel.showAddFruit = false
+                    adminViewModel.showUpdate = false
                 } label: {
                     Image(systemName: "arrowshape.turn.up.backward")
                         .resizable()
@@ -20,7 +21,7 @@ struct AddFruit: View {
                 }
                 Spacer()
                 Button {
-                    var addFruit = Fruit(cost: Double(productPrice) ?? 0,
+                    let addFruit = Fruit(cost: Double(productPrice) ?? 0,
                                          weightOrPieces: "кг",
                                          categories: productCategories,
                                          favorite: false,
@@ -81,7 +82,6 @@ struct AddFruit: View {
                     .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
                     .background(.clear)
                     .padding(.leading, 20)
-
                     .frame(height: 150)
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
@@ -121,9 +121,3 @@ struct AddFruit: View {
         }
     }
 }
-
-// struct AddFruit_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AddFruit()
-//    }
-// }

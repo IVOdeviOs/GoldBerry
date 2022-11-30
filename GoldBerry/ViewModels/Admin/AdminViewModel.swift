@@ -5,11 +5,12 @@ import SwiftUI
 class AdminViewModel: ObservableObject {
     @Published var order = [Order]()
     @Published var showAddFruit = false
+    @Published var showUpdate = false
     @Published var deleteFruit = false
     @Published var selected = 0
     @Published var fruit = [Fruit]()
     @Published var isLoading = false
-   
+
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
@@ -41,7 +42,7 @@ class AdminViewModel: ObservableObject {
         let fruit = fruits
         try await HttpClient.shared.sendData(to: url, object: fruit, httpMethod: HttpMethods.POST.rawValue)
     }
-    
+
     func fetchOrder() async throws {
         let urlString = Constants.baseURL + EndPoints.order
 
@@ -71,11 +72,21 @@ class AdminViewModel: ObservableObject {
             }
         }
     }
+
+    func updateFruit(fruit:Fruit) async throws
+    {
+        let urlString = Constants.baseURL + EndPoints.fruit
+
+        guard let url = URL(string: urlString) else {
+            throw HttpError.badURL
+        }
+        let fruitToUpdate = fruit
+
+        try await HttpClient.shared.sendData(to: url, object: fruitToUpdate, httpMethod: HttpMethods.PUT.rawValue)
+    }
 }
 
-
-
-//func deleteOrder(id: UUID?) async throws {
+// func deleteOrder(id: UUID?) async throws {
 //    guard let userId = id else {
 //        return
 //    }
@@ -90,4 +101,4 @@ class AdminViewModel: ObservableObject {
 //            print("🤣 error \(error)")
 //        }
 //    }
-//}
+// }

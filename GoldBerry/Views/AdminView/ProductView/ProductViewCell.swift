@@ -3,7 +3,7 @@ import SwiftUI
 struct ProductViewCell: View {
     @State var fruit: Fruit
     @ObservedObject var adminViewModel: AdminViewModel
-
+    
     var body: some View {
         VStack(spacing: 6) {
             ZStack(alignment: .bottomLeading) {
@@ -129,7 +129,7 @@ struct ProductViewCell: View {
 //                    fruit.isValid = false
 //                    fruitViewModel.countCart += 1
                     ////                    fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
-
+                    self.adminViewModel.showUpdate.toggle()
                 } label: {
                     ZStack {
                         Text("Редактировать")
@@ -144,10 +144,42 @@ struct ProductViewCell: View {
                 }
             }
             .padding(7)
+            .fullScreenCover(isPresented: $adminViewModel.showUpdate) {
+                AddFruit(adminViewModel: adminViewModel,
+                         productName: fruit.name,
+                         productDescription: fruit.comment,
+                         productPrice: String(fruit.cost),
+                         productDiscount: String(fruit.percent),
+                         productCategories: fruit.categories)
+            }
         }
+       
         .frame(width: 180, height: 295)
         .background(Color.theme.background)
         .cornerRadius(10)
         .shadow(color: .gray, radius: 1, x: 0, y: 2)
     }
 }
+
+//
+//var fruitId: UUID?
+//var isUpdating: Bool {
+//    fruitId != nil
+//}
+//
+//func addUpdateAction(completion: @escaping () -> Void) {
+//    Task {
+//        do {
+//            if isUpdating {
+//                try await updateFruit(id: <#T##UUID#>, cost: <#T##Double#>, weightOrPieces: <#T##String#>, categories: <#T##String#>, favorite: <#T##Bool#>, count: <#T##Double#>, image: <#T##String#>, name: <#T##String#>, percent: <#T##Int#>, price: <#T##Double?#>, comment: <#T##String#>, stepCount: <#T##Double#>, isValid: <#T##Bool?#>)
+//            } else {
+//
+//                try await addFruit(fruits: fruit)
+//            }
+//        } catch {
+//
+//            print("🤣")
+//        }
+//        completion()
+//    }
+//}
