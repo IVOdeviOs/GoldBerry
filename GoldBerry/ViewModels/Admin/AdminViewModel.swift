@@ -10,13 +10,13 @@ class AdminViewModel: ObservableObject {
     @Published var selected = 0
     @Published var fruit = [Fruit]()
     @Published var isLoading = false
-
+    @Published var isUpdating = false
+    @Published var showTabBar = false
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
-    
-    
+
     func fetchFruit() async throws {
 
         let urlString = Constants.baseURL + EndPoints.fruit
@@ -73,8 +73,7 @@ class AdminViewModel: ObservableObject {
         }
     }
 
-    func updateFruit(fruit:Fruit) async throws
-    {
+    func updateFruit(fruit: Fruit) async throws {
         let urlString = Constants.baseURL + EndPoints.fruit
 
         guard let url = URL(string: urlString) else {

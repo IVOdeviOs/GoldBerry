@@ -5,25 +5,22 @@ struct FruitView: View {
 
     var body: some View {
 
-        NavigationView {
-            VStack {
-                ScrollView(.vertical, showsIndicators: false) {
-                    VStack {
-                        LazyVGrid(columns: adminViewModel.columns, alignment: .center, spacing: 0, pinnedViews: .sectionFooters) {
-                            ForEach(adminViewModel.fruit) { fruits in
-                                ProductViewCell(fruit: fruits, adminViewModel: adminViewModel)
-                                    .padding(.bottom, 30)
-                            }
+        VStack {
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack {
+                    LazyVGrid(columns: adminViewModel.columns, alignment: .center, spacing: 0, pinnedViews: .sectionFooters) {
+                        ForEach(adminViewModel.fruit, id: \.id) { fruits in
 
-                        }.padding(.bottom, 60)
-                            .accessibilityElement()
-                    }
+                            ProductViewCell(fruit: fruits, adminViewModel: adminViewModel)
+                                .padding(.bottom, 35)
+                        }
+
+                    }.padding(.bottom, 95)
+                        .accessibilityElement()
                 }
-                .isLoading(adminViewModel.isLoading)
             }
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarHidden(true)
+            .isLoading(adminViewModel.isLoading)
         }
-        .padding(.top, 40)
+        .padding(.top, 20)
     }
 }

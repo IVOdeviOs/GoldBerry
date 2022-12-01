@@ -18,11 +18,12 @@ struct ProductView: View {
                                     .foregroundColor(.white)
                                     .rotationEffect(.degrees(180))
                             }
-
+                            
                             Spacer()
                             Button {
                                 adminViewModel.showAddFruit.toggle()
-
+                                adminViewModel.isUpdating = false
+                                
                             } label: {
                                 Image(systemName: "plus")
                                     .resizable()
@@ -35,6 +36,7 @@ struct ProductView: View {
                     }
                     .frame(height: 100)
                     .background(Color.theme.lightGreen)
+                
                     Spacer()
                     ZStack(alignment: .bottom) {
                         HStack {
@@ -94,7 +96,6 @@ struct ProductView: View {
         }
         .ignoresSafeArea()
         .background(.clear)
-        .onAppear {}
     }
 }
 
@@ -126,17 +127,8 @@ struct CaseView: View {
                             }
                         }
                     }
-//            case 2:
-//                OrdersView(orderViewModel: orderViewModel, fruitViewModel: fruitViewModel)
-//                    .onAppear {
-//                        Task {
-//                            do {
-//                                try await orderViewModel.fetchOrder()
-//                            } catch {
-//                                print("❌ERORR \(error)")
-//                            }
-//                        }
-//                    }
+            case 2:
+               NotificationView()
             default:
                 FruitView(adminViewModel: adminViewModel)
             }
@@ -146,6 +138,7 @@ struct CaseView: View {
         .onAppear {
             Task {
                 do {
+                    try await adminViewModel.fetchFruit()
                     try await adminViewModel.fetchOrder()
                 } catch {
                     print("❌ERORR \(error)")

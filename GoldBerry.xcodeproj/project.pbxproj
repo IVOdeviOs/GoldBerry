@@ -82,6 +82,7 @@
 		DDE7CFE629313A330037F074 /* OrderinfoAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE7CFE529313A330037F074 /* OrderinfoAdminView.swift */; };
 		DDE7CFE9293151F50037F074 /* FavoriteProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE7CFE8293151F50037F074 /* FavoriteProductCell.swift */; };
 		DDE7CFEB293201B50037F074 /* AddFruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE7CFEA293201B50037F074 /* AddFruit.swift */; };
+		DDE7CFED2939180C0037F074 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE7CFEC2939180C0037F074 /* NotificationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -148,6 +149,7 @@
 		DDE7CFE529313A330037F074 /* OrderinfoAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderinfoAdminView.swift; sourceTree = "<group>"; };
 		DDE7CFE8293151F50037F074 /* FavoriteProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteProductCell.swift; sourceTree = "<group>"; };
 		DDE7CFEA293201B50037F074 /* AddFruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFruit.swift; sourceTree = "<group>"; };
+		DDE7CFEC2939180C0037F074 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -396,6 +398,7 @@
 		DDE7CFD6292F9FD50037F074 /* NotificationView */ = {
 			isa = PBXGroup;
 			children = (
+				DDE7CFEC2939180C0037F074 /* NotificationView.swift */,
 			);
 			path = NotificationView;
 			sourceTree = "<group>";
@@ -558,6 +561,7 @@
 				DC4807FA28CB123F001416B6 /* ConfidentialView.swift in Sources */,
 				DD539A6928A02A63006F1CD1 /* OrdersView.swift in Sources */,
 				DD53F0BA28F47C2E00439F1A /* UserViewModel.swift in Sources */,
+				DDE7CFED2939180C0037F074 /* NotificationView.swift in Sources */,
 				DC4807E328BB7E8A001416B6 /* TextField+.swift in Sources */,
 				DDE7CFE02930EB430037F074 /* FruitView.swift in Sources */,
 				DC9DE54A28BB508200057E90 /* CartCell.swift in Sources */,

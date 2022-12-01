@@ -2,17 +2,21 @@ import SwiftUI
 
 struct AddFruit: View {
     @ObservedObject var adminViewModel: AdminViewModel
+    @State var idFruit = UUID()
     @State var productName = ""
     @State var productDescription = ""
     @State var productPrice = ""
     @State var productDiscount = ""
     @State var productCategories = ""
+    @State var weightOrPieces = ""
+    @Environment(\.presentationMode) var presentation
     var body: some View {
         VStack {
             HStack {
                 Button {
                     adminViewModel.showAddFruit = false
-                    adminViewModel.showUpdate = false
+                    self.presentation.wrappedValue.dismiss()
+
                 } label: {
                     Image(systemName: "arrowshape.turn.up.backward")
                         .resizable()
@@ -21,8 +25,9 @@ struct AddFruit: View {
                 }
                 Spacer()
                 Button {
-                    let addFruit = Fruit(cost: Double(productPrice) ?? 0,
-                                         weightOrPieces: "кг",
+                    let addFruit = Fruit(id: idFruit,
+                                         cost: Double(productPrice) ?? 0,
+                                         weightOrPieces: weightOrPieces,
                                          categories: productCategories,
                                          favorite: false,
                                          count: 1,
@@ -33,9 +38,13 @@ struct AddFruit: View {
                                          stepCount: 1)
                     Task {
                         do {
-                            try await adminViewModel.addFruit(fruits: addFruit)
+                            if adminViewModel.isUpdating {
+                                try await adminViewModel.updateFruit(fruit: addFruit)
+                                self.presentation.wrappedValue.dismiss()
+                            } else {
+                                try await adminViewModel.addFruit(fruits: addFruit)
+                            }
                             adminViewModel.showAddFruit = false
-
                             adminViewModel.selected = 1
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                                 self.adminViewModel.selected = 0
@@ -108,6 +117,13 @@ struct AddFruit: View {
                     .foregroundColor(Color.theme.blackWhiteText)
                     .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
                 Spacer()
+                Picker("", selection: $weightOrPieces) {
+                    Text("кг").tag("кг")
+                    Text("шт").tag("шт")
+                }
+                .padding(.horizontal)
+                .pickerStyle(.segmented)
+                .frame(width: 150,height: 50)
             }
 
             Picker("", selection: $productCategories) {
@@ -115,9 +131,35 @@ struct AddFruit: View {
                 Text("Гранат").tag(CategoriesFruit.granat.rawValue)
                 Text("Фрукты").tag(CategoriesFruit.fruct.rawValue)
             }
+           
             .padding(.horizontal)
             .pickerStyle(.segmented)
             Spacer()
+            if adminViewModel.isUpdating {
+
+                Button {
+                    Task {
+                        do {
+                            try await adminViewModel.deleteFruit(id: idFruit)
+                            adminViewModel.selected = 1
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                                self.adminViewModel.selected = 0
+                            }
+                        } catch {}
+                    }
+                } label: {
+                    Text("Удалить")
+                        .foregroundColor(.white)
+                        .font(.system(size: 16, weight: .light, design: .serif))
+                }
+                .frame(width: 250, height: 40)
+                .background(Color.red)
+                .cornerRadius(6)
+                .padding(8)
+                .shadow(color: Color.theme.blackWhiteText, radius: 2)
+                .padding(.bottom, 100)
+            }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
