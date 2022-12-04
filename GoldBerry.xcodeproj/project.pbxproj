@@ -83,6 +83,7 @@
 		DDE7CFE9293151F50037F074 /* FavoriteProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE7CFE8293151F50037F074 /* FavoriteProductCell.swift */; };
 		DDE7CFEB293201B50037F074 /* AddFruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE7CFEA293201B50037F074 /* AddFruit.swift */; };
 		DDE7CFED2939180C0037F074 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE7CFEC2939180C0037F074 /* NotificationView.swift */; };
+		DDE7CFF0293BC80D0037F074 /* AuthAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE7CFEF293BC80D0037F074 /* AuthAdminView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -150,6 +151,7 @@
 		DDE7CFE8293151F50037F074 /* FavoriteProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteProductCell.swift; sourceTree = "<group>"; };
 		DDE7CFEA293201B50037F074 /* AddFruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFruit.swift; sourceTree = "<group>"; };
 		DDE7CFEC2939180C0037F074 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		DDE7CFEF293BC80D0037F074 /* AuthAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAdminView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -367,6 +369,7 @@
 		DDE7CFD3292F9F680037F074 /* AdminView */ = {
 			isa = PBXGroup;
 			children = (
+				DDE7CFEE293BC7EC0037F074 /* AuthAdmin */,
 				DDE7CFD6292F9FD50037F074 /* NotificationView */,
 				DDE7CFD5292F9FC30037F074 /* AdminOrderView */,
 				DDE7CFD4292F9F990037F074 /* ProductView */,
@@ -428,6 +431,14 @@
 				DDE7CFE8293151F50037F074 /* FavoriteProductCell.swift */,
 			);
 			path = FavoriteProductCell;
+			sourceTree = "<group>";
+		};
+		DDE7CFEE293BC7EC0037F074 /* AuthAdmin */ = {
+			isa = PBXGroup;
+			children = (
+				DDE7CFEF293BC80D0037F074 /* AuthAdminView.swift */,
+			);
+			path = AuthAdmin;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -548,6 +559,7 @@
 				DD2CEE8928E37C770060B77A /* SignUP.swift in Sources */,
 				DC4807E828BC8965001416B6 /* ProfileView.swift in Sources */,
 				DCF6ED15292423550019EDB7 /* DatePickerTextField.swift in Sources */,
+				DDE7CFF0293BC80D0037F074 /* AuthAdminView.swift in Sources */,
 				DC4807F828CA9D1A001416B6 /* DeliveryInfoView.swift in Sources */,
 				DC4807FE28CB1B7E001416B6 /* DisclaimerOfLiabilityView.swift in Sources */,
 				DDBA58EB28AAB43900FFC3A5 /* Fruit.swift in Sources */,

@@ -8,4 +8,5 @@ enum EndPoints {
     static let fruit = "fruit"
     static let order = "userOrder"
     static let user = "songs"
+    static let adminOrder = "adminOrder"
 }

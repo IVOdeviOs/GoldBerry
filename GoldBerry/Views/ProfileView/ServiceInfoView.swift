@@ -1,12 +1,14 @@
 import SwiftUI
 
 struct ServiceInfoView: View {
+    @ObservedObject var adminViewModel = AdminViewModel()
 
     @Environment(\.presentationMode) var presentation
     @State var showDeliveryInfoView = false
     @State var showConfidentialView = false
     @State var showDisclaimerOfLiability = false
     @State var showContacts = false
+    @State var showAdminProfile = false
     var numberPhone = "+375336096300"
 
     var body: some View {
@@ -110,6 +112,48 @@ struct ServiceInfoView: View {
                             .foregroundColor(Color.theme.blackWhiteText)
                     }
                 }
+                NavigationLink {
+                    if adminViewModel.statusAdmin{
+                        ProductView()
+                            .navigationBarHidden(true)
+                    }else{
+                        AuthAdminView(adminViewModel: adminViewModel)
+                    }
+                } label: {
+                    HStack {
+                        Text("Вход для администратора")
+                            .minimumScaleFactor(0.5)
+                            .foregroundColor(Color.theme.blackWhiteText)
+                            .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                        Spacer()
+                        Image(systemName: "arrow.right")
+                            .resizable()
+                            .frame(width: 15, height: 15)
+                            .foregroundColor(Color.theme.blackWhiteText)
+                    }
+
+                }
+                
+//                Button {
+//
+//                    self.showAdminProfile.toggle()
+//                }
+//            label: {
+//                    HStack {
+//                        Text("Вход для администратора")
+//                            .minimumScaleFactor(0.5)
+//                            .foregroundColor(Color.theme.blackWhiteText)
+//                            .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+//                        Spacer()
+//                        Image(systemName: "arrow.right")
+//                            .resizable()
+//                            .frame(width: 15, height: 15)
+//                            .foregroundColor(Color.theme.blackWhiteText)
+//                    }
+//                }
+//                .sheet(isPresented: $showAdminProfile, content: {
+//                    AuthAdminView(adminViewModel: adminViewModel)
+//                })
             }
             .offset(y: -15)
 

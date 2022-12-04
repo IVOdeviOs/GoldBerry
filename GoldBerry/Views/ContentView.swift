@@ -5,6 +5,7 @@ struct ContentView: View {
     @StateObject var fruitViewModel = FruitViewModel()
     @StateObject var orderViewModel = OrderViewModel()
     @StateObject var userViewModel = UserViewModel()
+    @StateObject var adminViewModel = AdminViewModel()
     @State var tog = false
     @State var tog1 = false
 //    @State var status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
@@ -25,8 +26,13 @@ struct ContentView: View {
                         LaunchScreenView()
                     }
                 } else {
-                    ProductView()
-//                    ViewProfile(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel, userViewModel: userViewModel)
+//                    ProductView()
+//                    if adminViewModel.statusAdmin {
+//                        ProductView()
+//                    }else{
+                        ViewProfile(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel, userViewModel: userViewModel)
+
+//                    }
                 }
             
         }.onAppear {

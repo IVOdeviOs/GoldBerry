@@ -10,7 +10,7 @@ struct ProductView: View {
                     ZStack {
                         HStack {
                             Button {
-                                //
+                                adminViewModel.statusAdmin = false
                             } label: {
                                 Image(systemName: "rectangle.portrait.and.arrow.right")
                                     .resizable()
