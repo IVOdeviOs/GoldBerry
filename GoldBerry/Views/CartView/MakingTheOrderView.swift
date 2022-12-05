@@ -37,8 +37,7 @@ struct MakingTheOrderView: View {
             try viewContext.execute(deleteRequest)
 
             try viewContext.save()
-        } catch {
-        }
+        } catch {}
     }
 
     let prefix = "+375"
@@ -200,8 +199,6 @@ struct MakingTheOrderView: View {
                         Task {
                             do {
 
-//                                let login = UserDefaults.standard.string(forKey: "userEmail")
-//                                let password = UserDefaults.standard.string(forKey: "userPassword")
                                 try await orderViewModel.addOrder(orders: orde)
                                 tog = true
                                 sendRequest { to in
@@ -211,14 +208,15 @@ struct MakingTheOrderView: View {
                                 fruitViewModel.isShowCount = false
                                 fruitViewModel.showCartCount = false
                                 DispatchQueue.main.async {
+//                                    fruitViewModel.uniqFruits.removeAll()
                                     fruitViewModel.arrayOfFruitPrice.removeAll()
                                     deleteAllRecords()
-                                    fruitViewModel.uniqFruits.removeAll()
                                 }
                             } catch {
                                 orderViewModel.showAlertOrder.toggle()
                             }
                         }
+                     
                     } label: {
                         Text("Сделать заказ")
                             .foregroundColor(.white)

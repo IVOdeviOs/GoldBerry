@@ -206,6 +206,14 @@ struct ExtractedView: View {
 
             case 1:
                 CartView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel)
+                    .onAppear {
+                        Task {
+                            do {
+                                try await fruitViewModel.fetchFruit()
+                            } catch {
+                            }
+                        }
+                    }
             case 2:
                 OrdersView(orderViewModel: orderViewModel, fruitViewModel: fruitViewModel)
                     .onAppear {

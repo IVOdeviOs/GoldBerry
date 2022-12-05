@@ -5,7 +5,6 @@ struct UserInfoView: View {
 
     @Environment(\.presentationMode) var presentationMode
     @StateObject var userViewModel: UserViewModel
-    let email = UserDefaults.standard.value(forKey: "userEmail")
 
     var body: some View {
         VStack {
@@ -69,15 +68,9 @@ struct UserInfoView: View {
                 }
             }
             Spacer()
-        }.onAppear {
-
-            for item in userViewModel.user {
-                if email as? String ?? "error" == item.userEmail {
-                    userViewModel.userName = item.userName
-                    userViewModel.userSurname = item.userSurname
-                    userViewModel.userPhone = item.userPhone
-                }
-            }
+        }
+        .onDisappear{
+            HideKeyboard()
         }
     }
 }

@@ -2,6 +2,8 @@ import SwiftUI
 
 struct ProductView: View {
     @ObservedObject var adminViewModel = AdminViewModel()
+    @ObservedObject var fruitViewModel = FruitViewModel()
+    @Environment(\.presentationMode) var presentation
     var body: some View {
         ZStack {
             CaseView(adminViewModel: adminViewModel)
@@ -11,6 +13,8 @@ struct ProductView: View {
                         HStack {
                             Button {
                                 adminViewModel.statusAdmin = false
+                                self.presentation.wrappedValue.dismiss()
+                                
                             } label: {
                                 Image(systemName: "rectangle.portrait.and.arrow.right")
                                     .resizable()

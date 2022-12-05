@@ -9,7 +9,16 @@ struct ServiceInfoView: View {
     @State var showDisclaimerOfLiability = false
     @State var showContacts = false
     @State var showAdminProfile = false
-    var numberPhone = "+375336096300"
+    @State var login = UserDefaults.standard.object(forKey: "userEmail")
+    var numberPhone = "+375297023701"
+    func checkLogin() -> Bool {
+        for item in adminViewModel.userLogin {
+            if item.login == login as? String {
+                return true
+            }
+        }
+        return false
+    }
 
     var body: some View {
         VStack {
@@ -23,7 +32,7 @@ struct ServiceInfoView: View {
                     .opacity(0.2)
                     .frame(height: 200)
                 VStack {
-                    Text("Версия 1.8")
+                    Text("Версия 2.0")
                         .foregroundColor(Color.theme.blackWhiteText)
                         .opacity(0.5)
                         .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
@@ -44,10 +53,10 @@ struct ServiceInfoView: View {
                             .foregroundColor(Color.theme.blackWhiteText)
                             .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                         Spacer()
-                        Image(systemName: "arrow.right")
+                        Image(systemName: "chevron.right")
                             .resizable()
-                            .frame(width: 15, height: 15)
-                            .foregroundColor(Color.theme.blackWhiteText)
+                            .frame(width:8, height: 8)
+                            .foregroundColor(.gray)
                     }
                     .sheet(isPresented: $showDeliveryInfoView, content: {
                         DeliveryInfoView()
@@ -64,10 +73,10 @@ struct ServiceInfoView: View {
                             .foregroundColor(Color.theme.blackWhiteText)
                             .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                         Spacer()
-                        Image(systemName: "arrow.right")
+                        Image(systemName: "chevron.right")
                             .resizable()
-                            .frame(width: 15, height: 15)
-                            .foregroundColor(Color.theme.blackWhiteText)
+                            .frame(width:8, height: 8)
+                            .foregroundColor(.gray)
                     }
                     .sheet(isPresented: $showConfidentialView, content: {
                         ConfidentialView()
@@ -84,10 +93,10 @@ struct ServiceInfoView: View {
                             .foregroundColor(Color.theme.blackWhiteText)
                             .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                         Spacer()
-                        Image(systemName: "arrow.right")
+                        Image(systemName: "chevron.right")
                             .resizable()
-                            .frame(width: 15, height: 15)
-                            .foregroundColor(Color.theme.blackWhiteText)
+                            .frame(width:8, height: 8)
+                            .foregroundColor(.gray)
                     }
                     .sheet(isPresented: $showDisclaimerOfLiability, content: {
                         DisclaimerOfLiability()
@@ -106,34 +115,35 @@ struct ServiceInfoView: View {
                             .foregroundColor(Color.theme.blackWhiteText)
                             .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                         Spacer()
-                        Image(systemName: "arrow.right")
+                        Image(systemName: "chevron.right")
                             .resizable()
-                            .frame(width: 15, height: 15)
-                            .foregroundColor(Color.theme.blackWhiteText)
+                            .frame(width:8, height: 8)
+                            .foregroundColor(.gray)
                     }
                 }
-                NavigationLink {
-                    if adminViewModel.statusAdmin{
-                        ProductView()
-                            .navigationBarHidden(true)
-                    }else{
-                        AuthAdminView(adminViewModel: adminViewModel)
+                if checkLogin(){
+                    
+                    NavigationLink {
+                        if adminViewModel.statusAdmin {
+                            ProductView()
+                                .navigationBarHidden(true)
+                        } else {
+                            AuthAdminView(adminViewModel: adminViewModel)
+                        }
+                    } label: {
+                        HStack {
+                            Text("Вход для администратора")
+                                .minimumScaleFactor(0.5)
+                                .foregroundColor(Color.theme.blackWhiteText)
+                                .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                            Spacer()
+//                            Image(systemName: "arrow.right")
+//                                .resizable()
+//                                .frame(width: 15, height: 15)
+//                                .foregroundColor(Color.theme.blackWhiteText)
+                        }
                     }
-                } label: {
-                    HStack {
-                        Text("Вход для администратора")
-                            .minimumScaleFactor(0.5)
-                            .foregroundColor(Color.theme.blackWhiteText)
-                            .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
-                        Spacer()
-                        Image(systemName: "arrow.right")
-                            .resizable()
-                            .frame(width: 15, height: 15)
-                            .foregroundColor(Color.theme.blackWhiteText)
-                    }
-
                 }
-                
 //                Button {
 //
 //                    self.showAdminProfile.toggle()
@@ -156,7 +166,7 @@ struct ServiceInfoView: View {
 //                })
             }
             .offset(y: -15)
-
+            .listStyle(.plain)
             Link(destination: URL(string: "https://www.instagram.com/nar_juice")!) {
                 Image("instagram")
                     .resizable().frame(width: 60, height: 60).padding()
@@ -181,5 +191,12 @@ struct ServiceInfoView: View {
                     self.presentation.wrappedValue.dismiss()
                 }
         )
+        .onAppear {
+            Task {
+                do {
+                    try await adminViewModel.fetchUserLogin()
+                } catch {}
+            }
+        }
     }
 }

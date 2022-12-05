@@ -3,7 +3,6 @@ import SwiftUI
 struct AuthAdminView: View {
     @ObservedObject var adminViewModel: AdminViewModel
     @State var show = false
-    @State var order = Order(orderNumber: "", date: "", dateOrder: "", email: "", fruits: [Fruit(cost: 1, weightOrPieces: "", categories: "", favorite: false, count: 1, image: "", name: "", percent: 1, price: 1, comment: "", stepCount: 1, isValid: true)], address: "", price: 2, customer: "", customerPhone: "", comment: "", orderCompleted: false)
     var body: some View {
         VStack{
             Text("Вход для администраторов")
@@ -46,9 +45,6 @@ struct AuthAdminView: View {
                     .background(Color.orange)
                     .cornerRadius(10)
                     .padding(.bottom, 150)
-            }
-            .fullScreenCover(isPresented: $show) {
-                ProductView()
             }
         }
         

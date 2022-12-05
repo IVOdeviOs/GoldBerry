@@ -12,7 +12,7 @@ struct DeliveryInfoView: View {
                 Text("Контактный телефон")
                     .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                     .foregroundColor(Color.theme.blackWhiteText)
-                Text("+375-33-609-63-00")
+                Text("+375-29-702-37-01")
                     .font(Font(uiFont: .fontLibrary(40, .uzSansBold)))
                     .foregroundColor(Color.theme.lightGreen)
                     .padding(.bottom, 5)

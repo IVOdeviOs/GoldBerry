@@ -9,7 +9,7 @@ class UserViewModel: ObservableObject {
     let nameKey = "nameKey"
     let surNameKey = "surNameKey"
     let numberPhoneKey = "numberPhoneKey"
-    var numberPhone = "+375336096300"
+    var numberPhone = "+375297023701"
 
     @Published var alert = false
     @Published var alertDeleted = false
@@ -22,7 +22,7 @@ class UserViewModel: ObservableObject {
 
     @Published var userRegShow = false
     @Published var user = [User]()
-    @Published var userAuth = [LoginUser]()
+//    @Published var userAuth = [LoginUser]()
     @Published var userName = ""
     @Published var userSurname = ""
     @Published var userPhone = ""
@@ -42,6 +42,5 @@ class UserViewModel: ObservableObject {
             }
         
         
-//        userAuth.remove(atOffsets: offSets)
     }
 }

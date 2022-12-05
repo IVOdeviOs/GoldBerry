@@ -70,7 +70,7 @@ struct WithPurchase: View {
     @State var fruitO = [Fruit]()
     @State var cartPrice: Double = 0
     @State var status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
- 
+
     var body: some View {
 
         ZStack(alignment: .top) {
@@ -140,6 +140,7 @@ struct WithPurchase: View {
             }
         }
         .onDisappear {
+            
             orderViewModel.price = fruitViewModel.sum()
         }
     }

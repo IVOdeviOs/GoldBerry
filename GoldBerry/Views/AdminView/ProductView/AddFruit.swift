@@ -16,7 +16,7 @@ struct AddFruit: View {
                 Button {
                     adminViewModel.showAddFruit = false
                     self.presentation.wrappedValue.dismiss()
-
+                    
                 } label: {
                     Image(systemName: "arrowshape.turn.up.backward")
                         .resizable()
@@ -51,7 +51,7 @@ struct AddFruit: View {
                             }
                         } catch {}
                     }
-
+                    
                 } label: {
                     Image(systemName: "checkmark")
                         .resizable()
@@ -59,9 +59,11 @@ struct AddFruit: View {
                         .foregroundColor(.white)
                 }
             }
+            .padding(.top, 20)
             .padding(.horizontal, 20)
-            .frame(height: 50)
+            .frame(height: 60)
             .background(Color.theme.lightGreen)
+            ScrollView(.vertical, showsIndicators: false) {
             VStack {
                 Button {
                     //
@@ -106,7 +108,7 @@ struct AddFruit: View {
                         .padding()
                 }
             }
-
+            
             TextFieldView(text: $productPrice, placeholder: "Стоймость, руб ", infoText: "")
                 .keyboardType(.numbersAndPunctuation)
             HStack {
@@ -125,22 +127,23 @@ struct AddFruit: View {
                 .pickerStyle(.segmented)
                 .frame(width: 150,height: 50)
             }
-
+            
             Picker("", selection: $productCategories) {
                 Text("Арбуз и дыни").tag(CategoriesFruit.all.rawValue)
                 Text("Гранат").tag(CategoriesFruit.granat.rawValue)
                 Text("Фрукты").tag(CategoriesFruit.fruct.rawValue)
             }
-           
+            
             .padding(.horizontal)
             .pickerStyle(.segmented)
             Spacer()
             if adminViewModel.isUpdating {
-
+                
                 Button {
                     Task {
                         do {
                             try await adminViewModel.deleteFruit(id: idFruit)
+                            adminViewModel.showAddFruit = false
                             adminViewModel.selected = 1
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                                 self.adminViewModel.selected = 0
@@ -159,6 +162,7 @@ struct AddFruit: View {
                 .shadow(color: Color.theme.blackWhiteText, radius: 2)
                 .padding(.bottom, 100)
             }
+        }
         }
         .navigationBarBackButtonHidden(true)
     }

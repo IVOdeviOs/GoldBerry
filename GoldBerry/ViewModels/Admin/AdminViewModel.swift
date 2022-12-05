@@ -4,7 +4,7 @@ import SwiftUI
 
 class AdminViewModel: ObservableObject {
     @Published var order = [Order]()
-    @Published var orderT = [Order]()
+    @Published var userLogin = [LoginUser]()
 
     @Published var showAddFruit = false
     @Published var showUpdate = false
@@ -36,17 +36,30 @@ class AdminViewModel: ObservableObject {
         let base64LoginString = loginData.base64EncodedString()
         request.httpMethod = HttpMethods.GET.rawValue
         request.addValue("Basic \(base64LoginString)", forHTTPHeaderField: MIMEType.auth.rawValue)
-        
+
         let (_, response) = try await URLSession.shared.data(for: request)
-       
+
         guard (response as? HTTPURLResponse)?.statusCode == 200 else {
- 
+
             throw HttpError.badResponse
         }
         statusAdmin.toggle()
-  
-
     }
+    
+    func fetchUserLogin() async throws {
+
+        let urlString = Constants.baseURL + EndPoints.user
+
+        guard let url = URL(string: urlString) else {
+            throw HttpError.badURL
+        }
+        let userLoginResponse: [LoginUser] = try await HttpClient.shared.fetch(url: url)
+
+        DispatchQueue.main.async { [self] in
+            self.userLogin = userLoginResponse
+        }
+    }
+    
     
 //    func sendData<T: Codable>(to url:URL, object: T, httpMethod: String) async throws {
 //
