@@ -9,7 +9,7 @@ struct ProductViewCell: View {
             ZStack(alignment: .bottomLeading) {
                 AsyncImage(
                     url: URL(string: fruit.image),
-                    transaction: Transaction(animation: .easeInOut)
+                    transaction: Transaction(animation: .none)
                 ) { phase in
                     switch phase {
                     case .empty:
@@ -18,6 +18,7 @@ struct ProductViewCell: View {
                         image
                             .resizable()
                             .transition(.scale(scale: 0.1, anchor: .center))
+                            .frame(width: 180, height: 120)
                             .aspectRatio(contentMode: .fill)
                     case .failure:
                         Image(systemName: "wifi.slash")
@@ -91,7 +92,8 @@ struct ProductViewCell: View {
                              productPrice: String(fruit.cost),
                              productDiscount: String(fruit.percent),
                              productCategories: fruit.categories,
-                             weightOrPieces: fruit.weightOrPieces)
+                             weightOrPieces: fruit.weightOrPieces,
+                             productImage: fruit.image)
                         .navigationBarBackButtonHidden(true)
                         .onAppear {
                             adminViewModel.isUpdating = true

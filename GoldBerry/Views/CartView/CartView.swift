@@ -70,13 +70,25 @@ struct WithPurchase: View {
     @State var fruitO = [Fruit]()
     @State var cartPrice: Double = 0
     @State var status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
-
+    func sorted()-> [Fruit]{
+        for item in fruitViewModel.fruit {
+            for itemsFruits in fruits {
+                if itemsFruits.id == item.id {
+                    fruitO.append(item)
+//                    fruitViewModel.uniqFruits = uniq(source: fruitO)
+                }
+            }
+        }
+        return fruitO
+    }
+    
+    
     var body: some View {
 
         ZStack(alignment: .top) {
 
             ScrollView(showsIndicators: false) {
-                ForEach(fruitViewModel.uniqFruits, id: \.id) { item in
+                ForEach(fruitO, id: \.id) { item in
                     CartCell(fruitViewModel: fruitViewModel,
                              orderViewModel: orderViewModel,
                              fruit: item)

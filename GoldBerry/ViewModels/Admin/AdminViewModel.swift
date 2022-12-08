@@ -1,4 +1,5 @@
 import Combine
+import FirebaseStorage
 import Foundation
 import SwiftUI
 
@@ -18,11 +19,48 @@ class AdminViewModel: ObservableObject {
     @Published var passwordAdmin = ""
     @Published var statusAdmin = false
     @Published var message = ""
+    @Published var productImage: UIImage?
+    @Published var urlImageString = ""
+    @Published var showImagePicker = false
 
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
+    
+    func saveImageFirebaseStorageURL() {
+        let imageName = NSUUID().uuidString
+
+        let storageRef = Storage.storage().reference().child("\(imageName).jpg")
+
+        let someImage = productImage
+
+        let uploadData = someImage!.jpegData(compressionQuality: 0.1)
+
+        storageRef.putData(uploadData!)
+        urlImageString = "https://firebasestorage.googleapis.com/v0/b/goldberry-58e10.appspot.com/o/\(imageName).jpg?alt=media&token=a3a3ba16-0c4c-482f-adc7-7c7989149fed"
+//        guard productImage != nil else {
+//            return
+//        }
+//        let storage = Storage.storage().reference()
+//
+//        guard let imageData = productImage?.jpegData(compressionQuality: 0.8) else {
+//            return
+//        }
+//
+//        guard imageData == nil else {
+//            return
+//        }
+//        let path = "images/\(UUID().uuidString).jpg"
+//
+//        let fileRef = storage.child(path)
+//
+//        let uploadTask = fileRef.putData(imageData,
+//                                         metadata: nil)
+//
+//        urlImageString = "https://firebasestorage.googleapis.com/v0/b/goldberry-58e10.appspot.com/o/\(path)?alt=media&token=a3a3ba16-0c4c-482f-adc7-7c7989149fed"
+//         print("❌\(urlImageString)")
+    }
 
     func fetchUser() async throws {
         let urlString = Constants.baseURL + EndPoints.adminOrder
@@ -45,7 +83,7 @@ class AdminViewModel: ObservableObject {
         }
         statusAdmin.toggle()
     }
-    
+
     func fetchUserLogin() async throws {
 
         let urlString = Constants.baseURL + EndPoints.user
@@ -59,8 +97,7 @@ class AdminViewModel: ObservableObject {
             self.userLogin = userLoginResponse
         }
     }
-    
-    
+
 //    func sendData<T: Codable>(to url:URL, object: T, httpMethod: String) async throws {
 //
 //        var request = URLRequest(url: url)
