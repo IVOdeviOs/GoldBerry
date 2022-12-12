@@ -5,12 +5,15 @@ import SwiftUI
 struct LoginView: View {
     @ObservedObject var signUP: LogIn
     @ObservedObject var fruitViewModel: FruitViewModel
+    @Environment(\.presentationMode) var presentation
+
     var body: some View {
         VStack {
             GeometryReader { _ in
                 VStack {
                     HStack {
                         Button {
+                            self.presentation.wrappedValue.dismiss()
                             fruitViewModel.presentedAuth = false
                             fruitViewModel.alertFavorite = false
                             fruitViewModel.showAuth = false

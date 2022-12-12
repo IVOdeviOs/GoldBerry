@@ -48,7 +48,7 @@ struct MakingTheOrderView: View {
                     Button {
                         self.fruitViewModel.selected = 0
                         self.presentation.wrappedValue.dismiss()
-                        self.orderViewModel.showMakingOrder = false
+//                        self.orderViewModel.showMakingOrder = false
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                             self.fruitViewModel.selected = 1
                         }
@@ -191,14 +191,13 @@ struct MakingTheOrderView: View {
                                          email: email as? String ?? "opsss...",
                                          fruits: fruitViewModel.uniqFruits,
                                          address: orderViewModel.address,
-                                         price: orderViewModel.price ?? 0.1,
+                                         price: orderViewModel.price ?? 0.1 ,
                                          customer: orderViewModel.customer,
                                          customerPhone: "+375" + orderViewModel.customerPhone,
                                          comment: orderViewModel.comments,
                                          orderCompleted: false)
                         Task {
-                            do {
-
+                            do {                                
                                 try await orderViewModel.addOrder(orders: orde)
                                 tog = true
                                 sendRequest { to in
@@ -207,6 +206,7 @@ struct MakingTheOrderView: View {
                                 fruitViewModel.countCart = 0
                                 fruitViewModel.isShowCount = false
                                 fruitViewModel.showCartCount = false
+                               
                                 DispatchQueue.main.async {
 //                                    fruitViewModel.uniqFruits.removeAll()
                                     fruitViewModel.arrayOfFruitPrice.removeAll()
@@ -243,6 +243,7 @@ struct MakingTheOrderView: View {
             }
         )
         .onAppear {
+//            orderViewModel.price = fruitViewModel.sum()
             orderViewModel.customerPhone = phone as? String ?? ""
             orderViewModel.isFormValid
                 .receive(on: RunLoop.main)

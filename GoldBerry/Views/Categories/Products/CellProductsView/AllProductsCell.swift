@@ -192,8 +192,8 @@ struct AllProductsCell: View {
     }
 
     func addFruit() {
-        newCount = Double(fruit.count)
-        fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = newCount
+//        newCount = Double(fruit.count)
+//        fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = newCount
 
         withAnimation {
             let newFruit = FruitEntity(context: viewContext)

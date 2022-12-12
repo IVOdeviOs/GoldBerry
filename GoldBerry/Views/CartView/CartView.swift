@@ -75,14 +75,13 @@ struct WithPurchase: View {
 //            for itemsFruits in fruits {
 //                if itemsFruits.id == item.id {
 //                    fruitO.append(item)
-////                    fruitViewModel.uniqFruits = uniq(source: fruitO)
+    ////                    fruitViewModel.uniqFruits = uniq(source: fruitO)
 //                }
 //            }
 //        }
 //        return fruitO
 //    }
-    
-    
+
     var body: some View {
 
         ZStack(alignment: .top) {
@@ -92,7 +91,6 @@ struct WithPurchase: View {
                     CartCell(fruitViewModel: fruitViewModel,
                              orderViewModel: orderViewModel,
                              fruit: item)
-                  
                 }
                 .padding(.top, 125)
                 .padding(.bottom, 100)
@@ -106,14 +104,13 @@ struct WithPurchase: View {
                 VStack {
                     Spacer()
 
-                    Button {
+                    NavigationLink {
                         if status {
-//                            MakingTheOrderView(orderViewModel: orderViewModel, fruitViewModel: fruitViewModel)
-                            self.orderViewModel.showMakingOrder.toggle()
+                            MakingTheOrderView(orderViewModel: orderViewModel, fruitViewModel: fruitViewModel)
                         } else {
-                            self.fruitViewModel.showAuthCartView.toggle()
+                            LoginView(signUP: LogIn(), fruitViewModel: fruitViewModel)
+                                .navigationBarBackButtonHidden(true)
                         }
-
                     } label: {
                         Text("Оформить заказ \(NSString(format: "%.2f", fruitViewModel.sum())) руб")
                             .foregroundColor(.white)
@@ -126,15 +123,16 @@ struct WithPurchase: View {
                 }
             }
             .navigationBarHidden(true)
-            .fullScreenCover(isPresented: $fruitViewModel.showAuthCartView) {
-                LoginView(signUP: LogIn(), fruitViewModel: fruitViewModel)
-            }
-            .fullScreenCover(isPresented: $orderViewModel.showMakingOrder) {
-                MakingTheOrderView(orderViewModel: orderViewModel, fruitViewModel: fruitViewModel)
-            }
+//            .fullScreenCover(isPresented: $fruitViewModel.showAuthCartView) {
+//                LoginView(signUP: LogIn(), fruitViewModel: fruitViewModel)
+//            }
+//            .fullScreenCover(isPresented: $orderViewModel.showMakingOrder) {
+//                MakingTheOrderView(orderViewModel: orderViewModel, fruitViewModel: fruitViewModel)
+//            }
         }
         .offset(y: -95)
         .onAppear {
+//            orderViewModel.price = fruitViewModel.sum()
             for item in fruitViewModel.fruit {
                 for itemsFruits in fruits {
                     if itemsFruits.id == item.id {
@@ -153,7 +151,6 @@ struct WithPurchase: View {
             }
         }
         .onDisappear {
-            
             orderViewModel.price = fruitViewModel.sum()
         }
     }
