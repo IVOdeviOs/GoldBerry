@@ -37,6 +37,7 @@ struct AllProductsCell: View {
                         image
                             .resizable()
                             .transition(.scale(scale: 0.1, anchor: .center))
+                            .frame(width: 180, height: 120)
                             .aspectRatio(contentMode: .fill)
                     case .failure:
                         Image(systemName: "wifi.slash")
@@ -192,9 +193,6 @@ struct AllProductsCell: View {
     }
 
     func addFruit() {
-//        newCount = Double(fruit.count)
-//        fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = newCount
-
         withAnimation {
             let newFruit = FruitEntity(context: viewContext)
             newFruit.id = fruit.id

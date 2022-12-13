@@ -61,7 +61,7 @@ struct WithoutPurchase: View {
 }
 
 struct WithPurchase: View {
-    @ObservedObject var fruitViewModel: FruitViewModel
+    @ObservedObject var fruitViewModel = FruitViewModel()
     @ObservedObject var orderViewModel: OrderViewModel
 
     @Environment(\.managedObjectContext) private var viewContext
@@ -70,17 +70,6 @@ struct WithPurchase: View {
     @State var fruitO = [Fruit]()
     @State var cartPrice: Double = 0
     @State var status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
-//    func sorted()-> [Fruit]{
-//        for item in fruitViewModel.fruit {
-//            for itemsFruits in fruits {
-//                if itemsFruits.id == item.id {
-//                    fruitO.append(item)
-    ////                    fruitViewModel.uniqFruits = uniq(source: fruitO)
-//                }
-//            }
-//        }
-//        return fruitO
-//    }
 
     var body: some View {
 
@@ -123,16 +112,10 @@ struct WithPurchase: View {
                 }
             }
             .navigationBarHidden(true)
-//            .fullScreenCover(isPresented: $fruitViewModel.showAuthCartView) {
-//                LoginView(signUP: LogIn(), fruitViewModel: fruitViewModel)
-//            }
-//            .fullScreenCover(isPresented: $orderViewModel.showMakingOrder) {
-//                MakingTheOrderView(orderViewModel: orderViewModel, fruitViewModel: fruitViewModel)
-//            }
         }
         .offset(y: -95)
         .onAppear {
-//            orderViewModel.price = fruitViewModel.sum()
+            fruitViewModel.arrayOfFruitPrice.removeAll()
             for item in fruitViewModel.fruit {
                 for itemsFruits in fruits {
                     if itemsFruits.id == item.id {

@@ -48,7 +48,6 @@ struct MakingTheOrderView: View {
                     Button {
                         self.fruitViewModel.selected = 0
                         self.presentation.wrappedValue.dismiss()
-//                        self.orderViewModel.showMakingOrder = false
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                             self.fruitViewModel.selected = 1
                         }
@@ -206,12 +205,10 @@ struct MakingTheOrderView: View {
                                 fruitViewModel.countCart = 0
                                 fruitViewModel.isShowCount = false
                                 fruitViewModel.showCartCount = false
-                               
-                                DispatchQueue.main.async {
-//                                    fruitViewModel.uniqFruits.removeAll()
-                                    fruitViewModel.arrayOfFruitPrice.removeAll()
-                                    deleteAllRecords()
-                                }
+                                fruitViewModel.arrayOfFruitPrice.removeAll()
+                                fruitViewModel.dictionaryOfNameAndCountOfFruits.removeAll()
+                                deleteAllRecords()
+  
                             } catch {
                                 orderViewModel.showAlertOrder.toggle()
                             }
@@ -243,7 +240,6 @@ struct MakingTheOrderView: View {
             }
         )
         .onAppear {
-//            orderViewModel.price = fruitViewModel.sum()
             orderViewModel.customerPhone = phone as? String ?? ""
             orderViewModel.isFormValid
                 .receive(on: RunLoop.main)

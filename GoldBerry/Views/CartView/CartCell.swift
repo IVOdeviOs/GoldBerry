@@ -41,13 +41,14 @@ struct CartCell: View {
                                 .resizable()
                                 .transition(.scale(scale: 0.1, anchor: .center))
                                 .frame(width: 150, height: 100)
-                                .aspectRatio(contentMode: .fit)
+                                .aspectRatio(contentMode: .fill)
                         case .failure:
                             Image(systemName: "wifi.slash")
                         @unknown default:
                             EmptyView()
                         }
                     }
+                    .frame(width: 150, height: 100)
                 }
                 .frame(width: 150, height: 100)
                 .cornerRadius(8)

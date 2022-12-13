@@ -10,12 +10,7 @@ struct CompletedOrderView: View {
             .resizable()
             .frame(width: 300, height: 300)
             .onDisappear{
-//                fruitViewModel.countCart = 0
-//                fruitViewModel.isShowCount = false
-//                fruitViewModel.showCartCount = false
                 fruitViewModel.uniqFruits.removeAll()
-
-//                fruitViewModel.arrayOfFruitPrice.removeAll()
             }
     }
 }

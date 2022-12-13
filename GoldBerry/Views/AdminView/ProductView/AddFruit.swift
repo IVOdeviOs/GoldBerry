@@ -27,49 +27,52 @@ struct AddFruit: View {
                         .foregroundColor(.white)
                 }
                 Spacer()
-                Button {
-                    adminViewModel.saveImageFirebaseStorageURL()
+                if productName.isEmpty || productPrice.isEmpty || productDescription.isEmpty || productDiscount.isEmpty || productCategories.isEmpty {} else {
+                    Button {
+                        adminViewModel.saveImageFirebaseStorageURL()
 
-                    let addFruit = Fruit(id: idFruit,
-                                         cost: Double(productPrice) ?? 0,
-                                         weightOrPieces: weightOrPieces,
-                                         categories: productCategories,
-                                         favorite: false,
-                                         count: 1,
-                                         image: adminViewModel.urlImageString,
-                                         name: productName,
-                                         percent: Int(productDiscount) ?? 0,
-                                         comment: productDescription,
-                                         stepCount: 1)
+                        let addFruit = Fruit(id: idFruit,
+                                             cost: Double(productPrice) ?? 0,
+                                             weightOrPieces: weightOrPieces,
+                                             categories: productCategories,
+                                             favorite: false,
+                                             count: 1,
+                                             image: adminViewModel.urlImageString,
+                                             name: productName,
+                                             percent: Int(productDiscount) ?? 0,
+                                             comment: productDescription,
+                                             stepCount: 1)
 
-                    Task {
-                        do {
-                            if adminViewModel.isUpdating {
-                                try await adminViewModel.updateFruit(fruit: addFruit)
-                                self.presentation.wrappedValue.dismiss()
-                            } else {
-                                try await adminViewModel.addFruit(fruits: addFruit)
-                            }
-                            adminViewModel.productImage = nil
-                            adminViewModel.showAddFruit = false
-                            adminViewModel.selected = 1
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-                                self.adminViewModel.selected = 0
-                            }
-                        } catch {}
+                        Task {
+                            do {
+                                if adminViewModel.isUpdating {
+                                    try await adminViewModel.updateFruit(fruit: addFruit)
+                                    self.presentation.wrappedValue.dismiss()
+                                } else {
+                                    try await adminViewModel.addFruit(fruits: addFruit)
+                                }
+                                adminViewModel.productImage = nil
+                                adminViewModel.showAddFruit = false
+                                adminViewModel.selected = 1
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                                    self.adminViewModel.selected = 0
+                                }
+                            } catch {}
+                        }
+
+                    } label: {
+                        Image(systemName: "checkmark")
+                            .resizable()
+                            .frame(width: 33, height: 33)
+                            .foregroundColor(.white)
                     }
-
-                } label: {
-                    Image(systemName: "checkmark")
-                        .resizable()
-                        .frame(width: 33, height: 33)
-                        .foregroundColor(.white)
                 }
             }
             .padding(.top, 20)
             .padding(.horizontal, 20)
             .frame(height: 60)
             .background(Color.theme.lightGreen)
+
             ScrollView(.vertical, showsIndicators: false) {
                 VStack {
                     if adminViewModel.isUpdating == false {
@@ -102,8 +105,8 @@ struct AddFruit: View {
                                     adminViewModel.showImagePicker = true
                                 }
                         }
-                        
-                    }  else {
+
+                    } else {
                         AsyncImage(
                             url: URL(string: productImage),
                             transaction: Transaction(animation: .none)
@@ -113,10 +116,6 @@ struct AddFruit: View {
                                 ProgressView()
                             case .success(let image):
                                 image
-//                                    .resizable()
-//                                    .transition(.scale(scale: 0.1, anchor: .center))
-//                                    .frame(width: 180, height: 120)
-//                                    .aspectRatio(contentMode: .fill)
                                     .resizable()
                                     .frame(width: 150, height: 150)
                                     .overlay(
@@ -135,14 +134,6 @@ struct AddFruit: View {
                         }
                         .frame(width: 150, height: 150)
                         .padding(.bottom)
-//                        Image(uiImage: adminViewModel.productImage ?? UIImage(systemName: "tray.and.arrow.down")!)
-//                            .resizable()
-//                            .frame(width: 150, height: 150)
-//                            .overlay(
-//                                RoundedRectangle(cornerRadius: 20)
-//                                    .stroke(Color.theme.gray, lineWidth: 2)
-//                            )
-//                            .cornerRadius(20)
                         .onTapGesture {
                             adminViewModel.showImagePicker = true
                         }
@@ -211,6 +202,7 @@ struct AddFruit: View {
                             do {
                                 try await adminViewModel.deleteFruit(id: idFruit)
                                 adminViewModel.showAddFruit = false
+                                self.presentation.wrappedValue.dismiss()
                                 adminViewModel.selected = 1
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                                     self.adminViewModel.selected = 0
@@ -232,12 +224,6 @@ struct AddFruit: View {
             }
             .fullScreenCover(isPresented: $adminViewModel.showImagePicker) {
                 ImagePicker(image: $adminViewModel.productImage, isShow: $adminViewModel.showImagePicker, sourceType: sourceType)
-//                    .onDisappear{
-//                        print("🔆Close")
-//                        adminViewModel.saveImageFirebaseStorageURL()
-//                        print("🔆Close")
-//
-//                    }
             }
         }
         .navigationBarBackButtonHidden(true)
