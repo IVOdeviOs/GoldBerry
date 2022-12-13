@@ -13,6 +13,16 @@ struct AddFruit: View {
     @State var sourceType: UIImagePickerController.SourceType = .photoLibrary
 
     @Environment(\.presentationMode) var presentation
+    func countProductName() -> String {
+        let counts = 20 - productName.count
+        return String(counts)
+    }
+
+    func countProductDes() -> String {
+        let counts = 100 - productDescription.count
+        return String(counts)
+    }
+
     var body: some View {
         VStack {
             HStack {
@@ -68,7 +78,7 @@ struct AddFruit: View {
                     }
                 }
             }
-            .padding(.top, 20)
+            .padding(.top, 10)
             .padding(.horizontal, 20)
             .frame(height: 60)
             .background(Color.theme.lightGreen)
@@ -139,19 +149,35 @@ struct AddFruit: View {
                         }
                     }
                 }
-                .padding(.top, 30)
-                TextFieldView(text: $productName, placeholder: "Наименование (до 20 символов) ", infoText: "")
-                    .disabled(productName.count > 20)
+                .padding(.top, 15)
+                ZStack(alignment: .trailing) {
+                    TextFieldView(text: $productName, placeholder: "Наименование (до 20 символов) ", infoText: "Название продукта")
+                        .disabled(productName.count >= 20)
+                    Text("\(countProductName())")
+                        .foregroundColor(.red.opacity(0.5))
+                        .padding(.horizontal, 25)
+                }
+
+                HStack {
+                    Text("Описание товара")
+                        .padding(.leading, 30)
+                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                        .opacity(productDescription.isEmpty ? 0.5 : 1)
+                    Spacer()
+                    Text("\(countProductDes())")
+                        .foregroundColor(.red.opacity(0.5))
+                        .padding(.horizontal, 25)
+                }
                 ZStack(alignment: .topLeading) {
                     TextEditor(text: $productDescription)
-                        .disabled(productDescription.count > 100)
+                        .disabled(productDescription.count >= 100)
                         .lineLimit(7)
                         .multilineTextAlignment(.leading)
                         .foregroundColor(Color.theme.blackWhiteText)
-                        .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
+                        .font(Font(uiFont: .fontLibrary(18, .uzSansRegular)))
                         .background(.clear)
                         .padding(.leading, 20)
-                        .frame(height: 150)
+                        .frame(height: 100)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke(Color.theme.blackWhiteText, lineWidth: 1)
@@ -166,18 +192,20 @@ struct AddFruit: View {
                             .padding()
                     }
                 }
+                .offset(y: -20)
 
-                TextFieldView(text: $productPrice, placeholder: "Стоймость, руб ", infoText: "")
-                    .keyboardType(.numbersAndPunctuation)
+                TextFieldView(text: $productPrice, placeholder: "Стоймость, руб ", infoText: "Цена")
+                    .keyboardType(.decimalPad)
+                    .offset(y: -20)
                 HStack {
-                    TextFieldView(text: $productDiscount, placeholder: "Скидка", infoText: "")
+                    TextFieldView(text: $productDiscount, placeholder: "Скидка", infoText: "Скидка")
                         .keyboardType(.numbersAndPunctuation)
                         .frame(width: 150)
                     Text("%")
                         .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
                     Spacer()
-                    Picker("", selection: $weightOrPieces) {
+                    Picker("Единица измерения", selection: $weightOrPieces) {
                         Text("кг").tag("кг")
                         Text("шт").tag("шт")
                     }
@@ -185,13 +213,14 @@ struct AddFruit: View {
                     .pickerStyle(.segmented)
                     .frame(width: 150, height: 50)
                 }
+                .offset(y: -20)
 
-                Picker("", selection: $productCategories) {
+                Picker("Категория", selection: $productCategories) {
                     Text("Арбуз и дыни").tag(CategoriesFruit.all.rawValue)
                     Text("Гранат").tag(CategoriesFruit.granat.rawValue)
                     Text("Фрукты").tag(CategoriesFruit.fruct.rawValue)
                 }
-
+                .offset(y: -20)
                 .padding(.horizontal)
                 .pickerStyle(.segmented)
                 Spacer()
@@ -219,7 +248,7 @@ struct AddFruit: View {
                     .cornerRadius(6)
                     .padding(8)
                     .shadow(color: Color.theme.blackWhiteText, radius: 2)
-                    .padding(.bottom, 100)
+                    .padding(.bottom, 80)
                 }
             }
             .fullScreenCover(isPresented: $adminViewModel.showImagePicker) {
