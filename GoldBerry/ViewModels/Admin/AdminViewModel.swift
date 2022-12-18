@@ -39,27 +39,6 @@ class AdminViewModel: ObservableObject {
 
         storageRef.putData(uploadData!)
         urlImageString = "https://firebasestorage.googleapis.com/v0/b/goldberry-58e10.appspot.com/o/\(imageName).jpg?alt=media&token=a3a3ba16-0c4c-482f-adc7-7c7989149fed"
-//        guard productImage != nil else {
-//            return
-//        }
-//        let storage = Storage.storage().reference()
-//
-//        guard let imageData = productImage?.jpegData(compressionQuality: 0.8) else {
-//            return
-//        }
-//
-//        guard imageData == nil else {
-//            return
-//        }
-//        let path = "images/\(UUID().uuidString).jpg"
-//
-//        let fileRef = storage.child(path)
-//
-//        let uploadTask = fileRef.putData(imageData,
-//                                         metadata: nil)
-//
-//        urlImageString = "https://firebasestorage.googleapis.com/v0/b/goldberry-58e10.appspot.com/o/\(path)?alt=media&token=a3a3ba16-0c4c-482f-adc7-7c7989149fed"
-//         print("❌\(urlImageString)")
     }
 
     func fetchUser() async throws {
@@ -161,24 +140,23 @@ class AdminViewModel: ObservableObject {
         }
     }
 
-    func deleteFruit(id: UUID?) async throws {
-        guard let userId = id else {
-            return
-        }
-
-        guard let url = URL(string: Constants.baseURL + EndPoints.fruit + "/\(userId)") else {
-            return
-        }
-        Task {
-            do {
-                try await HttpClient.shared.delete(at: userId, url: url)
-            } catch {
-                print("🤣 error \(error)")
-            }
-        }
-    }
-
-    func updateFruit(fruit: Fruit) async throws {
+//    func hideFruit(id: UUID?) async throws {
+//        guard let userId = id else {
+//            return
+//        }
+//
+//        guard let url = URL(string: Constants.baseURL + EndPoints.fruit + "/\(userId)") else {
+//            return
+//        }
+//        Task {
+//            do {
+//                try await HttpClient.shared.delete(at: userId, url: url)
+//            } catch {
+//                print("🤣 error \(error)")
+//            }
+//        }
+//    }
+    func hideFruit(fruit: Fruit) async throws {
         let urlString = Constants.baseURL + EndPoints.fruit
 
         guard let url = URL(string: urlString) else {
@@ -188,6 +166,18 @@ class AdminViewModel: ObservableObject {
 
         try await HttpClient.shared.sendData(to: url, object: fruitToUpdate, httpMethod: HttpMethods.PUT.rawValue)
     }
+
+    
+//    func updateFruit(fruit: Fruit) async throws {
+//        let urlString = Constants.baseURL + EndPoints.fruit
+//
+//        guard let url = URL(string: urlString) else {
+//            throw HttpError.badURL
+//        }
+//        let fruitToUpdate = fruit
+//
+//        try await HttpClient.shared.sendData(to: url, object: fruitToUpdate, httpMethod: HttpMethods.PUT.rawValue)
+//    }
 }
 
 // func deleteOrder(id: UUID?) async throws {

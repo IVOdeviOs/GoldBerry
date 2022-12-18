@@ -10,6 +10,8 @@ struct AddFruit: View {
     @State var productCategories = ""
     @State var weightOrPieces = ""
     @State var productImage = ""
+    @State var productFavorite = false
+
     @State var sourceType: UIImagePickerController.SourceType = .photoLibrary
 
     @Environment(\.presentationMode) var presentation
@@ -45,7 +47,7 @@ struct AddFruit: View {
                                              cost: Double(productPrice) ?? 0,
                                              weightOrPieces: weightOrPieces,
                                              categories: productCategories,
-                                             favorite: false,
+                                             favorite: productFavorite ? true : false,
                                              count: 1,
                                              image: adminViewModel.urlImageString,
                                              name: productName,
@@ -56,7 +58,7 @@ struct AddFruit: View {
                         Task {
                             do {
                                 if adminViewModel.isUpdating {
-                                    try await adminViewModel.updateFruit(fruit: addFruit)
+                                    try await adminViewModel.hideFruit(fruit: addFruit)
                                     self.presentation.wrappedValue.dismiss()
                                 } else {
                                     try await adminViewModel.addFruit(fruits: addFruit)
@@ -227,10 +229,25 @@ struct AddFruit: View {
                 if adminViewModel.isUpdating {
 
                     Button {
+//                        adminViewModel.saveImageFirebaseStorageURL()
+
+                        let hideFruit = Fruit(id: idFruit,
+                                              cost: Double(productPrice) ?? 1,
+                                              weightOrPieces: weightOrPieces,
+                                              categories: productCategories,
+                                              favorite: productFavorite ? false : true,
+                                              count: 1,
+                                              image: productImage,
+                                              name: productName,
+                                              percent: Int(productDiscount) ?? 0,
+                                              comment: productDescription,
+                                              stepCount: 1)
                         Task {
+
                             do {
-                                try await adminViewModel.deleteFruit(id: idFruit)
+                                try await adminViewModel.hideFruit(fruit: hideFruit)
                                 adminViewModel.showAddFruit = false
+
                                 self.presentation.wrappedValue.dismiss()
                                 adminViewModel.selected = 1
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
@@ -239,7 +256,7 @@ struct AddFruit: View {
                             } catch {}
                         }
                     } label: {
-                        Text("Удалить")
+                        Text(productFavorite ? "Показать" : "Скрыть")
                             .foregroundColor(.white)
                             .font(.system(size: 16, weight: .light, design: .serif))
                     }

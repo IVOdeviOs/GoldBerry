@@ -12,7 +12,7 @@ struct ProductsView: View {
     @ObservedObject var orderViewModel: OrderViewModel
 
     @State var tag = CategoriesFruit.all.rawValue
-    
+
     var body: some View {
 
         NavigationView {
@@ -96,14 +96,18 @@ struct ProductsView: View {
                     VStack {
                         LazyVGrid(columns: fruitViewModel.columns, alignment: .center, spacing: 0, pinnedViews: .sectionFooters) {
                             ForEach(fruitViewModel.fruit) { fruits in
+                              
+                                if fruits.favorite == false {
                                 if fruits.categories == tag {
-
+                                    
                                     AllProductsCell(fruit: fruits, fruitViewModel: fruitViewModel)
                                         .padding(.bottom, 30)
+                                    
                                 } else if tag == CategoriesFruit.all.rawValue {
                                     AllProductsCell(fruit: fruits, fruitViewModel: fruitViewModel)
                                         .padding(.bottom, 30)
                                 }
+                            }
                             }
 
                         }.padding(.bottom, 60)

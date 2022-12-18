@@ -7,27 +7,35 @@ struct ProductViewCell: View {
     var body: some View {
         VStack(spacing: 6) {
             ZStack(alignment: .bottomLeading) {
-                AsyncImage(
-                    url: URL(string: fruit.image),
-                    transaction: Transaction(animation: .none)
-                ) { phase in
-                    switch phase {
-                    case .empty:
-                        ProgressView()
-                    case .success(let image):
-                        image
-                            .resizable()
-                            .transition(.scale(scale: 0.1, anchor: .center))
-                            .frame(width: 180, height: 120)
-                            .aspectRatio(contentMode: .fill)
-                    case .failure:
-                        Image(systemName: "wifi.slash")
-                    @unknown default:
-                        EmptyView()
+                if fruit.favorite {
+                    VStack{
+                        Text("Товар скрыт")
+                            .font(.system(size: 20, weight: .light, design: .serif))
                     }
-                }
-                .frame(width: 180, height: 120)
-
+                    .frame(width: 180, height: 120, alignment: .center)
+                    .background(Color.gray.opacity(0.5))
+                }else {
+                    AsyncImage(
+                        url: URL(string: fruit.image),
+                        transaction: Transaction(animation: .none)
+                    ) { phase in
+                        switch phase {
+                        case .empty:
+                            ProgressView()
+                        case .success(let image):
+                            image
+                                .resizable()
+                                .transition(.scale(scale: 0.1, anchor: .center))
+                                .frame(width: 180, height: 120)
+                                .aspectRatio(contentMode: .fill)
+                        case .failure:
+                            Image(systemName: "wifi.slash")
+                        @unknown default:
+                            EmptyView()
+                        }
+                    }
+                    .frame(width: 180, height: 120)
+                
                 if fruit.percent != 0 {
                     Text("-\(fruit.percent)%")
                         .font(.system(size: 12, weight: .light, design: .serif))
@@ -38,6 +46,7 @@ struct ProductViewCell: View {
                         .cornerRadius(20)
                         .padding(5)
                 }
+            }
             }
             HStack {
                 if fruit.itog == fruit.cost {
@@ -93,7 +102,8 @@ struct ProductViewCell: View {
                              productDiscount: String(fruit.percent),
                              productCategories: fruit.categories,
                              weightOrPieces: fruit.weightOrPieces,
-                             productImage: fruit.image)
+                             productImage: fruit.image,
+                             productFavorite: fruit.favorite)
                         .navigationBarBackButtonHidden(true)
                         .onAppear {
                             adminViewModel.isUpdating = true
