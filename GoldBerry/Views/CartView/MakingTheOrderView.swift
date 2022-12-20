@@ -115,7 +115,7 @@ struct MakingTheOrderView: View {
                         )
                         .padding()
 
-                    VStack {
+                    VStack(spacing: 5) {
                         HStack {
                             Text("Куда доставить")
                                 .foregroundColor(Color.theme.blackWhiteText)

@@ -42,14 +42,14 @@ struct AddFruit: View {
                 if productName.isEmpty || productPrice.isEmpty || productDescription.isEmpty || productDiscount.isEmpty || productCategories.isEmpty {} else {
                     Button {
                         adminViewModel.saveImageFirebaseStorageURL()
-
+                        
                         let addFruit = Fruit(id: idFruit,
                                              cost: Double(productPrice) ?? 0,
                                              weightOrPieces: weightOrPieces,
                                              categories: productCategories,
                                              favorite: productFavorite ? true : false,
                                              count: 1,
-                                             image: adminViewModel.urlImageString,
+                                             image: adminViewModel.productImage == nil ? productImage : adminViewModel.urlImageString,
                                              name: productName,
                                              percent: Int(productDiscount) ?? 0,
                                              comment: productDescription,
@@ -247,12 +247,13 @@ struct AddFruit: View {
                             do {
                                 try await adminViewModel.hideFruit(fruit: hideFruit)
                                 adminViewModel.showAddFruit = false
-
-                                self.presentation.wrappedValue.dismiss()
+                                adminViewModel.isUpdating = false
                                 adminViewModel.selected = 1
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                                     self.adminViewModel.selected = 0
                                 }
+
+                                self.presentation.wrappedValue.dismiss()
                             } catch {}
                         }
                     } label: {

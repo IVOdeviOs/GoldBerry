@@ -107,6 +107,7 @@ struct ProductViewCell: View {
                         .navigationBarBackButtonHidden(true)
                         .onAppear {
                             adminViewModel.isUpdating = true
+                            
                         }
                 } label: {
                     ZStack {

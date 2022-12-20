@@ -81,50 +81,52 @@ struct OrderCell: View {
                     .padding(.trailing, 10)
             }
             ForEach(0 ..< purchases.count) { row in
-                HStack {
-                    AsyncImage(
-                        url: URL(string: purchases[row].image),
-                        transaction: Transaction(animation: .easeInOut)
-                    ) { phase in
-                        switch phase {
-                        case .empty:
-                            ProgressView()
-                        case .success(let image):
-                            image
-                                .resizable()
-                                .transition(.scale(scale: 0.1, anchor: .center))
-                                .frame(width: 30, height: 20)
-                                .aspectRatio(contentMode: .fill)
-                        case .failure:
-                            Image(systemName: "wifi.slash")
-                        @unknown default:
-                            EmptyView()
+                if purchases[row].favorite {} else {
+
+                    HStack {
+                        AsyncImage(
+                            url: URL(string: purchases[row].image),
+                            transaction: Transaction(animation: .easeInOut)
+                        ) { phase in
+                            switch phase {
+                            case .empty:
+                                ProgressView()
+                            case .success(let image):
+                                image
+                                    .resizable()
+                                    .transition(.scale(scale: 0.1, anchor: .center))
+                                    .frame(width: 30, height: 20)
+                                    .aspectRatio(contentMode: .fill)
+                            case .failure:
+                                Image(systemName: "wifi.slash")
+                            @unknown default:
+                                EmptyView()
+                            }
                         }
+                        .frame(width: 30, height: 20)
+                        .cornerRadius(5)
+                        .padding(.leading, 10)
+                        Text(purchases[row].name)
+                            .foregroundColor(Color.theme.blackWhiteText)
+                            .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                            .frame(width: UIScreen.main.bounds.width / 4, height: 20)
+                            .minimumScaleFactor(0.7)
+                        Text("\(NSString(format: "%.2f", purchases[row].itog)) p.")
+                            .foregroundColor(Color.theme.blackWhiteText)
+                            .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                            .frame(width: UIScreen.main.bounds.width / 7, height: 20)
+                        Text("\(NSString(format: "%.1f", purchases[row].count)) ")
+                            .foregroundColor(Color.theme.blackWhiteText)
+                            .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                            .frame(width: UIScreen.main.bounds.width / 7, height: 20)
+                        Text("\(NSString(format: "%.2f", purchases[row].itog * Double(purchases[row].count))) p.")
+                            .foregroundColor(Color.theme.blackWhiteText)
+                            .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                            .frame(width: UIScreen.main.bounds.width / 7, height: 20)
+                            .padding(.trailing, 10)
                     }
-                    .frame(width: 30, height: 20)
-                    .cornerRadius(5)
-                    .padding(.leading, 10)
-                    Text(purchases[row].name)
-                        .foregroundColor(Color.theme.blackWhiteText)
-                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                        .frame(width: UIScreen.main.bounds.width / 4, height: 20)
-                        .minimumScaleFactor(0.7)
-                    Text("\(NSString(format: "%.2f", purchases[row].itog)) p.")
-                        .foregroundColor(Color.theme.blackWhiteText)
-                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                        .frame(width: UIScreen.main.bounds.width / 7, height: 20)
-                    Text("\(NSString(format: "%.1f", purchases[row].count)) ")
-                        .foregroundColor(Color.theme.blackWhiteText)
-                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                        .frame(width: UIScreen.main.bounds.width / 7, height: 20)
-                    Text("\(NSString(format: "%.2f", purchases[row].itog * purchases[row].count)) p.")
-                        .foregroundColor(Color.theme.blackWhiteText)
-                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                        .frame(width: UIScreen.main.bounds.width / 7, height: 20)
-                        .padding(.trailing, 10)
                 }
             }
-
             HStack {
                 VStack(alignment: .leading, spacing: 10) {
                     HStack {

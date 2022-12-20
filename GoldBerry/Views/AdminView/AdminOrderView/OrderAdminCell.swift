@@ -96,19 +96,19 @@ struct OrderAdminCell: View {
                             .padding(.leading, 10)
                         Spacer()
                     }
-                    HStack {
-                        Text("Кол-во товаров:")
-                            .font(Font(uiFont: .fontLibrary(16, .uzSansBold)))
-                            .foregroundColor(Color.theme.blackWhiteText)
-                            .padding(.bottom, 10)
-                            .padding(.leading, 10)
-                        Text("\(count)")
-                            .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
-                            .foregroundColor(Color.theme.blackWhiteText)
-                            .padding(.bottom, 10)
-                            .padding(.leading, 10)
-                        Spacer()
-                    }
+//                    HStack {
+//                        Text("Кол-во товаров:")
+//                            .font(Font(uiFont: .fontLibrary(16, .uzSansBold)))
+//                            .foregroundColor(Color.theme.blackWhiteText)
+//                            .padding(.bottom, 10)
+//                            .padding(.leading, 10)
+//                        Text("\(count)")
+//                            .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
+//                            .foregroundColor(Color.theme.blackWhiteText)
+//                            .padding(.bottom, 10)
+//                            .padding(.leading, 10)
+//                        Spacer()
+//                    }
                 }
                 Spacer()
             }

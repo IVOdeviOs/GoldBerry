@@ -56,48 +56,50 @@ struct OrderInfoAdminView: View {
                 Info()
                 ScrollView(.vertical, showsIndicators: false) {
                     ForEach(0 ..< order.fruits.count) { row in
-                        HStack {
-                            AsyncImage(
-                                url: URL(string: order.fruits[row].image),
-                                transaction: Transaction(animation: .easeInOut)
-                            ) { phase in
-                                switch phase {
-                                case .empty:
-                                    ProgressView()
-                                case .success(let image):
-                                    image
-                                        .resizable()
-                                        .transition(.scale(scale: 0.1, anchor: .center))
-                                        .frame(width: 30, height: 20)
-                                        .aspectRatio(contentMode: .fill)
-                                case .failure:
-                                    Image(systemName: "wifi.slash")
-                                @unknown default:
-                                    EmptyView()
+                        if order.fruits[row].favorite {} else {
+                            HStack {
+                                AsyncImage(
+                                    url: URL(string: order.fruits[row].image),
+                                    transaction: Transaction(animation: .easeInOut)
+                                ) { phase in
+                                    switch phase {
+                                    case .empty:
+                                        ProgressView()
+                                    case .success(let image):
+                                        image
+                                            .resizable()
+                                            .transition(.scale(scale: 0.1, anchor: .center))
+                                            .frame(width: 30, height: 20)
+                                            .aspectRatio(contentMode: .fill)
+                                    case .failure:
+                                        Image(systemName: "wifi.slash")
+                                    @unknown default:
+                                        EmptyView()
+                                    }
                                 }
+                                
+                                .frame(width: 30, height: 20)
+                                .cornerRadius(5)
+                                .padding(.leading, 10)
+                                Text(order.fruits[row].name)
+                                    .minimumScaleFactor(0.7)
+                                    .foregroundColor(Color.theme.blackWhiteText)
+                                    .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                                    .frame(width: UIScreen.main.bounds.width / 4, height: 20)
+                                Text("\(NSString(format: "%.2f", order.fruits[row].itog)) p.")
+                                    .foregroundColor(Color.theme.blackWhiteText)
+                                    .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                                    .frame(width: UIScreen.main.bounds.width / 6, height: 20)
+                                Text("\(NSString(format: "%.1f", order.fruits[row].count))")
+                                    .foregroundColor(Color.theme.blackWhiteText)
+                                    .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                                    .frame(width: UIScreen.main.bounds.width / 6, height: 20)
+                                Text("\(NSString(format: "%.2f", order.fruits[row].itog * Double(order.fruits[row].count))) p.")
+                                    .foregroundColor(Color.theme.blackWhiteText)
+                                    .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                                    .frame(width: UIScreen.main.bounds.width / 6, height: 20)
+                                    .padding(.trailing, 10)
                             }
-
-                            .frame(width: 30, height: 20)
-                            .cornerRadius(5)
-                            .padding(.leading, 10)
-                            Text(order.fruits[row].name)
-                                .minimumScaleFactor(0.7)
-                                .foregroundColor(Color.theme.blackWhiteText)
-                                .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                                .frame(width: UIScreen.main.bounds.width / 4, height: 20)
-                            Text("\(NSString(format: "%.2f", order.fruits[row].itog)) p.")
-                                .foregroundColor(Color.theme.blackWhiteText)
-                                .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                                .frame(width: UIScreen.main.bounds.width / 6, height: 20)
-                            Text("\(NSString(format: "%.1f", order.fruits[row].count))")
-                                .foregroundColor(Color.theme.blackWhiteText)
-                                .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                                .frame(width: UIScreen.main.bounds.width / 6, height: 20)
-                            Text("\(NSString(format: "%.2f", order.fruits[row].itog * order.fruits[row].count)) p.")
-                                .foregroundColor(Color.theme.blackWhiteText)
-                                .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                                .frame(width: UIScreen.main.bounds.width / 6, height: 20)
-                                .padding(.trailing, 10)
                         }
                     }
                 }.frame(height: 200)
