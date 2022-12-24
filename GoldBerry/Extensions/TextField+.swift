@@ -24,7 +24,7 @@ struct TextFieldView: View {
                     .padding(.leading, 30)
                     .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                     .offset(y: -35)
-                    .opacity(text.wrappedValue.isEmpty ? 0.5 : 1)
+                    .opacity(text.wrappedValue.isEmpty ? 1 : 0.5)
             }
         }.onTapGesture {
             HideKeyboard()

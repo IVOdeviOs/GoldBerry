@@ -113,9 +113,9 @@ struct MakingTheOrderView: View {
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke(Color.theme.blackWhiteText, lineWidth: 1)
                         )
-                        .padding()
+                        .padding(5)
 
-                    VStack(spacing: 5) {
+                    VStack(spacing: 2) {
                         HStack {
                             Text("Куда доставить")
                                 .foregroundColor(Color.theme.blackWhiteText)

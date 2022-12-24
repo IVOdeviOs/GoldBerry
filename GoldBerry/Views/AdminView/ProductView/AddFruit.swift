@@ -24,7 +24,17 @@ struct AddFruit: View {
         let counts = 100 - productDescription.count
         return String(counts)
     }
-
+    func doubleChecking() -> Bool{
+        let num = Double(productPrice)
+        if num != nil {
+         return false
+        }
+        else {
+         return true
+        }
+        
+    }
+    
     var body: some View {
         VStack {
             HStack {
@@ -39,7 +49,7 @@ struct AddFruit: View {
                         .foregroundColor(.white)
                 }
                 Spacer()
-                if productName.isEmpty || productPrice.isEmpty || productDescription.isEmpty || productDiscount.isEmpty || productCategories.isEmpty {} else {
+                if productName.isEmpty || productPrice.isEmpty || doubleChecking() || productDescription.isEmpty || productDiscount.isEmpty || productCategories.isEmpty {} else {
                     Button {
                         adminViewModel.saveImageFirebaseStorageURL()
                         
