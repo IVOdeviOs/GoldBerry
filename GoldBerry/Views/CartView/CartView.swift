@@ -135,6 +135,12 @@ struct WithPurchase: View {
         }
         .onDisappear {
             fruitO.removeAll()
+            for (index, value) in fruitViewModel.uniqFruits.enumerated() {
+                if value.favorite {
+                    fruitViewModel.uniqFruits.remove(at: index)
+                }
+               
+            }
             orderViewModel.price = fruitViewModel.sum()
         }
     }
