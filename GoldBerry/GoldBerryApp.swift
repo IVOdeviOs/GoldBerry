@@ -9,10 +9,12 @@ struct GoldBerryApp: App {
         FirebaseApp.configure()
     }
 
+    @ObservedObject var adminViewModel = AdminViewModel()
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environment(\.locale, .init(identifier: adminViewModel.language ?? "ru"))
         }
     }
 }

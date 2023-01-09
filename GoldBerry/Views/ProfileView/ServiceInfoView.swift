@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ServiceInfoView: View {
-    @ObservedObject var adminViewModel = AdminViewModel()
+    @ObservedObject var adminViewModel: AdminViewModel
 
     @Environment(\.presentationMode) var presentation
     @State var showDeliveryInfoView = false
@@ -19,10 +19,19 @@ struct ServiceInfoView: View {
         }
         return false
     }
-
+    func language() -> String {
+        var lang = ""
+        if adminViewModel.language == "en" {
+            lang = "Russian"
+        }
+        if adminViewModel.language == "ru" {
+            lang = "English"
+        }
+        return lang
+    }
     var body: some View {
         VStack {
-            Text("О сервисе")
+            Text("About the service")
                 .foregroundColor(Color.theme.blackWhiteText)
                 .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
                 .padding()
@@ -32,11 +41,18 @@ struct ServiceInfoView: View {
                     .opacity(0.2)
                     .frame(height: 200)
                 VStack {
-                    Text("Версия 2.0")
-                        .foregroundColor(Color.theme.blackWhiteText)
-                        .opacity(0.5)
-                        .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
-                        .padding(.bottom, 5)
+                    HStack{
+                        Text("Version")
+                            .foregroundColor(Color.theme.blackWhiteText)
+                            .opacity(0.5)
+                            .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
+                            .padding(.bottom, 5)
+                        Text(" 2.0")
+                            .foregroundColor(Color.theme.blackWhiteText)
+                            .opacity(0.5)
+                            .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
+                            .padding(.bottom, 5)
+                    }
                     Text("\u{24B8} 2022 DMTeam")
                         .foregroundColor(Color.theme.blackWhiteText)
                         .opacity(0.5)
@@ -48,14 +64,14 @@ struct ServiceInfoView: View {
                 }
             label: {
                     HStack {
-                        Text("Оплата и доставка")
+                        Text("Payment and delivery")
                             .minimumScaleFactor(0.5)
                             .foregroundColor(Color.theme.blackWhiteText)
                             .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                         Spacer()
                         Image(systemName: "chevron.right")
                             .resizable()
-                            .frame(width:8, height: 8)
+                            .frame(width: 8, height: 8)
                             .foregroundColor(.gray)
                     }
                     .sheet(isPresented: $showDeliveryInfoView, content: {
@@ -68,14 +84,14 @@ struct ServiceInfoView: View {
                 }
             label: {
                     HStack {
-                        Text("Положение о конфиденциальности")
+                        Text("Privacy Statement")
                             .minimumScaleFactor(0.5)
                             .foregroundColor(Color.theme.blackWhiteText)
                             .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                         Spacer()
                         Image(systemName: "chevron.right")
                             .resizable()
-                            .frame(width:8, height: 8)
+                            .frame(width: 8, height: 8)
                             .foregroundColor(.gray)
                     }
                     .sheet(isPresented: $showConfidentialView, content: {
@@ -88,14 +104,14 @@ struct ServiceInfoView: View {
                 }
             label: {
                     HStack {
-                        Text("Отказ от ответственности")
+                        Text("Denial of responsibility")
                             .minimumScaleFactor(0.5)
                             .foregroundColor(Color.theme.blackWhiteText)
                             .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                         Spacer()
                         Image(systemName: "chevron.right")
                             .resizable()
-                            .frame(width:8, height: 8)
+                            .frame(width: 8, height: 8)
                             .foregroundColor(.gray)
                     }
                     .sheet(isPresented: $showDisclaimerOfLiability, content: {
@@ -107,32 +123,31 @@ struct ServiceInfoView: View {
                     let formattedString = "tel://" + numberPhone
                     guard let url = URL(string: formattedString) else { return }
                     UIApplication.shared.open(url)
-                }
-            label: {
+                } label: {
                     HStack {
-                        Text("Контакты")
+                        Text("Contacts")
                             .minimumScaleFactor(0.5)
                             .foregroundColor(Color.theme.blackWhiteText)
                             .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                         Spacer()
                         Image(systemName: "chevron.right")
                             .resizable()
-                            .frame(width:8, height: 8)
+                            .frame(width: 8, height: 8)
                             .foregroundColor(.gray)
                     }
                 }
-                if checkLogin(){
-                    
+                if checkLogin() {
+
                     NavigationLink {
                         if adminViewModel.statusAdmin {
-                            ProductView()
+                            ProductView(adminViewModel: adminViewModel)
                                 .navigationBarHidden(true)
                         } else {
                             AuthAdminView(adminViewModel: adminViewModel)
                         }
                     } label: {
                         HStack {
-                            Text("Вход для администратора")
+                            Text("Administrator login")
                                 .minimumScaleFactor(0.5)
                                 .foregroundColor(Color.theme.blackWhiteText)
                                 .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
@@ -144,26 +159,24 @@ struct ServiceInfoView: View {
                         }
                     }
                 }
-//                Button {
-//
-//                    self.showAdminProfile.toggle()
-//                }
-//            label: {
-//                    HStack {
-//                        Text("Вход для администратора")
-//                            .minimumScaleFactor(0.5)
-//                            .foregroundColor(Color.theme.blackWhiteText)
-//                            .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
-//                        Spacer()
-//                        Image(systemName: "arrow.right")
-//                            .resizable()
-//                            .frame(width: 15, height: 15)
-//                            .foregroundColor(Color.theme.blackWhiteText)
-//                    }
-//                }
-//                .sheet(isPresented: $showAdminProfile, content: {
-//                    AuthAdminView(adminViewModel: adminViewModel)
-//                })
+                Button {
+                    if adminViewModel.language == "ru"{
+                        adminViewModel.language = "en"
+                        UserDefaults.standard.set("en", forKey: "language")
+                    } else if adminViewModel.language == "en"{
+                        adminViewModel.language = "ru"
+                        UserDefaults.standard.set("ru", forKey: "language")
+                    }
+                    
+                } label: {
+                    HStack{
+                        Text("Change language ")
+                        Text("\(language())")
+                            .foregroundColor(.red)
+                    }
+                    
+                }
+
             }
             .offset(y: -15)
             .listStyle(.plain)

@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ProductView: View {
-    @ObservedObject var adminViewModel = AdminViewModel()
+    @ObservedObject var adminViewModel: AdminViewModel
     @ObservedObject var fruitViewModel = FruitViewModel()
     @Environment(\.presentationMode) var presentation
     var body: some View {
@@ -12,17 +12,28 @@ struct ProductView: View {
                     ZStack {
                         HStack {
                             Button {
-                                adminViewModel.statusAdmin = false
                                 self.presentation.wrappedValue.dismiss()
                                 
                             } label: {
-                                Image(systemName: "rectangle.portrait.and.arrow.right")
+                                Image(systemName: "arrow.backward")
+                                    .resizable()
+                                    .frame(width: 25, height: 25)
+                                    .foregroundColor(.white)
+//                                    .rotationEffect(.degrees(180))
+                            }
+                            Button {
+                                adminViewModel.statusAdmin = false
+                                UserDefaults.standard.set(false, forKey: "statusAdmin")
+                                self.presentation.wrappedValue.dismiss()
+                                
+                            } label: {
+                                Image(systemName: "trash")
                                     .resizable()
                                     .frame(width: 33, height: 33)
                                     .foregroundColor(.white)
-                                    .rotationEffect(.degrees(180))
                             }
-                            
+                            .padding(.leading)
+
                             Spacer()
                             Button {
                                 adminViewModel.showAddFruit.toggle()
@@ -95,12 +106,14 @@ struct ProductView: View {
                 }
             }
         }
+    
         .fullScreenCover(isPresented: $adminViewModel.showAddFruit) {
             AddFruit(adminViewModel: adminViewModel)
         }
         .ignoresSafeArea()
         .background(.clear)
     }
+        
 }
 
 struct CaseView: View {

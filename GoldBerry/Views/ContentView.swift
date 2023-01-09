@@ -30,8 +30,8 @@ struct ContentView: View {
 //                    if adminViewModel.statusAdmin {
 //                        ProductView()
 //                    }else{
-                        ViewProfile(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel, userViewModel: userViewModel)
-
+                        ViewProfile(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel, userViewModel: userViewModel,adminViewModel: adminViewModel)
+                        .environment(\.locale, .init(identifier: adminViewModel.language ?? "ru"))
 //                    }
                 }
             
@@ -63,15 +63,16 @@ struct ContentView: View {
 }
 
 struct ViewProfile: View {
-    @ObservedObject var fruitViewModel = FruitViewModel()
-    @ObservedObject var orderViewModel = OrderViewModel()
-    @ObservedObject var userViewModel = UserViewModel()
+    @ObservedObject var fruitViewModel: FruitViewModel
+    @ObservedObject var orderViewModel: OrderViewModel
+    @ObservedObject var userViewModel: UserViewModel
+    @ObservedObject var adminViewModel: AdminViewModel
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [])
     var fruits: FetchedResults<FruitEntity>
 
     var body: some View {
         ZStack {
-            ExtractedView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel, userViewModel: userViewModel)
+            ExtractedView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel, userViewModel: userViewModel,adminViewModel: adminViewModel)
             ZStack {
                 VStack {
                     ZStack {
@@ -100,7 +101,8 @@ struct ViewProfile: View {
                                     Image(systemName: "house")
                                         .resizable()
                                         .frame(width: 23, height: 20)
-                                    Text("Главная")
+                                    Text("Home")
+//                                    Text("Главная")
                                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                                 }
                             }.foregroundColor(fruitViewModel.selected == 0 ? Color.theme.lightGreen : Color.theme.gray)
@@ -127,7 +129,7 @@ struct ViewProfile: View {
                                         Image(systemName: "cart")
                                             .resizable()
                                             .frame(width: 23, height: 20)
-                                        Text("Корзина")
+                                        Text("Cart")
                                             .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                                     }.badge(fruits.count)
                                 }
@@ -141,7 +143,7 @@ struct ViewProfile: View {
                                     Image(systemName: fruitViewModel.selected == 2 ? "bag.fill" : "bag")
                                         .resizable()
                                         .frame(width: 23, height: 20)
-                                    Text("Заказы")
+                                    Text("Order")
                                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                                 }
                             }.foregroundColor(fruitViewModel.selected == 2 ? Color.theme.lightGreen : Color.theme.gray)
@@ -154,7 +156,7 @@ struct ViewProfile: View {
                                     Image(systemName: fruitViewModel.selected == 3 ? "person.fill" : "person")
                                         .resizable()
                                         .frame(width: 23, height: 20)
-                                    Text("Профиль")
+                                    Text("Profile")
                                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                                 }
                             }.foregroundColor(fruitViewModel.selected == 3 ? Color.theme.lightGreen : Color.theme.gray)
@@ -184,6 +186,7 @@ struct ExtractedView: View {
     @ObservedObject var fruitViewModel = FruitViewModel()
     @ObservedObject var orderViewModel = OrderViewModel()
     @ObservedObject var userViewModel = UserViewModel()
+    @ObservedObject var adminViewModel: AdminViewModel
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)],
         animation: .default
@@ -225,7 +228,7 @@ struct ExtractedView: View {
                         }
                     }
             case 3:
-                ProfileView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel, userViewModel: userViewModel)
+                ProfileView(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel, userViewModel: userViewModel,adminViewModel: adminViewModel )
                     .onAppear {
 
                         Task {

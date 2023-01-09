@@ -7,7 +7,7 @@ struct ProfileView: View {
     @ObservedObject var fruitViewModel = FruitViewModel()
     @ObservedObject var orderViewModel = OrderViewModel()
     @ObservedObject var userViewModel = UserViewModel()
-
+    @ObservedObject var adminViewModel: AdminViewModel
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: FruitEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.id, ascending: true)])
     var fruits: FetchedResults<FruitEntity>
@@ -149,7 +149,7 @@ struct ProfileView: View {
                         }
                     }
                     NavigationLink {
-                        ServiceInfoView()
+                        ServiceInfoView(adminViewModel: adminViewModel)
                     } label: {
                         ZStack {
                             Color.theme.grayWhite

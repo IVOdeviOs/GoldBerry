@@ -6,7 +6,7 @@ import SwiftUI
 class AdminViewModel: ObservableObject {
     @Published var order = [Order]()
     @Published var userLogin = [LoginUser]()
-
+    @Published var language = UserDefaults.standard.string(forKey: "language")
     @Published var showAddFruit = false
     @Published var showUpdate = false
     @Published var deleteFruit = false
@@ -17,7 +17,7 @@ class AdminViewModel: ObservableObject {
     @Published var showTabBar = false
     @Published var loginAdmin = ""
     @Published var passwordAdmin = ""
-    @Published var statusAdmin = false
+    @Published var statusAdmin = UserDefaults.standard.bool(forKey: "statusAdmin")
     @Published var message = ""
     @Published var productImage: UIImage?
     @Published var urlImageString = ""

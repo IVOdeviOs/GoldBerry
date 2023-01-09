@@ -22,18 +22,8 @@ struct AuthAdminView: View {
             Button {
                 Task{
                     do{
-//                        let urlString = Constants.baseURL + EndPoints.adminOrder
-//                        guard URL(string: urlString) != nil else {
-//                            throw HttpError.badURL
-//                        }
-//                        try await  adminViewModel.sendData(to:url ,object: order, httpMethod: HttpMethods.POST.rawValue)
                         try await adminViewModel.fetchUser()
-
-//                        if adminViewModel.statusAdmin == true {
-//                            self.show.toggle()
-//                        } else {
-//                            print("Opppppsss")
-//                        }
+                        UserDefaults.standard.set(true, forKey: "statusAdmin")
                     }catch{
                         
                     }

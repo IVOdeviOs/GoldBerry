@@ -69,24 +69,25 @@ struct ProductsView: View {
                             Button {
                                 tag = CategoriesFruit.all.rawValue
                             } label: {
-                                CategoriesCell(nameImage: CategoriesFruit.all.rawValue, nameCategories: "Все товары")
+                                CategoriesCell(nameImage: CategoriesFruit.all.rawValue, nameCategories: "All goods")
                             }
                             Button {
                                 tag = CategoriesFruit.watermelon.rawValue
                             } label: {
-                                CategoriesCell(nameImage: CategoriesFruit.watermelon.rawValue, nameCategories: "Арбуз и дыня")
+                                CategoriesCell(nameImage: CategoriesFruit.watermelon.rawValue, nameCategories: "Watermelon and melon")
                             }
                             Button {
                                 tag = CategoriesFruit.granat.rawValue
 
                             } label: {
-                                CategoriesCell(nameImage: CategoriesFruit.granat.rawValue, nameCategories: "Гранат")
+                                CategoriesCell(nameImage: CategoriesFruit.granat.rawValue, nameCategories: "Garnet")
                             }
                             Button {
                                 tag = CategoriesFruit.fruct.rawValue
                             } label: {
-                                CategoriesCell(nameImage: CategoriesFruit.fruct.rawValue, nameCategories: "Фрукты")
+                                CategoriesCell(nameImage: CategoriesFruit.fruct.rawValue, nameCategories: "Fruit")
                             }
+                            
                         }
                         .padding(.horizontal, 10)
                         .padding(.top, 20)

@@ -33,11 +33,11 @@ struct WithoutPurchase: View {
                         .cornerRadius(20)
                         .padding()
                         .padding(.top, 60)
-                    Text("В корзине пока пусто")
+                    Text("Cart is empty")
                         .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
                         .foregroundColor(Color.theme.blackWhiteText)
                         .padding(.bottom, 10)
-                    Text("Ваша корзина ждет, пока ее наполнят!")
+                    Text("Your cart is waiting to be filled!")
                         .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                         .padding(.bottom, 10)
                         .multilineTextAlignment(.center)
@@ -45,7 +45,7 @@ struct WithoutPurchase: View {
                     Button {
                         fruitViewModel.selected = 0
                     } label: {
-                        Text("Перейти к выбору товаров")
+                        Text("Go to product selection")
                             .frame(width: 300, height: 50)
                             .foregroundColor(.white)
                             .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))

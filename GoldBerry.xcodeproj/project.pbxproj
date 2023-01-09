@@ -66,6 +66,7 @@
 		DD95A8372899ABD600DF346B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD95A8362899ABD600DF346B /* Assets.xcassets */; };
 		DD95A83A2899ABD600DF346B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD95A8392899ABD600DF346B /* Preview Assets.xcassets */; };
 		DD95A83C2899ABD600DF346B /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD95A83B2899ABD600DF346B /* Persistence.swift */; };
+		DDAE6D51296B3EE3003E5D1D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DDAE6D53296B3EE3003E5D1D /* Localizable.strings */; };
 		DDBA58DE28A0419100FFC3A5 /* CategoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBA58DD28A0419100FFC3A5 /* CategoriesCell.swift */; };
 		DDBA58E028A1551400FFC3A5 /* AllProductsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBA58DF28A1551400FFC3A5 /* AllProductsCell.swift */; };
 		DDBA58EB28AAB43900FFC3A5 /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBA58EA28AAB43900FFC3A5 /* Fruit.swift */; };
@@ -136,6 +137,8 @@
 		DD95A8362899ABD600DF346B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DD95A8392899ABD600DF346B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DD95A83B2899ABD600DF346B /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		DDAE6D52296B3EE3003E5D1D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DDAE6D54296B3EE8003E5D1D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DDBA58DD28A0419100FFC3A5 /* CategoriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCell.swift; sourceTree = "<group>"; };
 		DDBA58DF28A1551400FFC3A5 /* AllProductsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProductsCell.swift; sourceTree = "<group>"; };
 		DDBA58EA28AAB43900FFC3A5 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
@@ -208,6 +211,7 @@
 				DDE7CFCB29237EDF0037F074 /* LaunchScreenView.swift */,
 				DCF6ED14292423550019EDB7 /* DatePickerTextField.swift */,
 				DDC6768C294217C100C04FDE /* ImagePicker.swift */,
+				DDAE6D53296B3EE3003E5D1D /* Localizable.strings */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -501,6 +505,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = DD95A8262899ABD100DF346B;
 			packageReferences = (
@@ -526,6 +531,7 @@
 				DD95A83A2899ABD600DF346B /* Preview Assets.xcassets in Resources */,
 				DD95A8372899ABD600DF346B /* Assets.xcassets in Resources */,
 				DCA5251728AEBC5200A994F5 /* UZSans-Bold.ttf in Resources */,
+				DDAE6D51296B3EE3003E5D1D /* Localizable.strings in Resources */,
 				DD8A2328291991A30057272A /* GoogleService-Info.plist in Resources */,
 				DCA5251628AEBC5200A994F5 /* UZSans-Light.ttf in Resources */,
 				DCA5251428AEBC5200A994F5 /* UZSans-SemiBold.ttf in Resources */,
@@ -600,6 +606,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		DDAE6D53296B3EE3003E5D1D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DDAE6D52296B3EE3003E5D1D /* en */,
+				DDAE6D54296B3EE8003E5D1D /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		DD95A8402899ABD600DF346B /* Debug */ = {
