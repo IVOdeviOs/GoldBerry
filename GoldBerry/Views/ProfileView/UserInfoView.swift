@@ -8,19 +8,19 @@ struct UserInfoView: View {
 
     var body: some View {
         VStack {
-            Text("Мои данные")
+            Text("My details")
                 .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
                 .foregroundColor(Color.theme.blackWhiteText)
                 .padding()
             Color.theme.gray
                 .opacity(0.3)
                 .frame(height: 10)
-            TextFieldView(text: $userViewModel.userSurname, placeholder: "Фамилия", infoText: "")
+            TextFieldView(text: $userViewModel.userSurname, placeholder: "Surname", infoText: "")
                 .disableAutocorrection(true)
                 .onTapGesture {
                     HideKeyboard()
                 }
-            TextFieldView(text: $userViewModel.userName, placeholder: "Имя", infoText: "")
+            TextFieldView(text: $userViewModel.userName, placeholder: "Name", infoText: "")
                 .disableAutocorrection(true)
                 .onTapGesture {
                     HideKeyboard()
@@ -31,7 +31,7 @@ struct UserInfoView: View {
                     .font(Font(uiFont: .fontLibrary(18, .uzSansRegular)))
                     .padding(.leading, 30)
                     .padding(.top, 4)
-                iPhoneNumberField("Телефон", text: $userViewModel.userPhone)
+                iPhoneNumberField("Phone", text: $userViewModel.userPhone)
                     .maximumDigits(9)
                     .defaultRegion("BY")
                     .foregroundColor(Color.theme.blackWhiteText)
@@ -63,7 +63,7 @@ struct UserInfoView: View {
                         .background(Color.theme.lightGreen)
                         .frame(width: 300, height: 50)
                         .cornerRadius(10)
-                    Text("Сохранить")
+                    Text("Save")
                         .foregroundColor(.white)
                 }
             }

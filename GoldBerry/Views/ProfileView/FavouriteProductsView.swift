@@ -26,11 +26,11 @@ struct WithoutFavouriteProductsView: View {
                 .cornerRadius(20)
                 .padding()
                 .padding(.top, 90)
-            Text("Нет избранных товаров")
+            Text("No featured products")
                 .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
                 .foregroundColor(Color.theme.blackWhiteText)
                 .padding(.bottom, 10)
-            Text("Добавьте товары, чтобы не пропустить ничего важного")
+            Text("Add products so you don't miss anything important")
                 .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                 .padding(.bottom, 10)
                 .multilineTextAlignment(.center)
@@ -38,7 +38,7 @@ struct WithoutFavouriteProductsView: View {
             Button {
                 fruitViewModel.selected = 0
             } label: {
-                Text("Перейти к выбору товаров")
+                Text("Go to product selection")
                     .frame(width: 300, height: 50)
                     .foregroundColor(.white)
                     .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
@@ -64,7 +64,7 @@ struct WithFavouriteProductsView: View {
 
         NavigationView {
             VStack {
-                Text("Избранные товары")
+                Text("Featured Products")
                     .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
                     .foregroundColor(Color.theme.lightGreen)
                     .padding()

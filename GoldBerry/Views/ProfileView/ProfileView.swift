@@ -48,7 +48,7 @@ struct ProfileView: View {
                             .offset(y: -50)
                         HStack {
                             VStack {
-                                Text(userViewModel.userName.isEmpty && userViewModel.userSurname.isEmpty ? "Имя Фамилия" : "\(userViewModel.userName) \(userViewModel.userSurname)")
+                                Text(userViewModel.userName.isEmpty && userViewModel.userSurname.isEmpty ? "First Name Last Name" : "\(userViewModel.userName) \(userViewModel.userSurname)")
                                     .foregroundColor(Color.theme.background)
                                     .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
                                     .padding()
@@ -78,7 +78,7 @@ struct ProfileView: View {
                                     .cornerRadius(10)
                                     .shadow(color: .gray, radius: 2, x: 1, y: 1)
                                 VStack {
-                                    Text("Архив заказов")
+                                    Text("Order archive")
                                         .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
                                         .foregroundColor(Color.theme.blackWhiteText)
                                         .padding(.bottom, 5)
@@ -97,7 +97,7 @@ struct ProfileView: View {
                             Color.theme.grayWhite
                                 .frame(height: 50)
                             HStack {
-                                Text("Адреса торговых точек")
+                                Text("Store addresses")
                                     .foregroundColor(Color.theme.blackWhiteText)
                                     .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                                     .padding(.leading, 15)
@@ -121,7 +121,7 @@ struct ProfileView: View {
                             Color.theme.grayWhite
                                 .frame(height: 50)
                             HStack {
-                                Text("Избранные товары")
+                                Text("Featured Products")
                                     .foregroundColor(Color.theme.blackWhiteText)
                                     .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                                     .padding(.leading, 15)
@@ -150,12 +150,13 @@ struct ProfileView: View {
                     }
                     NavigationLink {
                         ServiceInfoView(adminViewModel: adminViewModel)
+                            .environment(\.locale, .init(identifier: adminViewModel.language ?? "ru"))
                     } label: {
                         ZStack {
                             Color.theme.grayWhite
                                 .frame(height: 50)
                             HStack {
-                                Text("О сервисе")
+                                Text("About the service")
                                     .foregroundColor(Color.theme.blackWhiteText)
                                     .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                                     .padding(.leading, 15)
@@ -179,7 +180,7 @@ struct ProfileView: View {
                                 Color.theme.grayWhite
                                     .frame(height: 50)
                                 HStack {
-                                    Text("Служба поддержки")
+                                    Text("Support service")
                                         .foregroundColor(Color.theme.blackWhiteText)
                                         .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                                         .padding(.leading, 15)
@@ -205,15 +206,15 @@ struct ProfileView: View {
                                         .resizable()
                                         .frame(width: 14, height: 14)
                                         .foregroundColor(Color.theme.blackWhiteText)
-                                    Text("Выход")
+                                    Text("Output")
                                         .font(Font(uiFont: .fontLibrary(14, .uzSansSemiBold)))
                                         .foregroundColor(Color.theme.blackWhiteText)
                                 }
                             }
                             .alert(isPresented: $userViewModel.alert) {
-                                Alert(title: Text("Выйти"),
-                                      message: Text("Вы точно хотите выйти из аккаунта ?"),
-                                      primaryButton: .destructive(Text("Да")) {
+                                Alert(title: Text("Output"),
+                                      message: Text("Are you sure you want to log out of your account?"),
+                                      primaryButton: .destructive(Text("Yes")) {
                                           UserDefaults.standard.set(false, forKey: "status")
                                           NotificationCenter.default.post(name: NSNotification.Name("statusChange"),
                                                                           object: nil)
@@ -245,15 +246,15 @@ struct ProfileView: View {
                                         .resizable()
                                         .frame(width: 14, height: 14)
                                         .foregroundColor(Color.red)
-                                    Text("Удалить аккаунт")
+                                    Text("Delete account")
                                         .font(Font(uiFont: .fontLibrary(14, .uzSansSemiBold)))
                                         .foregroundColor(Color.red)
                                 }
                             }
                             .alert(isPresented: $userViewModel.alertDeleted) {
-                                Alert(title: Text("Удалить аккаунт"),
-                                      message: Text("Вы точно хотите удалить свой аккаунт?"),
-                                      primaryButton: .destructive(Text("Да")) {
+                                Alert(title: Text("Delete account"),
+                                      message: Text("Are you sure you want to delete your account?"),
+                                      primaryButton: .destructive(Text("Yes")) {
 
                                           user?.delete { error in
                                               if error != nil {
@@ -294,7 +295,7 @@ struct ProfileView: View {
 //                            LoginView(signUP: LogIn(), fruitViewModel: fruitViewModel)
 
                         } label: {
-                            Text("Войти или Зарегистрироваться")
+                            Text("Enter or register")
                                 .foregroundColor(.white)
                                 .frame(width: UIScreen.main.bounds.width - 30, height: 50)
                                 .background(Color.orange)

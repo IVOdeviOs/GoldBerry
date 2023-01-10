@@ -25,7 +25,7 @@ struct ServiceInfoView: View {
             lang = "Russian"
         }
         if adminViewModel.language == "ru" {
-            lang = "English"
+            lang = "Английский"
         }
         return lang
     }
@@ -170,7 +170,7 @@ struct ServiceInfoView: View {
                     
                 } label: {
                     HStack{
-                        Text("Change language ")
+                        Text("Change language")
                         Text("\(language())")
                             .foregroundColor(.red)
                     }

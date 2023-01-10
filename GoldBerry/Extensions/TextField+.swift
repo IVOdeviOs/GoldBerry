@@ -3,7 +3,7 @@ import SwiftUI
 struct TextFieldView: View {
 
     var text: Binding<String>
-    var placeholder = ""
+    var placeholder:LocalizedStringKey = ""
     var infoText: String
     var body: some View {
         VStack {
