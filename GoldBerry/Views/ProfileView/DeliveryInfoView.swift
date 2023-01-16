@@ -57,7 +57,6 @@ struct DeliveryInfoView: View {
                     VStack {
                         Image(systemName: "phone.circle")
                             .resizable()
-    
                             .frame(width: 80, height: 80)
                             .foregroundColor(.red)
                             .padding(.leading, -80)

@@ -19,6 +19,7 @@ struct ServiceInfoView: View {
         }
         return false
     }
+   
     func language() -> String {
         var lang = ""
         if adminViewModel.language == "en" {
@@ -160,6 +161,7 @@ struct ServiceInfoView: View {
                     }
                 }
                 Button {
+                 
                     if adminViewModel.language == "ru"{
                         adminViewModel.language = "en"
                         UserDefaults.standard.set("en", forKey: "language")
