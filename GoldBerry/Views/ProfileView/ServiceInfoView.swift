@@ -19,7 +19,7 @@ struct ServiceInfoView: View {
         }
         return false
     }
-   
+
     func language() -> String {
         var lang = ""
         if adminViewModel.language == "en" {
@@ -30,19 +30,20 @@ struct ServiceInfoView: View {
         }
         return lang
     }
+
     var body: some View {
         VStack {
             Text("About the service")
                 .foregroundColor(Color.theme.blackWhiteText)
                 .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
                 .padding()
-                .offset(y: -100)
+//                .offset(y: -75)
             ZStack {
                 Color.theme.grayWhite
                     .opacity(0.2)
                     .frame(height: 200)
                 VStack {
-                    HStack{
+                    HStack {
                         Text("Version")
                             .foregroundColor(Color.theme.blackWhiteText)
                             .opacity(0.5)
@@ -161,24 +162,22 @@ struct ServiceInfoView: View {
                     }
                 }
                 Button {
-                 
-                    if adminViewModel.language == "ru"{
+
+                    if adminViewModel.language == "ru" {
                         adminViewModel.language = "en"
                         UserDefaults.standard.set("en", forKey: "language")
-                    } else if adminViewModel.language == "en"{
+                    } else if adminViewModel.language == "en" {
                         adminViewModel.language = "ru"
                         UserDefaults.standard.set("ru", forKey: "language")
                     }
-                    
+
                 } label: {
-                    HStack{
+                    HStack {
                         Text("Change language")
                         Text("\(language())")
                             .foregroundColor(.red)
                     }
-                    
                 }
-
             }
             .offset(y: -15)
             .listStyle(.plain)
@@ -207,6 +206,10 @@ struct ServiceInfoView: View {
                 }
         )
         .onAppear {
+            if adminViewModel.language == nil {
+                UserDefaults.standard.set("ru", forKey: "language")
+                adminViewModel.language = "ru"
+            }
             Task {
                 do {
                     try await adminViewModel.fetchUserLogin()

@@ -15,6 +15,7 @@ struct GoldBerryApp: App {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environment(\.locale, .init(identifier: adminViewModel.language ?? "ru"))
+              
         }
     }
 }
