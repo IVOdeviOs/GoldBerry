@@ -12,10 +12,9 @@ struct GoldBerryApp: App {
     @ObservedObject var adminViewModel = AdminViewModel()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(adminViewModel: adminViewModel)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .environment(\.locale, .init(identifier: adminViewModel.language ?? "ru"))
-              
+                .environment(\.locale, .init(identifier: adminViewModel.language ))
         }
     }
 }

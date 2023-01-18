@@ -5,7 +5,7 @@ struct ContentView: View {
     @StateObject var fruitViewModel = FruitViewModel()
     @StateObject var orderViewModel = OrderViewModel()
     @StateObject var userViewModel = UserViewModel()
-    @StateObject var adminViewModel = AdminViewModel()
+    @StateObject var adminViewModel: AdminViewModel
     @State var tog = false
     @State var tog1 = false
 //    @State var status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
@@ -31,7 +31,12 @@ struct ContentView: View {
 //                        ProductView()
 //                    }else{
                         ViewProfile(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel, userViewModel: userViewModel,adminViewModel: adminViewModel)
-                        .environment(\.locale, .init(identifier: adminViewModel.language ?? "ru"))
+                        .environment(\.locale, .init(identifier: adminViewModel.language))
+//                        .onAppear{
+//                            let variable = Locale.current.identifier
+//                            print("\(variable)")
+//                            
+//                        }
 //                    }
                 }
             

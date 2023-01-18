@@ -22,10 +22,10 @@ struct ServiceInfoView: View {
 
     func language() -> String {
         var lang = ""
-        if adminViewModel.language == "en" {
+        if adminViewModel.language == "en_US" {
             lang = "Russian"
         }
-        if adminViewModel.language == "ru" {
+        if adminViewModel.language == "ru_US" {
             lang = "Английский"
         }
         return lang
@@ -163,12 +163,12 @@ struct ServiceInfoView: View {
                 }
                 Button {
 
-                    if adminViewModel.language == "ru" {
-                        adminViewModel.language = "en"
-                        UserDefaults.standard.set("en", forKey: "language")
-                    } else if adminViewModel.language == "en" {
-                        adminViewModel.language = "ru"
-                        UserDefaults.standard.set("ru", forKey: "language")
+                    if adminViewModel.language == "ru_US" {
+                        adminViewModel.language = "en_US"
+                        UserDefaults.standard.set("en_US", forKey: "language")
+                    } else if adminViewModel.language == "en_US" {
+                        adminViewModel.language = "ru_US"
+                        UserDefaults.standard.set("ru_US", forKey: "language")
                     }
 
                 } label: {
@@ -206,10 +206,11 @@ struct ServiceInfoView: View {
                 }
         )
         .onAppear {
-            if adminViewModel.language == nil {
-                UserDefaults.standard.set("ru", forKey: "language")
-                adminViewModel.language = "ru"
-            }
+//            if adminViewModel.language == nil {
+//            
+//                UserDefaults.standard.set("ru_US", forKey: "language")
+//                adminViewModel.language = "ru_US"
+//            }
             Task {
                 do {
                     try await adminViewModel.fetchUserLogin()

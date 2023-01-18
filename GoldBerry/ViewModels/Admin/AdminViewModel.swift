@@ -6,7 +6,7 @@ import SwiftUI
 class AdminViewModel: ObservableObject {
     @Published var order = [Order]()
     @Published var userLogin = [LoginUser]()
-    @Published var language = UserDefaults.standard.string(forKey: "language")
+    @Published var language = UserDefaults.standard.string(forKey: "language") ?? Locale.current.identifier
     @Published var showAddFruit = false
     @Published var showUpdate = false
     @Published var deleteFruit = false
