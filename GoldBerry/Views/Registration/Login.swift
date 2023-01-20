@@ -16,7 +16,7 @@ struct Login: View {
             VStack {
                 HStack {
                     VStack(spacing: 10) {
-                        Text("Вход")
+                        Text("Log In")
                             .foregroundColor(index == 0 ? Color.theme.background : .gray)
                             .font(Font(uiFont: .fontLibrary(22, .uzSansBold)))
                         Capsule()
@@ -54,11 +54,11 @@ struct Login: View {
                                 .foregroundColor(Color.theme.background)
                         }
                         if login.secure {
-                            SecureField("Пароль", text: $login.password)
+                            SecureField("Password", text: $login.password)
                                 .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                                 .foregroundColor(Color.theme.background)
                         } else {
-                            TextField("Пароль", text: $login.password)
+                            TextField("Password", text: $login.password)
                                 .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                                 .foregroundColor(Color.theme.background)
                         }
@@ -75,7 +75,7 @@ struct Login: View {
                     Button {
                         self.showForGetPassword.toggle()
                     } label: {
-                        Text("Забыли пароль?")
+                        Text("Forget password?")
                             .foregroundColor(Color.theme.background)
                             .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                     }
@@ -116,7 +116,7 @@ struct Login: View {
                     }
                 }
             } label: {
-                Text("Войти")
+                Text("Log In")
                     .foregroundColor(Color.theme.background)
                     .font(Font(uiFont: .fontLibrary(18, .uzSansSemiBold)))
                     .padding(.vertical)
@@ -131,7 +131,7 @@ struct Login: View {
                             y: 5)
             }
             .alert(isPresented: $login.alert) {
-                Alert(title: Text("Ошибка"), message: Text("Неверно указан адрес электронной почты или пароль,либо пользователь не зарегистрирован!"), dismissButton: .default(Text("Ok")))
+                Alert(title: Text("Error"), message: Text("The email address or password is incorrect, or the user is already registered!"), dismissButton: .default(Text("Ok")))
             }
             .offset(y: 30)
             .opacity(index == 0 ? 1 : 0)

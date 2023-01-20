@@ -17,7 +17,7 @@ struct SignUP: View {
                 HStack {
                     Spacer(minLength: 0)
                     VStack(spacing: 10) {
-                        Text("Регистрация")
+                        Text("Registration")
                             .foregroundColor(index == 1 ? Color.theme.background : Color.theme.gray)
                             .font(Font(uiFont: .fontLibrary(22, .uzSansBold)))
                         Capsule()
@@ -54,12 +54,12 @@ struct SignUP: View {
                                 .foregroundColor(Color.theme.background)
                         }
                         if signUP.secure {
-                            SecureField("Минимум 6 символов", text: $signUP.password)
+                            SecureField("6 characters min", text: $signUP.password)
                                 .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                                 .foregroundColor(Color.theme.background)
 
                         } else {
-                            TextField("Минимум 6 символов", text: $signUP.password)
+                            TextField("6 characters min", text: $signUP.password)
                                 .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                                 .foregroundColor(Color.theme.background)
                         }
@@ -78,11 +78,11 @@ struct SignUP: View {
                                 .foregroundColor(Color.theme.background)
                         }
                         if signUP.secureConfirm {
-                            SecureField("Повторите ваш пароль", text: $signUP.confirmationPassword)
+                            SecureField("Repeat password", text: $signUP.confirmationPassword)
                                 .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                                 .foregroundColor(Color.theme.background)
                         } else {
-                            TextField("Повторите ваш пароль", text: $signUP.confirmationPassword)
+                            TextField("Repeat password", text: $signUP.confirmationPassword)
                                 .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                                 .foregroundColor(Color.theme.background)
                         }
@@ -94,7 +94,7 @@ struct SignUP: View {
                 .padding(.top, 30)
 
                 HStack {
-                    Text(" Я согласен на использование \nи обработку моих персональных данных")
+                    Text(" I agree to the use and processing \nof my personal data")
                         .foregroundColor(Color.theme.background)
                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
 
@@ -154,7 +154,7 @@ struct SignUP: View {
 
             } label: {
 
-                Text("Зарегистрироваться")
+                Text("Sign Up")
                     .foregroundColor(Color.theme.background)
                     .font(Font(uiFont: .fontLibrary(18, .uzSansSemiBold)))
                     .padding(.vertical)
@@ -170,7 +170,7 @@ struct SignUP: View {
             }
             .disabled(!signUP.isValid)
             .alert(isPresented: $signUP.alert) {
-                Alert(title: Text("Ошибка"), message: Text("Неверно указан адрес электронной почты или пароль,либо пользователь уже зарегистрирован!"), dismissButton: .default(Text("Ok")))
+                Alert(title: Text("Error"), message: Text("The email address or password is incorrect, or the user is already registered!"), dismissButton: .default(Text("Ok")))
             }
             .offset(y: 25)
             .opacity(index == 1 ? 1 : 0)

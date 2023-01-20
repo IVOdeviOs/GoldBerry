@@ -25,7 +25,7 @@ struct ProductsView: View {
                             ZStack {
                                 VStack {
                                     HStack {
-                                        Text("Для добавления товара в избранное необходимо Войти или Зарегистрироваться")
+                                        Text("To add a product to favorites, you need to Log in or Register")
                                             .font(Font(uiFont: UIFont.fontLibrary(16, .uzSansRegular)))
                                             .foregroundColor(Color.theme.background)
                                             .frame(width: 300)
@@ -46,7 +46,7 @@ struct ProductsView: View {
 //                                        LoginView(signUP: LogIn())
 
                                     } label: {
-                                        Text("Войти или Зарегистрироваться")
+                                        Text("Login or Register")
                                             .foregroundColor(.blue)
                                             .font(Font(uiFont: UIFont.fontLibrary(16, .uzSansRegular)))
                                             .frame(width: UIScreen.main.bounds.width - 60, height: 30)

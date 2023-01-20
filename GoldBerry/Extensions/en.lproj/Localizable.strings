@@ -104,6 +104,23 @@
 "New York" = "New York";
 "Privacy Policy" = "Privacy Policy";
 "Disclaimer of liability" = "Disclaimer of liability";
+"Login or Register" = "Login or Register";
+"To add a product to favorites, you need to Log in or Register" = "To add a product to favorites, you need to Log in or Register";
+"Fruit delivery" = "Fruit delivery";
+"Registration" = "Registration";
+"6 characters min" = "6 characters min";
+"Repeat password" = "Repeat password";
+" I agree to the use and processing \nof my personal data" = " I agree to the use and processing \nof my personal data";
+"Sign Up" = "Sign Up";
+"Error" = "Error";
+"The email address or password is incorrect, or the user is already registered!" = "The email address or password is incorrect, or the user is already registered!";
+"Log In" = "Log In";
+"Password" = "Password";
+"Forget password?" = "Forget password?";
+"Enter your e-mail" = "Enter your e-mail";
+"Recover Password" = "Recover Password";
+"The message was sent to your email address, it may also be in the spam" = "The message was sent to your email address, it may also be in the spam";
+"Password Recovery" = "Password Recovery";
 
 //Admin
 

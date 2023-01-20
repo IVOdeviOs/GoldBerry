@@ -107,6 +107,23 @@
 "Privacy Policy" = "Политика конфиденциальности\nперсональных данных";
 "Disclaimer of liability" = "Отказ от ответственности";
 "Total" = "Итого";
+"Log in or Register" = "Войти или Зарегистрироваться";
+"To add a product to favorites, you need to Log in or Register" = "Для добавления товара в избранное необходимо Войти или Зарегистрироваться";
+"Fruit delivery" = "Доставка фруктов по Минску";
+"Registration" = "Регистрация";
+"6 characters min" = "Минимум 6 символов";
+"Repeat password" = "Повторите пароль";
+" I agree to the use and processing \nof my personal data" = " Я согласен на использование \nи обработку моих персональных данных";
+"Sign Up" = "Зарегистрироваться";
+"Error" = "Ошибка";
+"The email address or password is incorrect, or the user is already registered!" = "Неверно указан адрес электронной почты или пароль,либо пользователь уже зарегистрирован!";
+"Log In" = "Вход";
+"Password" = "Пароль";
+"Forget password?" = "Забыли пароль?";
+"Enter your e-mail" = "Введите e-mail адрес";
+"Recover Password" = "Восстановить пароль";
+"The message was sent to your email address, it may also be in the spam" = "Письмо отправлено на указанную почту,оно также может находиться в папке спам";
+"Password Recovery" = "Восстановление пароля";
 
 //Admin
 

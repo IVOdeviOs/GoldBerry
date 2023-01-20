@@ -6,7 +6,7 @@ struct ForGetPasswordView: View {
     var body: some View {
         VStack {
             VStack {
-                Text("Введите e-mail адрес")
+                Text("Enter your e-mail")
                     .font(Font(uiFont: .fontLibrary(24, .uzSansBold)))
                     .foregroundColor(Color.theme.blackWhiteText)
                     .padding()
@@ -19,7 +19,7 @@ struct ForGetPasswordView: View {
                     self.show.toggle()
                 } label: {
 
-                    Text("Восстановить пароль")
+                    Text("Recover Password")
                         .foregroundColor(.white)
                         .frame(width: UIScreen.main.bounds.width - 60, height: 50)
                         .background(Color.theme.lightGreen)
@@ -40,8 +40,8 @@ struct ForGetPasswordView: View {
             }
 
         }, message: {
-            Text("Письмо отправлено на указанную почту,оно так же может находиться в папке спам ")
+            Text("The message was sent to your email address, it may also be in the spam")
         })
-        .navigationTitle("Восстановление пароля")
+        .navigationTitle("Password Recovery")
     }
 }

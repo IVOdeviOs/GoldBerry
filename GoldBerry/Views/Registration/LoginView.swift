@@ -32,7 +32,7 @@ struct LoginView: View {
                             .padding()
                         Spacer()
                     }
-                    Text("Доставка фруктов по Минску")
+                    Text("Fruit delivery")
                         .offset(y: -20)
                         .multilineTextAlignment(.center)
                         .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
