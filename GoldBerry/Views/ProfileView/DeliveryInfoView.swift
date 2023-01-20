@@ -19,7 +19,7 @@ struct DeliveryInfoView: View {
                 Text("Payment and delivery")
                     .font(Font(uiFont: .fontLibrary(25, .uzSansBold)))
                     .foregroundColor(Color.theme.blackWhiteText)
-                Image(systemName: "rublesign.circle.fill")
+                Image(systemName: "dollarsign.circle.fill")
                     .resizable()
                     .frame(width: 60, height: 60)
                     .foregroundColor(Color.theme.lightGreen)

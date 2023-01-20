@@ -45,7 +45,7 @@ struct WithoutPurchase: View {
                     Button {
                         fruitViewModel.selected = 0
                     } label: {
-                        Text("Go to the product selection")
+                        Text("Go to product selection")
                             .frame(width: 300, height: 50)
                             .foregroundColor(.white)
                             .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))

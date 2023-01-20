@@ -19,7 +19,7 @@
 "Administrator login" = "Administrator login";
 "First Name Last Name" = "Name and Surname";
 "Order archive" = "Order archive";
-"Store addresses" = "Store addresses";
+"Store addresses" = "Shop addresses";
 "Featured Products" = "Favorite Products";
 "Support service" = "Support";
 "Output" = "Logout";
@@ -33,25 +33,24 @@
 "Save" = "Save";
 "Phone" = "Phone";
 "My details" = "My details";
-"No featured products" = "No featured products";
+"No featured products" = "No favorite products";
 "Add products so you don't miss anything important" = "Add products so you don't miss anything important";
 "Go to product selection" = "Go to the product selection";
-"The address:" = "The address:";
+"The address:" = "Address:";
 "Delivery:" = "Delivery:";
-"Working mode:" = "Working mode:";
-"Delivery mode:" = "Delivery mode:";
+"Working mode:" = "Working time:";
+"Delivery mode:" = "Delivery time:";
 "Go to ordering goods" = "Go to ordering goods";
-"Our outlets" = "Our outlets";
+"Our outlets" = "Our shops";
 "Add to cart" = "Add to cart";
-
-"Support service" = "Support service";
+"Support service" = "Support";
 "Contact number" = "Contact number";
 "Payment and delivery" = "Payment and delivery";
 "Cash payment" = "Cash payment";
 "You can pay for the goods to the courier upon receipt" = "You can pay for the goods to the courier upon receipt";
 "Place an order" = "Place an order";
 "in the application" = "in the application";
-"The courier will contact you\nto clarify the\ndelivery time" = "The courier will contact you\nto clarify the\ndelivery time";
+"The courier will contact you\nto clarify the\ndelivery time" = "The courier will contact you\nto agree on the\ndelivery time";
 "Pay for the order\n upon receipt" = "Pay for the order\n upon receipt";
 "Surname" = "Surname";
 "Name" = "Name";
@@ -99,4 +98,34 @@
 "Delivery" = "Delivery";
 "Delivery date:" = "Delivery date:";
 "Recipient" = "Recipient";
+"Shop #1, place #1" = "Shop #1, place #1";
+"Washington" = "Washington";
+"Shop #2, place #2" = "Комаровский рынок, место 181";
+"New York" = "New York";
+"Privacy Policy" = "Privacy Policy";
+"Disclaimer of liability" = "Disclaimer of liability";
 
+//Admin
+
+"Login for administrator" = "Login for administrator";
+"Login as administrator" = "Login as administrator";
+"In development, we will do it soon!!" = "In development, we will do it soon!!";
+"The product is hidden" = "This product is hidden";
+"Edit" = "Edit";
+"Product name (up to 20 characters) " = "Наименование (до 20 символов) ";
+"Description" = "Description";
+"Description (up to 100 characters)" = "Description (up to 100 characters)";
+"Price, $ " = "Price, $ ";
+"Discount" = "Discount";
+"Unit" = "Unit";
+"lbs" = "lbs";
+"pcs" = "pcs";
+"Category" = "Category";
+"Show" = "Show";
+"Hide" = "Hide";
+"Performed" = "Performed";
+"Completed" = "Completed";
+"Phone number" = "Phone number";
+"Done" = "Done";
+"Recipient:" = "Recipient:";
+"Phone number:" = "Phone number:";

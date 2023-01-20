@@ -8,8 +8,8 @@ struct OrderAdminView: View {
         VStack {
             HStack {
                 Picker("", selection: $orderCompleted) {
-                    Text("На рассмотрение").tag(false)
-                    Text("Выполнены").tag(true)
+                    Text("Performed").tag(false)
+                    Text("Completed").tag(true)
                 }
                 .pickerStyle(.segmented)
             }

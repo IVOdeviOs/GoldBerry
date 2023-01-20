@@ -62,7 +62,7 @@ struct ProductView: View {
                                     Image(systemName: "house")
                                         .resizable()
                                         .frame(width: 23, height: 20)
-                                    Text("Главная")
+                                    Text("Home")
                                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                                 }
                             }.foregroundColor(adminViewModel.selected == 0 ? Color.theme.lightGreen : Color.theme.gray)
@@ -76,7 +76,7 @@ struct ProductView: View {
                                     Image(systemName: adminViewModel.selected == 2 ? "bag.fill" : "bag")
                                         .resizable()
                                         .frame(width: 23, height: 20)
-                                    Text("Заказы")
+                                    Text("Order")
                                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                                 }
 

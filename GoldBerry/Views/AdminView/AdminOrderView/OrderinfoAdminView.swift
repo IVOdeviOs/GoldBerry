@@ -32,15 +32,21 @@ struct OrderInfoAdminView: View {
 
         VStack {
             VStack {
-                Text("Заказ № \(order.orderNumber)")
+                HStack {
+                Text("Order №")
                     .font(Font(uiFont: .fontLibrary(24, .uzSansBold)))
                     .foregroundColor(Color.theme.blackWhiteText)
                     .padding()
+                    Text("\(order.orderNumber)")
+                        .font(Font(uiFont: .fontLibrary(24, .uzSansBold)))
+                        .foregroundColor(Color.theme.blackWhiteText)
+                        .padding()
+            }
 //                Color.theme.gray
 //                    .opacity(0.3)
 //                    .frame(height: 10)
                 HStack {
-                    Text("\(NSString(format: "%.2f", order.price)) p.")
+                    Text("$\(NSString(format: "%.2f", order.price))")
                         .font(Font(uiFont: .fontLibrary(16, .uzSansBold)))
                         .foregroundColor(.white)
                         .frame(width: 130, height: 30)
@@ -86,7 +92,7 @@ struct OrderInfoAdminView: View {
                                     .foregroundColor(Color.theme.blackWhiteText)
                                     .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                                     .frame(width: UIScreen.main.bounds.width / 4, height: 20)
-                                Text("\(NSString(format: "%.2f", order.fruits[row].itog)) p.")
+                                Text("$\(NSString(format: "%.2f", order.fruits[row].itog))")
                                     .foregroundColor(Color.theme.blackWhiteText)
                                     .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                                     .frame(width: UIScreen.main.bounds.width / 6, height: 20)
@@ -94,7 +100,7 @@ struct OrderInfoAdminView: View {
                                     .foregroundColor(Color.theme.blackWhiteText)
                                     .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                                     .frame(width: UIScreen.main.bounds.width / 6, height: 20)
-                                Text("\(NSString(format: "%.2f", order.fruits[row].itog * Double(order.fruits[row].count))) p.")
+                                Text("$\(NSString(format: "%.2f", order.fruits[row].itog * Double(order.fruits[row].count)))")
                                     .foregroundColor(Color.theme.blackWhiteText)
                                     .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                                     .frame(width: UIScreen.main.bounds.width / 6, height: 20)
@@ -113,7 +119,7 @@ struct OrderInfoAdminView: View {
                         .foregroundColor(Color.theme.blackWhiteText)
                         .padding(.leading, 10)
                         .padding(.bottom, 10)
-                    Text("Доставка")
+                    Text("Delivery")
                         .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
                         .foregroundColor(Color.theme.blackWhiteText)
                         .padding(.leading, 10)
@@ -139,7 +145,7 @@ struct OrderInfoAdminView: View {
                             } catch {}
                         }
                     } label: {
-                        Text("Отметить как выполненный")
+                        Text("Done")
                             .foregroundColor(.white)
                             .font(.system(size: 16, weight: .light, design: .serif))
                     }
@@ -182,19 +188,19 @@ struct Info: View {
     var body: some View {
         HStack {
             Spacer()
-            Text("Наименование")
+            Text("Product name")
                 .foregroundColor(Color.theme.blackWhiteText)
                 .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                 .frame(width: UIScreen.main.bounds.width / 3, height: 20)
-            Text("Цена/ед.")
+            Text("Price")
                 .foregroundColor(Color.theme.blackWhiteText)
                 .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                 .frame(width: UIScreen.main.bounds.width / 6, height: 20)
-            Text("Кол-во")
+            Text("Count")
                 .foregroundColor(Color.theme.blackWhiteText)
                 .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                 .frame(width: UIScreen.main.bounds.width / 6, height: 20)
-            Text("Итого")
+            Text("Total")
                 .foregroundColor(Color.theme.blackWhiteText)
                 .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                 .frame(width: UIScreen.main.bounds.width / 6, height: 20)
@@ -216,7 +222,7 @@ struct UserInfo: View {
                     .frame(width: 25, height: 25)
                     .padding(.leading, 10)
                     .padding(.bottom, 10)
-                Text("Получатель")
+                Text("Recipient")
                     .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
                     .foregroundColor(Color.theme.blackWhiteText)
                     .padding(.leading, 10)

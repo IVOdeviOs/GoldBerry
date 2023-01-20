@@ -100,4 +100,35 @@
 "Delivery" = "Доставка";
 "Delivery date:" = "Дата доставки:";
 "Recipient" = "Получатель";
+"Shop #1, place #1" = "Комаровский рынок, место 181";
+"Shop #2, place #2" = "Рынок Валерианово, место 14";
+"Washington" = "г. Минск, ул. В. Хоружей, 8";
+"New York" = "г. Минск, ул. Логойская, 5а";
+"Privacy Policy" = "Политика конфиденциальности\nперсональных данных";
+"Disclaimer of liability" = "Отказ от ответственности";
+"Total" = "Итого";
 
+//Admin
+
+"Login for administrator" = "Вход для администраторов";
+"Login as administrator" = "Войти как администратор";
+"In development, we will do it soon!!" = "В разработке, мы это скоро сделаем!!";
+"The product is hidden" = "Товар скрыт";
+"Edit" = "Редактировать";
+"Product name (up to 20 characters) " = "Наименование (до 20 символов) ";
+"Description" = "Описание товара";
+"Description (up to 100 characters)" = "Описание товара (до 100 символов)";
+"Price, $ " = "Стоимость, руб ";
+"Discount" = "Скидка";
+"Unit" = "Единица измерения";
+"lbs" = "кг";
+"pcs" = "шт";
+"Category" = "Категория";
+"Show" = "Показать";
+"Hide" = "Скрыть";
+"Performed" = "На рассмотрении";
+"Completed" = "Выполнены";
+"Phone number" = "Номер телефона";
+"Done" = "Отметить как выполненный";
+"Recipient:" = "Получатель:";
+"Phone number:" = "Номер телефона:";

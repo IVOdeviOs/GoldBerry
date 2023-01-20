@@ -2,7 +2,7 @@ import SwiftUI
 
 struct NotificationView: View {
     var body: some View {
-        Text("В разработке, мы это скоро сделаем!!")
+        Text("In development, we will do it soon!!")
             .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
             .foregroundColor(Color.theme.blackWhiteText)
             .padding(.bottom, 10)

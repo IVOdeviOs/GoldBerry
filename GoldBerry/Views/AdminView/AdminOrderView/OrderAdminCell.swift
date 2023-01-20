@@ -20,14 +20,19 @@ struct OrderAdminCell: View {
                         .padding(.leading, 10)
                         .padding(.top, 10)
                         .padding(.bottom, 1)
-                    Text("Заказ № \(numberOrder)")
-                        .font(Font(uiFont: .fontLibrary(18, .uzSansBold)))
-                        .foregroundColor(Color.theme.blackWhiteText)
-                        .padding(.leading, 10)
+                    HStack {
+                        Text("Order №")
+                            .font(Font(uiFont: .fontLibrary(18, .uzSansBold)))
+                            .foregroundColor(Color.theme.blackWhiteText)
+                            .padding(.leading, 10)
+                        Text("\(numberOrder)")
+                            .font(Font(uiFont: .fontLibrary(18, .uzSansBold)))
+                            .foregroundColor(Color.theme.blackWhiteText)
+                    }
                 }
                 Spacer()
                 VStack {
-                    Text("\(NSString(format: "%.2f", price)) p.")
+                    Text("$\(NSString(format: "%.2f", price))")
                         .frame(width: 120, height: 22)
                         .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
                         .minimumScaleFactor(0.5)
@@ -44,7 +49,7 @@ struct OrderAdminCell: View {
             HStack {
                 VStack(alignment: .leading, spacing: 10) {
                     HStack {
-                        Text("Доставка:")
+                        Text("Delivery:")
                             .font(Font(uiFont: .fontLibrary(16, .uzSansBold)))
                             .foregroundColor(Color.theme.blackWhiteText)
                             .padding(.bottom, 10)
@@ -58,7 +63,7 @@ struct OrderAdminCell: View {
                         Spacer()
                     }
                     HStack {
-                        Text("Дата доставки:")
+                        Text("Delivery date:")
                             .font(Font(uiFont: .fontLibrary(16, .uzSansBold)))
                             .foregroundColor(Color.theme.blackWhiteText)
                             .padding(.bottom, 10)
@@ -71,7 +76,7 @@ struct OrderAdminCell: View {
                         Spacer()
                     }
                     HStack {
-                        Text("Получатель:")
+                        Text("Recipient:")
                             .font(Font(uiFont: .fontLibrary(16, .uzSansBold)))
                             .foregroundColor(Color.theme.blackWhiteText)
                             .padding(.bottom, 10)
@@ -84,7 +89,7 @@ struct OrderAdminCell: View {
                         Spacer()
                     }
                     HStack {
-                        Text("Номер телефона:")
+                        Text("Phone number:")
                             .font(Font(uiFont: .fontLibrary(16, .uzSansBold)))
                             .foregroundColor(Color.theme.blackWhiteText)
                             .padding(.bottom, 10)

@@ -14,8 +14,8 @@ struct ShopsView: View {
             Color.theme.gray
                 .opacity(0.3)
                 .frame(height: 10)
-            ShopsInfo(fruitViewModel: fruitViewModel, shopName: "Комаровский рынок, место 181", shopAddress: "г. Минск, ул. В. Хоружей, 8", workTime: "с 08:00 до 20:00")
-            ShopsInfo(fruitViewModel: fruitViewModel, shopName: "Рынок Валерианово, место 14", shopAddress: "г. Минск, ул. Логойская, 5а", workTime: "с 08:00 до 21:00")
+            ShopsInfo(fruitViewModel: fruitViewModel, shopName: "Shop #1, place #1", shopAddress: "Washington", workTime: "08:00-20:00")
+            ShopsInfo(fruitViewModel: fruitViewModel, shopName: "Shop #2, place #2", shopAddress: "New York", workTime: "08:00-21:00")
             Spacer()
         }
     }
@@ -58,7 +58,7 @@ struct ShopsInfo: View {
                     .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                     .padding(.leading, 10)
                     .padding(.bottom, 5)
-                Text("0р")
+                Text("$0")
                     .foregroundColor(Color.theme.blackWhiteText)
                     .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                     .padding(.bottom, 5)

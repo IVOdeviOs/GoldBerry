@@ -93,18 +93,18 @@ struct FavoriteProductCell: View {
             
             HStack {
                 if fruit.itog == fruit.cost {
-                    Text("\(fruit.cost, specifier: "%.2f") руб")
+                    Text("$\(fruit.cost, specifier: "%.2f")")
                         .font(.system(size: 14, weight: .bold, design: .serif))
                         .multilineTextAlignment(.leading)
                         .foregroundColor(Color.theme.blackWhiteText)
                     Spacer()
                 } else {
-                    Text("\(fruit.itog, specifier: "%.2f") руб")
+                    Text("$\(fruit.itog, specifier: "%.2f")")
                         .font(.system(size: 14, weight: .bold, design: .serif))
                         .multilineTextAlignment(.leading)
                         .foregroundColor(.red)
                     ZStack {
-                        Text("\(fruit.cost, specifier: "%.2f") руб")
+                        Text("$\(fruit.cost, specifier: "%.2f")")
                             .font(.system(size: 12, weight: .light, design: .serif))
                             .foregroundColor(Color.theme.blackWhiteText.opacity(0.6))
                             .multilineTextAlignment(.leading)

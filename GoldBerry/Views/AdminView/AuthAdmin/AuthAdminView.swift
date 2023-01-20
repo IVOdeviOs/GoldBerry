@@ -5,16 +5,16 @@ struct AuthAdminView: View {
     @State var show = false
     var body: some View {
         VStack{
-            Text("Вход для администраторов")
+            Text("Login for administrator")
                 .font(Font(uiFont: .fontLibrary(25, .uzSansLight)))
                 .foregroundColor(Color.theme.blackWhiteText)
                 .padding(.top,60)
             Spacer()
-            TextFieldView(text: $adminViewModel.loginAdmin, placeholder: "Email", infoText: "Введите ваш Email")
+            TextFieldView(text: $adminViewModel.loginAdmin, placeholder: "Email", infoText: "Enter email")
                 .disableAutocorrection(true)
                 .autocapitalization(.none)
 
-            TextFieldView(text: $adminViewModel.passwordAdmin, placeholder: "Password", infoText: "Введите ваш пароль")
+            TextFieldView(text: $adminViewModel.passwordAdmin, placeholder: "Password", infoText: "Enter password")
                 .disableAutocorrection(true)
                 .autocapitalization(.none)
             Spacer()
@@ -29,7 +29,7 @@ struct AuthAdminView: View {
                     }
                 }
             } label: {
-                Text("Войти как администратор")
+                Text("Login as administrator")
                     .foregroundColor(.white)
                     .frame(width: UIScreen.main.bounds.width - 30, height: 50)
                     .background(Color.orange)

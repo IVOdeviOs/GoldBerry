@@ -117,7 +117,7 @@ struct AddFruit: View {
                         } else {
                             Image(uiImage: adminViewModel.productImage ?? UIImage(systemName: "tray.and.arrow.down")!)
                                 .resizable()
-                                .frame(width: 150, height: 150)
+                                .frame(width: 180, height: 150)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 20)
                                         .stroke(Color.theme.gray, lineWidth: 2)
@@ -139,7 +139,7 @@ struct AddFruit: View {
                             case .success(let image):
                                 image
                                     .resizable()
-                                    .frame(width: 150, height: 150)
+                                    .frame(width: 180, height: 150)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 20)
                                             .stroke(Color.theme.gray, lineWidth: 2)
@@ -163,7 +163,7 @@ struct AddFruit: View {
                 }
                 .padding(.top, 15)
                 ZStack(alignment: .trailing) {
-                    TextFieldView(text: $productName, placeholder: "Наименование (до 20 символов) ", infoText: "Название продукта")
+                    TextFieldView(text: $productName, placeholder: "Product name (up to 20 characters) ", infoText: "Product name")
                         .disabled(productName.count >= 20)
                     Text("\(countProductName())")
                         .foregroundColor(.red.opacity(0.5))
@@ -171,7 +171,7 @@ struct AddFruit: View {
                 }
 
                 HStack {
-                    Text("Описание товара")
+                    Text("Description")
                         .padding(.leading, 30)
                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                         .opacity(productDescription.isEmpty ? 0.5 : 1)
@@ -196,7 +196,7 @@ struct AddFruit: View {
                         )
                         .padding()
                     if productDescription.isEmpty {
-                        Text("Описание товара (до 100 символов)")
+                        Text("Description (up to 100 characters)")
                             .padding(.top, 10)
                             .foregroundColor(.gray.opacity(0.5))
                             .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
@@ -206,20 +206,20 @@ struct AddFruit: View {
                 }
                 .offset(y: -20)
 
-                TextFieldView(text: $productPrice, placeholder: "Стоймость, руб ", infoText: "Цена")
+                TextFieldView(text: $productPrice, placeholder: "Price, $ ", infoText: "Price")
                     .keyboardType(.decimalPad)
                     .offset(y: -20)
                 HStack {
-                    TextFieldView(text: $productDiscount, placeholder: "Скидка", infoText: "Скидка")
+                    TextFieldView(text: $productDiscount, placeholder: "Discount", infoText: "Discount")
                         .keyboardType(.numbersAndPunctuation)
                         .frame(width: 150)
                     Text("%")
                         .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
                     Spacer()
-                    Picker("Единица измерения", selection: $weightOrPieces) {
-                        Text("кг").tag("кг")
-                        Text("шт").tag("шт")
+                    Picker("Unit", selection: $weightOrPieces) {
+                        Text("lbs").tag("кг")
+                        Text("pcs").tag("шт")
                     }
                     .padding(.horizontal)
                     .pickerStyle(.segmented)
@@ -227,10 +227,10 @@ struct AddFruit: View {
                 }
                 .offset(y: -20)
 
-                Picker("Категория", selection: $productCategories) {
-                    Text("Арбуз и дыни").tag(CategoriesFruit.all.rawValue)
-                    Text("Гранат").tag(CategoriesFruit.granat.rawValue)
-                    Text("Фрукты").tag(CategoriesFruit.fruct.rawValue)
+                Picker("Category", selection: $productCategories) {
+                    Text("Watermelon and melon").tag(CategoriesFruit.all.rawValue)
+                    Text("Garnet").tag(CategoriesFruit.granat.rawValue)
+                    Text("Fruit").tag(CategoriesFruit.fruct.rawValue)
                 }
                 .offset(y: -20)
                 .padding(.horizontal)
@@ -267,7 +267,7 @@ struct AddFruit: View {
                             } catch {}
                         }
                     } label: {
-                        Text(productFavorite ? "Показать" : "Скрыть")
+                        Text(productFavorite ? "Show" : "Hide")
                             .foregroundColor(.white)
                             .font(.system(size: 16, weight: .light, design: .serif))
                     }
