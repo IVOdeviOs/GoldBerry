@@ -137,7 +137,7 @@ struct CartCell: View {
             if fruit.favorite {
 
                 HStack {
-                    Text("Товар отсутствует в данный момент")
+                    Text("There is no product at the moment")
                         .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(16, .uzSansSemiBold)))
 //                        .padding(.leading, 20)
@@ -153,12 +153,12 @@ struct CartCell: View {
 
             } else {
                 HStack {
-                    Text("Итого: ")
+                    Text("Total: ")
                         .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(16, .uzSansSemiBold)))
                         .padding(.leading, 20)
                     Spacer()
-                    Text("\(NSString(format: "%.2f", fruit.price ?? 1)) руб")
+                    Text("$ " + "\(NSString(format: "%.2f", fruit.price ?? 1))")
                         .foregroundColor(Color.theme.lightGreen)
                         .font(Font(uiFont: .fontLibrary(19, .uzSansSemiBold)))
                         .padding(.trailing, 20)

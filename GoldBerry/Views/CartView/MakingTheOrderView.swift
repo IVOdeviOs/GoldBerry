@@ -60,7 +60,7 @@ struct MakingTheOrderView: View {
                     }
                     .padding(.leading, 16)
                     Spacer()
-                    Text("Оформление заказа")
+                    Text("Making an order")
                         .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
                         .offset(x: -16)
@@ -71,7 +71,7 @@ struct MakingTheOrderView: View {
                     .frame(height: 10)
                 ScrollView {
                     HStack {
-                        Text("Бесплатная  доставка \nпо Минску от 50р")
+                        Text("Free shipping")
                             .fixedSize(horizontal: false, vertical: true)
                             .foregroundColor(Color.theme.blackWhiteText)
                             .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
@@ -92,7 +92,7 @@ struct MakingTheOrderView: View {
                         .opacity(0.3)
                         .frame(height: 10)
                     HStack {
-                        Text("Когда доставить")
+                        Text("Delivery date")
                             .foregroundColor(Color.theme.blackWhiteText)
                             .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
                             .padding()
@@ -103,7 +103,7 @@ struct MakingTheOrderView: View {
                             .foregroundColor(Color.theme.lightGreen)
                             .padding()
                     }
-                    DatePickerTextField(placeholder: "Выберите дату доставки", date: $dateOfDelivery)
+                    DatePickerTextField(placeholder: "Select the delivery date", date: $dateOfDelivery)
                         .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
                         .padding(.leading, 20)
@@ -117,7 +117,7 @@ struct MakingTheOrderView: View {
 
                     VStack(spacing: 2) {
                         HStack {
-                            Text("Куда доставить")
+                            Text("Delivery address")
                                 .foregroundColor(Color.theme.blackWhiteText)
                                 .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
                                 .padding()
@@ -128,7 +128,7 @@ struct MakingTheOrderView: View {
                                 .foregroundColor(Color.theme.lightGreen)
                                 .padding()
                         }
-                        TextFieldView(text: $orderViewModel.customer, placeholder: "Имя получателя", infoText: "Введите имя получателя")
+                        TextFieldView(text: $orderViewModel.customer, placeholder: "Имя получателя", infoText: "Enter a name")
                             .disableAutocorrection(true)
                             .onTapGesture {
                                 HideKeyboard()
@@ -139,7 +139,7 @@ struct MakingTheOrderView: View {
                                 .font(Font(uiFont: .fontLibrary(18, .uzSansRegular)))
                                 .padding(.leading, 30)
                                 .padding(.top, 4)
-                            iPhoneNumberField("Телефон получателя", text: $orderViewModel.customerPhone)
+                            iPhoneNumberField("Phone number", text: $orderViewModel.customerPhone)
                                 .maximumDigits(9)
                                 .defaultRegion("BY")
                                 .foregroundColor(Color.theme.blackWhiteText)
@@ -158,12 +158,12 @@ struct MakingTheOrderView: View {
                                 )
                                 .padding()
                         }
-                        TextFieldView(text: $orderViewModel.address, placeholder: "Адрес доставки", infoText: "Введите адрес доставки")
+                        TextFieldView(text: $orderViewModel.address, placeholder: "Delivery address", infoText: "Enter a delivery address")
                             .disableAutocorrection(true)
                             .onTapGesture {
                                 HideKeyboard()
                             }
-                        TextFieldView(text: $orderViewModel.comments, placeholder: "Комментарий", infoText: "Оставьте комментарий к заказу")
+                        TextFieldView(text: $orderViewModel.comments, placeholder: "Comment", infoText: "Make a comment")
                             .onTapGesture {
                                 HideKeyboard()
                             }
@@ -215,7 +215,7 @@ struct MakingTheOrderView: View {
                         }
                      
                     } label: {
-                        Text("Сделать заказ")
+                        Text("Make an order now")
                             .foregroundColor(.white)
                             .frame(width: 300, height: 50)
                             .background(orderViewModel.isValid ? Color.theme.lightGreen : Color.gray)

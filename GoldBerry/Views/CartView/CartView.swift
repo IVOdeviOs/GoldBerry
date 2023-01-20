@@ -33,7 +33,7 @@ struct WithoutPurchase: View {
                         .cornerRadius(20)
                         .padding()
                         .padding(.top, 60)
-                    Text("Cart is empty")
+                    Text("Your cart is empty")
                         .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
                         .foregroundColor(Color.theme.blackWhiteText)
                         .padding(.bottom, 10)
@@ -45,7 +45,7 @@ struct WithoutPurchase: View {
                     Button {
                         fruitViewModel.selected = 0
                     } label: {
-                        Text("Go to product selection")
+                        Text("Go to the product selection")
                             .frame(width: 300, height: 50)
                             .foregroundColor(.white)
                             .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
@@ -101,7 +101,12 @@ struct WithPurchase: View {
                                 .navigationBarBackButtonHidden(true)
                         }
                     } label: {
-                        Text("Оформить заказ \(NSString(format: "%.2f", fruitViewModel.sum())) руб")
+                        HStack {
+                            Spacer()
+                            Text("Make an order for  ")
+                            Text("$ " + " \(NSString(format: "%.2f", fruitViewModel.sum()))")
+                            Spacer()
+                        }
                             .foregroundColor(.white)
                             .frame(width: UIScreen.main.bounds.width - 30, height: 50)
                             .background(Color.theme.lightGreen)

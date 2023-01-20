@@ -20,12 +20,19 @@ struct OrderCell: View {
                         .padding(.leading, 10)
                         .padding(.top, 10)
                         .padding(.bottom, 1)
-                    Text("Заказ № \(number)")
-                        .font(Font(uiFont: .fontLibrary(18, .uzSansBold)))
-                        .foregroundColor(Color.theme.blackWhiteText)
-                        .padding(.leading, 10)
+                    HStack {
+                        Text("Order №")
+                            .font(Font(uiFont: .fontLibrary(18, .uzSansBold)))
+                            .foregroundColor(Color.theme.blackWhiteText)
+                            .padding(.leading, 10)
+                        Text("\(number)")
+                            .font(Font(uiFont: .fontLibrary(18, .uzSansBold)))
+                            .foregroundColor(Color.theme.blackWhiteText)
+                            .padding(.leading, 10)
+                        Spacer()
+                    }
                     if orderCompleted == true {
-                        Text("Заказ выполнен")
+                        Text("Order completed")
                             .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                             .foregroundColor(Color.theme.blackWhiteText)
                             .padding(5)
@@ -34,7 +41,7 @@ struct OrderCell: View {
                             .padding(.leading, 10)
                             .padding(.top, 5)
                     } else {
-                        Text("Заказ выполняется")
+                        Text("Order in progress")
                             .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                             .foregroundColor(Color.theme.blackWhiteText)
                             .padding(5)
@@ -47,7 +54,7 @@ struct OrderCell: View {
                 }
                 Spacer()
                 VStack {
-                    Text("\(NSString(format: "%.2f", price)) p.")
+                    Text("$\(NSString(format: "%.2f", price))")
                         .frame(width: 120, height: 22)
                         .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
                         .minimumScaleFactor(0.5)
@@ -62,19 +69,19 @@ struct OrderCell: View {
                 .frame(height: 3)
             HStack {
                 Spacer()
-                Text("Наименование")
+                Text("Product name")
                     .foregroundColor(Color.theme.blackWhiteText)
                     .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                     .frame(width: UIScreen.main.bounds.width / 4, height: 20)
-                Text("Цена/ед.")
+                Text("Price")
                     .foregroundColor(Color.theme.blackWhiteText)
                     .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                     .frame(width: UIScreen.main.bounds.width / 7, height: 20)
-                Text("Кол-во")
+                Text("Count")
                     .foregroundColor(Color.theme.blackWhiteText)
                     .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                     .frame(width: UIScreen.main.bounds.width / 7, height: 20)
-                Text("Итого")
+                Text("Total")
                     .foregroundColor(Color.theme.blackWhiteText)
                     .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                     .frame(width: UIScreen.main.bounds.width / 7, height: 20)
@@ -111,7 +118,7 @@ struct OrderCell: View {
                             .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                             .frame(width: UIScreen.main.bounds.width / 4, height: 20)
                             .minimumScaleFactor(0.7)
-                        Text("\(NSString(format: "%.2f", purchases[row].itog)) p.")
+                        Text("$\(NSString(format: "%.2f", purchases[row].itog))")
                             .foregroundColor(Color.theme.blackWhiteText)
                             .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                             .frame(width: UIScreen.main.bounds.width / 7, height: 20)
@@ -119,7 +126,7 @@ struct OrderCell: View {
                             .foregroundColor(Color.theme.blackWhiteText)
                             .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                             .frame(width: UIScreen.main.bounds.width / 7, height: 20)
-                        Text("\(NSString(format: "%.2f", purchases[row].itog * Double(purchases[row].count))) p.")
+                        Text("$\(NSString(format: "%.2f", purchases[row].itog * Double(purchases[row].count)))")
                             .foregroundColor(Color.theme.blackWhiteText)
                             .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                             .frame(width: UIScreen.main.bounds.width / 7, height: 20)
@@ -130,7 +137,7 @@ struct OrderCell: View {
             HStack {
                 VStack(alignment: .leading, spacing: 10) {
                     HStack {
-                        Text("Доставка:")
+                        Text("Delivery:")
                             .font(Font(uiFont: .fontLibrary(16, .uzSansBold)))
                             .foregroundColor(Color.theme.blackWhiteText)
                             .padding(.bottom, 10)
@@ -144,7 +151,7 @@ struct OrderCell: View {
                         Spacer()
                     }
                     HStack {
-                        Text("Дата доставки:")
+                        Text("Delivery date:")
                             .font(Font(uiFont: .fontLibrary(16, .uzSansBold)))
                             .foregroundColor(Color.theme.blackWhiteText)
                             .padding(.bottom, 10)

@@ -7,7 +7,7 @@
 "Garnet" = "Гранат";
 "Fruit" = "Фрукты";
 "Go to product selection" = "Перейти к выбору товаров";
-"Cart is empty" = "В корзине пока пусто ";
+"Your cart is empty" = "В корзине пока пусто ";
 "Your cart is waiting to be filled!" = "Ваша корзина ждет, пока ее наполнят!";
 "Change language" = "Сменить язык на ";
 "About the service" = "О сервисе";
@@ -42,7 +42,7 @@
 "Delivery mode:" = "Режим доставки:";
 "Go to ordering goods" = "Перейти к заказу товаров";
 "Our outlets" = "Наши торговые точки";
-
+"Add to cart" = "В корзину";
 
 "Support service" = "Служба поддержки";
 "Contact number" = "Контактный телефон";
@@ -70,3 +70,34 @@
 "Cart" = "Корзина";
 "Order" = "Заказы";
 "Profile" = "Профиль";
+"There is no product at the moment" = "Товар отсутствует в данный момент";
+"Total: " = "Итого: ";
+"$ " = " ";
+"Make an order for  " = "Оформить заказ  ";
+"Making an order" = "Оформление заказа";
+"Delivery date" = "Когда доставить";
+"Free shipping" = "Бесплатная  доставка \nпо Минску от 50р";
+"Delivery address" = "Куда доставить";
+"Select the delivery date" = "Выберите дату доставки";
+"Select" = "Выбрать";
+"Имя получателя" = "Имя получателя";
+"Enter a name" = "Введите имя получателя";
+"Phone number" = "Телефон получателя";
+"Enter a delivery address" = "Введите адрес доставки";
+"Comment" = "Комментарий";
+"Make a comment" = "Оставьте комментарий к заказу";
+"Make an order now" = "Cделать заказ";
+"Thanks for the order!" = "Спасибо за заказ!";
+"The courier will contact you soon" = "Курьер свяжется с Вами в ближайшее время";
+"You have no orders" = "У вас пока нет заказов";
+"Order something fresh in our shop" = "Закажите что-нибудь свеженькое в нашем магазине";
+"Order №" = "Заказ №";
+"Order completed" = "Заказ выполнен";
+"Order in progress" = "Заказ выполняется";
+"Product name" = "Наименование";
+"Price" = "Цена/ед.";
+"Count" = "Кол-во";
+"Delivery" = "Доставка";
+"Delivery date:" = "Дата доставки:";
+"Recipient" = "Получатель";
+

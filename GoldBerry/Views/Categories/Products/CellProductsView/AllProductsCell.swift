@@ -151,7 +151,7 @@ struct AllProductsCell: View {
                     fruitViewModel.countCart += 1
                 } label: {
                     ZStack {
-                        Text("В корзину")
+                        Text("Add to cart")
                             .foregroundColor(.white)
                             .font(.system(size: 12, weight: .light, design: .serif))
                     }

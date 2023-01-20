@@ -37,7 +37,7 @@ struct DatePickerTextField: UIViewRepresentable {
             action: nil
         )
         let doneButton = UIBarButtonItem(
-            title: "Выбрать",
+            title: "Select",
             style: .plain,
             target: helper,
             action: #selector(helper.doneButtonAction)
