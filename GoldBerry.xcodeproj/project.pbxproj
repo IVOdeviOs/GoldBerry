@@ -742,7 +742,7 @@
 				CODE_SIGN_ENTITLEMENTS = GoldBerry/GoldBerry.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"GoldBerry/Preview Content\"";
 				DEVELOPMENT_TEAM = 467ZVP5475;
 				ENABLE_PREVIEWS = YES;
@@ -762,7 +762,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_execute;
-				MARKETING_VERSION = 3.0;
+				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.1101.goldBerry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -783,7 +783,7 @@
 				CODE_SIGN_ENTITLEMENTS = GoldBerry/GoldBerryRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"GoldBerry/Preview Content\"";
 				DEVELOPMENT_TEAM = 467ZVP5475;
 				ENABLE_PREVIEWS = YES;
@@ -803,7 +803,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_execute;
-				MARKETING_VERSION = 3.0;
+				MARKETING_VERSION = 2.1;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.1101.goldBerry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
