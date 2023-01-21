@@ -13,7 +13,6 @@ struct OrderInfoView: View {
                     Text("Order №")
                         .font(Font(uiFont: .fontLibrary(24, .uzSansBold)))
                         .foregroundColor(Color.theme.blackWhiteText)
-                        .padding()
                     Text("\(order.orderNumber)")
                         .font(Font(uiFont: .fontLibrary(24, .uzSansBold)))
                         .foregroundColor(Color.theme.blackWhiteText)
@@ -58,7 +57,7 @@ struct OrderInfoView: View {
                 }
                 ScrollView(.vertical, showsIndicators: false) {
                     ForEach(0 ..< order.fruits.count) { row in
-                        if order.fruits[row].favorite {}else{
+                        if order.fruits[row].favorite {} else {
                             HStack {
                                 AsyncImage(
                                     url: URL(string: order.fruits[row].image),
@@ -79,7 +78,7 @@ struct OrderInfoView: View {
                                         EmptyView()
                                     }
                                 }
-                                
+
                                 .frame(width: 30, height: 20)
                                 .cornerRadius(5)
                                 .padding(.leading, 10)
@@ -92,7 +91,7 @@ struct OrderInfoView: View {
                                     .foregroundColor(Color.theme.blackWhiteText)
                                     .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                                     .frame(width: UIScreen.main.bounds.width / 6, height: 20)
-                                Text("\(NSString(format: "%.1f",  order.fruits[row].count))")
+                                Text("\(NSString(format: "%.1f", order.fruits[row].count))")
                                     .foregroundColor(Color.theme.blackWhiteText)
                                     .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                                     .frame(width: UIScreen.main.bounds.width / 6, height: 20)
@@ -102,7 +101,7 @@ struct OrderInfoView: View {
                                     .frame(width: UIScreen.main.bounds.width / 6, height: 20)
                                     .padding(.trailing, 10)
                             }
-                    }
+                        }
                     }
                 }.frame(height: 200)
                 Color.theme.gray

@@ -24,8 +24,8 @@ struct ShopsView: View {
 struct ShopsInfo: View {
 
     @ObservedObject var fruitViewModel: FruitViewModel
-    @State var shopName: String
-    @State var shopAddress: String
+    @State var shopName: LocalizedStringKey
+    @State var shopAddress: LocalizedStringKey
     @State var workTime: String
 
     var body: some View {
@@ -39,13 +39,13 @@ struct ShopsInfo: View {
                 Spacer()
             }
             HStack {
-                HStack{
+                HStack {
                     Text("The address:")
                         .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                         .padding(.leading, 10)
                         .padding(.bottom, 5)
-                    Text("\(shopAddress)")
+                    Text(shopAddress)
                         .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                         .padding(.bottom, 5)

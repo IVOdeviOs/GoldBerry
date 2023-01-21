@@ -4,29 +4,27 @@ struct AuthAdminView: View {
     @ObservedObject var adminViewModel: AdminViewModel
     @State var show = false
     var body: some View {
-        VStack{
+        VStack {
             Text("Login for administrator")
                 .font(Font(uiFont: .fontLibrary(25, .uzSansLight)))
                 .foregroundColor(Color.theme.blackWhiteText)
-                .padding(.top,60)
+                .padding(.top, 60)
             Spacer()
-            TextFieldView(text: $adminViewModel.loginAdmin, placeholder: "Email", infoText: "Enter email")
+            TextFieldView(text: $adminViewModel.loginAdmin, placeholder: "Email", infoText: "Enter your e-mail")
+                .keyboardType(.emailAddress)
                 .disableAutocorrection(true)
                 .autocapitalization(.none)
 
-            TextFieldView(text: $adminViewModel.passwordAdmin, placeholder: "Password", infoText: "Enter password")
+            TextFieldView(text: $adminViewModel.passwordAdmin, placeholder: "Password", infoText: "Password")
                 .disableAutocorrection(true)
                 .autocapitalization(.none)
             Spacer()
-            
             Button {
-                Task{
-                    do{
+                Task {
+                    do {
                         try await adminViewModel.fetchUser()
                         UserDefaults.standard.set(true, forKey: "statusAdmin")
-                    }catch{
-                        
-                    }
+                    } catch {}
                 }
             } label: {
                 Text("Login as administrator")
@@ -37,6 +35,5 @@ struct AuthAdminView: View {
                     .padding(.bottom, 150)
             }
         }
-        
     }
 }

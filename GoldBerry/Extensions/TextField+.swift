@@ -3,8 +3,8 @@ import SwiftUI
 struct TextFieldView: View {
 
     var text: Binding<String>
-    var placeholder:LocalizedStringKey = ""
-    var infoText: String
+    var placeholder: LocalizedStringKey = ""
+    var infoText: LocalizedStringKey = ""
     var body: some View {
         VStack {
             ZStack(alignment: .leading) {

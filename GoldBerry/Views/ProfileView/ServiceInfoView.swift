@@ -49,7 +49,7 @@ struct ServiceInfoView: View {
                             .opacity(0.5)
                             .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
                             .padding(.bottom, 5)
-                        Text(" 2.0")
+                        Text(" 2.1")
                             .foregroundColor(Color.theme.blackWhiteText)
                             .opacity(0.5)
                             .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
@@ -207,7 +207,7 @@ struct ServiceInfoView: View {
         )
         .onAppear {
 //            if adminViewModel.language == nil {
-//            
+//
 //                UserDefaults.standard.set("ru_US", forKey: "language")
 //                adminViewModel.language = "ru_US"
 //            }
