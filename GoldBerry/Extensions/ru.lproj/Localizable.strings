@@ -56,7 +56,7 @@
 "Pay for the order\n upon receipt" = "Оплачиваете заказ\nпри получении";
 "There is no product at the moment" = "Товар отсутствует в данный момент";
 "Total: " = "Итого: ";
-"$ " = " ";
+"$ " = "руб";
 "Make an order for  " = "Оформить заказ  ";
 "Making an order" = "Оформление заказа";
 "Delivery date" = "Когда доставить";

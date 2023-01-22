@@ -54,14 +54,20 @@ struct OrderCell: View {
                 }
                 Spacer()
                 VStack {
-                    Text("$\(NSString(format: "%.2f", price))")
-                        .frame(width: 120, height: 22)
-                        .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
-                        .minimumScaleFactor(0.5)
-                        .foregroundColor(.white)
-                        .background(Color.theme.lightGreen)
-                        .cornerRadius(5)
-                        .padding()
+                    HStack {
+                        Text("\(NSString(format: "%.2f", price))")
+                            .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
+                            .minimumScaleFactor(0.5)
+                            .foregroundColor(.white)
+                        Text("$ ")
+                            .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
+                            .minimumScaleFactor(0.5)
+                            .foregroundColor(.white)
+                    }
+                    .frame(width: 120, height: 22)
+                    .background(Color.theme.lightGreen)
+                    .cornerRadius(5)
+                    .padding()
                     Spacer()
                 }
             }
@@ -118,19 +124,29 @@ struct OrderCell: View {
                             .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                             .frame(width: UIScreen.main.bounds.width / 4, height: 20)
                             .minimumScaleFactor(0.7)
-                        Text("$\(NSString(format: "%.2f", purchases[row].itog))")
-                            .foregroundColor(Color.theme.blackWhiteText)
-                            .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                            .frame(width: UIScreen.main.bounds.width / 7, height: 20)
+                        HStack(spacing: 1) {
+                            Text("$ ")
+                                .foregroundColor(Color.theme.blackWhiteText)
+                                .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                            Text(" \(NSString(format: "%.2f", purchases[row].itog))")
+                                .foregroundColor(Color.theme.blackWhiteText)
+                                .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                        }
+                        .frame(width: UIScreen.main.bounds.width / 7, height: 20)
                         Text("\(NSString(format: "%.1f", purchases[row].count)) ")
                             .foregroundColor(Color.theme.blackWhiteText)
                             .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                             .frame(width: UIScreen.main.bounds.width / 7, height: 20)
-                        Text("$\(NSString(format: "%.2f", purchases[row].itog * Double(purchases[row].count)))")
-                            .foregroundColor(Color.theme.blackWhiteText)
-                            .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                            .frame(width: UIScreen.main.bounds.width / 7, height: 20)
-                            .padding(.trailing, 10)
+                        HStack(spacing: 1) {
+                            Text("$ ")
+                                .foregroundColor(Color.theme.blackWhiteText)
+                                .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                            Text(" \(NSString(format: "%.2f", purchases[row].itog * Double(purchases[row].count)))")
+                                .foregroundColor(Color.theme.blackWhiteText)
+                                .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                        }
+                        .frame(width: UIScreen.main.bounds.width / 7, height: 20)
+                        .padding(.trailing, 10)
                     }
                 }
             }

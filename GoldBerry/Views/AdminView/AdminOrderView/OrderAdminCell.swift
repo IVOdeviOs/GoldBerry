@@ -32,20 +32,26 @@ struct OrderAdminCell: View {
                 }
                 Spacer()
                 VStack {
-                    Text("$\(NSString(format: "%.2f", price))")
-                        .frame(width: 120, height: 22)
-                        .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
-                        .minimumScaleFactor(0.5)
-                        .foregroundColor(.white)
-                        .background(Color.theme.lightGreen)
-                        .cornerRadius(5)
-                        .padding()
+                    HStack {
+                        Text("$ ")
+                            .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
+                            .minimumScaleFactor(0.5)
+                            .foregroundColor(.white)
+                        Text(" \(NSString(format: "%.2f", price))")
+                            .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
+                            .minimumScaleFactor(0.5)
+                            .foregroundColor(.white)
+                    }
+                    .frame(width: 120, height: 22)
+                    .background(Color.theme.lightGreen)
+                    .cornerRadius(5)
+                    .padding()
                     Spacer()
                 }
             }
             Color.theme.gray
                 .frame(height: 3)
-       
+
             HStack {
                 VStack(alignment: .leading, spacing: 10) {
                     HStack {

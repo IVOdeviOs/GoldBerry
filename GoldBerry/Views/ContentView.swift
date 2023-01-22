@@ -31,7 +31,7 @@ struct ContentView: View {
 //                        ProductView()
 //                    }else{
                         ViewProfile(fruitViewModel: fruitViewModel, orderViewModel: orderViewModel, userViewModel: userViewModel,adminViewModel: adminViewModel)
-                        .environment(\.locale, .init(identifier: adminViewModel.language))
+                        .environment(\.locale, .init(identifier: Locale.current.identifier))
 //                        .onAppear{
 //                            let variable = Locale.current.identifier
 //                            print("\(variable)")

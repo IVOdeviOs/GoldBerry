@@ -21,6 +21,7 @@ struct AllProductsCell: View {
             }
         }
     }
+
     @State var status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
 
     var body: some View {
@@ -72,10 +73,8 @@ struct AllProductsCell: View {
                                     favorite.toggle()
                                 } else {
                                     fruitViewModel.alertFavorite.toggle()
-                                    
                                 }
 
-                               
                             } label: {
                                 ZStack {
                                     Image(systemName: "heart.fill")
@@ -98,31 +97,39 @@ struct AllProductsCell: View {
                     }
                 }
             }
-            
+
             HStack {
                 if fruit.itog == fruit.cost {
-                    Text("\(fruit.cost, specifier: "%.2f") руб")
+                    Text("\(fruit.cost, specifier: "%.2f")")
+                        .font(.system(size: 14, weight: .bold, design: .serif))
+                        .multilineTextAlignment(.leading)
+                        .foregroundColor(Color.theme.blackWhiteText)
+                    Text("$ ")
                         .font(.system(size: 14, weight: .bold, design: .serif))
                         .multilineTextAlignment(.leading)
                         .foregroundColor(Color.theme.blackWhiteText)
                     Spacer()
                 } else {
-                    Text("\(fruit.itog, specifier: "%.2f") руб")
-                        .font(.system(size: 14, weight: .bold, design: .serif))
-                        .multilineTextAlignment(.leading)
-                        .foregroundColor(.red)
-                    ZStack {
-                        Text("\(fruit.cost, specifier: "%.2f") руб")
+                    HStack {
+                        Text("\(fruit.itog, specifier: "%.2f")")
+                            .font(.system(size: 14, weight: .bold, design: .serif))
+                            .foregroundColor(.red)
+                        Text("$ ")
+                            .font(.system(size: 14, weight: .bold, design: .serif))
+                            .foregroundColor(.red)
+
+                        Text("\(fruit.cost, specifier: "%.2f")")
                             .font(.system(size: 12, weight: .light, design: .serif))
                             .foregroundColor(Color.theme.blackWhiteText.opacity(0.6))
-                            .multilineTextAlignment(.leading)
-                        Color.theme.blackWhiteText.opacity(0.5)
-                            .frame(width: 45, height: 1)
-                    }
+                        Text("$ ")
+                            .font(.system(size: 12, weight: .light, design: .serif))
+                            .foregroundColor(Color.theme.blackWhiteText.opacity(0.6))
 
-                    Spacer()
+                        Spacer()
+                    }
                 }
-            }.padding(.horizontal, 5)
+            }
+            .padding(.horizontal, 5)
 
             HStack {
                 Text(fruit.name)

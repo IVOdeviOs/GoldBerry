@@ -55,8 +55,14 @@ struct CartCell: View {
                 .offset(y: -8)
                 VStack(alignment: .leading, spacing: 10) {
 
-                    HStack {
-                        Text("\(NSString(format: "%.2f", fruit.itog)) руб/\(fruit.weightOrPieces)")
+                    HStack(spacing: 1) {
+                        Text("\(NSString(format: "%.2f", fruit.itog)) ")
+                            .foregroundColor(Color.theme.lightGreen)
+                            .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
+                        Text("$ ")
+                            .foregroundColor(Color.theme.lightGreen)
+                            .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
+                        Text("/" + "\(fruit.weightOrPieces)")
                             .foregroundColor(Color.theme.lightGreen)
                             .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
                         Spacer()
@@ -152,13 +158,17 @@ struct CartCell: View {
                 .cornerRadius(8)
 
             } else {
-                HStack {
+                HStack(spacing: 1) {
                     Text("Total: ")
                         .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(16, .uzSansSemiBold)))
                         .padding(.leading, 20)
                     Spacer()
-                    Text("$ " + "\(NSString(format: "%.2f", fruit.price ?? 1))")
+
+                    Text("\(NSString(format: "%.2f", fruit.price ?? 1)) ")
+                        .foregroundColor(Color.theme.lightGreen)
+                        .font(Font(uiFont: .fontLibrary(19, .uzSansSemiBold)))
+                    Text("$ ")
                         .foregroundColor(Color.theme.lightGreen)
                         .font(Font(uiFont: .fontLibrary(19, .uzSansSemiBold)))
                         .padding(.trailing, 20)
@@ -170,13 +180,13 @@ struct CartCell: View {
                 if item.id == fruit.id {
                     fruitViewModel.uniqFruits.removeFirst()
                     fruitViewModel.uniqFruits.append(fruit)
-                   
+
                     if fruit.favorite {
                         fruit.price = 0
                         fruit.count = 0
                         fruitViewModel.arrayOfFruitPrice[fruit.name] = 0
                         fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = 0
-                    }else {
+                    } else {
                         fruit.price = Double(fruit.count) * fruit.itog
                         fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
                         fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = fruit.count
@@ -189,14 +199,14 @@ struct CartCell: View {
 
             for items in fruits {
                 if items.id == fruit.id {
-                 
+
 //                    fruit.price = fruit.count * fruit.itog
                     if fruit.favorite {
                         fruit.price = 0
                         fruit.count = 0
                         fruitViewModel.arrayOfFruitPrice[fruit.name] = 0
                         fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = 0
-                    }else{
+                    } else {
                         fruit.price = Double(fruit.count) * fruit.itog
                         fruitViewModel.arrayOfFruitPrice[fruit.name] = fruit.price
                         fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] = fruit.count

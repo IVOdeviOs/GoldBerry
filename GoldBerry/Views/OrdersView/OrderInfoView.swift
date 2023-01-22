@@ -22,13 +22,19 @@ struct OrderInfoView: View {
                     .opacity(0.3)
                     .frame(height: 10)
                 HStack {
-                    Text("$\(NSString(format: "%.2f", order.price))")
-                        .font(Font(uiFont: .fontLibrary(16, .uzSansBold)))
-                        .foregroundColor(.white)
-                        .frame(width: 130, height: 30)
-                        .background(.orange)
-                        .cornerRadius(8)
-                        .padding()
+                    HStack {
+                        Text("$ ")
+                            .font(Font(uiFont: .fontLibrary(16, .uzSansBold)))
+                            .foregroundColor(.white)
+
+                        Text(" \(NSString(format: "%.2f", order.price))")
+                            .font(Font(uiFont: .fontLibrary(16, .uzSansBold)))
+                            .foregroundColor(.white)
+                    }
+                    .frame(width: 130, height: 30)
+                    .background(.orange)
+                    .cornerRadius(8)
+                    .padding()
                     Spacer()
                     Text("\(order.dateOrder)")
                         .foregroundColor(Color.theme.gray)
@@ -87,19 +93,29 @@ struct OrderInfoView: View {
                                     .foregroundColor(Color.theme.blackWhiteText)
                                     .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                                     .frame(width: UIScreen.main.bounds.width / 4, height: 20)
-                                Text("$\(NSString(format: "%.2f", order.fruits[row].itog))")
-                                    .foregroundColor(Color.theme.blackWhiteText)
-                                    .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                                    .frame(width: UIScreen.main.bounds.width / 6, height: 20)
+                                HStack(spacing: 1) {
+                                    Text("$ ")
+                                        .foregroundColor(Color.theme.blackWhiteText)
+                                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                                    Text(" \(NSString(format: "%.2f", order.fruits[row].itog))")
+                                        .foregroundColor(Color.theme.blackWhiteText)
+                                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                                }
+                                .frame(width: UIScreen.main.bounds.width / 6, height: 20)
                                 Text("\(NSString(format: "%.1f", order.fruits[row].count))")
                                     .foregroundColor(Color.theme.blackWhiteText)
                                     .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                                     .frame(width: UIScreen.main.bounds.width / 6, height: 20)
-                                Text("$\(NSString(format: "%.2f", order.fruits[row].itog * Double(order.fruits[row].count)))")
-                                    .foregroundColor(Color.theme.blackWhiteText)
-                                    .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                                    .frame(width: UIScreen.main.bounds.width / 6, height: 20)
-                                    .padding(.trailing, 10)
+                                HStack(spacing: 1) {
+                                    Text("$ ")
+                                        .foregroundColor(Color.theme.blackWhiteText)
+                                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                                    Text(" \(NSString(format: "%.2f", order.fruits[row].itog * Double(order.fruits[row].count)))")
+                                        .foregroundColor(Color.theme.blackWhiteText)
+                                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                                }
+                                .frame(width: UIScreen.main.bounds.width / 6, height: 20)
+                                .padding(.trailing, 10)
                             }
                         }
                     }

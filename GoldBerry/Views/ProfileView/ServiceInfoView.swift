@@ -20,16 +20,16 @@ struct ServiceInfoView: View {
         return false
     }
 
-    func language() -> String {
-        var lang = ""
-        if adminViewModel.language == "en_US" {
-            lang = "Russian"
-        }
-        if adminViewModel.language == "ru_US" {
-            lang = "Английский"
-        }
-        return lang
-    }
+//    func language() -> String {
+//        var lang = ""
+//        if adminViewModel.language == "en_US" {
+//            lang = "Russian"
+//        }
+//        if adminViewModel.language == "ru_US" {
+//            lang = "Английский"
+//        }
+//        return lang
+//    }
 
     var body: some View {
         VStack {
@@ -161,23 +161,23 @@ struct ServiceInfoView: View {
                         }
                     }
                 }
-                Button {
-
-                    if adminViewModel.language == "ru_US" {
-                        adminViewModel.language = "en_US"
-                        UserDefaults.standard.set("en_US", forKey: "language")
-                    } else if adminViewModel.language == "en_US" {
-                        adminViewModel.language = "ru_US"
-                        UserDefaults.standard.set("ru_US", forKey: "language")
-                    }
-
-                } label: {
-                    HStack {
-                        Text("Change language")
-                        Text("\(language())")
-                            .foregroundColor(.red)
-                    }
-                }
+//                Button {
+//
+//                    if adminViewModel.language == "ru_US" {
+//                        adminViewModel.language = "en_US"
+//                        UserDefaults.standard.set("en_US", forKey: "language")
+//                    } else if adminViewModel.language == "en_US" {
+//                        adminViewModel.language = "ru_US"
+//                        UserDefaults.standard.set("ru_US", forKey: "language")
+//                    }
+//
+//                } label: {
+//                    HStack {
+//                        Text("Change language")
+//                        Text("\(language())")
+//                            .foregroundColor(.red)
+//                    }
+//                }
             }
             .offset(y: -15)
             .listStyle(.plain)

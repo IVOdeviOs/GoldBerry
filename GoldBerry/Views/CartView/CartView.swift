@@ -104,7 +104,8 @@ struct WithPurchase: View {
                         HStack {
                             Spacer()
                             Text("Make an order for  ")
-                            Text("$ " + " \(NSString(format: "%.2f", fruitViewModel.sum()))")
+                            Text("\(NSString(format: "%.2f", fruitViewModel.sum()))")
+                            Text("$ ")
                             Spacer()
                         }
                             .foregroundColor(.white)

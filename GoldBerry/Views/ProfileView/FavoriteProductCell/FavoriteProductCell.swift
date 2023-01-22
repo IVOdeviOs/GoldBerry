@@ -1,22 +1,21 @@
-import SwiftUI
 import CoreData
+import SwiftUI
 
 struct FavoriteProductCell: View {
     @ObservedObject var fruitViewModel: FruitViewModel
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: FavoriteFruit.entity(), sortDescriptors: [])
     var favoriteFruit: FetchedResults<FavoriteFruit>
-    
+
     @State var fruit: Fruit
     @State var favorite = true
     @State var newCount: Double = 0
     func removeCell(fru: Fruit) {
         for item in favoriteFruit {
             if fru.id == item.id {
-                
+
                 fruitViewModel.favoriteFruits.removeFirst()
                 viewContext.delete(item)
-                
 
                 do {
                     try viewContext.save()
@@ -67,7 +66,7 @@ struct FavoriteProductCell: View {
                                 withAnimation(.linear(duration: 0.5)) {
                                     removeCell(fru: fruit)
                                 }
-                               
+
                             } label: {
                                 ZStack {
                                     Image(systemName: "heart.fill")
@@ -90,29 +89,36 @@ struct FavoriteProductCell: View {
                     }
                 }
             }
-            
+
             HStack {
                 if fruit.itog == fruit.cost {
-                    Text("$\(fruit.cost, specifier: "%.2f")")
+                    Text("\(fruit.cost, specifier: "%.2f")")
+                        .font(.system(size: 14, weight: .bold, design: .serif))
+                        .multilineTextAlignment(.leading)
+                        .foregroundColor(Color.theme.blackWhiteText)
+                    Text("$ ")
                         .font(.system(size: 14, weight: .bold, design: .serif))
                         .multilineTextAlignment(.leading)
                         .foregroundColor(Color.theme.blackWhiteText)
                     Spacer()
                 } else {
-                    Text("$\(fruit.itog, specifier: "%.2f")")
-                        .font(.system(size: 14, weight: .bold, design: .serif))
-                        .multilineTextAlignment(.leading)
-                        .foregroundColor(.red)
-                    ZStack {
-                        Text("$\(fruit.cost, specifier: "%.2f")")
+                    HStack {
+                        Text("\(fruit.itog, specifier: "%.2f")")
+                            .font(.system(size: 14, weight: .bold, design: .serif))
+                            .foregroundColor(.red)
+                        Text("$ ")
+                            .font(.system(size: 14, weight: .bold, design: .serif))
+                            .foregroundColor(.red)
+
+                        Text("\(fruit.cost, specifier: "%.2f")")
                             .font(.system(size: 12, weight: .light, design: .serif))
                             .foregroundColor(Color.theme.blackWhiteText.opacity(0.6))
-                            .multilineTextAlignment(.leading)
-                        Color.theme.blackWhiteText.opacity(0.5)
-                            .frame(width: 45, height: 1)
-                    }
+                        Text("$ ")
+                            .font(.system(size: 12, weight: .light, design: .serif))
+                            .foregroundColor(Color.theme.blackWhiteText.opacity(0.6))
 
-                    Spacer()
+                        Spacer()
+                    }
                 }
             }.padding(.horizontal, 5)
 
@@ -156,7 +162,7 @@ struct FavoriteProductCell: View {
                 .disabled(!(fruit.isValid ?? true))
             }
             .padding(7)
-        } .onDisappear {
+        }.onDisappear {
             for item in favoriteFruit {
                 if item.id == fruit.id {
                     fruitViewModel.favoriteFruits.removeFirst()
@@ -189,5 +195,4 @@ struct FavoriteProductCell: View {
             }
         }
     }
-
 }

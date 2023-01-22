@@ -14,7 +14,7 @@ struct GoldBerryApp: App {
         WindowGroup {
             ContentView(adminViewModel: adminViewModel)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .environment(\.locale, .init(identifier: adminViewModel.language ))
+                .environment(\.locale, .init(identifier: Locale.current.identifier ))
         }
     }
 }
