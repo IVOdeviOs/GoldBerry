@@ -183,14 +183,22 @@ struct MakingTheOrderView: View {
                         let da = dateOfDelivery?.formatted(date: .long, time: .omitted)
                         orderViewModel.date = da ?? "\(dateFormatterOrder.string(from: .now))"
                         orderViewModel.dateOrder = dateFormatterOrder.string(from: .now)
+                        var currents: Double = 1
+                        if Locale.current.identifier == "en_US" {
+                            currents = 2.64
+                        }
+                        let sum = (orderViewModel.price ?? 0.1) * currents
 
+                      
+                        
+                        
                         let orde = Order(orderNumber: strID,
                                          date: orderViewModel.date,
                                          dateOrder: orderViewModel.dateOrder,
                                          email: email as? String ?? "opsss...",
                                          fruits: fruitViewModel.uniqFruits,
                                          address: orderViewModel.address,
-                                         price: orderViewModel.price ?? 0.1 ,
+                                         price: sum ,
                                          customer: orderViewModel.customer,
                                          customerPhone: "+375" + orderViewModel.customerPhone,
                                          comment: orderViewModel.comments,
