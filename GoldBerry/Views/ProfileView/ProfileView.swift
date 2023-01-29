@@ -150,7 +150,6 @@ struct ProfileView: View {
                     }
                     NavigationLink {
                         ServiceInfoView(adminViewModel: adminViewModel)
-                            .environment(\.locale, .init(identifier: adminViewModel.language ))
                     } label: {
                         ZStack {
                             Color.theme.grayWhite

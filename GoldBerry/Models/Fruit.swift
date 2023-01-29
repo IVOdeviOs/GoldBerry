@@ -14,13 +14,27 @@ struct Fruit: Identifiable, Codable, Hashable {
     var price: Double?
     var comment: String
     var stepCount: Double
+    var costs: Double {
+        var currents: Double = 1
+        if Locale.current.identifier == "en_US" {
+            currents = 2.64
+        }
+
+        let sum = cost / currents
+
+        return sum
+    }
 
     var itog: Double {
+        var currents: Double = 1
+        if Locale.current.identifier == "en_US" {
+            currents = 2.64
+        }
 
         let per = Double(percent)
         let del = (per / 100)
         let sa = 1 - del
-        let sum = cost * sa
+        let sum = cost * sa / currents
 
         return sum
     }

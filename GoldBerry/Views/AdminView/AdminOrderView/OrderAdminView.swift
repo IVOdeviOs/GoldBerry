@@ -22,7 +22,7 @@ struct OrderAdminView: View {
                         OrderAdminCell(date: item.date,
                                        dateOrder: item.dateOrder,
                                        numberOrder: item.orderNumber,
-                                       price: item.price,
+                                       price: item.prices,
                                        address: item.address,
                                        order: item.customer,
                                        phoneNumber: item.customerPhone,

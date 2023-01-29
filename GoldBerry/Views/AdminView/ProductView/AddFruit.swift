@@ -24,17 +24,16 @@ struct AddFruit: View {
         let counts = 100 - productDescription.count
         return String(counts)
     }
-    func doubleChecking() -> Bool{
-        let num = Double(productPrice)
+
+    func doubleChecking() -> Bool {
+        let num = Double(productPrice.replacingOccurrences(of: ",", with: ".", options: .literal, range: nil))
         if num != nil {
-         return false
+            return false
+        } else {
+            return true
         }
-        else {
-         return true
-        }
-        
     }
-    
+
     var body: some View {
         VStack {
             HStack {
@@ -52,7 +51,7 @@ struct AddFruit: View {
                 if productName.isEmpty || productPrice.isEmpty || doubleChecking() || productDescription.isEmpty || productDiscount.isEmpty || productCategories.isEmpty {} else {
                     Button {
                         adminViewModel.saveImageFirebaseStorageURL()
-                        
+
                         let addFruit = Fruit(id: idFruit,
                                              cost: Double(productPrice) ?? 0,
                                              weightOrPieces: weightOrPieces,

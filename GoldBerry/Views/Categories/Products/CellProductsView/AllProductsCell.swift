@@ -99,8 +99,8 @@ struct AllProductsCell: View {
             }
 
             HStack {
-                if fruit.itog == fruit.cost {
-                    Text("\(fruit.cost, specifier: "%.2f")")
+                if fruit.itog == fruit.costs {
+                    Text("\(fruit.costs, specifier: "%.2f")")
                         .font(.system(size: 14, weight: .bold, design: .serif))
                         .multilineTextAlignment(.leading)
                         .foregroundColor(Color.theme.blackWhiteText)
@@ -118,7 +118,7 @@ struct AllProductsCell: View {
                             .font(.system(size: 14, weight: .bold, design: .serif))
                             .foregroundColor(.red)
 
-                        Text("\(fruit.cost, specifier: "%.2f")")
+                        Text("\(fruit.costs, specifier: "%.2f")")
                             .font(.system(size: 12, weight: .light, design: .serif))
                             .foregroundColor(Color.theme.blackWhiteText.opacity(0.6))
                         Text("$ ")

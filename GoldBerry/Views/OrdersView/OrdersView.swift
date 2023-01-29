@@ -88,7 +88,7 @@ struct WithOrders: View {
                         date: item.date,
                         dateOrder: item.dateOrder,
                         number: item.orderNumber,
-                        price: Double(item.price),
+                        price: item.prices,
                         purchases: item.fruits,
                         address: item.address,
                         orderCompleted: item.orderCompleted

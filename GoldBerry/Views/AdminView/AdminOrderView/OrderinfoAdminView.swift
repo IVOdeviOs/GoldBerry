@@ -50,7 +50,7 @@ struct OrderInfoAdminView: View {
                         Text("$ ")
                             .font(Font(uiFont: .fontLibrary(16, .uzSansBold)))
                             .foregroundColor(.white)
-                        Text("\(NSString(format: "%.2f", order.price))")
+                        Text("\(NSString(format: "%.2f", order.prices))")
                             .font(Font(uiFont: .fontLibrary(16, .uzSansBold)))
                             .foregroundColor(.white)
                     }
