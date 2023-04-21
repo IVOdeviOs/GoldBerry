@@ -32,7 +32,7 @@ class AdminViewModel: ObservableObject {
 
         let storageRef = Storage.storage().reference().child("\(imageName).jpg")
         guard let someImage = productImage else { return }
-        let uploadData = someImage.jpegData(compressionQuality: 0.1)
+        let uploadData = someImage.jpegData(compressionQuality: 1)
         storageRef.putData(uploadData!)
         urlImageString = "https://firebasestorage.googleapis.com/v0/b/goldberry-58e10.appspot.com/o/\(imageName).jpg?alt=media&token=a3a3ba16-0c4c-482f-adc7-7c7989149fed"
     }
