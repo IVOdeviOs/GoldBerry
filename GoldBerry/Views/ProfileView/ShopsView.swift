@@ -7,14 +7,14 @@ struct ShopsView: View {
 
     var body: some View {
         VStack {
-            Text("Адреса торговых точек")
+            Text("Адреса торговых точек!!!!")
                 .foregroundColor(Color.theme.blackWhiteText)
                 .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
                 .padding()
             Color.theme.gray
                 .opacity(0.3)
                 .frame(height: 10)
-            ShopsInfo(fruitViewModel: fruitViewModel, shopName: "Магазин #1, place #1", shopAddress: "Washington", workTime: "08:00-20:00")
+            ShopsInfo(fruitViewModel: fruitViewModel, shopName: "Магазин #1, pppp #1", shopAddress: "Washington", workTime: "08:00-20:00")
             ShopsInfo(fruitViewModel: fruitViewModel, shopName: "Shop #2, place #2", shopAddress: "New York", workTime: "08:00-21:00")
             Spacer()
         }
