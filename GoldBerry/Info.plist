@@ -32,6 +32,11 @@
 	</dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>PFBeauSansPro-Thin.ttf</string>
+		<string>PFBeauSansPro-SemiBold.ttf</string>
+		<string>PFBeauSansPro-Regular.ttf</string>
+		<string>PFBeauSansPro-Light.ttf</string>
+		<string>PFBeauSansPro-Italic.ttf</string>
 		<string>helveticacyrillicupright.ttf</string>
 		<string>UZSans-Bold.ttf</string>
 		<string>UZSans-Light.ttf</string>

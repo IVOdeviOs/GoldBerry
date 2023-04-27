@@ -7,6 +7,11 @@ enum FontWeight: String {
     case uzSansMedium = "UZSans-Medium"
     case uzSansRegular = "UZSans-Regular"
     case uzSansSemiBold = "UZSans-SemiBold"
+    case pFBeauSansProItalic = "PFBeauSansPro-Italic"
+    case pFBeauSansProLight = "PFBeauSansPro-Light"
+    case pFBeauSansProRegular = "PFBeauSansPro-Regular"
+    case pFBeauSansProSemiBold = "PFBeauSansPro-SemiBold"
+    case pFBeauSansProThin = "PFBeauSansPro-Thin"
 }
 
 extension UIFont {
