@@ -7,7 +7,7 @@ struct ShopsView: View {
 
     var body: some View {
         VStack {
-            Text("Our outlets")
+            Text("Адреса торговых точек")
                 .foregroundColor(Color.theme.blackWhiteText)
                 .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
                 .padding()
