@@ -21,6 +21,13 @@
 		DC4807FA28CB123F001416B6 /* ConfidentialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4807F928CB123F001416B6 /* ConfidentialView.swift */; };
 		DC4807FC28CB1A28001416B6 /* HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4807FB28CB1A28001416B6 /* HideKeyboard.swift */; };
 		DC4807FE28CB1B7E001416B6 /* DisclaimerOfLiabilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4807FD28CB1B7E001416B6 /* DisclaimerOfLiabilityView.swift */; };
+		DC491FEE29FAC5FF0059FDBB /* PFBeauSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC491FED29FAC5FF0059FDBB /* PFBeauSansPro-Bold.ttf */; };
+		DC491FF029FAC60A0059FDBB /* PFBeauSansPro-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC491FEF29FAC60A0059FDBB /* PFBeauSansPro-BoldItalic.ttf */; };
+		DC491FF229FAC6170059FDBB /* PFBeauSansPro-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC491FF129FAC6170059FDBB /* PFBeauSansPro-Italic.ttf */; };
+		DC491FF429FAC6240059FDBB /* PFBeauSansPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC491FF329FAC6240059FDBB /* PFBeauSansPro-Light.ttf */; };
+		DC491FF629FAC6300059FDBB /* PFBeauSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC491FF529FAC6300059FDBB /* PFBeauSansPro-Regular.ttf */; };
+		DC491FF829FAC63B0059FDBB /* PFBeauSansPro-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC491FF729FAC63B0059FDBB /* PFBeauSansPro-SemiBold.ttf */; };
+		DC491FFA29FAC6470059FDBB /* PFBeauSansPro-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC491FF929FAC6470059FDBB /* PFBeauSansPro-Thin.ttf */; };
 		DC9DE54A28BB508200057E90 /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9DE54928BB508200057E90 /* CartCell.swift */; };
 		DCA524D528AD31CD00A994F5 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA524D428AD31CD00A994F5 /* Font+.swift */; };
 		DCA5250328AE715100A994F5 /* helveticacyrillicupright.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCA5250228AE715100A994F5 /* helveticacyrillicupright.ttf */; };
@@ -103,6 +110,13 @@
 		DC4807F928CB123F001416B6 /* ConfidentialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfidentialView.swift; sourceTree = "<group>"; };
 		DC4807FB28CB1A28001416B6 /* HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboard.swift; sourceTree = "<group>"; };
 		DC4807FD28CB1B7E001416B6 /* DisclaimerOfLiabilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclaimerOfLiabilityView.swift; sourceTree = "<group>"; };
+		DC491FED29FAC5FF0059FDBB /* PFBeauSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PFBeauSansPro-Bold.ttf"; sourceTree = "<group>"; };
+		DC491FEF29FAC60A0059FDBB /* PFBeauSansPro-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PFBeauSansPro-BoldItalic.ttf"; sourceTree = "<group>"; };
+		DC491FF129FAC6170059FDBB /* PFBeauSansPro-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PFBeauSansPro-Italic.ttf"; sourceTree = "<group>"; };
+		DC491FF329FAC6240059FDBB /* PFBeauSansPro-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PFBeauSansPro-Light.ttf"; sourceTree = "<group>"; };
+		DC491FF529FAC6300059FDBB /* PFBeauSansPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PFBeauSansPro-Regular.ttf"; sourceTree = "<group>"; };
+		DC491FF729FAC63B0059FDBB /* PFBeauSansPro-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PFBeauSansPro-SemiBold.ttf"; sourceTree = "<group>"; };
+		DC491FF929FAC6470059FDBB /* PFBeauSansPro-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PFBeauSansPro-Thin.ttf"; sourceTree = "<group>"; };
 		DC9DE54928BB508200057E90 /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
 		DCA524D428AD31CD00A994F5 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		DCA5250228AE715100A994F5 /* helveticacyrillicupright.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = helveticacyrillicupright.ttf; sourceTree = "<group>"; };
@@ -225,6 +239,13 @@
 				DCA5251028AEBC5200A994F5 /* UZSans-Medium.ttf */,
 				DCA5251328AEBC5200A994F5 /* UZSans-Regular.ttf */,
 				DCA5250F28AEBC5200A994F5 /* UZSans-SemiBold.ttf */,
+				DC491FED29FAC5FF0059FDBB /* PFBeauSansPro-Bold.ttf */,
+				DC491FEF29FAC60A0059FDBB /* PFBeauSansPro-BoldItalic.ttf */,
+				DC491FF129FAC6170059FDBB /* PFBeauSansPro-Italic.ttf */,
+				DC491FF329FAC6240059FDBB /* PFBeauSansPro-Light.ttf */,
+				DC491FF529FAC6300059FDBB /* PFBeauSansPro-Regular.ttf */,
+				DC491FF729FAC63B0059FDBB /* PFBeauSansPro-SemiBold.ttf */,
+				DC491FF929FAC6470059FDBB /* PFBeauSansPro-Thin.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -531,11 +552,18 @@
 				DD95A83A2899ABD600DF346B /* Preview Assets.xcassets in Resources */,
 				DD95A8372899ABD600DF346B /* Assets.xcassets in Resources */,
 				DCA5251728AEBC5200A994F5 /* UZSans-Bold.ttf in Resources */,
+				DC491FF629FAC6300059FDBB /* PFBeauSansPro-Regular.ttf in Resources */,
+				DC491FF029FAC60A0059FDBB /* PFBeauSansPro-BoldItalic.ttf in Resources */,
 				DDAE6D51296B3EE3003E5D1D /* Localizable.strings in Resources */,
 				DD8A2328291991A30057272A /* GoogleService-Info.plist in Resources */,
 				DCA5251628AEBC5200A994F5 /* UZSans-Light.ttf in Resources */,
+				DC491FEE29FAC5FF0059FDBB /* PFBeauSansPro-Bold.ttf in Resources */,
+				DC491FF829FAC63B0059FDBB /* PFBeauSansPro-SemiBold.ttf in Resources */,
+				DC491FF229FAC6170059FDBB /* PFBeauSansPro-Italic.ttf in Resources */,
 				DCA5251428AEBC5200A994F5 /* UZSans-SemiBold.ttf in Resources */,
+				DC491FFA29FAC6470059FDBB /* PFBeauSansPro-Thin.ttf in Resources */,
 				DCA5251528AEBC5200A994F5 /* UZSans-Medium.ttf in Resources */,
+				DC491FF429FAC6240059FDBB /* PFBeauSansPro-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
