@@ -103,7 +103,7 @@ struct AddFruit: View {
                             } label: {
                                 Image(systemName: "plus")
                                     .resizable()
-                                    .foregroundColor(Color.theme.lightGreen)
+                                    .foregroundColor(Color.theme.green4)
                                     .frame(width: 60, height: 60, alignment: .center)
                             }
                             .frame(width: 300, height: 150)
@@ -119,7 +119,7 @@ struct AddFruit: View {
                                 .frame(width: 180, height: 150)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 20)
-                                        .stroke(Color.theme.gray, lineWidth: 2)
+                                        .stroke(Color.theme.grafit, lineWidth: 2)
                                 )
                                 .cornerRadius(20)
                                 .onTapGesture {
@@ -141,7 +141,7 @@ struct AddFruit: View {
                                     .frame(width: 180, height: 150)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 20)
-                                            .stroke(Color.theme.gray, lineWidth: 2)
+                                            .stroke(Color.theme.grafit, lineWidth: 2)
                                     )
                                     .cornerRadius(20)
                                     .onTapGesture {
@@ -185,7 +185,7 @@ struct AddFruit: View {
                         .lineLimit(7)
                         .multilineTextAlignment(.leading)
                         .foregroundColor(Color.theme.blackWhiteText)
-                        .font(Font(uiFont: .fontLibrary(18, .uzSansRegular)))
+                        .font(Font(uiFont: .fontLibrary(18, .pFBeauSansProRegular)))
                         .background(.clear)
                         .padding(.leading, 20)
                         .frame(height: 100)
@@ -198,7 +198,7 @@ struct AddFruit: View {
                         Text("Description (up to 100 characters)")
                             .padding(.top, 10)
                             .foregroundColor(.gray.opacity(0.5))
-                            .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
+                            .font(Font(uiFont: .fontLibrary(16, .pFBeauSansProRegular)))
                             .padding(.leading, 20)
                             .padding()
                     }
@@ -214,7 +214,7 @@ struct AddFruit: View {
                         .frame(width: 150)
                     Text("%")
                         .foregroundColor(Color.theme.blackWhiteText)
-                        .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
+                        .font(Font(uiFont: .fontLibrary(16, .pFBeauSansProRegular)))
                     Spacer()
                     Picker("Unit", selection: $weightOrPieces) {
                         Text("lbs").tag("кг")

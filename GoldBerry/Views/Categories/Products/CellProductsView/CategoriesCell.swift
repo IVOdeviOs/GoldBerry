@@ -12,7 +12,7 @@ struct CategoriesCell: View {
             Color(.init(red: 0, green: 0, blue: 0, alpha: 0.4))
                 .frame(width: 150, height: 100)
             Text(nameCategories)
-                .font(Font(uiFont: .fontLibrary(18, .uzSansSemiBold)))
+                .font(Font(uiFont: .fontLibrary(18, .pFBeauSansProSemiBold)))
                 .minimumScaleFactor(0.5)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.white)

@@ -163,7 +163,7 @@ struct AllProductsCell: View {
                             .font(.system(size: 12, weight: .light, design: .serif))
                     }
                     .frame(width: 140, height: 25)
-                    .background(fruit.isValid ?? true ? Color.theme.lightGreen : Color.gray)
+                    .background(fruit.isValid ?? true ? Color.theme.green4 : Color.theme.grafit)
                     .cornerRadius(6)
                     .padding(8)
                     .shadow(color: Color.theme.blackWhiteText, radius: 2)
