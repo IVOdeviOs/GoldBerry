@@ -17,9 +17,9 @@ struct SignUP: View {
                 HStack {
                     Spacer(minLength: 0)
                     VStack(spacing: 10) {
-                        Text("Registration")
-                            .foregroundColor(index == 1 ? Color.theme.background : Color.theme.gray)
-                            .font(Font(uiFont: .fontLibrary(22, .uzSansBold)))
+                        Text("Регистрация")
+                            .foregroundColor(index == 1 ? Color.theme.background : Color.theme.grafit)
+                            .font(Font(uiFont: .fontLibrary(22, .pFBeauSansProSemiBold)))
                         Capsule()
                             .fill(index == 1 ? Color(red: 243 / 255,
                                                      green: 122 / 255,
@@ -34,7 +34,7 @@ struct SignUP: View {
                         Image(systemName: "envelope.fill")
                             .foregroundColor(Color.theme.background)
                         TextField("E-mail", text: $signUP.email)
-                            .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                            .font(Font(uiFont: .fontLibrary(15, .pFBeauSansProRegular)))
                             .foregroundColor(Color.theme.background)
                             .autocapitalization(.none)
                             .keyboardType(.emailAddress)
@@ -54,13 +54,13 @@ struct SignUP: View {
                                 .foregroundColor(Color.theme.background)
                         }
                         if signUP.secure {
-                            SecureField("6 characters min", text: $signUP.password)
-                                .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                            SecureField("Минимум 6 символов", text: $signUP.password)
+                                .font(Font(uiFont: .fontLibrary(15, .pFBeauSansProRegular)))
                                 .foregroundColor(Color.theme.background)
 
                         } else {
-                            TextField("6 characters min", text: $signUP.password)
-                                .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                            TextField("Минимум 6 символов", text: $signUP.password)
+                                .font(Font(uiFont: .fontLibrary(15, .pFBeauSansProRegular)))
                                 .foregroundColor(Color.theme.background)
                         }
                     }
@@ -78,12 +78,12 @@ struct SignUP: View {
                                 .foregroundColor(Color.theme.background)
                         }
                         if signUP.secureConfirm {
-                            SecureField("Repeat password", text: $signUP.confirmationPassword)
-                                .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                            SecureField("Повторите пароль", text: $signUP.confirmationPassword)
+                                .font(Font(uiFont: .fontLibrary(15, .pFBeauSansProRegular)))
                                 .foregroundColor(Color.theme.background)
                         } else {
-                            TextField("Repeat password", text: $signUP.confirmationPassword)
-                                .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                            TextField("Повторите пароль", text: $signUP.confirmationPassword)
+                                .font(Font(uiFont: .fontLibrary(15, .pFBeauSansProRegular)))
                                 .foregroundColor(Color.theme.background)
                         }
                     }
@@ -94,9 +94,9 @@ struct SignUP: View {
                 .padding(.top, 30)
 
                 HStack {
-                    Text(" I agree to the use and processing \nof my personal data")
+                    Text(" Соглашаюсь на обработку \n персональных данных")
                         .foregroundColor(Color.theme.background)
-                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                        .font(Font(uiFont: .fontLibrary(12, .pFBeauSansProRegular)))
 
                         .lineLimit(2)
                     Spacer()

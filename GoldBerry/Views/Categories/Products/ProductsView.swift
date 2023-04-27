@@ -26,7 +26,7 @@ struct ProductsView: View {
                                 VStack {
                                     HStack {
                                         Text("To add a product to favorites, you need to Log in or Register")
-                                            .font(Font(uiFont: UIFont.fontLibrary(16, .uzSansRegular)))
+                                            .font(Font(uiFont: UIFont.fontLibrary(16, .pFBeauSansProRegular)))
                                             .foregroundColor(Color.theme.background)
                                             .frame(width: 300)
                                             .padding(5)
@@ -48,9 +48,9 @@ struct ProductsView: View {
                                     } label: {
                                         Text("Login or Register")
                                             .foregroundColor(.blue)
-                                            .font(Font(uiFont: UIFont.fontLibrary(16, .uzSansRegular)))
+                                            .font(Font(uiFont: UIFont.fontLibrary(16, .pFBeauSansProRegular)))
                                             .frame(width: UIScreen.main.bounds.width - 60, height: 30)
-                                            .background(Color.orange)
+                                            .background(Color.theme.orange)
                                             .cornerRadius(10)
                                     }.padding(5)
                                 }

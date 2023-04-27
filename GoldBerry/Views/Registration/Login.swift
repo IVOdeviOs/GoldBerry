@@ -18,7 +18,7 @@ struct Login: View {
                     VStack(spacing: 10) {
                         Text("Log In")
                             .foregroundColor(index == 0 ? Color.theme.background : .gray)
-                            .font(Font(uiFont: .fontLibrary(22, .uzSansBold)))
+                            .font(Font(uiFont: .fontLibrary(22, .pFBeauSansProSemiBold)))
                         Capsule()
                             .fill(index == 0 ? Color(red: 243 / 255,
                                                      green: 122 / 255,
@@ -33,7 +33,7 @@ struct Login: View {
                         Image(systemName: "envelope.fill")
                             .foregroundColor(Color.theme.background)
                         TextField("E-mail", text: $login.email)
-                            .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                            .font(Font(uiFont: .fontLibrary(15, .pFBeauSansProRegular)))
                             .foregroundColor(Color.theme.background)
                             .autocapitalization(.none)
                             .keyboardType(.emailAddress)
@@ -55,11 +55,11 @@ struct Login: View {
                         }
                         if login.secure {
                             SecureField("Password", text: $login.password)
-                                .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                                .font(Font(uiFont: .fontLibrary(15, .pFBeauSansProRegular)))
                                 .foregroundColor(Color.theme.background)
                         } else {
                             TextField("Password", text: $login.password)
-                                .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                                .font(Font(uiFont: .fontLibrary(15, .pFBeauSansProRegular)))
                                 .foregroundColor(Color.theme.background)
                         }
                     }
@@ -77,7 +77,7 @@ struct Login: View {
                     } label: {
                         Text("Forget password?")
                             .foregroundColor(Color.theme.background)
-                            .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                            .font(Font(uiFont: .fontLibrary(15, .pFBeauSansProRegular)))
                     }
                 }
                 .padding(.horizontal)
@@ -118,7 +118,7 @@ struct Login: View {
             } label: {
                 Text("Log In")
                     .foregroundColor(Color.theme.background)
-                    .font(Font(uiFont: .fontLibrary(18, .uzSansSemiBold)))
+                    .font(Font(uiFont: .fontLibrary(18, .pFBeauSansProSemiBold)))
                     .padding(.vertical)
                     .padding(.horizontal, 50)
                     .background(Color(red: 243 / 255,

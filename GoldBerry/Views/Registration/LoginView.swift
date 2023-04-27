@@ -32,11 +32,11 @@ struct LoginView: View {
                             .padding()
                         Spacer()
                     }
-                    Text("Fruit delivery")
+                    Text("Доставка фруктов")
                         .offset(y: -20)
                         .multilineTextAlignment(.center)
-                        .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
-                        .foregroundColor(Color.theme.lightGreen)
+                        .font(Font(uiFont: .fontLibrary(20, .pFBeauSansProSemiBold)))
+                        .foregroundColor(Color.theme.green4)
                     Spacer()
                     ZStack {
                         SignUP(index: $signUP.index, show: .constant(false), fruitViewModel: fruitViewModel)

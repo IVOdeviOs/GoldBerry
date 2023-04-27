@@ -83,8 +83,8 @@ struct ViewProfile: View {
                     ZStack {
                         HStack {
                             Text("GoldBerry")
-                                .font(Font(uiFont: .fontLibrary(32, .uzSansBold)))
-                                .foregroundColor(fruitViewModel.selected == 3 ? Color.theme.background : Color.theme.lightGreen)
+                                .font(Font(uiFont: .fontLibrary(32, .pFBeauSansProSemiBold)))
+                                .foregroundColor(fruitViewModel.selected == 3 ? Color.theme.background : Color.theme.green4)
                                 .padding()
                             Spacer()
                             Image("goldBerryLogo")
@@ -110,7 +110,7 @@ struct ViewProfile: View {
 //                                    Text("Главная")
                                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                                 }
-                            }.foregroundColor(fruitViewModel.selected == 0 ? Color.theme.lightGreen : Color.theme.gray)
+                            }.foregroundColor(fruitViewModel.selected == 0 ? Color.theme.green4 : Color.theme.grafit)
                             Spacer(minLength: 12)
 
                             Button {
@@ -125,7 +125,7 @@ struct ViewProfile: View {
                                             Text("\(fruitViewModel.countCart)")
                                                 .minimumScaleFactor(0.5)
                                                 .foregroundColor(.white)
-                                                .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                                                .font(Font(uiFont: .fontLibrary(12, .pFBeauSansProRegular)))
                                         } else {}
                                     }
                                     .offset(x: 20, y: -20)
@@ -135,10 +135,10 @@ struct ViewProfile: View {
                                             .resizable()
                                             .frame(width: 23, height: 20)
                                         Text("Cart")
-                                            .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                                            .font(Font(uiFont: .fontLibrary(12, .pFBeauSansProRegular)))
                                     }.badge(fruits.count)
                                 }
-                            }.foregroundColor(fruitViewModel.selected == 1 ? Color.theme.lightGreen : Color.theme.gray)
+                            }.foregroundColor(fruitViewModel.selected == 1 ? Color.theme.green4 : Color.theme.grafit)
                             Spacer()
 
                             Button {
@@ -149,9 +149,9 @@ struct ViewProfile: View {
                                         .resizable()
                                         .frame(width: 23, height: 20)
                                     Text("Order")
-                                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                                        .font(Font(uiFont: .fontLibrary(12, .pFBeauSansProRegular)))
                                 }
-                            }.foregroundColor(fruitViewModel.selected == 2 ? Color.theme.lightGreen : Color.theme.gray)
+                            }.foregroundColor(fruitViewModel.selected == 2 ? Color.theme.green4 : Color.theme.grafit)
                             Spacer(minLength: 12)
 
                             Button {
@@ -162,9 +162,9 @@ struct ViewProfile: View {
                                         .resizable()
                                         .frame(width: 23, height: 20)
                                     Text("Profile")
-                                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                                        .font(Font(uiFont: .fontLibrary(12, .pFBeauSansProRegular)))
                                 }
-                            }.foregroundColor(fruitViewModel.selected == 3 ? Color.theme.lightGreen : Color.theme.gray)
+                            }.foregroundColor(fruitViewModel.selected == 3 ? Color.theme.green4 : Color.theme.grafit)
                         }
                         .padding()
                         .padding(.horizontal, 22)

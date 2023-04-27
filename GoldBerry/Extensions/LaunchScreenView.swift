@@ -29,7 +29,9 @@ struct LaunchScreenView: View {
 
     var body: some View {
         ZStack {
-            Color.theme.lightGreen.zIndex(0)
+            Color.theme.orange.zIndex(0)
+            Color.black.opacity(0.3)
+
 
             ZStack(alignment: .center) {
                 ZStack(alignment: .top) {
@@ -54,8 +56,8 @@ struct LaunchScreenView: View {
                 VStack(spacing: 0) {
                     Text("Gold Berry")
                         .kerning(0)
-                        .foregroundColor(.yellow)
-                        .font(Font(uiFont: .fontLibrary(32, .uzSansBold)))
+                        .foregroundColor(.white)
+                        .font(Font(uiFont: .fontLibrary(32, .pFBeauSansProSemiBold)))
                         .offset(y: textOffseted ? 20 : 0)
                         .opacity(textVisible ? 1 : 0)
                 }

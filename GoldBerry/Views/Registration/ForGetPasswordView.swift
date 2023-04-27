@@ -7,7 +7,7 @@ struct ForGetPasswordView: View {
         VStack {
             VStack {
                 Text("Enter your e-mail")
-                    .font(Font(uiFont: .fontLibrary(24, .uzSansBold)))
+                    .font(Font(uiFont: .fontLibrary(24, .pFBeauSansProSemiBold)))
                     .foregroundColor(Color.theme.blackWhiteText)
                     .padding()
                 TextFieldView(text: $email, placeholder: "E-mail", infoText: "")

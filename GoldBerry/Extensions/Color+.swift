@@ -16,4 +16,7 @@ struct ColorTheme {
     let blackWhiteText = Color("WhiteBlackText")
     let grayWhite = Color("GrayWhite")
     let textFieldBackground = Color("TextFieldBackground")
+    let grafit = Color("grafit")
+    let orange = Color("orange")
+    let green4 = Color("green4")
 }
