@@ -57,14 +57,14 @@ struct CartCell: View {
 
                     HStack(spacing: 1) {
                         Text("\(NSString(format: "%.2f", fruit.itog)) ")
-                            .foregroundColor(Color.theme.lightGreen)
-                            .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
+                            .foregroundColor(Color.theme.green4)
+                            .font(Font(uiFont: .fontLibrary(16, .pFBeauSansProRegular)))
                         Text("$ ")
                             .foregroundColor(Color.theme.lightGreen)
-                            .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
+                            .font(Font(uiFont: .fontLibrary(16, .pFBeauSansProRegular)))
                         Text("/" + "\(fruit.weightOrPieces)")
-                            .foregroundColor(Color.theme.lightGreen)
-                            .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
+                            .foregroundColor(Color.theme.green4)
+                            .font(Font(uiFont: .fontLibrary(16, .pFBeauSansProRegular)))
                         Spacer()
                         Button {
                             withAnimation(.linear(duration: 0.5)) {
@@ -81,12 +81,12 @@ struct CartCell: View {
 
                     Text(fruit.name)
                         .foregroundColor(Color.theme.blackWhiteText)
-                        .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
+                        .font(Font(uiFont: .fontLibrary(20, .pFBeauSansProRegular)))
                     Text(fruit.comment)
                         .frame(minHeight: 20, maxHeight: 40)
                         .fixedSize(horizontal: false, vertical: true)
                         .foregroundColor(Color.theme.blackWhiteText)
-                        .font(Font(uiFont: .fontLibrary(14, .uzSansRegular)))
+                        .font(Font(uiFont: .fontLibrary(14, .pFBeauSansProRegular)))
                     if fruit.favorite {} else {
                         HStack {
                             Button {
@@ -111,11 +111,11 @@ struct CartCell: View {
                             case "шт":
                                 Text("\(NSString(format: "%.0f", fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1)) \(fruit.weightOrPieces)")
                                     .foregroundColor(Color.theme.blackWhiteText)
-                                    .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
+                                    .font(Font(uiFont: .fontLibrary(20, .pFBeauSansProRegular)))
                             default:
                                 Text("\(NSString(format: "%.1f", fruitViewModel.dictionaryOfNameAndCountOfFruits[fruit.name] ?? 1)) \(fruit.weightOrPieces)")
                                     .foregroundColor(Color.theme.blackWhiteText)
-                                    .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
+                                    .font(Font(uiFont: .fontLibrary(20, .pFBeauSansProRegular)))
                             }
                             Button {
                                 buttonIsTupped = true
@@ -131,7 +131,7 @@ struct CartCell: View {
                                 Image(systemName: "plus.square.fill")
                                     .resizable()
                                     .frame(width: 30, height: 30)
-                                    .foregroundColor(Color.theme.lightGreen)
+                                    .foregroundColor(Color.theme.green4)
                             }
                         }
                     }
@@ -145,7 +145,7 @@ struct CartCell: View {
                 HStack {
                     Text("There is no product at the moment")
                         .foregroundColor(Color.theme.blackWhiteText)
-                        .font(Font(uiFont: .fontLibrary(16, .uzSansSemiBold)))
+                        .font(Font(uiFont: .fontLibrary(16, .pFBeauSansProSemiBold)))
 //                        .padding(.leading, 20)
                 }
                 .padding(.horizontal)
@@ -161,16 +161,16 @@ struct CartCell: View {
                 HStack(spacing: 1) {
                     Text("Total: ")
                         .foregroundColor(Color.theme.blackWhiteText)
-                        .font(Font(uiFont: .fontLibrary(16, .uzSansSemiBold)))
+                        .font(Font(uiFont: .fontLibrary(16, .pFBeauSansProSemiBold)))
                         .padding(.leading, 20)
                     Spacer()
 
                     Text("\(NSString(format: "%.2f", fruit.price ?? 1)) ")
                         .foregroundColor(Color.theme.lightGreen)
-                        .font(Font(uiFont: .fontLibrary(19, .uzSansSemiBold)))
+                        .font(Font(uiFont: .fontLibrary(19, .pFBeauSansProSemiBold)))
                     Text("$ ")
                         .foregroundColor(Color.theme.lightGreen)
-                        .font(Font(uiFont: .fontLibrary(19, .uzSansSemiBold)))
+                        .font(Font(uiFont: .fontLibrary(19, .pFBeauSansProSemiBold)))
                         .padding(.trailing, 20)
                 }
             }

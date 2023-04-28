@@ -9,10 +9,10 @@ struct UserInfoView: View {
     var body: some View {
         VStack {
             Text("My details")
-                .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
+                .font(Font(uiFont: .fontLibrary(20, .pFBeauSansProSemiBold)))
                 .foregroundColor(Color.theme.blackWhiteText)
                 .padding()
-            Color.theme.gray
+            Color.theme.grafit
                 .opacity(0.3)
                 .frame(height: 10)
             TextFieldView(text: $userViewModel.userSurname, placeholder: "Surname", infoText: "")
@@ -28,14 +28,14 @@ struct UserInfoView: View {
             ZStack(alignment: .leading) {
                 Text("+375")
                     .foregroundColor(Color.theme.blackWhiteText)
-                    .font(Font(uiFont: .fontLibrary(18, .uzSansRegular)))
+                    .font(Font(uiFont: .fontLibrary(18, .pFBeauSansProRegular)))
                     .padding(.leading, 30)
                     .padding(.top, 4)
                 iPhoneNumberField("Phone", text: $userViewModel.userPhone)
                     .maximumDigits(9)
                     .defaultRegion("BY")
                     .foregroundColor(Color.theme.blackWhiteText)
-                    .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
+                    .font(Font(uiFont: .fontLibrary(16, .pFBeauSansProRegular)))
                     .padding(.leading, 55)
                     .background(.clear)
                     .frame(height: 50)
@@ -60,7 +60,7 @@ struct UserInfoView: View {
             } label: {
                 ZStack {
                     Color.theme.lightGreen
-                        .background(Color.theme.lightGreen)
+                        .background(Color.theme.green4)
                         .frame(width: 300, height: 50)
                         .cornerRadius(10)
                     Text("Save")

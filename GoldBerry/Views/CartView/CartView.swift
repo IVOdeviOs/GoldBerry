@@ -34,22 +34,22 @@ struct WithoutPurchase: View {
                         .padding()
                         .padding(.top, 60)
                     Text("Your cart is empty")
-                        .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
+                        .font(Font(uiFont: .fontLibrary(20, .pFBeauSansProRegular)))
                         .foregroundColor(Color.theme.blackWhiteText)
                         .padding(.bottom, 10)
                     Text("Your cart is waiting to be filled!")
-                        .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                        .font(Font(uiFont: .fontLibrary(15, .pFBeauSansProRegular)))
                         .padding(.bottom, 10)
                         .multilineTextAlignment(.center)
-                        .foregroundColor(Color.theme.gray)
+                        .foregroundColor(Color.theme.grafit)
                     Button {
                         fruitViewModel.selected = 0
                     } label: {
                         Text("Go to product selection")
                             .frame(width: 300, height: 50)
                             .foregroundColor(.white)
-                            .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
-                            .background(Color.theme.lightGreen)
+                            .font(Font(uiFont: .fontLibrary(15, .pFBeauSansProRegular)))
+                            .background(Color.theme.green4)
                             .cornerRadius(10)
                     }
                     Spacer()
@@ -110,7 +110,7 @@ struct WithPurchase: View {
                         }
                             .foregroundColor(.white)
                             .frame(width: UIScreen.main.bounds.width - 30, height: 50)
-                            .background(Color.theme.lightGreen)
+                            .background(Color.theme.green4)
                             .cornerRadius(10)
                             .padding(.bottom, 150)
                     }

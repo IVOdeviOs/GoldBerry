@@ -181,7 +181,7 @@ struct ServiceInfoView: View {
             }
             .offset(y: -15)
             .listStyle(.plain)
-            Link(destination: URL(string: "https://www.instagram.com/nar_juice")!) {
+            Link(destination: URL(string: "https://instagram.com/vitaminki_ot_kristinki")!) {
                 Image("instagram")
                     .resizable().frame(width: 60, height: 60).padding()
             }

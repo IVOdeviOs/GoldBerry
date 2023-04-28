@@ -21,9 +21,9 @@ struct SignUP: View {
                             .foregroundColor(index == 1 ? Color.theme.background : Color.theme.grafit)
                             .font(Font(uiFont: .fontLibrary(22, .pFBeauSansProSemiBold)))
                         Capsule()
-                            .fill(index == 1 ? Color(red: 243 / 255,
-                                                     green: 122 / 255,
-                                                     blue: 72 / 255) : .clear)
+                            .fill(index == 1 ? Color(red: 80 / 255,
+                                                     green: 142 / 255,
+                                                     blue: 54 / 255) : .clear)
                             .frame(width: 100, height: 5)
                     }
                 }
@@ -54,12 +54,12 @@ struct SignUP: View {
                                 .foregroundColor(Color.theme.background)
                         }
                         if signUP.secure {
-                            SecureField("Минимум 6 символов", text: $signUP.password)
+                            SecureField("Пароль минимум 6 символов", text: $signUP.password)
                                 .font(Font(uiFont: .fontLibrary(15, .pFBeauSansProRegular)))
                                 .foregroundColor(Color.theme.background)
 
                         } else {
-                            TextField("Минимум 6 символов", text: $signUP.password)
+                            TextField("Пароль минимум 6 символов", text: $signUP.password)
                                 .font(Font(uiFont: .fontLibrary(15, .pFBeauSansProRegular)))
                                 .foregroundColor(Color.theme.background)
                         }

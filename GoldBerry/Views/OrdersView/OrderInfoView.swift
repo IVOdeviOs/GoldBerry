@@ -11,10 +11,10 @@ struct OrderInfoView: View {
             VStack {
                 HStack {
                     Text("Order №")
-                        .font(Font(uiFont: .fontLibrary(24, .uzSansBold)))
+                        .font(Font(uiFont: .fontLibrary(24, .pFBeauSansProSemiBold)))
                         .foregroundColor(Color.theme.blackWhiteText)
                     Text("\(order.orderNumber)")
-                        .font(Font(uiFont: .fontLibrary(24, .uzSansBold)))
+                        .font(Font(uiFont: .fontLibrary(24, .pFBeauSansProSemiBold)))
                         .foregroundColor(Color.theme.blackWhiteText)
                         .padding()
                 }
@@ -22,15 +22,15 @@ struct OrderInfoView: View {
                     .opacity(0.3)
                     .frame(height: 10)
                 HStack {
-                    HStack {
-                        Text("$ ")
-                            .font(Font(uiFont: .fontLibrary(16, .uzSansBold)))
-                            .foregroundColor(.white)
+//                    HStack {
+//                        Text("$ ")
+//                            .font(Font(uiFont: .fontLibrary(16, .pFBeauSansProSemiBold)))
+//                            .foregroundColor(.white)
 
-                        Text(" \(NSString(format: "%.2f", order.prices))")
-                            .font(Font(uiFont: .fontLibrary(16, .uzSansBold)))
+                        Text(" \(NSString(format: "%.2f", order.prices)) руб")
+                            .font(Font(uiFont: .fontLibrary(16, .pFBeauSansProSemiBold)))
                             .foregroundColor(.white)
-                    }
+//                    }
                     .frame(width: 130, height: 30)
                     .background(.orange)
                     .cornerRadius(8)
@@ -38,26 +38,26 @@ struct OrderInfoView: View {
                     Spacer()
                     Text("\(order.dateOrder)")
                         .foregroundColor(Color.theme.gray)
-                        .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
+                        .font(Font(uiFont: .fontLibrary(16, .pFBeauSansProRegular)))
                         .padding()
                 }
                 HStack {
                     Spacer()
                     Text("Product name")
                         .foregroundColor(Color.theme.blackWhiteText)
-                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                        .font(Font(uiFont: .fontLibrary(12, .pFBeauSansProRegular)))
                         .frame(width: UIScreen.main.bounds.width / 3, height: 20)
                     Text("Price")
                         .foregroundColor(Color.theme.blackWhiteText)
-                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                        .font(Font(uiFont: .fontLibrary(12, .pFBeauSansProRegular)))
                         .frame(width: UIScreen.main.bounds.width / 6, height: 20)
                     Text("Count")
                         .foregroundColor(Color.theme.blackWhiteText)
-                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                        .font(Font(uiFont: .fontLibrary(12, .pFBeauSansProRegular)))
                         .frame(width: UIScreen.main.bounds.width / 6, height: 20)
                     Text("Total")
                         .foregroundColor(Color.theme.blackWhiteText)
-                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                        .font(Font(uiFont: .fontLibrary(12, .pFBeauSansProRegular)))
                         .frame(width: UIScreen.main.bounds.width / 6, height: 20)
                         .padding(.trailing, 20)
                 }
@@ -91,36 +91,36 @@ struct OrderInfoView: View {
                                 Text(order.fruits[row].name)
                                     .minimumScaleFactor(0.7)
                                     .foregroundColor(Color.theme.blackWhiteText)
-                                    .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                                    .font(Font(uiFont: .fontLibrary(12, .pFBeauSansProRegular)))
                                     .frame(width: UIScreen.main.bounds.width / 4, height: 20)
-                                HStack(spacing: 1) {
-                                    Text("$ ")
+//                                HStack(spacing: 1) {
+//                                    Text("$ ")
+//                                        .foregroundColor(Color.theme.blackWhiteText)
+//                                        .font(Font(uiFont: .fontLibrary(12, .pFBeauSansProRegular)))
+                                    Text(" \(NSString(format: "%.2f", order.fruits[row].itog)) руб")
                                         .foregroundColor(Color.theme.blackWhiteText)
-                                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                                    Text(" \(NSString(format: "%.2f", order.fruits[row].itog))")
-                                        .foregroundColor(Color.theme.blackWhiteText)
-                                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                                }
+                                        .font(Font(uiFont: .fontLibrary(12, .pFBeauSansProRegular)))
+//                                }
                                 .frame(width: UIScreen.main.bounds.width / 6, height: 20)
                                 Text("\(NSString(format: "%.1f", order.fruits[row].count))")
                                     .foregroundColor(Color.theme.blackWhiteText)
-                                    .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                                    .font(Font(uiFont: .fontLibrary(12, .pFBeauSansProRegular)))
                                     .frame(width: UIScreen.main.bounds.width / 6, height: 20)
-                                HStack(spacing: 1) {
-                                    Text("$ ")
+//                                HStack(spacing: 1) {
+//                                    Text("$ ")
+//                                        .foregroundColor(Color.theme.blackWhiteText)
+//                                        .font(Font(uiFont: .fontLibrary(12, .pFBeauSansProRegular)))
+                                    Text(" \(NSString(format: "%.2f", order.fruits[row].itog * Double(order.fruits[row].count))) руб")
                                         .foregroundColor(Color.theme.blackWhiteText)
-                                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                                    Text(" \(NSString(format: "%.2f", order.fruits[row].itog * Double(order.fruits[row].count)))")
-                                        .foregroundColor(Color.theme.blackWhiteText)
-                                        .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
-                                }
+                                        .font(Font(uiFont: .fontLibrary(12, .pFBeauSansProRegular)))
+//                                }
                                 .frame(width: UIScreen.main.bounds.width / 6, height: 20)
                                 .padding(.trailing, 10)
                             }
                         }
                     }
                 }.frame(height: 200)
-                Color.theme.gray
+                Color.theme.grafit
                     .opacity(0.3)
                     .frame(height: 10)
                 HStack {
@@ -131,7 +131,7 @@ struct OrderInfoView: View {
                         .padding(.leading, 10)
                         .padding(.bottom, 10)
                     Text("Delivery")
-                        .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
+                        .font(Font(uiFont: .fontLibrary(20, .pFBeauSansProSemiBold)))
                         .foregroundColor(Color.theme.blackWhiteText)
                         .padding(.leading, 10)
                         .padding(.bottom, 10)
@@ -139,13 +139,13 @@ struct OrderInfoView: View {
                 }
                 HStack {
                     Text("\(order.date)")
-                        .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
+                        .font(Font(uiFont: .fontLibrary(16, .pFBeauSansProRegular)))
                         .foregroundColor(Color.theme.blackWhiteText)
                         .padding(.leading, 10)
                         .padding(.bottom, 10)
                     Spacer()
                 }
-                Color.theme.gray
+                Color.theme.grafit
                     .opacity(0.3)
                     .frame(height: 10)
                 CustomerInfo(order: order)
@@ -190,25 +190,25 @@ struct CustomerInfo: View {
                     .padding(.leading, 10)
                     .padding(.bottom, 10)
                 Text("Recipient")
-                    .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
+                    .font(Font(uiFont: .fontLibrary(20, .pFBeauSansProSemiBold)))
                     .foregroundColor(Color.theme.blackWhiteText)
                     .padding(.leading, 10)
                     .padding(.bottom, 10)
                 Spacer()
             }
             Text("\(order.customer)")
-                .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
+                .font(Font(uiFont: .fontLibrary(16, .pFBeauSansProRegular)))
                 .foregroundColor(Color.theme.blackWhiteText)
                 .padding(.leading, 10)
             Text("\(order.customerPhone)")
-                .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
+                .font(Font(uiFont: .fontLibrary(16, .pFBeauSansProRegular)))
                 .foregroundColor(Color.theme.blackWhiteText)
                 .padding(.leading, 10)
             Text("\(order.address)")
-                .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
+                .font(Font(uiFont: .fontLibrary(16, .pFBeauSansProRegular)))
                 .foregroundColor(Color.theme.blackWhiteText)
                 .padding(.leading, 10)
-            Color.theme.gray
+            Color.theme.grafit
                 .opacity(0.3)
                 .frame(height: 10)
             Spacer()

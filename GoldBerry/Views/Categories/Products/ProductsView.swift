@@ -47,17 +47,17 @@ struct ProductsView: View {
 
                                     } label: {
                                         Text("Login or Register")
-                                            .foregroundColor(.blue)
+                                            .foregroundColor(.white)
                                             .font(Font(uiFont: UIFont.fontLibrary(16, .pFBeauSansProRegular)))
                                             .frame(width: UIScreen.main.bounds.width - 60, height: 30)
-                                            .background(Color.theme.orange)
+                                            .background(Color.theme.green4)
                                             .cornerRadius(10)
                                     }.padding(5)
                                 }
                                 .padding(5)
                             }
                             .frame(width: 375, height: 120)
-                            .background(Color.orange)
+                            .background(Color.theme.orange)
                             .cornerRadius(10)
                             .zIndex(1)
                         }

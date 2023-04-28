@@ -20,9 +20,9 @@ struct Login: View {
                             .foregroundColor(index == 0 ? Color.theme.background : .gray)
                             .font(Font(uiFont: .fontLibrary(22, .pFBeauSansProSemiBold)))
                         Capsule()
-                            .fill(index == 0 ? Color(red: 243 / 255,
-                                                     green: 122 / 255,
-                                                     blue: 72 / 255) : .clear)
+                            .fill(index == 0 ? Color(red: 80 / 255,
+                                                     green: 142 / 255,
+                                                     blue: 54 / 255) : .clear)
                             .frame(width: 100, height: 5)
                     }
                     Spacer()

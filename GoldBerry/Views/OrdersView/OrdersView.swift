@@ -43,14 +43,14 @@ struct WithoutOrders: View {
                         .padding()
                         .padding(.top, 60)
                     Text("You have no orders")
-                        .font(Font(uiFont: .fontLibrary(20, .uzSansRegular)))
+                        .font(Font(uiFont: .fontLibrary(20, .pFBeauSansProRegular)))
                         .foregroundColor(Color.theme.blackWhiteText)
                         .padding(.bottom, 10)
                     Text("Order something fresh in our shop")
-                        .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                        .font(Font(uiFont: .fontLibrary(15, .pFBeauSansProRegular)))
                         .padding(.bottom, 10)
                         .multilineTextAlignment(.center)
-                        .foregroundColor(Color.theme.gray)
+                        .foregroundColor(Color.theme.grafit)
                         .padding(.horizontal, 10)
                     Button {
                         fruitViewModel.selected = 0
@@ -58,8 +58,8 @@ struct WithoutOrders: View {
                         Text("Go to product selection")
                             .frame(width: 300, height: 50)
                             .foregroundColor(.white)
-                            .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
-                            .background(Color.theme.lightGreen)
+                            .font(Font(uiFont: .fontLibrary(15, .pFBeauSansProRegular)))
+                            .background(Color.theme.green4)
                             .cornerRadius(10)
                     }
                     Spacer()
