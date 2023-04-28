@@ -72,7 +72,7 @@ struct DeliveryInfoView: View {
                 HStack {
                     Spacer()
                     VStack {
-                        Image(systemName: "creditcard")
+                        Image(systemName: "banknote")
                             .resizable()
                             .frame(width: 80, height: 50)
                             .foregroundColor(Color.theme.orange)
