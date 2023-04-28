@@ -8,7 +8,8 @@ struct CompletedOrderView: View {
         Text("The courier will contact you soon")
         Image("completedOrder")
             .resizable()
-            .frame(width: 300, height: 300)
+            .frame(width: 270, height: 200)
+            .cornerRadius(15)
             .onDisappear{
                 fruitViewModel.uniqFruits.removeAll()
             }
