@@ -7,15 +7,15 @@ struct ShopsView: View {
 
     var body: some View {
         VStack {
-            Text("Адреса торговых точек!!!!")
+            Text("Адреса торговых точек")
                 .foregroundColor(Color.theme.blackWhiteText)
-                .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
+                .font(Font(uiFont: .fontLibrary(20, .pFBeauSansProSemiBold)))
                 .padding()
-            Color.theme.gray
+            Color.theme.grafit
                 .opacity(0.3)
                 .frame(height: 10)
-            ShopsInfo(fruitViewModel: fruitViewModel, shopName: "Магазин #1, pppp #1", shopAddress: "Washington", workTime: "08:00-20:00")
-            ShopsInfo(fruitViewModel: fruitViewModel, shopName: "Shop #2, place #2", shopAddress: "New York", workTime: "08:00-21:00")
+            ShopsInfo(fruitViewModel: fruitViewModel, shopName: "АЗС №2", shopAddress: "д. Боровая, 7", workTime: "10:00-18:00", deliveryTime: "10:00-23:00")
+            ShopsInfo(fruitViewModel: fruitViewModel, shopName: "АЗС №18", shopAddress: "Минский р-н, трасса на г. Могилев (М4)", workTime: "10:00-18:00", deliveryTime: "10:00-23:00")
             Spacer()
         }
     }
@@ -27,13 +27,15 @@ struct ShopsInfo: View {
     @State var shopName: LocalizedStringKey
     @State var shopAddress: LocalizedStringKey
     @State var workTime: String
+    @State var deliveryTime: String
+
 
     var body: some View {
         VStack {
             HStack {
                 Text(shopName)
                     .foregroundColor(Color.theme.blackWhiteText)
-                    .font(Font(uiFont: .fontLibrary(18, .uzSansBold)))
+                    .font(Font(uiFont: .fontLibrary(18, .pFBeauSansProSemiBold)))
                     .padding(.leading, 10)
                     .padding(.bottom, 5)
                 Spacer()
@@ -42,53 +44,53 @@ struct ShopsInfo: View {
                 HStack {
                     Text("The address:")
                         .foregroundColor(Color.theme.blackWhiteText)
-                        .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                        .font(Font(uiFont: .fontLibrary(15, .pFBeauSansProRegular)))
                         .padding(.leading, 10)
                         .padding(.bottom, 5)
                     Text(shopAddress)
                         .foregroundColor(Color.theme.blackWhiteText)
-                        .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                        .font(Font(uiFont: .fontLibrary(15, .pFBeauSansProRegular)))
                         .padding(.bottom, 5)
                 }
                 Spacer()
             }
-            HStack {
-                Text("Delivery:")
-                    .foregroundColor(Color.theme.blackWhiteText)
-                    .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
-                    .padding(.leading, 10)
-                    .padding(.bottom, 5)
-                Text("$0")
-                    .foregroundColor(Color.theme.blackWhiteText)
-                    .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
-                    .padding(.bottom, 5)
-                Spacer()
-            }
+//            HStack {
+//                Text("Delivery:")
+//                    .foregroundColor(Color.theme.blackWhiteText)
+//                    .font(Font(uiFont: .fontLibrary(15, .pFBeauSansProRegular)))
+//                    .padding(.leading, 10)
+//                    .padding(.bottom, 5)
+//                Text("C")
+//                    .foregroundColor(Color.theme.blackWhiteText)
+//                    .font(Font(uiFont: .fontLibrary(15, .pFBeauSansProRegular)))
+//                    .padding(.bottom, 5)
+//                Spacer()
+//            }
             HStack {
                 Text("Working mode:")
-                    .foregroundColor(Color.theme.gray)
-                    .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                    .foregroundColor(Color.theme.grafit)
+                    .font(Font(uiFont: .fontLibrary(15, .pFBeauSansProRegular)))
                     .padding(.leading, 10)
                     .padding(.bottom, 5)
                 Text("\(workTime)")
-                    .foregroundColor(Color.theme.gray)
+                    .foregroundColor(Color.theme.grafit)
                     .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
                     .padding(.bottom, 5)
                 Spacer()
             }
             HStack {
                 Text("Delivery mode:")
-                    .foregroundColor(Color.theme.gray)
-                    .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                    .foregroundColor(Color.theme.grafit)
+                    .font(Font(uiFont: .fontLibrary(15, .pFBeauSansProRegular)))
                     .padding(.leading, 10)
                     .padding(.bottom, 5)
-                Text("\(workTime)")
-                    .foregroundColor(Color.theme.gray)
-                    .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                Text("\(deliveryTime)")
+                    .foregroundColor(Color.theme.grafit)
+                    .font(Font(uiFont: .fontLibrary(15, .pFBeauSansProRegular)))
                     .padding(.bottom, 5)
                 Spacer()
             }
-            Color.theme.gray
+            Color.theme.grafit
                 .opacity(0.3)
                 .frame(height: 1)
 
@@ -97,11 +99,11 @@ struct ShopsInfo: View {
             }
         label: {
                 Text("Go to ordering goods")
-                    .foregroundColor(Color.theme.lightGreen)
-                    .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
+                    .foregroundColor(Color.theme.green4)
+                    .font(Font(uiFont: .fontLibrary(20, .pFBeauSansProSemiBold)))
                     .padding()
             }
-            Color.theme.gray
+            Color.theme.grafit
                 .opacity(0.3)
                 .frame(height: 5)
         }

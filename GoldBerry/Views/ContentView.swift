@@ -82,7 +82,7 @@ struct ViewProfile: View {
                 VStack {
                     ZStack {
                         HStack {
-                            Text("GoldBerry")
+                            Text("Доставка фруктов")
                                 .font(Font(uiFont: .fontLibrary(32, .pFBeauSansProSemiBold)))
                                 .foregroundColor(fruitViewModel.selected == 3 ? Color.theme.background : Color.theme.green4)
                                 .padding()

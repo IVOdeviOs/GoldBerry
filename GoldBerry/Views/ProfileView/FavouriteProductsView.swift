@@ -27,22 +27,22 @@ struct WithoutFavouriteProductsView: View {
                 .padding()
                 .padding(.top, 90)
             Text("No featured products")
-                .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
+                .font(Font(uiFont: .fontLibrary(20, .pFBeauSansProSemiBold)))
                 .foregroundColor(Color.theme.blackWhiteText)
                 .padding(.bottom, 10)
             Text("Add products so you don't miss anything important")
-                .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                .font(Font(uiFont: .fontLibrary(15, .pFBeauSansProRegular)))
                 .padding(.bottom, 10)
                 .multilineTextAlignment(.center)
-                .foregroundColor(Color.theme.gray)
+                .foregroundColor(Color.theme.grafit)
             Button {
                 fruitViewModel.selected = 0
             } label: {
                 Text("Go to product selection")
                     .frame(width: 300, height: 50)
                     .foregroundColor(.white)
-                    .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
-                    .background(Color.theme.lightGreen)
+                    .font(Font(uiFont: .fontLibrary(15, .pFBeauSansProRegular)))
+                    .background(Color.theme.green4)
                     .cornerRadius(10)
             }
             Spacer()
@@ -65,7 +65,7 @@ struct WithFavouriteProductsView: View {
         NavigationView {
             VStack {
                 Text("Featured Products")
-                    .font(Font(uiFont: .fontLibrary(20, .uzSansBold)))
+                    .font(Font(uiFont: .fontLibrary(20, .pFBeauSansProSemiBold)))
                     .foregroundColor(Color.theme.lightGreen)
                     .padding()
 

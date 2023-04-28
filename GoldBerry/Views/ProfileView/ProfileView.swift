@@ -43,14 +43,14 @@ struct ProfileView: View {
             .overlay(
                 VStack {
                     ZStack {
-                        Color.theme.lightGreen
+                        Color.theme.orange
                             .frame(height: 240)
                             .offset(y: -50)
                         HStack {
                             VStack {
                                 Text(userViewModel.userName.isEmpty && userViewModel.userSurname.isEmpty ? "First Name Last Name" : "\(userViewModel.userName) \(userViewModel.userSurname)")
                                     .foregroundColor(Color.theme.background)
-                                    .font(Font(uiFont: .fontLibrary(20, .uzSansSemiBold)))
+                                    .font(Font(uiFont: .fontLibrary(20, .pFBeauSansProSemiBold)))
                                     .padding()
                             }
                             Spacer()
@@ -79,11 +79,11 @@ struct ProfileView: View {
                                     .shadow(color: .gray, radius: 2, x: 1, y: 1)
                                 VStack {
                                     Text("Order archive")
-                                        .font(Font(uiFont: .fontLibrary(16, .uzSansRegular)))
+                                        .font(Font(uiFont: .fontLibrary(16, .pFBeauSansProRegular)))
                                         .foregroundColor(Color.theme.blackWhiteText)
                                         .padding(.bottom, 5)
                                     Text("\(orderCount())")
-                                        .font(Font(uiFont: .fontLibrary(24, .uzSansSemiBold)))
+                                        .font(Font(uiFont: .fontLibrary(24, .pFBeauSansProSemiBold)))
                                         .foregroundColor(Color.theme.blackWhiteText)
                                 }
                             }
@@ -99,7 +99,7 @@ struct ProfileView: View {
                             HStack {
                                 Text("Store addresses")
                                     .foregroundColor(Color.theme.blackWhiteText)
-                                    .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                                    .font(Font(uiFont: .fontLibrary(15, .pFBeauSansProRegular)))
                                     .padding(.leading, 15)
                                 Spacer()
                                 Image(systemName: "arrow.right")
@@ -123,7 +123,7 @@ struct ProfileView: View {
                             HStack {
                                 Text("Featured Products")
                                     .foregroundColor(Color.theme.blackWhiteText)
-                                    .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                                    .font(Font(uiFont: .fontLibrary(15, .pFBeauSansProRegular)))
                                     .padding(.leading, 15)
                                 Spacer()
                                 ZStack {
@@ -134,7 +134,7 @@ struct ProfileView: View {
                                         Text("\(userViewModel.favouriteProducts.count)")
                                             .minimumScaleFactor(0.5)
                                             .foregroundColor(.white)
-                                            .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
+                                            .font(Font(uiFont: .fontLibrary(12, .pFBeauSansProRegular)))
                                     }
                                 }
                                 Image(systemName: "arrow.right")
@@ -157,7 +157,7 @@ struct ProfileView: View {
                             HStack {
                                 Text("About the service")
                                     .foregroundColor(Color.theme.blackWhiteText)
-                                    .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                                    .font(Font(uiFont: .fontLibrary(15, .pFBeauSansProRegular)))
                                     .padding(.leading, 15)
                                 Spacer()
 
@@ -181,7 +181,7 @@ struct ProfileView: View {
                                 HStack {
                                     Text("Support service")
                                         .foregroundColor(Color.theme.blackWhiteText)
-                                        .font(Font(uiFont: .fontLibrary(15, .uzSansRegular)))
+                                        .font(Font(uiFont: .fontLibrary(15, .pFBeauSansProRegular)))
                                         .padding(.leading, 15)
                                     Spacer()
                                     Image(systemName: "arrow.right")
@@ -206,7 +206,7 @@ struct ProfileView: View {
                                         .frame(width: 14, height: 14)
                                         .foregroundColor(Color.theme.blackWhiteText)
                                     Text("Output")
-                                        .font(Font(uiFont: .fontLibrary(14, .uzSansSemiBold)))
+                                        .font(Font(uiFont: .fontLibrary(14, .pFBeauSansProSemiBold)))
                                         .foregroundColor(Color.theme.blackWhiteText)
                                 }
                             }
@@ -246,7 +246,7 @@ struct ProfileView: View {
                                         .frame(width: 14, height: 14)
                                         .foregroundColor(Color.red)
                                     Text("Delete account")
-                                        .font(Font(uiFont: .fontLibrary(14, .uzSansSemiBold)))
+                                        .font(Font(uiFont: .fontLibrary(14, .pFBeauSansProSemiBold)))
                                         .foregroundColor(Color.red)
                                 }
                             }
@@ -297,7 +297,7 @@ struct ProfileView: View {
                             Text("Enter or register")
                                 .foregroundColor(.white)
                                 .frame(width: UIScreen.main.bounds.width - 30, height: 50)
-                                .background(Color.orange)
+                                .background(Color.theme.orange)
                                 .cornerRadius(10)
                                 .padding(.bottom, 150)
                         }
