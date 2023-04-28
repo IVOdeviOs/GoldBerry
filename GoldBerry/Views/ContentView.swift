@@ -110,7 +110,7 @@ struct ViewProfile: View {
 //                                    Text("Главная")
                                         .font(Font(uiFont: .fontLibrary(12, .uzSansRegular)))
                                 }
-                            }.foregroundColor(fruitViewModel.selected == 0 ? Color.theme.green4 : Color.theme.grafit)
+                            }.foregroundColor(fruitViewModel.selected == 0 ? Color.theme.orange : Color.theme.grafit)
                             Spacer(minLength: 12)
 
                             Button {
@@ -138,7 +138,7 @@ struct ViewProfile: View {
                                             .font(Font(uiFont: .fontLibrary(12, .pFBeauSansProRegular)))
                                     }.badge(fruits.count)
                                 }
-                            }.foregroundColor(fruitViewModel.selected == 1 ? Color.theme.green4 : Color.theme.grafit)
+                            }.foregroundColor(fruitViewModel.selected == 1 ? Color.theme.orange : Color.theme.grafit)
                             Spacer()
 
                             Button {
@@ -151,7 +151,7 @@ struct ViewProfile: View {
                                     Text("Order")
                                         .font(Font(uiFont: .fontLibrary(12, .pFBeauSansProRegular)))
                                 }
-                            }.foregroundColor(fruitViewModel.selected == 2 ? Color.theme.green4 : Color.theme.grafit)
+                            }.foregroundColor(fruitViewModel.selected == 2 ? Color.theme.orange : Color.theme.grafit)
                             Spacer(minLength: 12)
 
                             Button {
@@ -164,7 +164,7 @@ struct ViewProfile: View {
                                     Text("Profile")
                                         .font(Font(uiFont: .fontLibrary(12, .pFBeauSansProRegular)))
                                 }
-                            }.foregroundColor(fruitViewModel.selected == 3 ? Color.theme.green4 : Color.theme.grafit)
+                            }.foregroundColor(fruitViewModel.selected == 3 ? Color.theme.orange : Color.theme.grafit)
                         }
                         .padding()
                         .padding(.horizontal, 22)
@@ -173,7 +173,7 @@ struct ViewProfile: View {
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                     .padding()
                     .padding(.bottom, 30)
-                    .shadow(color: Color.theme.lightGreen.opacity(0.5), radius: 8, x: 0, y: 5)
+                    .shadow(color: Color.theme.orange.opacity(0.5), radius: 8, x: 0, y: 5)
                 }
             }
         }

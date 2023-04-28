@@ -102,11 +102,13 @@ struct ProductsView: View {
                                 if fruits.categories == tag {
                                     
                                     AllProductsCell(fruit: fruits, fruitViewModel: fruitViewModel)
+                                        .padding(.top,20)
                                         .padding(.bottom, 30)
                                     
                                 } else if tag == CategoriesFruit.all.rawValue {
                                     AllProductsCell(fruit: fruits, fruitViewModel: fruitViewModel)
                                         .padding(.bottom, 30)
+                                        .padding(.top,20)
                                 }
                             }
                             }
