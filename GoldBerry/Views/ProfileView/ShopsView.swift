@@ -6,7 +6,8 @@ struct ShopsView: View {
     @StateObject var fruitViewModel: FruitViewModel
 
     var body: some View {
-        VStack {
+//        VStack {
+        ScrollView {
             Text("Адреса торговых точек")
                 .foregroundColor(Color.theme.blackWhiteText)
                 .font(Font(uiFont: .fontLibrary(20, .pFBeauSansProSemiBold)))
@@ -14,8 +15,15 @@ struct ShopsView: View {
             Color.theme.grafit
                 .opacity(0.3)
                 .frame(height: 10)
-            ShopsInfo(fruitViewModel: fruitViewModel, shopName: "АЗС №2", shopAddress: "д. Боровая, 7", workTime: "10:00-18:00", deliveryTime: "10:00-23:00")
-            ShopsInfo(fruitViewModel: fruitViewModel, shopName: "АЗС №18", shopAddress: "Минский р-н, трасса на г. Могилев (М4)", workTime: "10:00-18:00", deliveryTime: "10:00-23:00")
+            ShopsInfo(fruitViewModel: fruitViewModel, shopName: "АЗС №2", shopAddress: "д. Боровая, 7", workTime: "10:00-20:00", deliveryTime: "10:00-23:00")
+            ShopsInfo(fruitViewModel: fruitViewModel, shopName: "АЗС №18", shopAddress: "Минский р-н, трасса на г. Могилев (М4)", workTime: "10:00-20:00", deliveryTime: "10:00-23:00")
+//            ShopsInfo(fruitViewModel: fruitViewModel, shopName: "АЗС №20", shopAddress: "Минск, Долгиновский тракт, 190", workTime: "10:00-20:00", deliveryTime: "10:00-23:00")
+            ShopsInfo(fruitViewModel: fruitViewModel, shopName: "АЗС №5", shopAddress: "Минск, ул. Масюковщина, 2а, корпус 3", workTime: "10:00-20:00", deliveryTime: "10:00-23:00")
+            ShopsInfo(fruitViewModel: fruitViewModel, shopName: "АЗС №23", shopAddress: "Минск, ул. Казимировская, 39", workTime: "10:00-20:00", deliveryTime: "10:00-23:00")
+            ShopsInfo(fruitViewModel: fruitViewModel, shopName: "АЗС №3", shopAddress: "Минск, ул. Шаранговича, 81", workTime: "10:00-20:00", deliveryTime: "10:00-23:00")
+//            ShopsInfo(fruitViewModel: fruitViewModel, shopName: "АЗС №21", shopAddress: "Минск, ул. Ваупшасова, 40", workTime: "10:00-20:00", deliveryTime: "10:00-23:00")
+            ShopsInfo(fruitViewModel: fruitViewModel, shopName: "АЗС №6", shopAddress: "Минск, ул. Харьковская, 81", workTime: "10:00-20:00", deliveryTime: "10:00-23:00")
+            
             Spacer()
         }
     }
