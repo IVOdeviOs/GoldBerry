@@ -31,7 +31,7 @@ struct UserInfoView: View {
                     .font(Font(uiFont: .fontLibrary(18, .pFBeauSansProRegular)))
                     .padding(.leading, 30)
                     .padding(.top, 4)
-                iPhoneNumberField("Phone", text: $userViewModel.userPhone)
+                iPhoneNumberField("Телефон", text: $userViewModel.userPhone)
                     .maximumDigits(9)
                     .defaultRegion("BY")
                     .foregroundColor(Color.theme.blackWhiteText)
