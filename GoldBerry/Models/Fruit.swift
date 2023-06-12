@@ -17,7 +17,7 @@ struct Fruit: Identifiable, Codable, Hashable {
     var costs: Double {
         var currents: Double = 1
         if Locale.current.identifier == "en_US" {
-            currents = 2.64
+            currents = 2.95
         }
 
         let sum = cost / currents
@@ -28,7 +28,7 @@ struct Fruit: Identifiable, Codable, Hashable {
     var itog: Double {
         var currents: Double = 1
         if Locale.current.identifier == "en_US" {
-            currents = 2.64
+            currents = 2.95
         }
 
         let per = Double(percent)
