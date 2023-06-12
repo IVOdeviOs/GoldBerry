@@ -29,7 +29,12 @@ struct LaunchScreenView: View {
 
     var body: some View {
         ZStack {
-            Color.theme.orange.zIndex(0)
+            Image("Дизайн без названия-3")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .zIndex(0)
+                
+//            Color.theme.orange.zIndex(0)
             Color.black.opacity(0.3)
 
 
@@ -37,11 +42,14 @@ struct LaunchScreenView: View {
                 ZStack(alignment: .top) {
                     Circle()
                         .fill(.clear)
-                        .frame(width: 300)
+                        .frame(width: 280)
                         .zIndex(1)
 
-                    Image("goldBerryLogo")
-                        .resizable()
+//                    Image("goldBerryLogo")
+                    Text("OK_fruit")
+                        .font(Font(uiFont: .fontLibrary(45, .pFBeauSansProSemiBold)))
+                        .kerning(0)
+//                        .resizable()
                         .aspectRatio(contentMode: changeMode ? .fit : .fill)
                         .frame(width: scaled ? Constantss.Circle.Radius.scaled * 2 : Constantss.Circle.Radius.basic / 0.14)
                         .offset(y: circleOffseted ? Constantss.Circle.Offset.basic : Constantss.Circle.Offset.offseted)
@@ -54,8 +62,9 @@ struct LaunchScreenView: View {
                     .opacity(stripesVisible ? 1 : 0)
 
                 VStack(spacing: 0) {
-                    Text("Gold Berry")
+                    Text("Доставка фруктов \nпо Минску и району")
                         .kerning(0)
+                        .multilineTextAlignment(.center)
                         .foregroundColor(.white)
                         .font(Font(uiFont: .fontLibrary(32, .pFBeauSansProSemiBold)))
                         .offset(y: textOffseted ? 20 : 0)
