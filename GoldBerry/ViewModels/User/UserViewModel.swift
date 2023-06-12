@@ -11,6 +11,13 @@ class UserViewModel: ObservableObject {
     let numberPhoneKey = "numberPhoneKey"
     var numberPhone = "+375297023701"
 
+    @Published var showDeliveryInfoView = false
+    @Published var showConfidentialView = false
+    @Published var showDisclaimerOfLiability = false
+    @Published var showContacts = false
+    @Published var showAdminProfile = false
+    
+    
     @Published var alert = false
     @Published var alertDeleted = false
 

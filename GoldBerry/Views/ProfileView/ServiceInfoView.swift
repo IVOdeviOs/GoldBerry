@@ -2,13 +2,9 @@ import SwiftUI
 
 struct ServiceInfoView: View {
     @ObservedObject var adminViewModel: AdminViewModel
-
+    @ObservedObject var userViewModel: UserViewModel
     @Environment(\.presentationMode) var presentation
-    @State var showDeliveryInfoView = false
-    @State var showConfidentialView = false
-    @State var showDisclaimerOfLiability = false
-    @State var showContacts = false
-    @State var showAdminProfile = false
+
     @State var login = UserDefaults.standard.object(forKey: "userEmail")
     var numberPhone = "+375297023701"
     func checkLogin() -> Bool {
@@ -62,7 +58,7 @@ struct ServiceInfoView: View {
             }
             List {
                 Button {
-                    self.showDeliveryInfoView.toggle()
+                    self.userViewModel.showDeliveryInfoView.toggle()
                 }
             label: {
                     HStack {
@@ -76,13 +72,13 @@ struct ServiceInfoView: View {
                             .frame(width: 8, height: 8)
                             .foregroundColor(.gray)
                     }
-                    .sheet(isPresented: $showDeliveryInfoView, content: {
-                        DeliveryInfoView()
+                    .sheet(isPresented: $userViewModel.showDeliveryInfoView, content: {
+                        DeliveryInfoView(userViewModel: userViewModel)
                     })
                 }
 
                 Button {
-                    self.showConfidentialView.toggle()
+                    self.userViewModel.showConfidentialView.toggle()
                 }
             label: {
                     HStack {
@@ -96,13 +92,13 @@ struct ServiceInfoView: View {
                             .frame(width: 8, height: 8)
                             .foregroundColor(.gray)
                     }
-                    .sheet(isPresented: $showConfidentialView, content: {
-                        ConfidentialView()
+                    .sheet(isPresented: $userViewModel.showConfidentialView, content: {
+                        ConfidentialView(userViewModel: userViewModel)
                     })
                 }
 
                 Button {
-                    self.showDisclaimerOfLiability.toggle()
+                    self.userViewModel.showDisclaimerOfLiability.toggle()
                 }
             label: {
                     HStack {
@@ -116,8 +112,8 @@ struct ServiceInfoView: View {
                             .frame(width: 8, height: 8)
                             .foregroundColor(.gray)
                     }
-                    .sheet(isPresented: $showDisclaimerOfLiability, content: {
-                        DisclaimerOfLiability()
+                    .sheet(isPresented: $userViewModel.showDisclaimerOfLiability, content: {
+                        DisclaimerOfLiability(userViewModel: userViewModel)
                     })
                 }
 

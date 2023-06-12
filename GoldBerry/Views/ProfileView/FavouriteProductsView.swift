@@ -3,23 +3,38 @@ import SwiftUI
 struct FavouriteProductsView: View {
 
     @ObservedObject var fruitViewModel: FruitViewModel
+    @ObservedObject var userViewModel: UserViewModel
     @FetchRequest(entity: FavoriteFruit.entity(), sortDescriptors: [])
     var favoriteFruit: FetchedResults<FavoriteFruit>
     var body: some View {
 
         if favoriteFruit.isEmpty {
-            WithoutFavouriteProductsView(fruitViewModel: fruitViewModel)
+            WithoutFavouriteProductsView(fruitViewModel: fruitViewModel, userViewModel: userViewModel)
         } else {
-            WithFavouriteProductsView(fruitViewModel: fruitViewModel)
+            WithFavouriteProductsView(userViewModel: userViewModel, fruitViewModel: fruitViewModel)
         }
     }
 }
 
 struct WithoutFavouriteProductsView: View {
     @StateObject var fruitViewModel: FruitViewModel
+    @StateObject var userViewModel: UserViewModel
 
     var body: some View {
         VStack {
+            HStack {
+                Spacer()
+                Button {
+                    userViewModel.showFavouriteProductsView = false
+                } label: {
+                    Image(systemName: "x.square")
+                        .resizable()
+                        .frame(width: 25, height: 25)
+                        .foregroundColor(.red)
+                }
+                .padding(.top,20)
+                .padding(.trailing,16)
+            }
             Image("noOrders")
                 .resizable()
                 .frame(width: 300, height: 300)
@@ -53,7 +68,7 @@ struct WithoutFavouriteProductsView: View {
 
 struct WithFavouriteProductsView: View {
     @Environment(\.managedObjectContext) private var viewContext
-
+    @ObservedObject var userViewModel: UserViewModel
     @ObservedObject var fruitViewModel: FruitViewModel
     @FetchRequest(entity: FavoriteFruit.entity(), sortDescriptors: [])
     var favoriteFruit: FetchedResults<FavoriteFruit>
@@ -64,11 +79,25 @@ struct WithFavouriteProductsView: View {
 
         NavigationView {
             VStack {
-                Text("Featured Products")
-                    .font(Font(uiFont: .fontLibrary(20, .pFBeauSansProSemiBold)))
-                    .foregroundColor(Color.theme.lightGreen)
-                    .padding()
-
+                HStack {
+                    Spacer()
+                    Text("Featured Products")
+                        .font(Font(uiFont: .fontLibrary(20, .pFBeauSansProSemiBold)))
+                        .foregroundColor(Color.theme.lightGreen)
+                        .padding()
+                    Spacer()
+                    Button {
+                        userViewModel.showFavouriteProductsView = false
+                    } label: {
+                        Image(systemName: "x.square")
+                            .resizable()
+                            .frame(width: 25, height: 25)
+                            .foregroundColor(.red)
+                    }
+                    .padding(.trailing,16)
+                    
+                  
+                }
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {
                         LazyVGrid(columns: fruitViewModel.columns, alignment: .center, spacing: 1, pinnedViews: .sectionFooters, content: {

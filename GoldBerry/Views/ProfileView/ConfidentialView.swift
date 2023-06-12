@@ -1,15 +1,33 @@
 import SwiftUI
 
 struct ConfidentialView: View {
+    @ObservedObject var userViewModel: UserViewModel
+
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
-                Text("Privacy Policy")
-                    .font(Font(uiFont: .fontLibrary(25, .pFBeauSansProSemiBold)))
-                    .foregroundColor(Color.theme.blackWhiteText)
-                    .minimumScaleFactor(0.5)
-                    .multilineTextAlignment(.center)
-                    .padding()
+                HStack {
+                    Spacer()
+                    Text("Privacy Policy")
+                        .font(Font(uiFont: .fontLibrary(25, .pFBeauSansProSemiBold)))
+                        .foregroundColor(Color.theme.blackWhiteText)
+                        .minimumScaleFactor(0.5)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                    Spacer()
+                    Button {
+                        userViewModel.showConfidentialView = false
+                    } label: {
+                        Image(systemName: "x.square")
+                            .resizable()
+                            .frame(width: 25, height: 25)
+                            .foregroundColor(.red)
+                    }
+                    .padding(.trailing,16)
+                    
+                  
+                }
+                
                 Text("""
                 Настоящее Положение о конфиденциальности персональных данных (далее – Положение) разработано ИП «Метлицкий О.В.», действующего на основании Устава, и содержит в себе базовые нормы обработки, хранения и передачи персональных данных пользователей в рамках Интернет Сервиса.
                                                      Настоящее Положение о конфиденциальности персональных данных разработано в строгом соответствии с  Законом Республики Беларусь № 99-3 «О защите персональных данных», а также другими нормативно-правовыми документами, которые регулируют порядок обработки персональных данных пользователей, в том числе в сети Интернет посредством Интернет Сервиса.

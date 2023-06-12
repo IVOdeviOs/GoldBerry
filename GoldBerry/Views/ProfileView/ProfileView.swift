@@ -109,7 +109,7 @@ struct ProfileView: View {
                                     .padding(.trailing, 20)
                             }
                             .sheet(isPresented: $userViewModel.showShopView, content: {
-                                ShopsView(fruitViewModel: fruitViewModel)
+                                ShopsView(fruitViewModel: fruitViewModel, userViewModel: userViewModel)
                             })
                         }
                     }
@@ -144,12 +144,12 @@ struct ProfileView: View {
                                     .padding(.trailing, 20)
                             }
                             .sheet(isPresented: $userViewModel.showFavouriteProductsView, content: {
-                                FavouriteProductsView(fruitViewModel: fruitViewModel)
+                                FavouriteProductsView(fruitViewModel: fruitViewModel, userViewModel: userViewModel)
                             })
                         }
                     }
                     NavigationLink {
-                        ServiceInfoView(adminViewModel: adminViewModel)
+                        ServiceInfoView(adminViewModel: adminViewModel,userViewModel: userViewModel)
                     } label: {
                         ZStack {
                             Color.theme.grayWhite

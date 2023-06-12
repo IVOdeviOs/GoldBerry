@@ -1,14 +1,31 @@
 import SwiftUI
 
 struct DeliveryInfoView: View {
+    @ObservedObject var userViewModel: UserViewModel
     var body: some View {
 
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
-                Text("Support service")
-                    .font(Font(uiFont: .fontLibrary(25, .pFBeauSansProSemiBold)))
-                    .foregroundColor(Color.theme.blackWhiteText)
-                    .padding()
+               
+                HStack {
+                    Spacer()
+                    Text("Support service")
+                        .font(Font(uiFont: .fontLibrary(25, .pFBeauSansProSemiBold)))
+                        .foregroundColor(Color.theme.blackWhiteText)
+                        .padding()
+                    Spacer()
+                    Button {
+                        userViewModel.showDeliveryInfoView = false
+                    } label: {
+                        Image(systemName: "x.square")
+                            .resizable()
+                            .frame(width: 25, height: 25)
+                            .foregroundColor(.red)
+                    }
+                    .padding(.trailing,16)
+                    
+                  
+                }
                 Text("Contact number")
                     .font(Font(uiFont: .fontLibrary(15, .pFBeauSansProRegular)))
                     .foregroundColor(Color.theme.blackWhiteText)

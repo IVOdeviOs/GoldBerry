@@ -1,15 +1,33 @@
 import SwiftUI
 
 struct DisclaimerOfLiability: View {
+    @ObservedObject var userViewModel: UserViewModel
+
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
-                Text("Disclaimer of liability")
-                    .font(Font(uiFont: .fontLibrary(25, .pFBeauSansProSemiBold)))
-                    .foregroundColor(Color.theme.blackWhiteText)
-                    .minimumScaleFactor(0.5)
-                    .multilineTextAlignment(.center)
-                    .padding()
+                HStack {
+                    Spacer()
+                    Text("Disclaimer of liability")
+                        .font(Font(uiFont: .fontLibrary(25, .pFBeauSansProSemiBold)))
+                        .foregroundColor(Color.theme.blackWhiteText)
+                        .minimumScaleFactor(0.5)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                    Spacer()
+                    Button {
+                        userViewModel.showDisclaimerOfLiability = false
+                    } label: {
+                        Image(systemName: "x.square")
+                            .resizable()
+                            .frame(width: 25, height: 25)
+                            .foregroundColor(.red)
+                    }
+                    .padding(.trailing,16)
+                    
+                  
+                }
+                
                 Text("""
                                  ОБЩИЕ ПОЛОЖЕНИЯ
                                   Настоящее положение об «Отказе от ответственности и гарантий» (далее – Положение) является официальным Положением интернет сервиса (далее – Сервис), который оказывает информационные услуги доступные для пользователей Сервиса (далее - Пользователь) на момент использования Сервиса.

@@ -4,14 +4,30 @@ import SwiftUI
 struct ShopsView: View {
 
     @StateObject var fruitViewModel: FruitViewModel
-
+    @StateObject var userViewModel: UserViewModel
     var body: some View {
 //        VStack {
         ScrollView {
-            Text("Адреса торговых точек")
-                .foregroundColor(Color.theme.blackWhiteText)
-                .font(Font(uiFont: .fontLibrary(20, .pFBeauSansProSemiBold)))
-                .padding()
+            HStack {
+                Spacer()
+                Text("Адреса торговых точек")
+                    .foregroundColor(Color.theme.blackWhiteText)
+                    .font(Font(uiFont: .fontLibrary(20, .pFBeauSansProSemiBold)))
+                    .padding()
+                Spacer()
+                Button {
+                    userViewModel.showShopView = false
+                } label: {
+                    Image(systemName: "x.square")
+                        .resizable()
+                        .frame(width: 25, height: 25)
+                        .foregroundColor(.red)
+                }
+                .padding(.trailing,16)
+                
+              
+            }
+          
             Color.theme.grafit
                 .opacity(0.3)
                 .frame(height: 10)
