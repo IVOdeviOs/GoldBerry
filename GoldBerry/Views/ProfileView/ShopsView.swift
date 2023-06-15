@@ -24,10 +24,13 @@ struct ShopsView: View {
                         .foregroundColor(.red)
                 }
                 .padding(.trailing,16)
-                
-              
             }
           
+            Image("shop")
+                .resizable()
+                .frame(width: 150, height: 180)
+                .cornerRadius(10)
+            
             Color.theme.grafit
                 .opacity(0.3)
                 .frame(height: 10)

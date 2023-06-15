@@ -30,7 +30,7 @@ struct DeliveryInfoView: View {
                     .font(Font(uiFont: .fontLibrary(15, .pFBeauSansProRegular)))
                     .foregroundColor(Color.theme.blackWhiteText)
                 Text("+375-29-702-37-01")
-                    .font(Font(uiFont: .fontLibrary(40, .pFBeauSansProSemiBold)))
+                    .font(Font(uiFont: .fontLibrary(30, .pFBeauSansProSemiBold)))
                     .foregroundColor(Color.theme.green4)
                     .padding(.bottom, 5)
                 Text("Payment and delivery")
