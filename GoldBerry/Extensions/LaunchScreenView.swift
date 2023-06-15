@@ -49,6 +49,8 @@ struct LaunchScreenView: View {
                     Text("OK_fruit")
                         .font(Font(uiFont: .fontLibrary(45, .pFBeauSansProSemiBold)))
                         .kerning(0)
+                        .foregroundColor(.white)
+
 //                        .resizable()
                         .aspectRatio(contentMode: changeMode ? .fit : .fill)
                         .frame(width: scaled ? Constantss.Circle.Radius.scaled * 2 : Constantss.Circle.Radius.basic / 0.14)

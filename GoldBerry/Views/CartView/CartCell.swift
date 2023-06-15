@@ -87,6 +87,8 @@ struct CartCell: View {
                         .fixedSize(horizontal: false, vertical: true)
                         .foregroundColor(Color.theme.blackWhiteText)
                         .font(Font(uiFont: .fontLibrary(14, .pFBeauSansProRegular)))
+                        .minimumScaleFactor(0.5)
+                        .lineLimit(5)
                     if fruit.favorite {} else {
                         HStack {
                             Button {

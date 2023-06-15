@@ -83,7 +83,7 @@ struct ViewProfile: View {
                     ZStack {
                         HStack {
                             Text("Доставка фруктов")
-                                .font(Font(uiFont: .fontLibrary(32, .pFBeauSansProSemiBold)))
+                                .font(Font(uiFont: .fontLibrary(25, .pFBeauSansProSemiBold)))
                                 .foregroundColor(fruitViewModel.selected == 3 ? Color.theme.background : Color.theme.green4)
                                 .padding()
                             Spacer()

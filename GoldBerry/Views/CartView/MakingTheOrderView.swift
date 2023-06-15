@@ -84,7 +84,7 @@ struct MakingTheOrderView: View {
 //                            .padding()
                     }
                     .background(Color.theme.background)
-                    .frame(height: 55)
+                    .frame(height: 65)
                     .cornerRadius(10)
                     .shadow(color: .gray, radius: 2, x: 1, y: 1)
                     .padding()
