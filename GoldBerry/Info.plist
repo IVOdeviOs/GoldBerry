@@ -22,7 +22,17 @@
 			<key>CFBundleURLSchemes</key>
 			<array/>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.681087587207-03jvsf5mifa2d39m9poq35s5s1u8c3f3</string>
+			</array>
+		</dict>
 	</array>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<false/>
 	<key>NSAppClip</key>
 	<dict>
 		<key>NSAppClipRequestEphemeralUserNotification</key>
@@ -43,6 +53,12 @@
 		<string>UZSans-Medium.ttf</string>
 		<string>UZSans-Regular.ttf</string>
 		<string>UZSans-SemiBold.ttf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>processing</string>
+		<string>remote-notification</string>
 	</array>
 </dict>
 </plist>

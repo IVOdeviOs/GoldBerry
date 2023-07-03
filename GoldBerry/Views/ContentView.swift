@@ -34,8 +34,6 @@ struct ContentView: View {
                         .environment(\.locale, .init(identifier: Locale.current.identifier))
                         .onAppear{
                             let variable = Locale.current.identifier
-                            print("\(variable)")
-                            
                         }
 //                    }
                 }
